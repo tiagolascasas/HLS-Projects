@@ -1,0 +1,132 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/utils.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from vivado_hls_examples/svm_gold.c:1:
+vivado_hls_examples/svm_gold.c:12:25: error: use of undeclared identifier 'sup_vectors'
+  diff=test_vector[j] - sup_vectors[j][i];
+                        ^
+vivado_hls_examples/svm_gold.c:16:34: error: use of undeclared identifier 'sv_coeff'
+    *sum = *sum + (exp(-8*norma)*sv_coeff[i]);
+                                 ^
+2 errors generated.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/utils.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/main.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/knn.c' ... 
+ERROR: [HLS 200-70] Compilation errors found: In file included from vivado_hls_examples/knn.c:1:
+vivado_hls_examples/knn.c:107:10: error: redefinition of 'i'
+ for(int i=0; i<KValue; i++) {
+         ^
+vivado_hls_examples/knn.c:102:10: note: previous definition is here
+ for(int i=0; i<NClasses+1; i++)
+         ^
+vivado_hls_examples/knn.c:115:10: error: redefinition of 'i'
+ for(int i=0; i<NClasses +1; i++) {
+         ^
+vivado_hls_examples/knn.c:102:10: note: previous definition is here
+ for(int i=0; i<NClasses+1; i++)
+         ^
+2 errors generated.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/array_addition.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:45 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:45 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:50 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:51 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_addition' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_addition' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 51.46 seconds; current allocated memory: 95.615 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.837 seconds; current allocated memory: 95.833 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_addition' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_addition' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_addition'.
+INFO: [HLS 200-111]  Elapsed time: 0.458 seconds; current allocated memory: 96.034 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:57 . Memory (MB): peak = 178.547 ; gain = 88.375
+INFO: [VHDL 208-304] Generating VHDL RTL for array_addition.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_addition.
+INFO: [HLS 200-112] Total elapsed time: 57.097 seconds; peak allocated memory: 96.034 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/array_addition.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:27 . Memory (MB): peak = 178.590 ; gain = 88.746
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:27 . Memory (MB): peak = 178.590 ; gain = 88.746
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:29 . Memory (MB): peak = 178.590 ; gain = 88.746
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:30 . Memory (MB): peak = 178.590 ; gain = 88.746
+INFO: [HLS 200-489] Unrolling loop 'Loop-1' (vivado_hls_examples/array_addition.c:4) in function 'array_addition' completely with a factor of 1024.
+WARNING: [XFORM 203-505] Pipeline directive for loop 'Loop-1' (vivado_hls_examples/array_addition.c:4) in function 'array_addition' has been removed because the loop is unrolled completely.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:08 ; elapsed = 00:00:38 . Memory (MB): peak = 178.590 ; gain = 88.746
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:24 ; elapsed = 00:00:55 . Memory (MB): peak = 420.930 ; gain = 331.086
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_addition' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_addition' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 68.307 seconds; current allocated memory: 165.588 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 14.297 seconds; current allocated memory: 188.535 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_addition' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_addition/c' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_addition' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_addition'.
+INFO: [HLS 200-111]  Elapsed time: 20.039 seconds; current allocated memory: 221.537 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:01:17 ; elapsed = 00:02:06 . Memory (MB): peak = 420.930 ; gain = 331.086
+INFO: [VHDL 208-304] Generating VHDL RTL for array_addition.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_addition.
+INFO: [HLS 200-112] Total elapsed time: 126.466 seconds; peak allocated memory: 221.537 MB.

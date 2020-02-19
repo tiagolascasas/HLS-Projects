@@ -1,0 +1,5 @@
+input,optimizations,part,target_clock,estim_clock,lat_worst,lat_avg,lat_best,FF,LUT,BRAM,DSP
+svm_predict,No optimizations,xc7z020-clg484-1,10.00,8.232,406849,406849,406849,3473,5924,68,45
+svm_predict,Pipeline 2 on outer loop,xc7z020-clg484-1,10.00,11.759,11363,11363,11363,6492,8112,20,55
+svm_predict,Pipeline 2 on inner loop,xc7z020-clg484-1,10.00,13.434,157289,157289,157289,3485,5900,68,46
+svm_predict,expf instead of exp,xc7z020-clg484-1,10.00,7.684,388129,388129,388129,972,2044,68,12

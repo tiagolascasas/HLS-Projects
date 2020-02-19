@@ -130,3 +130,295 @@ INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:01:17 
 INFO: [VHDL 208-304] Generating VHDL RTL for array_addition.
 INFO: [VLOG 209-307] Generating Verilog RTL for array_addition.
 INFO: [HLS 200-112] Total elapsed time: 126.466 seconds; peak allocated memory: 221.537 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:55 . Memory (MB): peak = 178.633 ; gain = 87.563
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:55 . Memory (MB): peak = 178.633 ; gain = 87.563
+INFO: [HLS 200-10] Starting code transformations ...
+ERROR: [SYNCHK 200-79] Cannot find the top function 'array_addition' in the design. Possible causes are: (1) the top function name is misspelled; (2) the top function is nonexistent or declared as static.
+ERROR: [HLS 200-70] Synthesizability check failed.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:24 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:24 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:25 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:25 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:26 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:26 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'svm_predict' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 27.048 seconds; current allocated memory: 96.304 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.465 seconds; current allocated memory: 96.698 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/test_vector' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/sum' to 'ap_ovld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'svm_predict' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors' to 'svm_predict_sup_vbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sv_coeff' to 'svm_predict_sv_cocud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'svm_predict_faddfdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_predict_fmul_eOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fptrunc_64ns_32_2_1' to 'svm_predict_fptrufYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fpext_32ns_64_2_1' to 'svm_predict_fpextg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dadd_64ns_64ns_64_5_full_dsp_1' to 'svm_predict_dadd_hbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dmul_64ns_64ns_64_6_max_dsp_1' to 'svm_predict_dmul_ibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dexp_64ns_64ns_64_18_full_dsp_1' to 'svm_predict_dexp_jbC' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dadd_hbi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dexp_jbC': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dmul_ibs': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_faddfdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fmul_eOg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fpextg8j': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fptrufYi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_predict'.
+INFO: [HLS 200-111]  Elapsed time: 0.556 seconds; current allocated memory: 97.445 MB.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vbkb_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sv_cocud_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:04 ; elapsed = 00:00:34 . Memory (MB): peak = 178.613 ; gain = 87.828
+INFO: [VHDL 208-304] Generating VHDL RTL for svm_predict.
+INFO: [VLOG 209-307] Generating Verilog RTL for svm_predict.
+INFO: [HLS 200-112] Total elapsed time: 33.642 seconds; peak allocated memory: 97.445 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Loop-1' (vivado_hls_examples/svm_gold.c:9) in function 'svm_predict' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-1.1' (vivado_hls_examples/svm_gold.c:11) in function 'svm_predict' completely with a factor of 18.
+INFO: [XFORM 203-102] Partitioning array 'sup_vectors' in dimension 1 automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'svm_predict' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 5, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('test_vector_load_16', vivado_hls_examples/svm_gold.c:12) on array 'test_vector' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'test_vector'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 2, Final II = 9, Depth = 139.
+WARNING: [SCHED 204-21] Estimated clock period (11.7594ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'svm_predict' consists of the following:
+	'fpext' operation ('tmp_2', vivado_hls_examples/svm_gold.c:16) [109]  (4.44 ns)
+	'dexp' operation ('tmp_3', vivado_hls_examples/svm_gold.c:16) [110]  (7.32 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 11.311 seconds; current allocated memory: 97.203 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.316 seconds; current allocated memory: 98.137 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/test_vector' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/sum' to 'ap_ovld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'svm_predict' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors_0' to 'svm_predict_sup_vbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors_1' to 'svm_predict_sup_vcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors_2' to 'svm_predict_sup_vdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors_3' to 'svm_predict_sup_veOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sv_coeff' to 'svm_predict_sv_cofYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'svm_predict_faddfg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fadd_32ns_32ns_32_5_full_dsp_1' to 'svm_predict_fadd_hbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_predict_fmul_ibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fptrunc_64ns_32_2_1' to 'svm_predict_fptrujbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fpext_32ns_64_2_1' to 'svm_predict_fpextkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dadd_64ns_64ns_64_5_full_dsp_1' to 'svm_predict_dadd_lbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dmul_64ns_64ns_64_6_max_dsp_1' to 'svm_predict_dmul_mb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dexp_64ns_64ns_64_18_full_dsp_1' to 'svm_predict_dexp_ncg' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dadd_lbW': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dexp_ncg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dmul_mb6': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fadd_hbi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_faddfg8j': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fmul_ibs': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fpextkbM': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fptrujbC': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_predict'.
+INFO: [HLS 200-111]  Elapsed time: 0.635 seconds; current allocated memory: 99.740 MB.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vbkb_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vcud_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vdEe_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_veOg_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sv_cofYi_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:04 ; elapsed = 00:00:17 . Memory (MB): peak = 179.441 ; gain = 89.320
+INFO: [VHDL 208-304] Generating VHDL RTL for svm_predict.
+INFO: [VLOG 209-307] Generating Verilog RTL for svm_predict.
+INFO: [HLS 200-112] Total elapsed time: 16.609 seconds; peak allocated memory: 99.740 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [XFORM 203-541] Flattening a loop nest 'Loop-1' (vivado_hls_examples/svm_gold.c:9:13) in function 'svm_predict'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'svm_predict' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Loop 1'.
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
+   between 'fadd' operation ('norma', vivado_hls_examples/svm_gold.c:14) and 'select' operation ('select_ln12', vivado_hls_examples/svm_gold.c:12).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 0)
+   between 'fadd' operation ('norma', vivado_hls_examples/svm_gold.c:14) and 'select' operation ('select_ln12', vivado_hls_examples/svm_gold.c:12).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 5, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+WARNING: [SCHED 204-68] The II Violation in module 'svm_predict' (Loop: Loop 1): Unable to enforce a carried dependence constraint (II = 6, distance = 1, offset = 1)
+   between wire write on port 'sum' (vivado_hls_examples/svm_gold.c:16) and wire read on port 'sum' (vivado_hls_examples/svm_gold.c:16).
+INFO: [SCHED 204-61] Pipelining result : Target II = 2, Final II = 7, Depth = 47.
+WARNING: [SCHED 204-21] Estimated clock period (13.434ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'svm_predict' consists of the following:
+	'dadd' operation ('tmp_6', vivado_hls_examples/svm_gold.c:16) [54]  (8.23 ns)
+	'fptrunc' operation ('tmp_7', vivado_hls_examples/svm_gold.c:16) [55]  (5.2 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.608 seconds; current allocated memory: 96.457 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.199 seconds; current allocated memory: 96.819 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/test_vector' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/sum' to 'ap_ovld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'svm_predict' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sv_coeff' to 'svm_predict_sv_cobkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors' to 'svm_predict_sup_vcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'svm_predict_faddfdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_predict_fmul_eOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fptrunc_64ns_32_2_1' to 'svm_predict_fptrufYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fpext_32ns_64_2_1' to 'svm_predict_fpextg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dadd_64ns_64ns_64_5_full_dsp_1' to 'svm_predict_dadd_hbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dmul_64ns_64ns_64_6_max_dsp_1' to 'svm_predict_dmul_ibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_dexp_64ns_64ns_64_18_full_dsp_1' to 'svm_predict_dexp_jbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_mac_muladd_5ns_12ns_11ns_16_1_1' to 'svm_predict_mac_mkbM' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dadd_hbi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dexp_jbC': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_dmul_ibs': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_faddfdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fmul_eOg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fpextg8j': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fptrufYi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_mac_mkbM': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_predict'.
+INFO: [HLS 200-111]  Elapsed time: 0.488 seconds; current allocated memory: 97.696 MB.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sv_cobkb_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vcud_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:04 ; elapsed = 00:00:14 . Memory (MB): peak = 178.238 ; gain = 88.188
+INFO: [VHDL 208-304] Generating VHDL RTL for svm_predict.
+INFO: [VLOG 209-307] Generating Verilog RTL for svm_predict.
+INFO: [HLS 200-112] Total elapsed time: 14.368 seconds; peak allocated memory: 97.696 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'svm_predict' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.714 seconds; current allocated memory: 96.165 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.3 seconds; current allocated memory: 96.536 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/test_vector' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_predict/sum' to 'ap_ovld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'svm_predict' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sup_vectors' to 'svm_predict_sup_vbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_sv_coeff' to 'svm_predict_sv_cocud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'svm_predict_faddfdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_predict_fmul_eOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_predict_fexp_32ns_32ns_32_9_full_dsp_1' to 'svm_predict_fexp_fYi' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_faddfdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fexp_fYi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_predict_fmul_eOg': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_predict'.
+INFO: [HLS 200-111]  Elapsed time: 0.454 seconds; current allocated memory: 97.126 MB.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sup_vbkb_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'svm_predict_sv_cocud_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:03 ; elapsed = 00:00:14 . Memory (MB): peak = 178.953 ; gain = 87.883
+INFO: [VHDL 208-304] Generating VHDL RTL for svm_predict.
+INFO: [VLOG 209-307] Generating Verilog RTL for svm_predict.
+INFO: [HLS 200-112] Total elapsed time: 14.078 seconds; peak allocated memory: 97.126 MB.

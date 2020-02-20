@@ -11,7 +11,15 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="WARNING: [RTMG 210-274] Memory 'svm_partitioned_pjbC' is read-only, switch it to a ROM." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:28.620+0000" type="Warning"/>
+        <logs message="WARNING: [RTMG 210-274] Memory 'svm_partitioned_pibs' is read-only, switch it to a ROM." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:28.527+0000" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Global array 'sv2' will not be exposed as RTL port." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:27.417+0000" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Global array 'coef2' will not be exposed as RTL port." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:27.402+0000" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Global array 'sv1' will not be exposed as RTL port." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:27.386+0000" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Global array 'coef1' will not be exposed as RTL port." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:27.370+0000" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-20T13:03:19.449+0000" type="Warning"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>

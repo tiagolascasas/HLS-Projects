@@ -4,10 +4,9 @@
 ## Copyright (C) 1986-2019 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project vivado_hls_examples
-set_top svm_partitioned_predict
+set_top euclidean_dist
+add_files vivado_hls_examples/euclidean_dist.c
 add_files vivado_hls_examples/reports.csv
-add_files vivado_hls_examples/svm.h
-add_files vivado_hls_examples/svm_gold.c
 open_solution "solution1"
 set_part {xc7z020-clg484-1} -tool vivado
 create_clock -period 10 -name default

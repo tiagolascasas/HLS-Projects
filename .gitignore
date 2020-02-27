@@ -4,3 +4,4 @@ vivado_hls_examples/solution1/.debug
 vivado_hls_examples/solution1/syn
 vivado_hls_examples/solution1/.tcls
 vivado_hls_examples/hlsparser.exe
+*.exe

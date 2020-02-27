@@ -1,134 +1,158 @@
-INFO: [HLS 200-10] Running 'D:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/vivado_hls.exe'
-INFO: [HLS 200-10] For user 'Tiago' on host 'desktop-7huf9hb' (Windows NT_amd64 version 6.2) on Wed Feb 26 22:45:45 +0000 2020
-INFO: [HLS 200-10] In directory 'C:/Users/Tiago/Dev/HLS-Projects'
-Sourcing Tcl script 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/csynth.tcl'
-INFO: [HLS 200-10] Opening project 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples'.
-INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/euclidean_dist.c' to the project
+INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'SPeCS' on host 'desktop-8gu49sj' (Windows NT_amd64 version 6.2) on Thu Feb 27 13:24:59 +0000 2020
+INFO: [HLS 200-10] In directory 'C:/Users/SPeCS/Desktop/HLS-Projects'
+Sourcing Tcl script 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/csynth.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples'.
 INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/reports.csv' to the project
-INFO: [HLS 200-10] Opening solution 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1'.
+INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/svm.h' to the project
+INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/svm_gold.c' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 178.586 ; gain = 88.199
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 178.586 ; gain = 88.199
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
+WARNING: [HLS 214-113] Variables defined outside dataflow region are not supported: vivado_hls_examples/svm_gold.c:42:51
+WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file vivado_hls_examples/svm_gold.c
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.523 ; gain = 87.484
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.523 ; gain = 87.484
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:15 . Memory (MB): peak = 245.992 ; gain = 155.605
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::data' into 'fp_struct<float>::to_float' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:348) automatically.
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::to_float' into 'fp_struct<float>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:369) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 39, 41>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:164) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 41, 44>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:167) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 44, 39>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:170) automatically.
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::expv' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
-INFO: [XFORM 203-602] Inlining function 'generic_isinf<float>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
-INFO: [XFORM 203-602] Inlining function 'generic_isnan<float>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<float>::log_range_reduction<39>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<float>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
-INFO: [XFORM 203-602] Inlining function 'powf' into 'euclidean_dist' (vivado_hls_examples/euclidean_dist.c:8) automatically.
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:16 . Memory (MB): peak = 263.863 ; gain = 173.477
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::data' into 'fp_struct<float>::to_float' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:348) automatically.
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::to_float' into 'fp_struct<float>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:369) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 39, 41>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:164) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 41, 44>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:167) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<65, 9, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 44, 39>' into 'pow_reduce::pow_traits<float>::log_range_reduction<39>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:170) automatically.
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::expv' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
-INFO: [XFORM 203-602] Inlining function 'generic_isinf<float>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
-INFO: [XFORM 203-602] Inlining function 'generic_isnan<float>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
-INFO: [XFORM 203-602] Inlining function 'fp_struct<float>::to_ieee' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:412) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<float>::log_range_reduction<39>' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
-INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<float>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
-INFO: [XFORM 203-602] Inlining function 'powf' into 'euclidean_dist' (vivado_hls_examples/euclidean_dist.c:8) automatically.
-INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320:19) to (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:690:3) in function 'pow_reduce::pow_generic<float>'... converting 22 basic blocks.
-INFO: [XFORM 203-11] Balancing expressions in function 'pow_reduce::pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)...3 expression(s) balanced.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:17 . Memory (MB): peak = 330.484 ; gain = 240.098
-WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic<float>' to 'pow_generic<float>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:18 . Memory (MB): peak = 346.832 ; gain = 256.445
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict6' (vivado_hls_examples/svm_gold.c:31:4).
+WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict5' (vivado_hls_examples/svm_gold.c:31:4).
+WARNING: [XFORM 203-713] Reading dataflow channel 'test_vector2' in the middle of dataflow may stall the dataflow pipeline:
+WARNING: [XFORM 203-713] Argument 'test_vector2' has read operations in process function 'svm_partial_predict6'.
+INFO: [XFORM 203-712] Applying dataflow to function 'svm_partitioned_predict', detected/extracted 4 process function(s): 
+	 'svm_partial_predict5'
+	 'svm_partial_predict6'
+	 'Block__proc'
+	 'Block__proc7'.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
+INTERNAL-INFO: never seen llvm instruction 'dexp'(522)
+INTERNAL-INFO: never seen llvm instruction 'dexp'(522)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 183.148 ; gain = 92.109
 INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'euclidean_dist' ...
-WARNING: [SYN 201-103] Legalizing function name 'pow_generic<float>' to 'pow_generic_float_s'.
+INFO: [HLS 200-10] Synthesizing 'svm_partitioned_predict' ...
+WARNING: [SYN 201-103] Legalizing function name 'Block__proc' to 'Block_proc'.
+WARNING: [SYN 201-103] Legalizing function name 'Block__proc7' to 'Block_proc7'.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'pow_generic_float_s' 
+INFO: [HLS 200-42] -- Implementing module 'svm_partial_predict5' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-61] Pipelining function 'pow_generic<float>'.
-INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 21.
-WARNING: [SCHED 204-21] Estimated clock period (9.38625ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
-WARNING: [SCHED 204-21] The critical path in module 'pow_generic_float_s' consists of the following:
-	'mul' operation of DSP[148] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [145]  (3.36 ns)
-	'add' operation of DSP[148] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [148]  (3.02 ns)
-	'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [152]  (2.32 ns)
-	'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [154]  (0 ns)
-	'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [155]  (0.687 ns)
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 18.093 seconds; current allocated memory: 283.876 MB.
+INFO: [HLS 200-111]  Elapsed time: 9.478 seconds; current allocated memory: 135.025 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.334 seconds; current allocated memory: 284.724 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.244 seconds; current allocated memory: 135.228 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'euclidean_dist' 
+INFO: [HLS 200-42] -- Implementing module 'svm_partial_predict6' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.396 seconds; current allocated memory: 285.026 MB.
-INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [HLS 200-111]  Elapsed time: 0.237 seconds; current allocated memory: 135.554 MB.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.287 seconds; current allocated memory: 285.359 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.185 seconds; current allocated memory: 135.763 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'pow_generic_float_s' 
+INFO: [HLS 200-42] -- Implementing module 'Block_proc' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_7' to 'pow_generic_floatbkb' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_6' to 'pow_generic_floatcud' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_9' to 'pow_generic_floatdEe' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_10' to 'pow_generic_floateOg' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_8' to 'pow_generic_floatfYi' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo_11' to 'pow_generic_floatg8j' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'pow_generic_float_s_pow_reduce_anonymo' to 'pow_generic_floathbi' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mul_6ns_41ns_47_2_1' to 'euclidean_dist_muibs' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mul_6ns_44ns_50_3_1' to 'euclidean_dist_mujbC' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mul_9s_45ns_52_2_1' to 'euclidean_dist_mukbM' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mul_mul_6ns_25s_25_1_1' to 'euclidean_dist_mulbW' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mac_muladd_13s_13ns_16s_25_1_1' to 'euclidean_dist_mamb6' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_mul_mul_18ns_18ns_36_1_1' to 'euclidean_dist_muncg' due to the length limit 20
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_mamb6': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_muibs': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_mujbC': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_mukbM': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_mulbW': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_muncg': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'pow_generic_float_s'.
-INFO: [HLS 200-111]  Elapsed time: 0.65 seconds; current allocated memory: 287.399 MB.
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.145 seconds; current allocated memory: 135.786 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.073 seconds; current allocated memory: 135.814 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist' 
+INFO: [HLS 200-42] -- Implementing module 'Block_proc7' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist/a' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist/b' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist' to 'ap_ctrl_hs'.
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'euclidean_dist_faocq' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'euclidean_dist_fsqrt_32ns_32ns_32_12_1' to 'euclidean_dist_fspcA' due to the length limit 20
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_faocq': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_fspcA': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist'.
-INFO: [HLS 200-111]  Elapsed time: 0.923 seconds; current allocated memory: 288.482 MB.
-INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_muibs_MulnS_0'
-INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_mujbC_MulnS_1'
-INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_mukbM_MulnS_2'
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floatbkb_rom' using distributed ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floatcud_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floatdEe_rom' using distributed ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floateOg_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floatfYi_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floatg8j_rom' using auto ROMs.
-INFO: [RTMG 210-279] Implementing memory 'pow_generic_floathbi_rom' using distributed ROMs.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:09 ; elapsed = 00:00:25 . Memory (MB): peak = 369.051 ; gain = 278.664
-INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist.
-INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist.
-INFO: [HLS 200-112] Total elapsed time: 24.778 seconds; peak allocated memory: 288.482 MB.
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.121 seconds; current allocated memory: 135.837 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.084 seconds; current allocated memory: 135.899 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'svm_partitioned_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.134 seconds; current allocated memory: 135.933 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.232 seconds; current allocated memory: 136.009 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_partial_predict5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fadd_32ns_32ns_32_5_full_dsp_1' to 'svm_partitioned_pbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_partitioned_pcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fptrunc_64ns_32_2_1' to 'svm_partitioned_pdEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fpext_32ns_64_2_1' to 'svm_partitioned_peOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dadd_64ns_64ns_64_5_full_dsp_1' to 'svm_partitioned_pfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dmul_64ns_64ns_64_6_max_dsp_1' to 'svm_partitioned_pg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dexp_64ns_64ns_64_18_full_dsp_1' to 'svm_partitioned_phbi' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_peOg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pfYi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pg8j': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_phbi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partial_predict5'.
+INFO: [HLS 200-111]  Elapsed time: 0.361 seconds; current allocated memory: 136.659 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_partial_predict6' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_peOg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pfYi': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pg8j': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_phbi': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partial_predict6'.
+INFO: [HLS 200-111]  Elapsed time: 0.518 seconds; current allocated memory: 137.335 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_proc'.
+INFO: [HLS 200-111]  Elapsed time: 0.487 seconds; current allocated memory: 137.452 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_proc7' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_proc7'.
+INFO: [HLS 200-111]  Elapsed time: 0.289 seconds; current allocated memory: 137.626 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'svm_partitioned_predict' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/test_vector1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/test_vector2' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/sum' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'svm_partitioned_predict' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partitioned_predict'.
+INFO: [HLS 200-111]  Elapsed time: 0.27 seconds; current allocated memory: 137.929 MB.
+INFO: [RTMG 210-285] Implementing FIFO 'sum1_U(fifo_w32_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sum2_c_U(fifo_w32_d3_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sum1_load_loc_channe_U(fifo_w32_d2_A)' using Shift Registers.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 198.891 ; gain = 107.852
+INFO: [VHDL 208-304] Generating VHDL RTL for svm_partitioned_predict.
+INFO: [VLOG 209-307] Generating Verilog RTL for svm_partitioned_predict.
+INFO: [HLS 200-112] Total elapsed time: 16.534 seconds; peak allocated memory: 137.929 MB.

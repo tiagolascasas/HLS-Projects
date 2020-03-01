@@ -12,15 +12,7 @@
   <warningLogs>
     <logs>
       <synLog>
-        <logs message="WARNING: [SYN 201-103] Legalizing function name 'Block__proc7' to 'Block_proc7'." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.457+0000" type="Warning"/>
-        <logs message="WARNING: [SYN 201-103] Legalizing function name 'Block__proc' to 'Block_proc'." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.426+0000" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-713] Argument 'test_vector2' has read operations in process function 'svm_partial_predict6'." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.098+0000" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-713] Reading dataflow channel 'test_vector2' in the middle of dataflow may stall the dataflow pipeline:" projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.066+0000" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict5' (vivado_hls_examples/svm_gold.c:31:4)." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.051+0000" type="Warning"/>
-        <logs message="WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict6' (vivado_hls_examples/svm_gold.c:31:4)." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:08.035+0000" type="Warning"/>
-        <logs message="WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file vivado_hls_examples/svm_gold.c" projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:06.988+0000" type="Warning"/>
-        <logs message="WARNING: [HLS 214-113] Variables defined outside dataflow region are not supported: vivado_hls_examples/svm_gold.c:42:51" projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:04.098+0000" type="Warning"/>
-        <logs message="WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="vivado_hls_examples" solutionName="solution1" date="2020-02-27T13:25:00.832+0000" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-01T18:38:56.913+0000" type="Warning"/>
       </synLog>
       <simLog/>
       <mgLog/>

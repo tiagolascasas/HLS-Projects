@@ -1,158 +1,57 @@
-INFO: [HLS 200-10] Running 'C:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/vivado_hls.exe'
-INFO: [HLS 200-10] For user 'SPeCS' on host 'desktop-8gu49sj' (Windows NT_amd64 version 6.2) on Thu Feb 27 13:24:59 +0000 2020
-INFO: [HLS 200-10] In directory 'C:/Users/SPeCS/Desktop/HLS-Projects'
-Sourcing Tcl script 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/csynth.tcl'
-INFO: [HLS 200-10] Opening project 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples'.
+INFO: [HLS 200-10] Running 'D:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'Tiago' on host 'desktop-7huf9hb' (Windows NT_amd64 version 6.2) on Sun Mar 01 18:38:54 +0000 2020
+INFO: [HLS 200-10] In directory 'C:/Users/Tiago/Dev/HLS-Projects'
+Sourcing Tcl script 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/csynth.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples'.
+INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/euclidean_dist.c' to the project
 INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/reports.csv' to the project
-INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/svm.h' to the project
-INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/svm_gold.c' to the project
-INFO: [HLS 200-10] Opening solution 'C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1'.
+INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/rsqrt.h' to the project
+INFO: [HLS 200-10] Adding design file 'vivado_hls_examples/trig.c' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1'.
 INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
 INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
 INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
 WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
-INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/svm_gold.c' ... 
-WARNING: [HLS 214-113] Variables defined outside dataflow region are not supported: vivado_hls_examples/svm_gold.c:42:51
-WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file vivado_hls_examples/svm_gold.c
-INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.523 ; gain = 87.484
-INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.523 ; gain = 87.484
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/trig.c' ... 
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:24 . Memory (MB): peak = 178.383 ; gain = 111.832
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:24 . Memory (MB): peak = 178.383 ; gain = 111.832
 INFO: [HLS 200-10] Starting code transformations ...
-INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:29 . Memory (MB): peak = 306.355 ; gain = 239.805
 INFO: [HLS 200-10] Checking synthesizability ...
-INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict6' (vivado_hls_examples/svm_gold.c:31:4).
-WARNING: [ANALYSIS 214-31] The program may have out of bound access of array variable 'test_vector' in function 'svm_partial_predict5' (vivado_hls_examples/svm_gold.c:31:4).
-WARNING: [XFORM 203-713] Reading dataflow channel 'test_vector2' in the middle of dataflow may stall the dataflow pipeline:
-WARNING: [XFORM 203-713] Argument 'test_vector2' has read operations in process function 'svm_partial_predict6'.
-INFO: [XFORM 203-712] Applying dataflow to function 'svm_partitioned_predict', detected/extracted 4 process function(s): 
-	 'svm_partial_predict5'
-	 'svm_partial_predict6'
-	 'Block__proc'
-	 'Block__proc7'.
-INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.523 ; gain = 87.484
-INTERNAL-INFO: never seen llvm instruction 'dexp'(522)
-INTERNAL-INFO: never seen llvm instruction 'dexp'(522)
-INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 183.148 ; gain = 92.109
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:05 ; elapsed = 00:00:30 . Memory (MB): peak = 352.227 ; gain = 285.676
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:31 . Memory (MB): peak = 475.082 ; gain = 408.531
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:32 . Memory (MB): peak = 503.141 ; gain = 436.590
 INFO: [HLS 200-10] Starting hardware synthesis ...
-INFO: [HLS 200-10] Synthesizing 'svm_partitioned_predict' ...
-WARNING: [SYN 201-103] Legalizing function name 'Block__proc' to 'Block_proc'.
-WARNING: [SYN 201-103] Legalizing function name 'Block__proc7' to 'Block_proc7'.
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist' ...
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'svm_partial_predict5' 
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
 INFO: [SCHED 204-11] Starting scheduling ...
 INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 9.478 seconds; current allocated memory: 135.025 MB.
-INFO: [HLS 200-434] Only 0 loops out of a total 2 loops have been pipelined in this design.
+INFO: [HLS 200-111]  Elapsed time: 31.785 seconds; current allocated memory: 424.126 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
 INFO: [BIND 205-100] Starting micro-architecture generation ...
 INFO: [BIND 205-101] Performing variable lifetime analysis.
 INFO: [BIND 205-101] Exploring resource sharing.
 INFO: [BIND 205-101] Binding ...
 INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.244 seconds; current allocated memory: 135.228 MB.
+INFO: [HLS 200-111]  Elapsed time: 0.191 seconds; current allocated memory: 424.464 MB.
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'svm_partial_predict6' 
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist' 
 INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.237 seconds; current allocated memory: 135.554 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.185 seconds; current allocated memory: 135.763 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Block_proc' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.145 seconds; current allocated memory: 135.786 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.073 seconds; current allocated memory: 135.814 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'Block_proc7' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.121 seconds; current allocated memory: 135.837 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.084 seconds; current allocated memory: 135.899 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-42] -- Implementing module 'svm_partitioned_predict' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SCHED 204-11] Starting scheduling ...
-INFO: [SCHED 204-11] Finished scheduling.
-INFO: [HLS 200-111]  Elapsed time: 0.134 seconds; current allocated memory: 135.933 MB.
-INFO: [BIND 205-100] Starting micro-architecture generation ...
-INFO: [BIND 205-101] Performing variable lifetime analysis.
-INFO: [BIND 205-101] Exploring resource sharing.
-INFO: [BIND 205-101] Binding ...
-INFO: [BIND 205-100] Finished micro-architecture generation.
-INFO: [HLS 200-111]  Elapsed time: 0.232 seconds; current allocated memory: 136.009 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'svm_partial_predict5' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fadd_32ns_32ns_32_5_full_dsp_1' to 'svm_partitioned_pbkb' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fmul_32ns_32ns_32_4_max_dsp_1' to 'svm_partitioned_pcud' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fptrunc_64ns_32_2_1' to 'svm_partitioned_pdEe' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_fpext_32ns_64_2_1' to 'svm_partitioned_peOg' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dadd_64ns_64ns_64_5_full_dsp_1' to 'svm_partitioned_pfYi' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dmul_64ns_64ns_64_6_max_dsp_1' to 'svm_partitioned_pg8j' due to the length limit 20
-INFO: [SYN 201-210] Renamed object name 'svm_partitioned_predict_dexp_64ns_64ns_64_18_full_dsp_1' to 'svm_partitioned_phbi' due to the length limit 20
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pcud': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pdEe': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_peOg': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pfYi': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pg8j': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_phbi': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partial_predict5'.
-INFO: [HLS 200-111]  Elapsed time: 0.361 seconds; current allocated memory: 136.659 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'svm_partial_predict6' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pcud': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pdEe': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_peOg': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pfYi': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pg8j': 1 instance(s).
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_phbi': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partial_predict6'.
-INFO: [HLS 200-111]  Elapsed time: 0.518 seconds; current allocated memory: 137.335 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Block_proc' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_proc'.
-INFO: [HLS 200-111]  Elapsed time: 0.487 seconds; current allocated memory: 137.452 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'Block_proc7' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-100] Generating core module 'svm_partitioned_pbkb': 1 instance(s).
-INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_proc7'.
-INFO: [HLS 200-111]  Elapsed time: 0.289 seconds; current allocated memory: 137.626 MB.
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [HLS 200-10] -- Generating RTL for module 'svm_partitioned_predict' 
-INFO: [HLS 200-10] ----------------------------------------------------------------
-INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/test_vector1' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/test_vector2' to 'ap_memory'.
-INFO: [RTGEN 206-500] Setting interface mode on port 'svm_partitioned_predict/sum' to 'ap_vld'.
-INFO: [RTGEN 206-500] Setting interface mode on function 'svm_partitioned_predict' to 'ap_ctrl_hs'.
-INFO: [RTGEN 206-100] Finished creating RTL model for 'svm_partitioned_predict'.
-INFO: [HLS 200-111]  Elapsed time: 0.27 seconds; current allocated memory: 137.929 MB.
-INFO: [RTMG 210-285] Implementing FIFO 'sum1_U(fifo_w32_d2_A)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'sum2_c_U(fifo_w32_d3_A)' using Shift Registers.
-INFO: [RTMG 210-285] Implementing FIFO 'sum1_load_loc_channe_U(fifo_w32_d2_A)' using Shift Registers.
-INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 198.891 ; gain = 107.852
-INFO: [VHDL 208-304] Generating VHDL RTL for svm_partitioned_predict.
-INFO: [VLOG 209-307] Generating Verilog RTL for svm_partitioned_predict.
-INFO: [HLS 200-112] Total elapsed time: 16.534 seconds; peak allocated memory: 137.929 MB.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'euclidean_dist_fabkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_fmul_32ns_32ns_32_4_max_dsp_1' to 'euclidean_dist_fmcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_fsqrt_32ns_32ns_32_12_1' to 'euclidean_dist_fsdEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_fabkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_fmcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_fsdEe': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist'.
+INFO: [HLS 200-111]  Elapsed time: 0.259 seconds; current allocated memory: 424.861 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:07 ; elapsed = 00:00:34 . Memory (MB): peak = 513.301 ; gain = 446.750
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist.
+INFO: [HLS 200-112] Total elapsed time: 34.204 seconds; peak allocated memory: 424.861 MB.

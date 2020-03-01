@@ -3,7 +3,7 @@
         <value string="false"/>
     </checksum>
     <config>
-        <schedule model="svm_partitioned_predict"/>
+        <schedule model="euclidean_dist"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf boardInfo="ZedBoard Zynq Evaluation and Development Kit (xc7z020clg484-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">

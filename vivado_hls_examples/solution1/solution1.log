@@ -4277,3 +4277,961 @@ INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:07 
 INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist.
 INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist.
 INFO: [HLS 200-112] Total elapsed time: 34.204 seconds; peak allocated memory: 424.861 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:13 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:13 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:14 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:14 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:14 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_double' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_double' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 14.203 seconds; current allocated memory: 95.861 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.203 seconds; current allocated memory: 96.220 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_double' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_double/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_double/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_double' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_double_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_dobkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_double_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_docud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_double_dsqrt_64ns_64ns_64_31_1' to 'euclidean_dist_dodEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_dobkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_docud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_dodEe': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_double'.
+INFO: [HLS 200-111]  Elapsed time: 0.312 seconds; current allocated memory: 96.772 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:03 ; elapsed = 00:00:17 . Memory (MB): peak = 178.391 ; gain = 111.758
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_double.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_double.
+INFO: [HLS 200-112] Total elapsed time: 17.458 seconds; peak allocated memory: 96.772 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 8.769 seconds; current allocated memory: 95.861 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.171 seconds; current allocated memory: 96.220 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_64cud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dsqrt_64ns_64ns_64_31_1' to 'euclidean_dist_64dEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64cud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64dEe': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 0.282 seconds; current allocated memory: 96.772 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 178.551 ; gain = 86.992
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 11.584 seconds; peak allocated memory: 96.772 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:21) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:21) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.362 seconds; current allocated memory: 95.909 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.171 seconds; current allocated memory: 96.284 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_64cud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64cud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 0.357 seconds; current allocated memory: 96.846 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:03 ; elapsed = 00:00:12 . Memory (MB): peak = 178.391 ; gain = 86.801
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 12.072 seconds; peak allocated memory: 96.846 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:21) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:21) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.161 seconds; current allocated memory: 95.909 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.215 seconds; current allocated memory: 96.284 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_64cud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64cud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 0.302 seconds; current allocated memory: 96.846 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:12 . Memory (MB): peak = 178.566 ; gain = 87.031
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 11.919 seconds; peak allocated memory: 96.846 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'rsqrt32' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:12) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [XFORM 203-602] Inlining function 'rsqrt32' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:12) automatically.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_32' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.138 seconds; current allocated memory: 95.971 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.204 seconds; current allocated memory: 96.316 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_32/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_32/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_32' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_faddfsub_32ns_32ns_32_5_full_dsp_1' to 'euclidean_dist_32bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_fmul_32ns_32ns_32_4_max_dsp_1' to 'euclidean_dist_32cud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32bkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32cud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_32'.
+INFO: [HLS 200-111]  Elapsed time: 0.32 seconds; current allocated memory: 96.776 MB.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:02 ; elapsed = 00:00:12 . Memory (MB): peak = 178.883 ; gain = 87.320
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_32.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_32.
+INFO: [HLS 200-112] Total elapsed time: 11.902 seconds; peak allocated memory: 96.776 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.637 ; gain = 87.082
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.637 ; gain = 87.082
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 272.609 ; gain = 181.055
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:9) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt32' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:11) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:14 . Memory (MB): peak = 310.277 ; gain = 218.723
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:412) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:9) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt32' into 'euclidean_dist_32' (vivado_hls_examples/euclidean_dist.c:11) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:488:26) to (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:657:25) in function 'pow_reduce::pow_generic<double>'... converting 7 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::log_range_reduction<71>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)...7 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 399.320 ; gain = 307.766
+WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic<double>' to 'pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 416.496 ; gain = 324.941
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_32' ...
+WARNING: [SYN 201-103] Legalizing function name 'pow_generic<double>' to 'pow_generic_double_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'pow_generic<double>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 67.
+WARNING: [SCHED 204-21] Estimated clock period (9.514ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'pow_generic_double_s' consists of the following:
+	'mul' operation of DSP[241] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [238]  (3.36 ns)
+	'add' operation of DSP[241] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [241]  (3.02 ns)
+	'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [245]  (2.43 ns)
+	'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [247]  (0 ns)
+	'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [248]  (0.7 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 17.938 seconds; current allocated memory: 350.704 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.615 seconds; current allocated memory: 352.108 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.642 seconds; current allocated memory: 352.550 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.639 seconds; current allocated memory: 353.207 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_20' to 'pow_generic_doublbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_19' to 'pow_generic_doublcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_16' to 'pow_generic_doubldEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_17' to 'pow_generic_doubleOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_9' to 'pow_generic_doublfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_12' to 'pow_generic_doublg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_13' to 'pow_generic_doublhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_14' to 'pow_generic_doublibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_15' to 'pow_generic_doubljbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_18' to 'pow_generic_doublkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo' to 'pow_generic_doubllbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_21' to 'pow_generic_doublmb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_54s_6ns_54_2_1' to 'euclidean_dist_32ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_71ns_4ns_75_5_1' to 'euclidean_dist_32ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_73ns_6ns_79_5_1' to 'euclidean_dist_32pcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_83ns_6ns_89_5_1' to 'euclidean_dist_32qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_92ns_6ns_98_5_1' to 'euclidean_dist_32rcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_87ns_6ns_93_5_1' to 'euclidean_dist_32sc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_82ns_6ns_88_5_1' to 'euclidean_dist_32tde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_77ns_6ns_83_5_1' to 'euclidean_dist_32udo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_80ns_12s_90_5_1' to 'euclidean_dist_32vdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_72ns_13s_83_5_1' to 'euclidean_dist_32wdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_43ns_36ns_79_2_1' to 'euclidean_dist_32xdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_49ns_44ns_93_2_1' to 'euclidean_dist_32yd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mul_50ns_50ns_100_2_1' to 'euclidean_dist_32zec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_mac_muladd_16ns_16s_19s_31_1_1' to 'euclidean_dist_32Aem' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pow_generic_double_s' is 11134 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32Aem': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32ncg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32ocq': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32pcA': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32qcK': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32rcU': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32sc4': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32tde': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32udo': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32vdy': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32wdI': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32xdS': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32yd2': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32zec': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pow_generic_double_s'.
+INFO: [HLS 200-111]  Elapsed time: 1.357 seconds; current allocated memory: 357.770 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_32' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_32/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_32/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_32' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_fsub_32ns_32ns_32_5_full_dsp_1' to 'euclidean_dist_32Bew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_fmul_32ns_32ns_32_4_max_dsp_1' to 'euclidean_dist_32CeG' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_fptrunc_64ns_32_2_1' to 'euclidean_dist_32DeQ' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_fpext_32ns_64_2_1' to 'euclidean_dist_32Ee0' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_32_dadd_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_32Ffa' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32Bew': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32CeG': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32DeQ': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32Ee0': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_32Ffa': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_32'.
+INFO: [HLS 200-111]  Elapsed time: 1.766 seconds; current allocated memory: 359.443 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32ncg_MulnS_0'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32ocq_MulnS_1'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32pcA_MulnS_2'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32qcK_MulnS_3'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32rcU_MulnS_4'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32sc4_MulnS_5'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32tde_MulnS_6'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32udo_MulnS_7'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32vdy_MulnS_8'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32wdI_MulnS_9'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32xdS_MulnS_10'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32yd2_MulnS_11'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_32zec_MulnS_12'
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublbkb_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublcud_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubldEe_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubleOg_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublfYi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublg8j_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublhbi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublibs_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubljbC_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublkbM_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubllbW_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublmb6_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:14 ; elapsed = 00:00:32 . Memory (MB): peak = 440.719 ; gain = 349.164
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_32.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_32.
+INFO: [HLS 200-112] Total elapsed time: 31.932 seconds; peak allocated memory: 359.443 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.563 ; gain = 86.930
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.563 ; gain = 86.930
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 272.145 ; gain = 180.512
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:14 . Memory (MB): peak = 310.195 ; gain = 218.563
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:412) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:488:26) to (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:657:25) in function 'pow_reduce::pow_generic<double>'... converting 7 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::log_range_reduction<71>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)...7 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 399.238 ; gain = 307.605
+WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic<double>' to 'pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:17 . Memory (MB): peak = 417.203 ; gain = 325.570
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+WARNING: [SYN 201-103] Legalizing function name 'pow_generic<double>' to 'pow_generic_double_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'pow_generic<double>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 67.
+WARNING: [SCHED 204-21] Estimated clock period (9.514ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'pow_generic_double_s' consists of the following:
+	'mul' operation of DSP[241] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [238]  (3.36 ns)
+	'add' operation of DSP[241] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [241]  (3.02 ns)
+	'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [245]  (2.43 ns)
+	'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [247]  (0 ns)
+	'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [248]  (0.7 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 17.745 seconds; current allocated memory: 350.617 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.692 seconds; current allocated memory: 352.021 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.607 seconds; current allocated memory: 352.435 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.609 seconds; current allocated memory: 353.061 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_20' to 'pow_generic_doublbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_19' to 'pow_generic_doublcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_16' to 'pow_generic_doubldEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_17' to 'pow_generic_doubleOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_9' to 'pow_generic_doublfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_12' to 'pow_generic_doublg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_13' to 'pow_generic_doublhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_14' to 'pow_generic_doublibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_15' to 'pow_generic_doubljbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_18' to 'pow_generic_doublkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo' to 'pow_generic_doubllbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_21' to 'pow_generic_doublmb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_54s_6ns_54_2_1' to 'euclidean_dist_64ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_71ns_4ns_75_5_1' to 'euclidean_dist_64ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_73ns_6ns_79_5_1' to 'euclidean_dist_64pcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_83ns_6ns_89_5_1' to 'euclidean_dist_64qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_92ns_6ns_98_5_1' to 'euclidean_dist_64rcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_87ns_6ns_93_5_1' to 'euclidean_dist_64sc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_82ns_6ns_88_5_1' to 'euclidean_dist_64tde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_77ns_6ns_83_5_1' to 'euclidean_dist_64udo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_80ns_12s_90_5_1' to 'euclidean_dist_64vdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_72ns_13s_83_5_1' to 'euclidean_dist_64wdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_43ns_36ns_79_2_1' to 'euclidean_dist_64xdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_49ns_44ns_93_2_1' to 'euclidean_dist_64yd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_50ns_50ns_100_2_1' to 'euclidean_dist_64zec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mac_muladd_16ns_16s_19s_31_1_1' to 'euclidean_dist_64Aem' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pow_generic_double_s' is 11134 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Aem': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ncg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ocq': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64pcA': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64qcK': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64rcU': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64sc4': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64tde': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64udo': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64vdy': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64wdI': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64xdS': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64yd2': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64zec': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pow_generic_double_s'.
+INFO: [HLS 200-111]  Elapsed time: 1.456 seconds; current allocated memory: 357.625 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64Bew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dsqrt_64ns_64ns_64_31_1' to 'euclidean_dist_64CeG' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Bew': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64CeG': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 1.558 seconds; current allocated memory: 359.250 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ncg_MulnS_0'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ocq_MulnS_1'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64pcA_MulnS_2'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64qcK_MulnS_3'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64rcU_MulnS_4'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64sc4_MulnS_5'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64tde_MulnS_6'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64udo_MulnS_7'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64vdy_MulnS_8'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64wdI_MulnS_9'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64xdS_MulnS_10'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64yd2_MulnS_11'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64zec_MulnS_12'
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublbkb_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublcud_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubldEe_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubleOg_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublfYi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublg8j_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublhbi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublibs_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubljbC_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublkbM_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubllbW_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublmb6_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:13 ; elapsed = 00:00:31 . Memory (MB): peak = 441.426 ; gain = 349.793
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 31.236 seconds; peak allocated memory: 359.250 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.480 ; gain = 86.938
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 178.480 ; gain = 86.938
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 272.207 ; gain = 180.664
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:19) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:14 . Memory (MB): peak = 310.391 ; gain = 218.848
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:412) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:19) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:488:26) to (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:657:25) in function 'pow_reduce::pow_generic<double>'... converting 7 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::log_range_reduction<71>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)...7 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:16 . Memory (MB): peak = 399.191 ; gain = 307.648
+WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic<double>' to 'pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:17 . Memory (MB): peak = 416.891 ; gain = 325.348
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+WARNING: [SYN 201-103] Legalizing function name 'pow_generic<double>' to 'pow_generic_double_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'pow_generic<double>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 67.
+WARNING: [SCHED 204-21] Estimated clock period (9.514ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'pow_generic_double_s' consists of the following:
+	'mul' operation of DSP[241] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [238]  (3.36 ns)
+	'add' operation of DSP[241] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [241]  (3.02 ns)
+	'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [245]  (2.43 ns)
+	'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [247]  (0 ns)
+	'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [248]  (0.7 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 17.861 seconds; current allocated memory: 350.693 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.501 seconds; current allocated memory: 352.097 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.649 seconds; current allocated memory: 352.525 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.56 seconds; current allocated memory: 353.180 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_20' to 'pow_generic_doublbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_19' to 'pow_generic_doublcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_16' to 'pow_generic_doubldEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_17' to 'pow_generic_doubleOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_9' to 'pow_generic_doublfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_12' to 'pow_generic_doublg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_13' to 'pow_generic_doublhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_14' to 'pow_generic_doublibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_15' to 'pow_generic_doubljbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_18' to 'pow_generic_doublkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo' to 'pow_generic_doubllbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_21' to 'pow_generic_doublmb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_54s_6ns_54_2_1' to 'euclidean_dist_64ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_71ns_4ns_75_5_1' to 'euclidean_dist_64ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_73ns_6ns_79_5_1' to 'euclidean_dist_64pcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_83ns_6ns_89_5_1' to 'euclidean_dist_64qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_92ns_6ns_98_5_1' to 'euclidean_dist_64rcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_87ns_6ns_93_5_1' to 'euclidean_dist_64sc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_82ns_6ns_88_5_1' to 'euclidean_dist_64tde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_77ns_6ns_83_5_1' to 'euclidean_dist_64udo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_80ns_12s_90_5_1' to 'euclidean_dist_64vdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_72ns_13s_83_5_1' to 'euclidean_dist_64wdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_43ns_36ns_79_2_1' to 'euclidean_dist_64xdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_49ns_44ns_93_2_1' to 'euclidean_dist_64yd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_50ns_50ns_100_2_1' to 'euclidean_dist_64zec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mac_muladd_16ns_16s_19s_31_1_1' to 'euclidean_dist_64Aem' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pow_generic_double_s' is 11134 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Aem': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ncg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ocq': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64pcA': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64qcK': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64rcU': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64sc4': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64tde': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64udo': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64vdy': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64wdI': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64xdS': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64yd2': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64zec': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pow_generic_double_s'.
+INFO: [HLS 200-111]  Elapsed time: 1.158 seconds; current allocated memory: 357.743 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64Bew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_64CeG' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Bew': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64CeG': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 1.602 seconds; current allocated memory: 359.392 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ncg_MulnS_0'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ocq_MulnS_1'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64pcA_MulnS_2'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64qcK_MulnS_3'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64rcU_MulnS_4'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64sc4_MulnS_5'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64tde_MulnS_6'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64udo_MulnS_7'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64vdy_MulnS_8'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64wdI_MulnS_9'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64xdS_MulnS_10'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64yd2_MulnS_11'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64zec_MulnS_12'
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublbkb_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublcud_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubldEe_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubleOg_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublfYi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublg8j_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublhbi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublibs_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubljbC_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublkbM_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubllbW_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublmb6_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:13 ; elapsed = 00:00:30 . Memory (MB): peak = 439.484 ; gain = 347.941
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 30.213 seconds; peak allocated memory: 359.392 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2019.1 (64-bit)
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg484-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx.
+INFO: [HLS 200-10] Analyzing design file 'vivado_hls_examples/euclidean_dist.c' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 179.320 ; gain = 87.750
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 179.320 ; gain = 87.750
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 272.066 ; gain = 180.496
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:19) automatically.
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:14 . Memory (MB): peak = 310.137 ; gain = 218.566
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::data' into 'fp_struct<double>::to_double' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:512) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_double' into 'fp_struct<double>::to_ieee' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/src/hls\utils/x_hls_utils.h:526) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 4, 4, 71, 73>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:225) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 7, 6, 73, 83>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:227) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 12, 6, 83, 92>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:229) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 17, 6, 92, 87>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:231) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 22, 6, 87, 82>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:233) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 27, 6, 82, 77>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:235) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::log_range_reduce<ap_fixed<121, 12, (ap_q_mode)5, (ap_o_mode)3, 0>, 32, 6, 77, 72>' into 'pow_reduce::pow_traits<double>::log_range_reduction<71>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:237) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::expv' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:334) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isinf<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:373) automatically.
+INFO: [XFORM 203-602] Inlining function 'generic_isnan<double>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:375) automatically.
+INFO: [XFORM 203-602] Inlining function 'fp_struct<double>::to_ieee' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:412) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::exp_Z1P_m_1' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:641) automatically.
+INFO: [XFORM 203-602] Inlining function 'pow' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:17) automatically.
+INFO: [XFORM 203-602] Inlining function 'rsqrt64' into 'euclidean_dist_64' (vivado_hls_examples/euclidean_dist.c:19) automatically.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:488:26) to (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:657:25) in function 'pow_reduce::pow_generic<double>'... converting 7 basic blocks.
+INFO: [XFORM 203-602] Inlining function 'pow_reduce::pow_traits<double>::log_range_reduction<71>' into 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:548) automatically.
+INFO: [XFORM 203-11] Balancing expressions in function 'pow_reduce::pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)...7 expression(s) balanced.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:16 . Memory (MB): peak = 399.063 ; gain = 307.492
+WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic<double>' to 'pow_generic<double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:17 . Memory (MB): peak = 417.285 ; gain = 325.715
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'euclidean_dist_64' ...
+WARNING: [SYN 201-103] Legalizing function name 'pow_generic<double>' to 'pow_generic_double_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'pow_generic<double>'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 67.
+WARNING: [SCHED 204-21] Estimated clock period (9.514ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns).
+WARNING: [SCHED 204-21] The critical path in module 'pow_generic_double_s' consists of the following:
+	'mul' operation of DSP[241] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [238]  (3.36 ns)
+	'add' operation of DSP[241] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [241]  (3.02 ns)
+	'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [245]  (2.43 ns)
+	'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [247]  (0 ns)
+	'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [248]  (0.7 ns)
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 17.564 seconds; current allocated memory: 350.693 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.585 seconds; current allocated memory: 352.097 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.639 seconds; current allocated memory: 352.525 MB.
+INFO: [HLS 200-434] Only 0 loops out of a total 1 loops have been pipelined in this design.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.505 seconds; current allocated memory: 353.180 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'pow_generic_double_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_20' to 'pow_generic_doublbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_19' to 'pow_generic_doublcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_16' to 'pow_generic_doubldEe' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_17' to 'pow_generic_doubleOg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_9' to 'pow_generic_doublfYi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_12' to 'pow_generic_doublg8j' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_13' to 'pow_generic_doublhbi' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_14' to 'pow_generic_doublibs' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_15' to 'pow_generic_doubljbC' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_18' to 'pow_generic_doublkbM' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo' to 'pow_generic_doubllbW' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'pow_generic_double_s_pow_reduce_anonymo_21' to 'pow_generic_doublmb6' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_54s_6ns_54_2_1' to 'euclidean_dist_64ncg' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_71ns_4ns_75_5_1' to 'euclidean_dist_64ocq' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_73ns_6ns_79_5_1' to 'euclidean_dist_64pcA' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_83ns_6ns_89_5_1' to 'euclidean_dist_64qcK' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_92ns_6ns_98_5_1' to 'euclidean_dist_64rcU' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_87ns_6ns_93_5_1' to 'euclidean_dist_64sc4' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_82ns_6ns_88_5_1' to 'euclidean_dist_64tde' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_77ns_6ns_83_5_1' to 'euclidean_dist_64udo' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_80ns_12s_90_5_1' to 'euclidean_dist_64vdy' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_72ns_13s_83_5_1' to 'euclidean_dist_64wdI' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_43ns_36ns_79_2_1' to 'euclidean_dist_64xdS' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_49ns_44ns_93_2_1' to 'euclidean_dist_64yd2' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mul_50ns_50ns_100_2_1' to 'euclidean_dist_64zec' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_mac_muladd_16ns_16s_19s_31_1_1' to 'euclidean_dist_64Aem' due to the length limit 20
+INFO: [RTGEN 206-104] Estimated max fanout for 'pow_generic_double_s' is 11134 from HDL expression: (1'b0 == ap_block_pp0_stage0_11001)
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Aem': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ncg': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64ocq': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64pcA': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64qcK': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64rcU': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64sc4': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64tde': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64udo': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64vdy': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64wdI': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64xdS': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64yd2': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64zec': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'pow_generic_double_s'.
+INFO: [HLS 200-111]  Elapsed time: 1.203 seconds; current allocated memory: 357.743 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'euclidean_dist_64' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/a' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'euclidean_dist_64/b' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'euclidean_dist_64' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dadddsub_64ns_64ns_64_5_full_dsp_1' to 'euclidean_dist_64Bew' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'euclidean_dist_64_dmul_64ns_64ns_64_6_max_dsp_1' to 'euclidean_dist_64CeG' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64Bew': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'euclidean_dist_64CeG': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'euclidean_dist_64'.
+INFO: [HLS 200-111]  Elapsed time: 1.524 seconds; current allocated memory: 359.392 MB.
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ncg_MulnS_0'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64ocq_MulnS_1'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64pcA_MulnS_2'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64qcK_MulnS_3'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64rcU_MulnS_4'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64sc4_MulnS_5'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64tde_MulnS_6'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64udo_MulnS_7'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64vdy_MulnS_8'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64wdI_MulnS_9'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64xdS_MulnS_10'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64yd2_MulnS_11'
+INFO: [RTMG 210-282] Generating pipelined core: 'euclidean_dist_64zec_MulnS_12'
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublbkb_rom' using distributed ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublcud_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubldEe_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubleOg_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublfYi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublg8j_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublhbi_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublibs_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubljbC_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublkbM_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doubllbW_rom' using auto ROMs.
+INFO: [RTMG 210-279] Implementing memory 'pow_generic_doublmb6_rom' using auto ROMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:13 ; elapsed = 00:00:30 . Memory (MB): peak = 441.910 ; gain = 350.340
+INFO: [VHDL 208-304] Generating VHDL RTL for euclidean_dist_64.
+INFO: [VLOG 209-307] Generating Verilog RTL for euclidean_dist_64.
+INFO: [HLS 200-112] Total elapsed time: 29.812 seconds; peak allocated memory: 359.392 MB.

@@ -3,7 +3,7 @@
         <value string="false"/>
     </checksum>
     <config>
-        <schedule model="euclidean_dist"/>
+        <schedule model="euclidean_dist_64"/>
     </config>
     <UIConfigurations>
         <UIAutosynConf boardInfo="ZedBoard Zynq Evaluation and Development Kit (xc7z020clg484-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">

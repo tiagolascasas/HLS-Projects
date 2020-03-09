@@ -1,4 +1,14 @@
-#include <math.h>
+//#include "math.h"
+double sqrt(double x);
+double pow(double x, double y);
+double exp(double x);
+double sin(double x);
+double cos(double x);
+float sqrtf(float x);
+float powf(float x, float y);
+float expf(float x);
+float sinf(float x);
+float cosf(float x);
 
 #define N 1024
 
@@ -22,7 +32,7 @@ double dist64(double x1[N], double x2[N]) {
 float sum_sin(float coef[N], float weight[N], float x) {
     float sum = 0;
     for (int i = 0; i < N; i++)
-        sum += weight[N] * sin(weight[N] * x)
+        sum += weight[N] * sin(weight[N] * x);
     return sum;
 }
 
@@ -30,6 +40,6 @@ float sum_sin(float coef[N], float weight[N], float x) {
 float sum_cos(float coef[N], float weight[N], float x) {
     float sum = 0;
     for (int i = 0; i < N; i++)
-        sum += weight[N] * cos(weight[N] * x)
+        sum += weight[N] * cos(weight[N] * x);
     return sum;
 }

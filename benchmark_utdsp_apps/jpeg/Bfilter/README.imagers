@@ -1,0 +1,23 @@
+This directory contains all the files of the application program that we are porting.
+
+
+To run in SUN system,
+
+  gcc -g -o filter /corinna/a/a0/corinna/DSP/bin/IO.o huffc.c huffd.c read.c write.c util.c mcu.c main.c
+
+
+To run in DSP system,
+
+1. ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ main.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ huffc.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ huffd.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ read.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ write.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ util.c
+   ~corinna/DSP/bin/gcc-DSP -S -O -fno-function-cse -drjsLfclgJ mcu.c
+
+2. ~corinna/DSP/bin/joins main.s huffc.s huffd.s read.s write.s util.s mcu.s > one.s
+
+3. ~corinna/DSP/bin/OptimizeDSP -O13 one.s
+
+4. ~corinna/DSP/bin/dspsim one.s.compaction -D 50760 -C 53136

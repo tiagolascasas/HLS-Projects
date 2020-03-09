@@ -1,0 +1,45 @@
+#!/bin/csh
+
+rm *.au.decode 
+
+echo ""
+echo "*** generating $1.pcm as input.dsp ***" 
+../../G721.MarcusLee/SetUp/convert -u $1.au input.dsp 
+
+compare expandby2
+rm input.dsp
+mv output.O123 input.dsp
+
+compare coder 
+rm input.dsp 
+mv output.O123 input.dsp
+
+compare squeezeby8
+rm input.dsp
+mv output.O123 input.dsp
+
+compare expandby8
+rm input.dsp
+mv output.O123 input.dsp
+
+compare decoder
+rm input.dsp
+mv output.O123 input.dsp
+
+compare squeezeby2
+rm input.dsp
+
+../../G721.MarcusLee/SetUp/convert -p output.O123 $1.au.decode
+
+# cat $1.au.decode > /dev/audio
+
+# Bin2ASC_Short -p output.O123 ASCoutput.O123 
+
+rm *.s.* *.c.* *.s re* G*
+
+
+
+
+
+
+

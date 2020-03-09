@@ -1,0 +1,61 @@
+cp $1 input.dsp
+
+echo "-------------------------------------"
+echo "CHOPing: DSPSIM"
+dspsim ../chop/chop.s.compaction  > report.chop
+mv output.dsp output.chop.O13
+echo "CHOPing: GNU"
+../chop/Gchop
+mv output.dsp output.chop.sun
+echo "SPIFFing"
+spiff output.chop.O13 output.chop.sun
+
+cp output.chop.sun input.dsp
+
+echo "-------------------------------------"
+echo "ENCOding: DSPSIM"
+dspsim ../encode/enco.s.compaction > report.enco
+mv output.dsp output.enco.O123
+echo "ENCOding: GNU"
+../encode/Genco
+mv output.dsp output.enco.sun
+echo "SPIFFing"
+spiff output.enco.sun output.enco.O123
+
+cp output.enco.sun input.dsp
+
+echo "-------------------------------------"
+echo "ADDingNOISE"
+../noise/Gnoise
+mv output.dsp output.noise.sun
+cp output.noise.sun input.dsp
+
+echo "-------------------------------------"
+echo "DECODing: DSPSIM"
+dspsim ../decode/decode.s.compaction -C 5000 > report.decode
+mv output.dsp output.decode.O13
+echo "DECODing: GNU"
+../decode/Gdecode
+mv output.dsp output.decode.sun
+echo "SPIFFing"
+spiff output.decode.sun output.decode.O13
+
+cp output.decode.sun input.dsp
+
+echo "-------------------------------------"
+echo "GLUing: DSPSIM"
+dspsim ../glue/glue.s.compaction > report.glue
+mv output.dsp output.glue.O13
+echo "GLUing: GNU"
+../glue/Gglue
+mv output.dsp output.glue.sun
+echo "CMPing"
+cmp output.glue.O13 output.glue.sun
+
+
+echo "-------------------------------------"
+cp $1 input
+cp output.glue.sun output
+# Binary Compare with hit Rate
+bcmp
+mv output $2

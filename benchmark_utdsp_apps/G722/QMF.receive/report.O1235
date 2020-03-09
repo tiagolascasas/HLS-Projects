@@ -1,0 +1,311 @@
+
+** ASSEMBLING "QMF.receive.fcn.s.compaction". PLEASE WAIT...
+** STARTING THE SIMULATION. PLEASE WAIT...
+** DISPLAYING RESULTS OF THE SIMULATION...
+--------------------------------------------------------------------------------
+Dynamic Operation Counts:
+
+Operation  Dyn. Ct. % Total Operations  % Non-NOP Operations
+---------  -------- ------------------  --------------------
+
+ nop.mu    1893995         15.335%      
+ nop.au    1554712         12.588%      
+ nop.fu0   1372340         11.111%      
+ nop.fu1   1372340         11.111%      
+ nop.du0   1066015          8.631%      
+ nop.du1   1009682          8.175%      
+ nop.pcu   919015          7.441%      
+ ld.d      634648          5.138%              20.065%
+ incmod    589316          4.771%              18.632%
+ sgt.a     271992          2.202%               8.599%
+ madd      271992          2.202%               8.599%
+ beqz.a    271992          2.202%               8.599%
+ movi.d    193374          1.566%               6.114%
+ movi.a    169998          1.376%               5.375%
+ st.d      102707          0.832%               3.247%
+ mov.d      78954          0.639%               2.496%
+ beqz.d     56666          0.459%               1.792%
+ ld.a       56665          0.459%               1.792%
+ st.a       56665          0.459%               1.792%
+ dec        56665          0.459%               1.792%
+ inc        56665          0.459%               1.792%
+ trap       45334          0.367%               1.433%
+ mov.a      45332          0.367%               1.433%
+ slt.d      33999          0.275%               1.075%
+ add.d      22666          0.184%               0.717%
+ asr.d      22666          0.184%               0.717%
+ sgt.d      22666          0.184%               0.717%
+ movd2a     22666          0.184%               0.717%
+ bnez.d     11334          0.092%               0.358%
+ rts        11334          0.092%               0.358%
+ asl.d      11333          0.092%               0.358%
+ sub.d      11333          0.092%               0.358%
+ do         11333          0.092%               0.358%
+ jmp        11333          0.092%               0.358%
+ jsr        11333          0.092%               0.358%
+
+
+TOTAL useful operations: 3162961/12351060  25.609% efficiency.
+
+
+--------------------------------------------------------------------------------
+Dynamic Instruction Counts:
+                                                                        %Total
+ MU0   MU1    AU0     AU1     DU0     DU1      FU0      FU1     PCU     Instrs
+
+(----, ----, ------, ------, ------, ------, -------, -------, beqz.a)  9.910%
+(----, ----, sgt.a , ------, ------, ------, -------, -------, ------)  9.910%
+(ld.d, ld.d, sgt.a , incmod, ------, madd  , -------, -------, ------)  9.084%
+(----, ----, ------, ------, ------, ------, -------, -------, ------)  9.084%
+(ld.d, ld.d, incmod, incmod, ------, madd  , -------, -------, ------)  9.084%
+(----, ----, incmod, ------, ------, ------, -------, -------, beqz.a)  9.084%
+(----, ----, ------, ------, ------, ------, -------, -------, beqz.d)  4.129%
+(----, ----, ------, ------, movi.d, ------, -------, -------, ------)  2.529%
+(----, ----, movi.a, ------, movi.d, movi.d, -------, -------, trap  )  2.478%
+(----, ----, ------, ------, sgt.d , ------, -------, -------, ------)  1.652%
+(----, ----, movi.a, ------, ------, ------, -------, -------, ------)  1.652%
+(ld.a, ----, inc   , ------, ------, ------, -------, -------, ------)  1.652%
+(----, ----, ------, ------, slt.d , ------, -------, -------, ------)  1.652%
+(----, ----, ------, ------, mov.d , ------, -------, -------, ------)  1.624%
+(----, ----, ------, ------, ------, ------, -------, -------, bnez.d)  0.826%
+(----, ----, movi.a, ------, mov.d , movi.d, -------, -------, ------)  0.826%
+(----, ----, ------, ------, movi.d, ------, -------, -------, trap  )  0.826%
+(ld.a, ld.a, inc   , ------, ------, ------, -------, -------, ------)  0.826%
+(ld.d, ----, movi.a, movi.a, ------, ------, -------, -------, ------)  0.826%
+(st.d, ----, ------, ------, movi.d, ------, -------, -------, ------)  0.826%
+(----, ----, dec   , mov.a , mov.d , movi.d, -------, -------, ------)  0.826%
+(st.a, st.d, mov.a , movi.a, movi.d, ------, -------, -------, ------)  0.826%
+(ld.d, ----, ------, ------, ------, ------, -------, -------, jsr   )  0.826%
+(st.d, st.d, movi.a, movi.a, mov.d , ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, asr.d , ------, -------, -------, ------)  0.826%
+(st.a, st.a, dec   , incmod, ------, ------, -------, -------, movd2a)  0.826%
+(----, ----, incmod, incmod, ------, ------, -------, -------, beqz.a)  0.826%
+(ld.d, st.d, ------, ------, ------, ------, -------, -------, ------)  0.826%
+(st.d, ld.a, ------, ------, ------, ------, -------, -------, ------)  0.826%
+(st.d, ----, ------, ------, slt.d , ------, -------, -------, ------)  0.826%
+(st.d, st.d, dec   , ------, asl.d , ------, -------, -------, ------)  0.826%
+(----, ----, incmod, incmod, ------, ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, add.d , ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, movi.d, movi.d, -------, -------, ------)  0.826%
+(ld.d, ld.d, incmod, sgt.a , ------, ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, movi.d, madd  , -------, -------, ------)  0.826%
+(----, ----, movi.a, movi.a, ------, ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, ------, ------, -------, -------, jmp   )  0.826%
+(ld.d, ld.d, inc   , ------, ------, ------, -------, -------, rts   )  0.826%
+(----, ----, mov.a , movi.a, ------, ------, -------, -------, ------)  0.826%
+(ld.d, ld.d, inc   , ------, ------, ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, ------, ------, -------, -------, do    )  0.826%
+(ld.d, ld.d, mov.a , incmod, mov.d , mov.d , -------, -------, ------)  0.826%
+(st.a, st.a, incmod, dec   , sub.d , add.d , -------, -------, movd2a)  0.826%
+(ld.d, ----, dec   , movi.a, ------, ------, -------, -------, ------)  0.826%
+(----, ----, ------, ------, asr.d , madd  , -------, -------, ------)  0.826%
+(st.d, ----, ------, ------, ------, ------, -------, -------, ------)  0.052%
+(----, ----, movi.a, ------, mov.d , ------, -------, -------, ------)  0.000%
+(----, ----, ------, ------, ------, ------, -------, -------, rts   )  0.000%
+
+TOTAL number of instructions executed: 1372340
+1 operation(s) per instruction: 511028/1372340   37.238%
+2 operation(s) per instruction: 283327/1372340   20.646%
+3 operation(s) per instruction:  67999/1372340    4.955%
+4 operation(s) per instruction:  79332/1372340    5.781%
+5 operation(s) per instruction: 283325/1372340   20.645%
+6 operation(s) per instruction:  11333/1372340    0.826%
+7 operation(s) per instruction:  11333/1372340    0.826%
+8 operation(s) per instruction:      0/1372340    0.000%
+9 operation(s) per instruction:      0/1372340    0.000%
+AVERAGE number of operations per instruction: 2.305
+
+
+--------------------------------------------------------------------------------
+Simultaneous Functional Unit Utilization:
+                                                % Total
+MU0  MU1  AU0  AU1  DU0  DU1  FU0  FU1  PCU   Instuctions
+---  ---  ---  ---  ---  ---  ---  ---  ---   -----------
+
+XXX  XXX  XXX  XXX  ---  XXX  ---  ---  ---     18.168%
+---  ---  ---  ---  ---  ---  ---  ---  XXX     16.517%
+---  ---  XXX  ---  ---  ---  ---  ---  ---     11.561%
+---  ---  ---  ---  XXX  ---  ---  ---  ---      9.108%
+---  ---  ---  ---  ---  ---  ---  ---  ---      9.084%
+---  ---  XXX  ---  ---  ---  ---  ---  XXX      9.084%
+---  ---  XXX  ---  XXX  XXX  ---  ---  XXX      2.478%
+---  ---  ---  ---  XXX  XXX  ---  ---  ---      2.477%
+---  ---  XXX  XXX  ---  ---  ---  ---  ---      2.477%
+XXX  ---  ---  ---  XXX  ---  ---  ---  ---      1.652%
+XXX  ---  XXX  ---  ---  ---  ---  ---  ---      1.652%
+XXX  ---  XXX  XXX  ---  ---  ---  ---  ---      1.652%
+XXX  XXX  ---  ---  ---  ---  ---  ---  ---      1.652%
+XXX  XXX  XXX  ---  ---  ---  ---  ---  ---      1.652%
+XXX  XXX  XXX  XXX  XXX  ---  ---  ---  ---      1.652%
+---  ---  ---  ---  XXX  ---  ---  ---  XXX      0.826%
+---  ---  XXX  ---  XXX  XXX  ---  ---  ---      0.826%
+---  ---  XXX  XXX  ---  ---  ---  ---  XXX      0.826%
+---  ---  XXX  XXX  XXX  XXX  ---  ---  ---      0.826%
+XXX  ---  ---  ---  ---  ---  ---  ---  XXX      0.826%
+XXX  XXX  XXX  ---  ---  ---  ---  ---  XXX      0.826%
+XXX  XXX  XXX  ---  XXX  ---  ---  ---  ---      0.826%
+XXX  XXX  XXX  XXX  ---  ---  ---  ---  ---      0.826%
+XXX  XXX  XXX  XXX  ---  ---  ---  ---  XXX      0.826%
+XXX  XXX  XXX  XXX  XXX  XXX  ---  ---  ---      0.826%
+XXX  XXX  XXX  XXX  XXX  XXX  ---  ---  XXX      0.826%
+XXX  ---  ---  ---  ---  ---  ---  ---  ---      0.052%
+---  ---  XXX  ---  XXX  ---  ---  ---  ---      0.000%
+
+
+--------------------------------------------------------------------------------
+Functional Unit Utilization:
+                              % Total     % Non-NOP
+                             Operations   Operations
+                             ----------   ----------
+
+  AU0 operations executed:     6.423%      25.081%
+  MU0 operations executed:     3.768%      14.713%
+  PCU operations executed:     3.670%      14.332%
+  AU1 operations executed:     3.212%      12.541%
+  MU1 operations executed:     3.120%      12.182%
+  DU1 operations executed:     2.936%      11.466%
+  DU0 operations executed:     2.480%       9.685%
+  FU0 operations executed:     0.000%       0.000%
+  FU1 operations executed:     0.000%       0.000%
+
+
+--------------------------------------------------------------------------------
+Branching Behavior:
+
+TAKEN branches:           93.115%
+NOT TAKEN branches:        6.885%
+
+FORWARD taken branches:   70.711%
+BACKWARD taken branches:  29.289%
+
+TAKEN branches that are due to:
+
+    beqz.a                58.578%
+    do                    24.408%
+    beqz.d                 7.251%
+    bnez.d                 2.441%
+    jmp                    2.441%
+    jsr                    2.441%
+    rts                    2.441%
+
+NOT TAKEN branches that are due to:
+
+    beqz.d                66.985%
+    do                    33.012%
+    bnez.d                 0.003%
+
+Taken branch offsets:
+
+ 2 bits: 65.982%
+ 5 bits: 26.848%
+ 4 bits:  2.441%
+ 7 bits:  2.441%
+ 3 bits:  2.288%
+
+
+--------------------------------------------------------------------------------
+Addressing Modes:
+                              % Non-NOP
+                              Operations
+                              ----------
+
+Register-Register operations:  48.001%
+Register-Indirect operations:  26.895%
+Immediate operations:          24.746%
+No-operand operations:          0.358%
+(other than nop's)
+
+
+--------------------------------------------------------------------------------
+Operand Statistics:
+
+                                 % Operands
+                                 ----------
+
+Address registers:                49.385%
+Data registers:                   31.192%
+Indirect addresses:               10.046%
+Absolute addresses:                4.417%
+Unsigned immediates:               2.677%
+Signed immediates:                 2.284%
+
+                                % Operations   % Non-NOP operations
+                                ------------   --------------------
+
+0 operands:                       74.483%             0.358%
+2 operands:                       13.864%            54.137%
+4 operands:                        6.974%            27.231%
+3 operands:                        4.129%            16.124%
+1 operands:                        0.551%             2.150%
+
+                                % Immediates
+                                ------------
+
+ 2 bits:                          26.982%
+ 6 bits:                          26.982%
+ 7 bits:                           8.094%
+ 5 bits:                           5.565%
+15 bits:                           5.396%
+16 bits:                           5.396%
+ 1 bits:                           2.698%
+ 3 bits:                           2.698%
+ 4 bits:                           2.698%
+ 8 bits:                           2.698%
+
+
+--------------------------------------------------------------------------------
+Register Access Statistics:
+
+                                % Register   Registers
+                                  Accesses   Accessed
+                                  --------   ---------
+
+Address registers:                65.581%       16
+Data registers:                   34.419%       12
+
+
+--------------------------------------------------------------------------------
+System Stack Statistics:
+
+                          % Stack Accesses
+                          ----------------
+
+Stack depth 1                  50.000%
+Stack depth 2                  50.000%
+--------------------------------------------------------------------------------
+TRAP statistics:
+
+                           % TRAPs
+                           -------
+
+input_dsp                  50.002
+output_dsp                 49.998
+--------------------------------------------------------------------------------
+STATIC loop statistics:
+
+L10          15/73 20.548%
+L20          50/73 68.493%
+L21           8/73 10.959%
+--------------------------------------------------------------------------------
+DYNAMIC loop statistics:
+
+L10      9.910%   parallelism = 2.583 
+L20     35.586%   parallelism = 2.184 
+L21     63.588%   parallelism = 2.000 
+Low overhead looping stats:
+
+instructions executed within  do loops: 54.504%
+instructions executed within rep loops:  0.000%
+--------------------------------------------------------------------------------
+Load/Store Parallelism:
+
+Number of load/store operations (static): 37
+Number of instructions containing load/store operations (static): 23
+Static load/store parallelism:  1.609
+
+Number of instructions containing single load/store operations (dynamic): 80041
+Number of instructions containing dual load/store operations (dynamic): 385322
+Dynamic load/store parallelism:  1.828
+
+
+--------------------------------------------------------------------------------

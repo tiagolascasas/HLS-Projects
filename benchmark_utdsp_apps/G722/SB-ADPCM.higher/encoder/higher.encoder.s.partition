@@ -1,0 +1,4939 @@
+.gccDSP_compiled
+.OptimizeDSP_optimized
+
+.global block1h
+.global TBL21_SIH
+.global TBL21_IH2
+.global TBL14_QQ2
+.global block2h
+.global TBL14_WH
+.global TBL15_ILB
+.global block3h
+.global B4H_DHi
+.global B4H_BPHi
+.global B4H_BHi
+.global block4h
+.global main
+.global IH
+.global SH
+.global DH
+.global DETH
+.global XH
+.global B4H_SZH
+.global B4H_AH2
+.global B4H_AH1
+.global B4H_APH2
+.global B4H_APH1
+.global B4H_RH2
+.global B4H_RH1
+.global B4H_YH
+.global B4H_PH2
+.global B4H_PH1
+.global B4H_PH
+.global B3H_DEPH
+.global B3H_NBPH
+.global B3H_NBH
+
+.data_X
+
+.common IH,1
+.common SH,1
+.common DH,1
+.common DETH,1
+.common XH,1
+.common B4H_SZH,1
+.common B4H_APH2,1
+.common B4H_APH1,1
+.common B4H_RH2,1
+.common B4H_RH1,1
+.common B4H_YH,1
+.common B4H_PH2,1
+.common B4H_PH1,1
+.common B4H_PH,1
+.common B3H_DEPH,1
+.common B3H_NBPH,1
+.common B3H_NBH,1
+
+TBL21_SIH:
+.int    -1
+.int    -1
+.int    0
+.int    0
+
+TBL21_IH2:
+.int    2
+.int    1
+.int    2
+.int    1
+
+TBL14_QQ2:
+.int    0
+.int    202
+.int    926
+
+TBL14_WH:
+.int    0
+.int    -214
+.int    798
+
+TBL15_ILB:
+.int    2048
+.int    2093
+.int    2139
+.int    2186
+.int    2233
+.int    2282
+.int    2332
+.int    2383
+.int    2435
+.int    2489
+.int    2543
+.int    2599
+.int    2656
+.int    2714
+.int    2774
+.int    2834
+.int    2896
+.int    2960
+.int    3025
+.int    3091
+.int    3158
+.int    3228
+.int    3298
+.int    3371
+.int    3444
+.int    3520
+.int    3597
+.int    3676
+.int    3756
+.int    3838
+.int    3922
+.int    4008
+
+B4H_BPHi:
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+
+B4H_BHi:
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+
+.data_Y
+
+.common B4H_AH2,1
+.common B4H_AH1,1
+
+B4H_DHi:
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+.int    0
+
+.text
+
+
+
+
+
+
+
+
+
+
+.begin  block1h
+block1h:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d4,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	mov.a   a5,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d2,d3,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d5,L2
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d3,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L3
+
+L2:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32767,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d2,d3,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	and.d   d4,d2,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L3:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sgt.d   d4,d0,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L4
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #4512,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d6,d2,d2
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d2,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	slt.d   d4,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L4
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L5
+
+L4:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L5:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d5,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L6
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d3,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a2),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L7
+
+L6:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	ior.d   d3,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a2),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L7:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	rts     
+
+.end    block1h
+
+.begin  block2h
+block2h:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d3,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	mov.a   a4,a5
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL21_SIH,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d2,a6
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a6,a2,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a3,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a4),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL21_IH2,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a3,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a3),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL14_QQ2,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d3,a6
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a6,a2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a2),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #3,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asl.d   d3,d4,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d2,L9
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L10
+
+L9:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d0,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L10:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d5,d2,d2
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d2,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a5),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	rts     
+
+.end    block2h
+
+.begin  block3h
+block3h:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d2,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	mov.a   a4,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L12
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a2),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_DEPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L11
+
+L12:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_DEPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a2),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL21_IH2,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d4,a5
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a5,a2,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a4,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a3),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL14_WH,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d2,a5
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a5,a2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a2,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a2),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32512,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d4,d3
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d4,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d3,d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_NBPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	slt.d   d3,d0,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L14
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L15
+
+L14:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #22528,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sgt.d   d3,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L15
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L15:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #6,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #31,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	and.d   d4,d2,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #11,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d3,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L17
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL15_ILB,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #2,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d4,a5
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a5,a3,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a3,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a2),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asl.d   d2,d3,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L18
+
+L17:
+	MU0:
+	MU1:
+	AU0:	movi.a  #TBL15_ILB,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #2,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	movd2a  d4,a5
+
+	MU0:
+	MU1:
+	AU0:	asl.a   a5,a3,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a3,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #10,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d2,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a2),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L18:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asl.d   d3,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B3H_DEPH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L11:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	rts     
+
+.end    block3h
+
+.begin  block4h
+block4h:
+	MU0:
+	MU1:
+	AU0:	dec     a31,a0,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a31),d8
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a31),d9
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a31,a0,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a31),d10
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a31),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d2,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	mov.a   a4,a5
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L20
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BHi,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BPHi,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_DHi,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	do      #6,LL1
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a4),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a3),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a0,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a2),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+LL1:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_YH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a1),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d11
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a1),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L19
+
+L20:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BHi,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BPHi,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	do      #6,LL2
+
+	MU0:	ld.d    (a3),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a4),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a0,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+LL2:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_DHi,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #20,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a3,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	mov.a   a3,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	do      #5,LL3
+
+	MU0:
+	MU1:	ld.d    (a2),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a3),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a3,a0,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+LL3:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_YH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a1),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d11
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	st.d    (a1),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_SZH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d5,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a5),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d5,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_YH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d5,L34
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L35
+
+L34:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #128,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L35:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d5,d2,d9
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_DHi,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a2),d3
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BHi,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a4),d7
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BPHi,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d8
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32640,d10
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	do      #5,LL4
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d8,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d9,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L39
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d6,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L40
+
+L39:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d0,d6,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L40:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d7,d10,d2
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d2,d8,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d5,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a3),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a3,a0,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a2),d3
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a4),d7
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+LL4:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d9,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L42
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d6,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L43
+
+L42:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d0,d6,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L43:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32640,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d7,d2,d3
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d5,d3,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a3),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d9
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_PH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d9,d2,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L44
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #128,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L45
+
+L44:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-128,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L45:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d5,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a1),d3
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32512,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d4,d3
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d4,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d2,d3,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #12288,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sgt.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L46
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L47
+
+L46:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-12288,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	slt.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L47
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L47:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sne.d   d9,d6,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	bnez.d  d1,L49
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #192,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L50
+
+L49:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #-192,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L50:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a1),d2
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #32640,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d2,d3,d5
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d5,d2,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d6,d5,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #15360,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d4
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d3,d4,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sgt.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L51
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L52
+
+L51:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	sub.d   d0,d3,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	slt.d   d2,d3,d1
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d1,L52
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_APH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L52:
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_BHi,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #20,a3
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a3,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_DHi,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a2,a3,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d8
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a4),d7
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a2),d3
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #14,d9
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	do      #5,LL5
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d7,d2
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d2,d9,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d8,d2,d8
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a4),d7
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a4,a0,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a2),d3
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a2,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+LL5:
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d7,d3
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #14,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d3,d2,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d8,d3,d8
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_SZH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d8
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH1,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a1),d4
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d4,d6
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d6,d2,d6
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_RH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #B4H_AH2,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a1),d4
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:	mult.d  d3,d4,d5
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	asr.d   d5,d2,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d6,d5,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	add.d   d2,d8,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a5),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d2
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L19:
+	MU0:
+	MU1:	ld.d    (a31),d11
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a31),d10
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a31,a0,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:	ld.d    (a31),d9
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a31),d8
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a31,a0,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	rts     
+
+.end    block4h
+
+.begin  main
+main:
+	MU0:
+	MU1:
+	AU0:	mov.a   a31,a30
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #4,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	dec     a31,a1,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #XH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DETH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #SH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d5
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #IH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	st.d    (a1),d5
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d0,d8
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+L64:
+	MU0:
+	MU1:
+	AU0:	dec     a30,a0,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	trap    #5
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #XH,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	trap    #5
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	beqz.d  d2,L65
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #XH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #SH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DETH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d4
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #IH,a5
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jsr     block1h
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #IH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DETH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d3
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DH,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jsr     block2h
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #IH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d8,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DETH,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jsr     block3h
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #DH,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:	ld.d    (a1),d2
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	mov.d   d8,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #SH,a4
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jsr     block4h
+
+	MU0:
+	MU1:
+	AU0:	movi.a  #IH,a2
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d3
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:	movi.d  #1,d4
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	trap    #6
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	jmp     L64
+
+L65:
+	MU0:
+	MU1:
+	AU0:	movi.a  #4,a1
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:	inc     a31,a1,a31
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:
+
+	MU0:
+	MU1:
+	AU0:
+	AU1:
+	DU0:
+	DU1:
+	FU0:
+	FU1:
+	PCU:	rts     
+
+.end    main
+

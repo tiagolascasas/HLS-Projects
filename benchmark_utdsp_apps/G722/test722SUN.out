@@ -1,0 +1,94 @@
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+mesher: cannot open lowerSB_file
+rm: output.sun: No such file or directory
+/corinna/a/a0/corinna/DSP/bin/Make: Command not found.
+error: cannot open source_file
+error: cannot open source_file
+cat: output.sun.binary.ulaw: No such file or directory
+ 
+Thu Dec 29 18:24:04 EST 1994
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:24:05 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -m -P QMF.transmit.array output.sun
+/pc/projects/dsp/bin/gnuify QMF.transmit.array.c >! GQMF.transmit.array.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating GQMF.transmit.array ........
+/gnu/bin/gcc  -D GCCmod -o GQMF.transmit.array GQMF.transmit.array.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running GQMF.transmit.array ........
+GQMF.transmit.array
+make: [output.sun] Error 1 (ignored)
+8.7u 6.7s 0:27 57% 0+396k 34+44io 154pf+0w
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:24:32 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P higher.encoder output.sun
+/pc/projects/dsp/bin/gnuify higher.encoder.c >! Ghigher.encoder.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating Ghigher.encoder ........
+/gnu/bin/gcc  -o Ghigher.encoder Ghigher.encoder.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running Ghigher.encoder ........
+Ghigher.encoder
+make: [output.sun] Error 1 (ignored)
+8.3u 6.6s 0:26 57% 0+444k 9+32io 9pf+0w
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:24:58 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P lower.encoder output.sun
+/pc/projects/dsp/bin/gnuify lower.encoder.c >! Glower.encoder.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating Glower.encoder ........
+/gnu/bin/gcc  -o Glower.encoder Glower.encoder.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running Glower.encoder ........
+Glower.encoder
+make: [output.sun] Error 1 (ignored)
+9.4u 6.7s 0:26 61% 0+440k 10+35io 11pf+0w
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:25:24 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P higher.decoder output.sun
+/pc/projects/dsp/bin/gnuify higher.decoder.c >! Ghigher.decoder.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating Ghigher.decoder ........
+/gnu/bin/gcc  -o Ghigher.decoder Ghigher.decoder.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running Ghigher.decoder ........
+Ghigher.decoder
+make: [output.sun] Error 1 (ignored)
+7.5u 6.7s 0:25 56% 0+448k 6+35io 6pf+0w
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:25:50 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P lower.decoder output.sun
+/pc/projects/dsp/bin/gnuify lower.decoder.c >! Glower.decoder.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating Glower.decoder ........
+/gnu/bin/gcc  -o Glower.decoder Glower.decoder.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running Glower.decoder ........
+Glower.decoder
+make: [output.sun] Error 1 (ignored)
+8.2u 6.7s 0:25 58% 0+464k 8+38io 8pf+0w
+destination file size: 22666 elements
+rm: output.sun: No such file or directory
+%%%%% Thu Dec 29 18:26:18 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -m -P QMF.receive.fcn output.sun
+/pc/projects/dsp/bin/gnuify QMF.receive.fcn.c >! GQMF.receive.fcn.c
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating GQMF.receive.fcn ........
+/gnu/bin/gcc  -D GCCmod -o GQMF.receive.fcn GQMF.receive.fcn.c /pc/projects/dsp/base/dspsim/IO.o -lm
+%%%%% Running GQMF.receive.fcn ........
+GQMF.receive.fcn
+make: [output.sun] Error 1 (ignored)
+8.6u 6.6s 0:27 55% 0+388k 4+47io 4pf+0w
+linearPCM file size: 22666 elements
+ulaw file size: 22666 elements
+v: Command not found.

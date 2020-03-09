@@ -1,0 +1,17 @@
+'squeeze.c' is the main file in this directory.
+
+By typing 'compare squeeze'
+the '32-bit input.dsp' will be squeezed to '8-bit output.dsp'. For example,
+
+    input.dsp                                            output.dsp
+    ---------                      =============>        ---------- 
+
+00000000 00000000 00000000 11010000                       11010000
+
+
+
+The squeezed file is then compared with the file called 'correct_out.jpg'
+to check whether the result is correct or not.
+
+** our 'squeeze.c' is modified from the original one provided by Wendy Fung.
+ 

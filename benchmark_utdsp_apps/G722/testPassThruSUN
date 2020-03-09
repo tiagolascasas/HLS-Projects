@@ -1,0 +1,26 @@
+#!/bin/csh -x
+set MAKE=/pc/projects/dsp/bin/Make
+echo "========================="
+echo " "; date
+
+cd QMF.transmit
+	mv input.dsp input.dsp.old
+	awk '{print int($1/4)}' input.dsp.old > input.dsp
+rm output.sun
+$MAKE -m -P QMF.transmit.array output.sun
+	mv input.dsp.old input.dsp
+cd ../QMF.receive
+mv input.dsp input.dsp.orig
+ln -s ../QMF.transmit/output.sun input.dsp
+rm output.sun
+$MAKE -m -P QMF.receive.fcn output.sun
+rm input.dsp
+ln -s ../ReceiveMerger/fullSB input.dsp
+	mv output.sun output.sun.old
+	awk '{print $1*4}' output.sun.old > output.sun
+../UTIL/ascii2binary -p output.sun output.sun.binary
+../UTIL/convert -p output.sun.binary output.sun.binary.ulaw
+cat output.sun.binary.ulaw > /dev/audio
+	mv output.sun.old output.sun
+mv input.dsp.orig input.dsp
+cd ..

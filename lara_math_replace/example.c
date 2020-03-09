@@ -1,14 +1,4 @@
-//#include "math.h"
-double sqrt(double x);
-double pow(double x, double y);
-double exp(double x);
-double sin(double x);
-double cos(double x);
-float sqrtf(float x);
-float powf(float x, float y);
-float expf(float x);
-float sinf(float x);
-float cosf(float x);
+#include "math.h"
 
 #define N 1024
 
@@ -17,14 +7,14 @@ float dist32(float x1[N], float x2[N]) {
     float count = 0;
     for (int i = 0; i < N; i++)
         count += pow(x1[i] - x2[i], 2);
-    return sqrt(count);
+    return sqrt(count) + sqrt(count);
 }
 
 //Lara: should convert sqrt -> rsqrt64
 double dist64(double x1[N], double x2[N]) {
     double count = 0;
     for (int i = 0; i < N; i++)
-        count += pow(x1[i] - x2[i], 2);
+        count += pow(x1[i] - x2[i], 7);
     return sqrt(count);
 }
 

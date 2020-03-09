@@ -23,3 +23,4 @@ static inline double rsqrt64(double number) {
 	y = y * (1.5 - (x2 * y * y));
 	return y;
 }
+

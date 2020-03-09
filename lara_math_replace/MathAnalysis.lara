@@ -1,4 +1,7 @@
 import weaver.WeaverJps;
+import clava.ClavaJoinPoints;
+import clava.Clava;
+
 
 aspectdef MathAnalysis
 	var mathFun = {};
@@ -89,28 +92,42 @@ aspectdef MathReplace
 			if (fun == "sqrtf" || (fun == "sqrt" && !types.includes("Double", 0))) {
 				println("Replacing sqrtf for rsqrt32");
 				elem['call'].setName("rsqrt32");
-				if (!includedSqrt)
-					elem['call'].root.addExtraSource("rsqrt.h");
-				
+				elem['call'].ancestor('file').addInclude("rsqrt.h");		
 			}
 			//sqrt -> rsqrt64
 			if (fun == "sqrt" && types.includes("Double", 0)) {
 				println("Replacing sqrt for sqrt64");
 				elem['call'].setName("rsqrt64");
-				if (!includedSqrt)
-					elem['call'].root.addExtraInclude("rsqrt.h");
-					includedSqrt = true;
+				elem['call'].ancestor('file').addInclude("rsqrt.h");
 			}
 			//pow(d, Int) -> d * ... * d
-			if ((fun == "pow" || fun == "powf") && types[1] == "Int") {
+			if ((fun == "pow" || fun == "powf") && types[1] == "Int" && /[0-9]\d*/.test(args[1].code)) {
 				println("Replacing " + fun + " for explicit multiplication");
+				var n = parseInt(args[1].code);
+				var expr = ClavaJoinPoints.parenthesis(args[0]);
+
+				if (n >= 2) {
+					node = ClavaJoinPoints.binaryOp("mul", expr.copy(), expr.copy(), types[0]);
+					for (var i = 3; i <= n; i++) {
+						node = ClavaJoinPoints.binaryOp("mul", expr.copy(), node, types[0]);
+					}
+					elem['call'].replaceWith(node);
+				}
+				if (n == 1) {
+					elem['call'].replaceWith(expr);
+				}
+				if (n == 0) {
+					elem['call'].replaceWith(ClavaJoinPoints.integerLiteral(1));
+				}
 			}
-				
+			//conversion from using functions with doubles to floats	
 			var isFloat = fun.substr(fun.length - 1) == "f";
 			if (!isFloat && !fun.includes("sqrt", 0)) {
 				var newFun = fun + "f";
-				elem['call'].setName(newFun);
-				println("Replacing " + fun + " for " + newFun); 
+				if (newFun in mathFun) {
+					elem['call'].setName(newFun);
+					println("Replacing " + fun + " for " + newFun);
+				}
 			}
 		}
 	}

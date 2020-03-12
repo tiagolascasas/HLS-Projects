@@ -1,25 +1,15 @@
 import weaver.WeaverJps;
 import clava.ClavaJoinPoints;
 import clava.Clava;
-
+import lara.Io;
+import lara.Csv;
 
 aspectdef MathAnalysis
 	var mathFun = {};
 	//Get functions from math.h
-	//...
-	//Hardcoded for now
-	mathFun = {
-		"sqrt": ["double"],
-		"sqrtf": ["float"],
-		"pow": ["double", "double"],
-		"powf": ["float", "float"],
-		"sin": ["double"],
-		"sinf": ["float"],
-		"cos": ["double"],
-		"cosf": ["float"],
-		"exp": ["double"],
-		"expf": ["float"]	
-	};
+	//TODO...
+	//Reading from a JSON file instead
+	mathFun = Io.jsonObject("mathFun.json");
 
 	call MathReport(mathFun);
 	call MathCompare(mathFun);
@@ -130,5 +120,11 @@ aspectdef MathReplace
 				}
 			}
 		}
+	}
+end
+
+aspectdef HeaderToJSON
+	for (var elem of WeaverJps.search('comment').chain()) {
+		println(elem['comment']);
 	}
 end

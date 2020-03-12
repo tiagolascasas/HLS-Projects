@@ -53,7 +53,12 @@
 /*                           All Rights Reserved.                           */
 /* ======================================================================== */
 
-#include "dotprod_viv.h"
+//#include "dotprod_viv.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NX 4
+
 
 
 int DSP_dotprod_graph(const short *x, const short *y, int nx)
@@ -69,7 +74,7 @@ int DSP_dotprod_graph(const short *x, const short *y, int nx)
 	int n_op=0;
 	int n_out=0;
 	int ne=0;
-	FILE *f=fopen("dotprod_graph.dot","w");
+	FILE *f=fopen("dotprod_1_graph.dot","w");
 	fprintf(f,"Digraph G{\n");
 	
 	int sum = 0, i;
@@ -124,6 +129,12 @@ int DSP_dotprod_graph(const short *x, const short *y, int nx)
 	fclose(f);
     return sum;
 
+}
+
+int main()
+{	short x[NX] = {1, 2};
+	short y[NX] = {3, 4};
+	DSP_dotprod_graph(x, y, NX);
 }
 
 /* ======================================================================== */

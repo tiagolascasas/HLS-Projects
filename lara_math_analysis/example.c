@@ -33,3 +33,57 @@ float sum_cos(float coef[N], float weight[N], float x) {
         sum += weight[N] * cos(weight[N] * x);
     return sum;
 }
+
+//Lara: should convert all to float
+float test_all_double(float x, float y) {
+    float z = 0;
+    z += acos(x);
+    z += asin(x);
+    z += atan(x);
+    z += atan2(x, y);
+    z += cos(x);
+    z += cosh(x);
+    z += sin(x);
+    z += sinh(x);
+    z += tanh(x);
+    z += exp(x);
+    //z += frexp(x, 4);
+    z += ldexp(x, 4);
+    z += log(x);
+    z += log10(x);
+    //z += modf(x, 4);
+    z += pow(x, y);
+    z += sqrt(x);
+    z += ceil(x);
+    z += fabs(x);
+    z += floor(x);
+    z += fmod(x, y);
+    return x;
+}
+
+//Lara: should not convert to float
+float test_all_float(float x, float y) {
+    float z = 0;
+    z += acosf(x);
+    z += asinf(x);
+    z += atanf(x);
+    z += atan2f(x, y);
+    z += cosf(x);
+    z += coshf(x);
+    z += sinf(x);
+    z += sinhf(x);
+    z += tanhf(x);
+    z += expf(x);
+    //z += frexpf(x, 4);
+    z += ldexpf(x, 4);
+    z += logf(x);
+    z += log10f(x);
+    //z += modff(x, 4);
+    z += powf(x, y);
+    z += sqrtf(x);
+    z += ceilf(x);
+    z += fabsf(x);
+    z += floorf(x);
+    z += fmodf(x, y);
+    return x;
+}

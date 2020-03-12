@@ -5,20 +5,28 @@ import lara.Io;
 import lara.Csv;
 
 aspectdef MathAnalysis
+	input
+		report
+	end
 	var mathFun = {};
 	//Get functions from math.h
 	//TODO...
 	//Reading from a JSON file instead
 	mathFun = Io.jsonObject("mathFun.json");
 
-	call MathReport(mathFun);
-	call MathCompare(mathFun);
-	call MathReplace(mathFun);
+	if (report) {
+		call MathReport(mathFun, true);
+	} else {
+		call MathReport(mathFun, false);
+		call MathCompare(mathFun);
+		call MathReplace(mathFun);
+	}
 end
 
 aspectdef MathReport
 	input
-		mathFun
+		mathFun,
+		csv
 	end
 	
 	//Counter for occurences of each math.h function
@@ -35,12 +43,28 @@ aspectdef MathReport
 	}
 
 	//Report occurrences
-	println("Occurrences of each math.f function (not showing functions with 0 occurrences):");
-	for (var f in occurrences) {
-		if (occurrences[f] > 0)
-			println(f + ": " + occurrences[f]);
+	if (csv) {
+		if (Io.isFile("MathAnalysis.csv")) {
+
+		} else {
+			var txt = "fun,";
+			for (var f in occurrences)
+				txt += f + ",";
+			txt += "\n";
+			for (var f in occurrences)
+				txt += occurrences[f] + ",";
+			txt += "\n";
+			println(txt);
+			//Io.writeFile("MathAnalysis.csv", txt);
+		}
+	} else {
+		println("Occurrences of each math.f function (not showing functions with 0 occurrences):");
+		for (var f in occurrences) {
+			if (occurrences[f] > 0)
+				println(f + ": " + occurrences[f]);
+		}
+		println("");
 	}
-	println("");
 end
 
 aspectdef MathCompare

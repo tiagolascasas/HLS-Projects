@@ -24,6 +24,8 @@
 /* NIST's proposed modification to SHA of 7/11/94 may be */
 /* activated by defining USE_MODIFIED_SHA */
 
+#include <stdio.h>
+#include "sha.h"
 
 /* SHA f()-functions */
 
@@ -215,3 +217,24 @@ sha_stream ()
     }
   sha_final ();
 }
+
+const INT32 outData[5] =
+  { 0x006a5a37UL, 0x93dc9485UL, 0x2c412112UL, 0x63f7ba43UL, 0xad73f922UL };
+
+int
+main ()
+{
+  int i;
+  int main_result;
+      main_result = 0;
+      sha_stream ();
+
+      for (i = 0; i < 5; i++)
+	{
+
+	  main_result += (sha_info_digest[i] != outData[i]);
+	}
+      printf ("%d\n", main_result);
+
+      return main_result;
+    }

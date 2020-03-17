@@ -6,7 +6,8 @@ import lara.Csv;
 
 aspectdef MathAnalysis
 	input
-		report
+		report,
+		name
 	end
 	//Get functions from math.h
 	//TODO...
@@ -14,9 +15,9 @@ aspectdef MathAnalysis
 	var mathFun = Io.jsonObject("mathFun.json");
 
 	if (report) {
-		call MathReport(mathFun, true);
+		call MathReport(mathFun, true, name);
 	} else {
-		call MathReport(mathFun, false);
+		call MathReport(mathFun, false, "");
 		call MathCompare(mathFun);
 		call MathReplace(mathFun);
 	}
@@ -25,7 +26,8 @@ end
 aspectdef MathReport
 	input
 		mathFun,
-		csv
+		csv,
+		name
 	end
 	
 	//Counter for occurences of each math.h function
@@ -43,19 +45,23 @@ aspectdef MathReport
 
 	//Report occurrences
 	if (csv) {
+		var txt = "";
 		if (Io.isFile("MathAnalysis.csv")) {
-
+			var lines = Io.readLines("MathAnalysis.csv");
+			for (var i = 0; i < lines.length; i++)
+				txt += lines[i] + "\n";
 		} else {
-			var txt = "source file,";
+			txt = "source file,";
 			for (var f in occurrences)
 				txt += f + ",";
-			txt += "\n" + Clava.getProgram().files[0].name + ",";
-			for (var f in occurrences)
-				txt += occurrences[f] + ",";
 			txt += "\n";
-			println(txt);
-			Io.writeFile("MathAnalysis.csv", txt);
 		}
+		txt += name + ",";
+		for (var f in occurrences)
+			txt += occurrences[f] + ",";
+		txt += "\n";
+		println(txt);
+		Io.writeFile("MathAnalysis.csv", txt);
 	} else {
 		println("Occurrences of each math.f function (not showing functions with 0 occurrences):");
 		for (var f in occurrences) {

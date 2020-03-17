@@ -13,6 +13,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 FILE	*input_fp=NULL,*output_fp=NULL;
 

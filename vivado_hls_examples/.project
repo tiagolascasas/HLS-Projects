@@ -29,47 +29,47 @@
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/.apc/.src</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/.apc/.tb</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/.tcls</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/euclidean_dist.c</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/euclidean_dist.c</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/euclidean_dist.c</location>
 		</link>
 		<link>
 			<name>source/reports.csv</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/reports.csv</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/reports.csv</location>
 		</link>
 		<link>
 			<name>source/rsqrt.h</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/rsqrt.h</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/rsqrt.h</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/solution1.directive</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/directives.tcl</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>C:/Users/SPeCS/Desktop/HLS-Projects/vivado_hls_examples/solution1/script.tcl</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/vivado_hls_examples/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

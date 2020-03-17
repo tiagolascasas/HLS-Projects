@@ -1,0 +1,3 @@
+C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave/CMakeFiles/adpcm_weaving.dir
+C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave/CMakeFiles/ALL_BUILD.dir
+C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,10 @@
+^C:\USERS\TIAGO\DEV\HLS-PROJECTS\BENCHMARK_CHSTONE\ADPCM\ADPCM_CLAVA_WEAVE\CMAKEFILES\AF2CFE9434F3DFA128CE507FB6FDD1BA\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave -BC:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave/Project.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

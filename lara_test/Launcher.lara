@@ -1,0 +1,10 @@
+import MathHInfo;
+
+aspectdef Launcher
+
+	var info = MathHInfo.getInfo();
+
+	println("Info:");
+	printlnObject(info);
+
+end

@@ -8,11 +8,10 @@ aspectdef MathAnalysis
 	input
 		report
 	end
-	var mathFun = {};
 	//Get functions from math.h
 	//TODO...
 	//Reading from a JSON file instead
-	mathFun = Io.jsonObject("mathFun.json");
+	var mathFun = Io.jsonObject("mathFun.json");
 
 	if (report) {
 		call MathReport(mathFun, true);

@@ -1,0 +1,32 @@
+^C:\USERS\TIAGO\DEV\HLS-PROJECTS\BENCHMARK_CHSTONE\ADPCM\ADPCM_CLAVA_WEAVE\CMAKEFILES\2D6A25079837FB33B53D2AD644BA7DBA\CLAVA_GENERATED_FILES.TXT.RULE
+setlocal
+cd C:\Users\Tiago\Dev\HLS-Projects\benchmark_chstone\adpcm
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+java -jar C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/clava.jar C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/../../lara_math_analysis/MathAnalysis.lara --cmake -s -b 2 -p C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm.c -o C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave -of woven ""
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\TIAGO\DEV\HLS-PROJECTS\BENCHMARK_CHSTONE\ADPCM\ADPCM_CLAVA_WEAVE\CMAKEFILES\AF2CFE9434F3DFA128CE507FB6FDD1BA\ADPCM_WEAVING.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\TIAGO\DEV\HLS-PROJECTS\BENCHMARK_CHSTONE\ADPCM\ADPCM_CLAVA_WEAVE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave -BC:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave --check-stamp-file C:/Users/Tiago/Dev/HLS-Projects/benchmark_chstone/adpcm/adpcm_clava_weave/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

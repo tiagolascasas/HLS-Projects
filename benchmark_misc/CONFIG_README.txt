@@ -1,1 +1,0 @@
-Configurations applied as escribed in thesis. New option full_connect was added but is was turned off for all examples, so that they are closer to thesis.

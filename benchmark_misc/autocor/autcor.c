@@ -10,18 +10,21 @@
 /* DSP performance:
    (N/2) *M + 16 + M/4
    For N=160 and M=10;
-   816 cycles or 4.08 µsec
+   816 cycles or 4.08 ï¿½sec
 */
 
 #include <stdio.h>
  //(MULTIPLE of 2)
-#include "autcor_viv.h"
+//#include "autcor_viv.h"
+#define M 16
+#define N 32
+
 short ac[M]; // --- Resulting array of autocorrelation
 
 short sd[N+M]; // --- Input array of autocorrelation
 
 
-void main() {
+int main() {
   int tmp;
   //void autcor(short ac[],short sd[], int N, int M) {
   int i,k,sum;
@@ -48,6 +51,7 @@ void main() {
   }
   fclose(f_out);
   fclose(f_in);
+  return 0;
 }
 
 

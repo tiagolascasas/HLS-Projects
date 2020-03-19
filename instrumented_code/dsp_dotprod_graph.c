@@ -59,13 +59,8 @@
 
 #define NX 4
 
-
-
 int DSP_dotprod_graph(const short *x, const short *y, int nx)
 {
-    
-	
-
 	short n_x[NX]={0};
 	short n_y[NX]={0};
 	short n_sum=0;
@@ -74,7 +69,7 @@ int DSP_dotprod_graph(const short *x, const short *y, int nx)
 	int n_op=0;
 	int n_out=0;
 	int ne=0;
-	FILE *f=fopen("dotprod_1_graph.dot","w");
+	FILE *f=fopen("dsp_dotprod_graph.dot","w");
 	fprintf(f,"Digraph G{\n");
 	
 	int sum = 0, i;
@@ -120,7 +115,7 @@ int DSP_dotprod_graph(const short *x, const short *y, int nx)
 	}
 	
 	fprintf(f,"\"sum_%d\" [label=sum, att1=var, att2=loc, att3=int ];\n",n_sum);
-	fprintf(f,"\"out_%d\" [label=*out, att1=var, att2=inte, att3=int ];\n",n_out);
+	fprintf(f,"\"out_%d\" [label=out, att1=var, att2=inte, att3=int ];\n",n_out);
 	fprintf(f,"\"sum_%d\"->out_%d [label=\"%d\", ord=\"%d\"];\n",n_sum,n_out,ne,ne);
 	ne++;
 	

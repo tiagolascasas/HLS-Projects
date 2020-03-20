@@ -1,0 +1,42 @@
+import weaver.WeaverJps;
+import clava.ClavaJoinPoints;
+import clava.Clava;
+import lara.code.Logger;
+import PrintAST;
+
+/**
+	Source code assumptions:
+	- Arrays have predetermined size
+	- No pointers
+	- Variables declared/initialized one at a time (e.g. no "int x, y = 0")
+**/
+aspectdef DataflowGraph
+	input
+		funName
+	end
+
+	//Get function root
+	var root;
+	var logger = new Logger(undefined, "log.dot");
+	//replace by filter, not sure of the syntax
+	for (var elem of WeaverJps.search("function").chain()){
+		if (elem["function"].name == funName)
+			root = elem["function"];
+	}	
+	call PrintAST(root);
+
+	//Get scope
+	var scope;
+	for (var i = 0; i < root.children.length; i++) {
+		if (root.children[i].joinpointType == "scope")
+			scope = root.children[i];
+	}
+
+	//Begin graph: declare variables for counting
+	var firstOp = scope.children[0];
+	logger.text("Digraph G {\\n").log(firstOp, true);
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
+	
+end

@@ -17,47 +17,21 @@
 /*                          All Rights Reserved.                            */
 /* ======================================================================== */
 
-
-/* ======================================================================== */
-/*                                                                          */
-/*  TEXAS INSTRUMENTS, INC.                                                 */
-/*                                                                          */
-/*  NAME                                                                    */
-/*      DSP_dotprod                                                         */
-/*                                                                          */
-/*  REVISION DATE                                                           */
-/*      29-Mar-2002                                                         */
-/*                                                                          */
-/*  USAGE                                                                   */
-/*      This routine is C-callable and can be called as:                    */
-/*                                                                          */
-/*          int DSP_dotprod                                                 */
-/*          (                                                               */
-/*              const short *x,    // first input vector  //                */
-/*              const short *y,    // second input vector //                */
-/*              int nx             // number of elements  //                */
-/*          );                                                              */
-/*                                                                          */
-/*                                                                          */
-/*  DESCRIPTION                                                             */
-/*      This routine takes two vectors and calculates their vector          */
-/*      product.  The inputs are 16-bit number, and the result is           */
-/*      a 32-bit number.                                                    */
-/*                                                                          */
-/*  ASSUMPTIONS                                                             */
-/*      nx must be a multiple of 2 and greater than 2.                      */
-/*      Vectors x and y must be aligned on word boundaries.                 */
-/*                                                                          */
-/* ------------------------------------------------------------------------ */
-/*            Copyright (c) 2003 Texas Instruments, Incorporated.           */
-/*                           All Rights Reserved.                           */
-/* ======================================================================== */
-
 //#include "dotprod_viv.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 #define NX 4
+
+int DSP_dotprod_graph_original(const short *x, const short *y, int nx)
+{
+	int sum = 0, i;
+    for (i = 0; i < nx; i++){
+        sum += x[i] * y[i];
+	}
+    return sum;
+}
+
 
 int DSP_dotprod_graph(const short *x, const short *y, int nx)
 {

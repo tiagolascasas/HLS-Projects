@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NX 4
+#define NX 2
 
 int DSP_dotprod_graph_original(const short *x, const short *y, int nx)
 {
@@ -43,7 +43,7 @@ int DSP_dotprod_graph(const short *x, const short *y, int nx)
 	int n_op=0;
 	int n_out=0;
 	int ne=0;
-	FILE *f=fopen("dsp_dotprod_graph.dot","w");
+	FILE *f=fopen("dsp_dotprod.dot","w");
 	fprintf(f,"Digraph G{\n");
 	
 	int sum = 0, i;

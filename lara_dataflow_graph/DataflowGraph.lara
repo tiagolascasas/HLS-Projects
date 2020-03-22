@@ -17,9 +17,9 @@ aspectdef DataflowGraph
 
 	//Get function root
 	var root;
-	var filename = Clava.getProgram.files[0];
+	var filename = Clava.getProgram().files[0].name;
 	var basename = filename.split(".");
-	filename = basename[0] + ".dot";
+	var filename = basename[0] + ".dot";
 	var logger = new Logger(undefined, filename);
 	//replace by filter, not sure of the syntax
 	for (var elem of WeaverJps.search("function").chain()){
@@ -50,21 +50,31 @@ aspectdef DataflowGraph
 		firstOp.insertBefore(declareVariable(params[i]));
 	for (var i = 0; i < vars.length; i++)
 		firstOp.insertBefore(declareVariable(vars[i]));
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_const = 0;"));
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("//End: counter variables"));
+
+	//Get index of first operation
+	var startIdx = -1;
+	for (var i = 0; i < scope.children.length; i++) {
+		if (scope.children[i].astId == firstOp.astId)
+			startIdx = i;
+	}
 	
 	//Traverse the AST
-	//...
+	var nodes = [];
+	for (var i = startIdx; i < scope.children.length; i++) {
+		nodes.push(scope.children[i]);
+	}
+	for (var i = 0; i < nodes.length; i++) {
+		explore(nodes[i], logger);
+	}
 
 	//End graph
 	var ret = scope.children[scope.children.length-2];
 	logger.text("}\\n").log(ret, true);
-
-	//Exchange last two children due to logger bug
-	scope.children[scope.children.length-2] = scope.children[scope.children.length-1];
-	scope.children[scope.children.length-1] = ret;
 end
 
 function getVars(root) {
@@ -80,8 +90,9 @@ function getVars(root) {
 
 function loopVars(varName) {
 	//A smarter way would be to actually look through the loops
-	//But let's assume we just want to filter out 'i' for now
-	return varName.name != "i";
+	//But let's assume we just want to filter out typical counter names for now
+	var names = ["i", "j", "k"];
+	return !names.includes(varName.name);
 }
 
 function declareVariable(decl) {
@@ -100,4 +111,27 @@ function declareVariable(decl) {
 	if (tokens[tokens.length - 1] != ";")
 		tokens += ";";
 	return ClavaJoinPoints.stmtLiteral(tokens);
+}
+
+function incrementVar(node, variable) {
+	node.insertBefore(ClavaJoinPoints.stmtLiteral(variable + "++;"));
+}
+
+function explore(node, logger) {
+	//println(node.joinpointType);
+	if (node.joinpointType == "expression") {
+		handleExpression(node, logger);
+	}
+	for (var i = 0; i < node.children.length; i++)
+		explore(node.children[i], logger);
+}
+
+function handleExpression(node, logger) {
+	//expression is a constant
+	incrementVar(node, "n_const");
+	logger.text("const")
+		.int(ClavaJoinPoints.varRef("n_const", ClavaJoinPoints.builtinType("int")))
+		.text(" [label=\\\"" + node.code + "\\\", att1=const];\\n")
+		.log(node, true); 
+	//TODO: other cases
 }

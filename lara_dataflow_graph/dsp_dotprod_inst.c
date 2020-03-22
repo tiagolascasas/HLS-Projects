@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NX 4
+#define NX 2
 
 int DSP_dotprod_graph_original(const short *x, const short *y, int nx)
 {

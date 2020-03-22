@@ -67,6 +67,14 @@ int DSP_dotprod(const short x[NX], const short y[NX])
     return sum;
 }
 
+int main() 
+{
+	const short x[NX] = {1, 2};
+	const short y[NX] = {3, 4};
+	int s = DSP_dotprod(x, y);
+	return s;
+}
+
 /* ======================================================================== */
 /*  End of file:  dsp_dotprod.c                                             */
 /* ------------------------------------------------------------------------ */

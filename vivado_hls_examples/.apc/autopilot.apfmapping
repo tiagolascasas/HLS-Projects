@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
-  <source>
-    <originFiles name="rsqrt.h" path="C:\Users\Tiago\Dev\HLS-Projects\vivado_hls_examples\rsqrt.h"/>
-    <originFiles name="reports.csv" path="C:\Users\Tiago\Dev\HLS-Projects\vivado_hls_examples\reports.csv"/>
-    <originFiles name="euclidean_dist.c" path="C:\Users\Tiago\Dev\HLS-Projects\vivado_hls_examples\euclidean_dist.c"/>
-  </source>
-  <testbench/>
-</autopilotfilemapping:AutoPilotFileMapping>

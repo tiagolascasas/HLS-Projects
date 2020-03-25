@@ -1,1 +1,0 @@
-GIF87amàJZR99)A)öÞ”j1ZA)Õj1AæœRARJA½JRbbö‹RÅR1 RAjsö´sÍZ 1)s1Þs9RJ9ARbZR9ö¤R{R 9AAs19) 9)111Õj 19A1Zss9AZb 9ARA b´½R99A1½j)99 1)9JRR)Zƒƒ)   J1Z{{JRA   ´RsZ9Þƒ1b 11 sA ƒ A ¬R ZjR19 9R91RbRÍZ1 

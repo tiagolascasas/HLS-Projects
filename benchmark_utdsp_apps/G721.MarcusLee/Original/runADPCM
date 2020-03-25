@@ -1,8 +1,0 @@
-#!/bin/csh
-
-make
-../SetUp/convert -u inputs/$1.au outputs/$1.pcm
-testc < outputs/$1.pcm >! outputs/$1.coded
-testd < outputs/$1.coded >! outputs/$1.pcmP
-../SetUp/convert -p outputs/$1.pcmP outputs/$1.auP
-# cat outputs/$1.auP > /dev/audio

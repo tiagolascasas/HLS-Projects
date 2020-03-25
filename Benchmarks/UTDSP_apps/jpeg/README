@@ -1,0 +1,39 @@
+JPEG file parser
+
+This is a set of routines I wrote to entropy encode and decode JPEG
+files.  It only works with single scan files.  Most JPEG file I've seen
+are single scan, so this isn't much of a limitation.  The output is an
+sequence of "MCUs" -- minimum coding units.  These are the JPEG analog
+of macroblocks.  For 4:1:1 subsampling, they are exactly macroblocks,
+with 6 blocks per MCU (4 Y, 1 Cr, and 1 Cb).  For grayscale, 1 MCU == 1
+block.
+
+The blocks themselves are represented as run length encoded (RLE)
+vectors.  These consist of a dc value and a sequence of (index,value)
+pairs for the AC values (see rle.h for the exact declaration). "Index"
+is the zig-zag index of the coefficient, and "value" is the value
+of the coefficient. The pairs are stored in an array.
+
+The file main.c shows a little demo that decodes a file into memory,
+does a transform on the rle blocks (in this case, mapping all values
+with zig-zag index >=4 that are +/- 1 to zero) and writes an output
+file.
+
+The primary interface routines are ReadJpegData and WriteJpegData.  The
+sample interface in main.c uses standard io to read/write the data.  Just to
+give a second example, I've provided memory.c, which reads a file from
+stdin into memory, then decompresses and compresses it 100 times, throwing
+the output away.  By timing this, you can get a feel for the performance
+of the library.
+
+To try it out, just type "make" in this directory to create two programs:
+filter and timer.  You can then try them out on any jpeg file.  For example,
+if testimg.jpg is a JPEG file, then use
+
+	time timer < testimg.jpg
+
+to see how fast it goes, and 
+
+	filter < testimg.jpg > filtered.jpg
+
+and then view filtered.jpg with your favorite viewing program.

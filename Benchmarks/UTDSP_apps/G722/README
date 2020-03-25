@@ -1,0 +1,58 @@
+This is an implementation of ITU-T Recommendation G.722 for a DSP simulator.
+
++-------------------------------------------------------------------------+
+|  To use a new test file (I'm assuming the test file is ulaw format)...  |
++-------------------------------------------------------------------------+
+|                                                                         |
+|  1. move the test file to G.722/SNDfiles/ directory                     |
+|                                                                         |
+|  2. convert the format of the file from ulaw to linearPCM               |
+|         eecg % convert -u test.au test.linearPCM                        |
+|                                                                         |
+|  3. convert the representation of the file from binary to ascii         |
+|         eecg % binary2ascii -p test.linearPCM test.linearPCM.ascii      |
+|                                                                         |
+|  4. go to the QMF.transmit directory                                    |
+|         eecg % cd ../QMF.transmit                                       |
+|                                                                         |
+|  5. remove the present "input.dsp" file and link the new test file      |
+|         eecg % rm input.dsp                                             |
+|         eecg % ln -s ../SNDfiles/test.linearPCM.ascii input.dsp         |
+|                                                                         |
++-------------------------------------------------------------------------+
+
+To only test the transmitting and receiving mechanisms execute
+          testPassThruSUN      or
+          testPassThruDSP
+
+To test the whole system (i.e. transmit->compress->decompress->receive) execute
+          test722SUN           or
+          test722DSP
+
+Note : The difference between SUN and DSP is...
+
+       SUN - executes a sparc binary of the source code
+             on the sparcstation
+       DSP - simulates an intermediate representation 
+             (looks like assembly code, but with VLIWs)
+             of the source code on a DSP simulator
+
+Unresolved Issues
+=================
+
+The ITU-T Standard for G.722 requires 16kHz sampled input files 
+at 14 bits per sample.
+
+      Unfortunately, all the available ulaw files ( .au files ) I
+      could find were of the 8kHz variety. So, I have not been able to 
+      verify this implementation.
+
+      The utility I'm using to convert the format from ulaw to linearPCM
+      only converts to 16 bit linearPCM not 14 bit linearPCM as 
+      required by G.722... This implies that a significant amount of
+      truncation is occuring before any compression is performed.
+
+
+Any problems, comments, or, suggestions, please e-mail...
+       "leemar@ecf.toronto.edu"  or 
+       "marclee@freenet.toronto.on.ca"

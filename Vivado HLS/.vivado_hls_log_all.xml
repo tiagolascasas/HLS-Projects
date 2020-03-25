@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-21] The critical path in module 'pow_generic_double_s' consists of the following:&#xD;&#xA;&#x9;'mul' operation of DSP[241] ('r.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [238]  (3.36 ns)&#xD;&#xA;&#x9;'add' operation of DSP[241] ('ret.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [241]  (3.02 ns)&#xD;&#xA;&#x9;'icmp' operation ('icmp_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [245]  (2.43 ns)&#xD;&#xA;&#x9;'select' operation ('select_ln805', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [247]  (0 ns)&#xD;&#xA;&#x9;'select' operation ('r_exp.V', r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:592) [248]  (0.7 ns)" projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-02T11:56:22.009+0000" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] Estimated clock period (9.514ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)." projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-02T11:56:21.978+0000" type="Warning"/>
+        <logs message="WARNING: [SYN 201-103] Legalizing function name 'pow_generic&lt;double>' to 'pow_generic_double_s'." projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-02T11:56:21.243+0000" type="Warning"/>
+        <logs message="WARNING: [XFORM 203-631] Renaming function 'pow_reduce::pow_generic&lt;double>' to 'pow_generic&lt;double>' (r:/builds/2019.1/continuous/2019_05_24_2552052/src/products/hls/hls_lib/hlsmath/include/FloatingPoint\hls_pow.h:320)" projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-02T11:56:21.165+0000" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] Skipped source file 'reports.csv'. Source files must have extensions .c, .C, .cc, .cpp, .c++, .cp, or .cxx." projectName="vivado_hls_examples" solutionName="solution1" date="2020-03-02T11:56:06.149+0000" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

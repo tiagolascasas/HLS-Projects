@@ -1,0 +1,26 @@
+#!/usr/local/X11/tclsh
+
+#
+# Sets up input file for coder and symbolic link for output of decoder.
+#
+# Make sure that this is actually done in test_suite directory!
+#	ln -s ../Original/inputs/$(DataName).au
+#	$(MAKE) $(DataName).dsp
+
+set DataName bark
+
+proc link_files {target source} {
+
+  if {[file exists $source]} {
+    catch {exec rm -f $source}
+  }
+  exec ln -s $target $source
+}
+
+link_files ../$DataName.lpcm			Aexpandby2/input.dsp
+link_files ../Aexpandby2/ptrs/output.sun	Bcoder/input.dsp
+link_files ../Bcoder/ptrs/output.sun		Csqueezeby8/input.dsp
+link_files ../Csqueezeby8/ptrs/output.sun	Dexpandby8/input.dsp
+link_files ../Dexpandby8/ptrs/output.sun	Edecoder/input.dsp2
+link_files ../Bcoder/ptrs/output.sun		Edecoder/input.dsp
+link_files ../Edecoder/ptrs/output.sun		Fsqueezeby2/input.dsp

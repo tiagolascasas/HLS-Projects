@@ -1,0 +1,25 @@
+#!/usr/local/X11/tclsh
+
+#
+# Sets up input file for coder and symbolic link for output of decoder.
+#
+
+set DataName proud_of_wars
+
+proc link_files {target source} {
+
+  if {[file exists $source]} {
+    catch {exec rm -f $source}
+  }
+  exec ln -s $target $source
+}
+
+# This benchmark has many problems that I'm not up to solving right now MGS
+
+#link_files ../SNDfiles/$DataName.linearPCM.ascii QMF.tranmit/input.dsp
+#link_files ../QMF.transmit/ptrs/output.sun	SB-ADPCM.higher/encoder/input.dsp
+#link_files ../SB-ADPCM.higher/encoder/ptrs/output.sun	SB-ADPCM.higher/decoder/input.dsp
+#link_files ../QMF.transmit/ptrs/output.sun	SB-ADPCM.lower/encoder/input.dsp
+#link_files ../encoder/ptrs/output.sun		SB-ADPCM.lower/decoder/input.dsp
+#link_files ../ReceiveMerger/ptrs/fullSB		QMF.receive/input.dsp
+# link_files ../QMF.transmit/ptrs/output.sun	QMF.receive/input.dsp

@@ -1,0 +1,11 @@
+<annotationInfo>
+<annotationInfo>
+<item  id="11" filename="vivado_hls_examples/euclidean_dist.c" linenumber="8" name="icmp_ln8" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="icmp_ln8_fu_90_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="13" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="13" filename="vivado_hls_examples/euclidean_dist.c" linenumber="8" name="i" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="i_fu_96_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="13" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="16" filename="vivado_hls_examples/euclidean_dist.c" linenumber="9" name="zext_ln9" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="zext_ln9_fu_102_p1" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="21" filename="vivado_hls_examples/euclidean_dist.c" linenumber="9" name="d" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="euclidean_dist_fabkb_U1" latency="4" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="22" filename="vivado_hls_examples/euclidean_dist.c" linenumber="10" name="tmp_1" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="euclidean_dist_fmcud_U2" latency="3" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="23" filename="vivado_hls_examples/euclidean_dist.c" linenumber="10" name="dist" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="euclidean_dist_fabkb_U1" latency="4" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<item  id="26" filename="vivado_hls_examples/euclidean_dist.c" linenumber="12" name="tmp" contextFuncName="euclidean_dist" moduleName="euclidean_dist" rtlName="euclidean_dist_fsdEe_U3" latency="11" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\Tiago\Dev\HLS-Projects"><\/item>
+<\/annotationInfo>
+</annotationInfo>

@@ -1,0 +1,48 @@
+problem: pgm won't compile with modulo addr
+         if any functions use globals.
+============================================
+
+1. running a "compare -m" generates the following...
+
+%%%%% Optimizing foo2.s with -O1235 ........
+---> Reading instructions from "foo2.s"
+---> Echoing instructions to   "foo2.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Generating control flow information
+comparing ptr to array
+** 2 Couldn't find the array name in the array records list.
+
+---------------------start of my short pgm-------------------------
+#include "traps.h"
+
+[1]  int array[6] = {1,2,3,4,5,6};
+[2]  int *ptr = array;
+[3]  void foo();
+
+[4]  void main()		note: changing [2] to "int *ptr;"
+[5]    {			      and inserting "ptr = array"
+[6]    int Xm = 3;		      after [6] makes no difference.
+[7]    foo(Xm);
+[8]    }
+
+[9]  void foo(int X)
+[A]    {
+[B]    *ptr++ = X;
+
+[C]  #ifdef GCCmod
+[D]    if(ptr >= array+N) ptr = array; 
+[E]  #endif
+[F]    }
+-------------------------end of my short pgm-------------------------
+
+quickfix: pass globals to foo() as parameters.
+==============================================
+
+Employing the above suggested quickfix enables the pgm to compile
+but unfortunately (or is it fortunately :), another problem arises.
+
+It seems that modulo addressing doesn't work 100% correctly.
+
+Full details can be found in "2nd bugreport on Modulo Addressing".
+
+

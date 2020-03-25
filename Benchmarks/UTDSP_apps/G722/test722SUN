@@ -1,0 +1,33 @@
+#!/bin/csh
+set MAKE=/pc/projects/dsp/bin/Make
+echo "========================="
+echo " "; date
+
+cd QMF.receive
+mv input.dsp input.dsp.orig
+ln -s ../ReceiveMerger/fullSB input.dsp
+cd ../QMF.transmit
+rm output.sun
+$MAKE -m -P QMF.transmit.array output.sun
+cd ../SB-ADPCM.higher/encoder
+rm output.sun
+$MAKE -P higher.encoder output.sun
+cd ../../SB-ADPCM.lower/encoder
+rm output.sun
+$MAKE -P lower.encoder output.sun
+cd ../../SB-ADPCM.higher/decoder
+rm output.sun
+$MAKE -P higher.decoder output.sun
+cd ../../SB-ADPCM.lower/decoder
+rm output.sun
+$MAKE -P lower.decoder output.sun
+cd ../../ReceiveMerger
+mesher lowerSB higherSB fullSB
+cd ../QMF.receive
+rm output.sun
+$MAKE -m -P QMF.receive.fcn output.sun
+../UTIL/ascii2binary -p output.sun output.sun.binary
+../UTIL/convert -p output.sun.binary output.sun.binary.ulaw
+cat output.sun.binary.ulaw > /dev/audio
+mv input.dsp.orig input.dsp
+cd ..

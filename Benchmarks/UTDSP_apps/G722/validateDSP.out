@@ -1,0 +1,218 @@
+=========================
+ 
+Fri Dec 30 10:30:20 EST 1994
+%%%%% Fri Dec 30 10:30:21 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -m -P QMF.transmit.array validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O1235 QMF.transmit.array
+ 
+%%%%% SPIFFing output.sun output.O1235 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+spiff -- scanned 10000 words from file #1
+spiff -- scanned 11000 words from file #1
+spiff -- scanned 12000 words from file #1
+spiff -- scanned 13000 words from file #1
+spiff -- scanned 14000 words from file #1
+warning -- ran out of space reading output.O1235, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+spiff -- scanned 10000 words from file #2
+spiff -- scanned 11000 words from file #2
+spiff -- scanned 12000 words from file #2
+spiff -- scanned 13000 words from file #2
+spiff -- scanned 14000 words from file #2
+DONE
+%%%%% Fri Dec 30 10:30:35 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P higher.encoder validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O123 higher.encoder
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+warning -- ran out of space reading output.O123, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+DONE
+%%%%% Fri Dec 30 10:30:43 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P lower.encoder validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O123 lower.encoder
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+warning -- ran out of space reading output.O123, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+DONE
+%%%%% Fri Dec 30 10:30:51 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P higher.decoder validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O123 higher.decoder
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+spiff -- scanned 10000 words from file #1
+spiff -- scanned 11000 words from file #1
+spiff -- scanned 12000 words from file #1
+warning -- ran out of space reading output.O123, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+spiff -- scanned 10000 words from file #2
+spiff -- scanned 11000 words from file #2
+spiff -- scanned 12000 words from file #2
+DONE
+%%%%% Fri Dec 30 10:31:00 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -P lower.decoder validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O123 lower.decoder
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+spiff -- scanned 10000 words from file #1
+spiff -- scanned 11000 words from file #1
+spiff -- scanned 12000 words from file #1
+spiff -- scanned 13000 words from file #1
+spiff -- scanned 14000 words from file #1
+spiff -- scanned 15000 words from file #1
+spiff -- scanned 16000 words from file #1
+spiff -- scanned 17000 words from file #1
+spiff -- scanned 18000 words from file #1
+spiff -- scanned 19000 words from file #1
+warning -- ran out of space reading output.O123, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+spiff -- scanned 10000 words from file #2
+spiff -- scanned 11000 words from file #2
+spiff -- scanned 12000 words from file #2
+spiff -- scanned 13000 words from file #2
+spiff -- scanned 14000 words from file #2
+spiff -- scanned 15000 words from file #2
+spiff -- scanned 16000 words from file #2
+spiff -- scanned 17000 words from file #2
+spiff -- scanned 18000 words from file #2
+spiff -- scanned 19000 words from file #2
+DONE
+destination file size: 22666 elements
+%%%%% Fri Dec 30 10:31:13 EST 1994
+%%%%% /pc/projects/dsp/bin/Make -m -P QMF.receive.fcn validate
+/pc/projects/dsp/bin/dspdiff output.sun output.O1235 QMF.receive.fcn
+ 
+%%%%% SPIFFing output.sun output.O1235 .......
+warning -- ran out of space reading output.sun, truncated to 10000 lines
+spiff -- scanned 1000 words from file #1
+spiff -- scanned 2000 words from file #1
+spiff -- scanned 3000 words from file #1
+spiff -- scanned 4000 words from file #1
+spiff -- scanned 5000 words from file #1
+spiff -- scanned 6000 words from file #1
+spiff -- scanned 7000 words from file #1
+spiff -- scanned 8000 words from file #1
+spiff -- scanned 9000 words from file #1
+spiff -- scanned 10000 words from file #1
+spiff -- scanned 11000 words from file #1
+spiff -- scanned 12000 words from file #1
+spiff -- scanned 13000 words from file #1
+spiff -- scanned 14000 words from file #1
+spiff -- scanned 15000 words from file #1
+spiff -- scanned 16000 words from file #1
+spiff -- scanned 17000 words from file #1
+spiff -- scanned 18000 words from file #1
+spiff -- scanned 19000 words from file #1
+warning -- ran out of space reading output.O1235, truncated to 10000 lines
+spiff -- scanned 1000 words from file #2
+spiff -- scanned 2000 words from file #2
+spiff -- scanned 3000 words from file #2
+spiff -- scanned 4000 words from file #2
+spiff -- scanned 5000 words from file #2
+spiff -- scanned 6000 words from file #2
+spiff -- scanned 7000 words from file #2
+spiff -- scanned 8000 words from file #2
+spiff -- scanned 9000 words from file #2
+spiff -- scanned 10000 words from file #2
+spiff -- scanned 11000 words from file #2
+spiff -- scanned 12000 words from file #2
+spiff -- scanned 13000 words from file #2
+spiff -- scanned 14000 words from file #2
+spiff -- scanned 15000 words from file #2
+spiff -- scanned 16000 words from file #2
+spiff -- scanned 17000 words from file #2
+spiff -- scanned 18000 words from file #2
+spiff -- scanned 19000 words from file #2
+DONE
+linearPCM file size: 22666 elements
+ulaw file size: 22666 elements

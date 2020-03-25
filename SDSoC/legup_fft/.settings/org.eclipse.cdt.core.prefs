@@ -1,0 +1,10 @@
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include/c++/8.2.0=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include/c++/8.2.0/arm-none-eabi/thumb/v7-a+fp/hard=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include/c++/8.2.0/backward=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include=false
+//showInclude\:C\:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include-fixed=false
+//showInclude\:C\:/Xilinx/SDx/2019.1/target/aarch32-none/include=false
+//showInclude\:C\:/Xilinx/Vivado/2019.1/include=false
+eclipse.preferences.version=1

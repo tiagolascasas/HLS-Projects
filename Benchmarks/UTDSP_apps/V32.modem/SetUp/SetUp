@@ -1,0 +1,23 @@
+#!/usr/local/X11/tclsh
+
+#
+# Sets up input file for coder and symbolic link for output of decoder.
+#
+
+set DataFile abc.gif
+
+proc link_files {target source} {
+
+  if {[file exists $source]} {
+    catch {exec rm -f $source}
+  }
+  exec ln -s $target $source
+}
+
+link_files $DataFile			input
+link_files ../$DataFile			Achop/input.dsp
+link_files ../Achop/ptrs/output.sun	Bencode/input.dsp
+link_files ../Bencode/ptrs/output.sun	Cnoise/input.dsp
+link_files ../Cnoise/ptrs/output.sun	Ddecode/input.dsp
+link_files ../Ddecode/ptrs/output.sun	Eglue/input.dsp
+link_files Eglue/ptrs/output.sun	output

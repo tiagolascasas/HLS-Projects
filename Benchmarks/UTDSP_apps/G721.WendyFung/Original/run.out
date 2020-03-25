@@ -1,0 +1,706 @@
+No match.
+
+*** generating bark.pcm as input.dsp ***
+linearPCM file size: 2407 elements
+%%%%% Tue Sep 6 14:30:40 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare expandby2
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling expandby2.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing expandby2.s with -O123 ........
+---> Reading instructions from "expandby2.s"
+---> Echoing instructions to   "expandby2.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "expandby2.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "expandby2.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "expandby2.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "expandby2.s.compaction"
+%%%%% Running expandby2.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gexpandby2.c ........
+%%%%% Running Gexpandby2 ........
+ 
+%%%%% CMPing output.sun output.O123 .......
+DONE
+%%%%% Tue Sep 6 14:30:55 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare coder
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling coder.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing coder.s with -O123 ........
+---> Reading instructions from "coder.s"
+---> Echoing instructions to   "coder.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "coder.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "coder.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "coder.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "coder.s.compaction"
+%%%%% Running coder.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gcoder.c ........
+%%%%% Running Gcoder ........
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+fatal error -- got 0 length line 1 in file output.sun
+%%%%% CMPing output.sun output.O123 .......
+DONE
+18.2u 2.9s 0:26 79% 0+616k 5+67io 5pf+0w
+%%%%% Tue Sep 6 14:31:22 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare squeezeby8
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling squeezeby8.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing squeezeby8.s with -O123 ........
+---> Reading instructions from "squeezeby8.s"
+---> Echoing instructions to   "squeezeby8.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "squeezeby8.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "squeezeby8.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "squeezeby8.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "squeezeby8.s.compaction"
+%%%%% Running squeezeby8.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gsqueezeby8.c ........
+%%%%% Running Gsqueezeby8 ........
+ 
+%%%%% CMPing output.sun output.O123 .......
+DONE
+23.5u 2.8s 0:30 85% 0+628k 4+79io 4pf+0w
+%%%%% Tue Sep 6 14:31:53 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare expandby8
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling expandby8.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing expandby8.s with -O123 ........
+---> Reading instructions from "expandby8.s"
+---> Echoing instructions to   "expandby8.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "expandby8.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "expandby8.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "expandby8.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "expandby8.s.compaction"
+%%%%% Running expandby8.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gexpandby8.c ........
+%%%%% Running Gexpandby8 ........
+ 
+%%%%% SPIFFing output.sun output.O123 .......
+fatal error -- got 0 length line 1 in file output.sun
+%%%%% CMPing output.sun output.O123 .......
+DONE
+%%%%% Tue Sep 6 14:32:07 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare decoder
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling decoder.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing decoder.s with -O123 ........
+---> Reading instructions from "decoder.s"
+---> Echoing instructions to   "decoder.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "decoder.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "decoder.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "decoder.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "decoder.s.compaction"
+%%%%% Running decoder.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gdecoder.c ........
+%%%%% Running Gdecoder ........
+ 
+%%%%% CMPing output.sun output.O123 .......
+DONE
+16.0u 2.7s 0:23 81% 0+660k 5+83io 5pf+0w
+%%%%% Tue Sep 6 14:32:30 EDT 1994
+%%%%% /corinna/a/a0/corinna/DSP/bin/compare squeezeby2
+ 
+%%%%% MAKING DSP OUTPUT
+%%%%% Compiling squeezeby2.c ........
+call to compile_file()
+in compile_file()
+call to yyparse()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+in expand_expr_stmt()
+call to expand_expr()
+return from expand_expr()
+return from yyparse()
+return from compile_file()
+%%%%% Optimizing squeezeby2.s with -O123 ........
+---> Reading instructions from "squeezeby2.s"
+---> Echoing instructions to   "squeezeby2.s.ECHO"
+---> Moving `.global' and `.common' directives to top
+---> Writing instructions to   "squeezeby2.s.initial"
+---> Generating control flow information
+---> Generating data flow information
+---> Attempting hardware `do' loop optimization
+---> Writing instructions to   "squeezeby2.s.do_loop"
+---> Generating control flow information
+---> Generating data flow information
+---> Creating instruction grouping information
+---> Writing instructions to   "squeezeby2.s.partition"
+---> Compacting instructions locally
+---> Writing instructions to   "squeezeby2.s.compaction"
+%%%%% Running squeezeby2.s.compaction with  & generating report.O123 ....
+ 
+%%%%% MAKING SUN OUTPUT
+%%%%% Creating and compiling Gsqueezeby2.c ........
+%%%%% Running Gsqueezeby2 ........
+ 
+%%%%% CMPing output.sun output.O123 .......
+DONE
+16.2u 2.4s 0:23 81% 0+604k 4+56io 4pf+0w
+ulaw file size: 2408 elements

@@ -32,15 +32,15 @@ aspectdef DataflowGraph
 	var scope;
 	var params = [];
 	for (var i = 0; i < root.children.length; i++) {
-		if (root.children[i].joinpointType == "scope")
+		if (root.children[i].joinPointType == "scope")
 			scope = root.children[i];
-		if (root.children[i].joinpointType == "param")
+		if (root.children[i].joinPointType == "param")
 			params.push(root.children[i]);
 	}
 
 	//Get local variables
 	var vars = getVars(scope);
-	vars = vars.filter(loopVars);
+	vars = vars.filter(isNotLoopVar);
 
 	//Begin graph: declare variables for counting
 	var firstOp = scope.children[0];
@@ -80,7 +80,7 @@ end
 function getVars(root) {
 	var vars = [];
 	for (var i = 0; i < root.children.length; i++) {
-		if (root.children[i].joinpointType == "vardecl")
+		if (root.children[i].joinPointType == "vardecl")
 			vars.push(root.children[i]);
 		else
 			vars = vars.concat(getVars(root.children[i]));
@@ -88,7 +88,7 @@ function getVars(root) {
 	return vars;
 }
 
-function loopVars(varName) {
+function isNotLoopVar(varName) {
 	//A smarter way would be to actually look through the loops
 	//But let's assume we just want to filter out typical counter names for now
 	var names = ["i", "j", "k"];
@@ -119,8 +119,11 @@ function incrementVar(node, variable) {
 
 function explore(node, logger) {
 	//println(node.joinpointType);
-	if (node.joinpointType == "expression") {
+	if (node.joinPointType == "expression") {
 		handleExpression(node, logger);
+	}
+	if (node.joinPointType == "vardecl") {
+		handleVarDecl(node, logger);
 	}
 	for (var i = 0; i < node.children.length; i++)
 		explore(node.children[i], logger);
@@ -134,4 +137,12 @@ function handleExpression(node, logger) {
 		.text(" [label=\\\"" + node.code + "\\\", att1=const];\\n")
 		.log(node, true); 
 	//TODO: other cases
+}
+
+function handleVarDecl(node, logger) {
+	if (!isNotLoopVar(node))
+		return;
+	logger.text(node.name)
+		.text(" [label=\\\"" + node.name + "\\\", att1=var];\\n")
+		.log(node, true);
 }

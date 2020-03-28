@@ -1,0 +1,10 @@
+function,frequency across 44 benchmarks
+atan,3
+cos,5
+sin,1
+exp,1
+log,1
+log10,3
+pow,2
+sqrt,5
+fabs,8

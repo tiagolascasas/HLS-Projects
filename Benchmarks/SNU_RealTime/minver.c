@@ -61,7 +61,7 @@ double fabs(double n)
   return f;
 }
 
-void main()
+int main()
 {
 	int i, j;
 	double eps;
@@ -78,6 +78,7 @@ void main()
 	    a_i[i][j] = a[i][j];
 
 	mmul(3, 3, 3, 3);
+	return 0;
 }
 
 

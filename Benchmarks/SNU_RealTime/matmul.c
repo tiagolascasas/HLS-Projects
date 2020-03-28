@@ -57,7 +57,7 @@ int b[SIZE+1][SIZE+1] = { 0,0,0,0,0,0,
 			    0,2,7,6,4,9 };
 int c[SIZE+1][SIZE+1];
 
-matmul(a,b,c)
+void matmul(a,b,c)
   int a[SIZE+1][SIZE+1], b[SIZE+1][SIZE+1], c[SIZE+1][SIZE+1];
 {
   int i,j,k;
@@ -73,9 +73,10 @@ CL0:  for(i=1;i<=SIZE;i++)
 
 }
 
-main()
+int main()
 {
     matmul(a,b,c);
+	return 0;
 }
 	 
 

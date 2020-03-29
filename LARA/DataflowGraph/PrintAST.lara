@@ -6,7 +6,10 @@ aspectdef PrintAST
 end
 
 function printLevel(node, n) {
-	println(getSpaces(n) + node.joinPointType);
+	if (node.joinPointType != "scope" && node.joinPointType != "function")
+		println(getSpaces(n) + node.joinPointType + "----------------------\"" + node.code + "\"");
+	else
+		println(getSpaces(n) + node.joinPointType);
 	for (var i = 0; i < node.children.length; i++)
 	printLevel(node.children[i], n + 1);
 }

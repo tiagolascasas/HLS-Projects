@@ -1,4 +1,4 @@
-source program,acos,asin,atan,atan2,cos,cosh,sin,sinh,tanh,exp,frexp,ldexp,log,log10,modf,pow,sqrt,ceil,fabs,floor,fmod,acosf,asinf,atanf,atan2f,cosf,coshf,sinf,sinhf,tanhf,expf,frexpf,ldexpf,logf,log10f,modff,powf,sqrtf,ceilf,fabsf,floorf,fmodf
+source,acos,asin,atan,atan2,cos,cosh,sin,sinh,tanh,exp,frexp,ldexp,log,log10,modf,pow,sqrt,ceil,fabs,floor,fmod,acosf,asinf,atanf,atan2f,cosf,coshf,sinf,sinhf,tanhf,expf,frexpf,ldexpf,logf,log10f,modff,powf,sqrtf,ceilf,fabsf,floorf,fmodf
 chstone_adpcm,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 chstone_aes,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 chstone_blowfish,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

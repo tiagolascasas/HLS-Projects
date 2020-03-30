@@ -190,7 +190,7 @@ function addArrayAccess(node, logger) {
 		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
 		.text("]\\\" [label=\\\"" + node.children[0].code + "[")
 		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
-		.text("\\\"]\\n")
+		.text("]\\\"]\\n")
 		.log(node, true);
 }
 

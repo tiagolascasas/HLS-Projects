@@ -55,11 +55,9 @@
 
 #define NX 2
 
-int DSP_dotprod(const short x[NX], const short y[NX])
-{
+int DSP_dotprod(const short x[NX], const short y[NX]){
     int sum = 0;
     int i;
-
 
     for (i = 0; i < NX; i++)
         sum += x[i] * y[i];

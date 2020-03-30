@@ -50,10 +50,10 @@ aspectdef DataflowGraph
 		firstOp.insertBefore(declareVariable(params[i]));
 	for (var i = 0; i < vars.length; i++)
 		firstOp.insertBefore(declareVariable(vars[i]));
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_const = 0;"));
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_const = 0;"));	//Counts constants
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));		//Counts operations (e.g. +, -)
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));		
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_edge = 0;"));		//Counts edges
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("//End: counter variables"));
 	//Get index of first operation
 	var startIdx = -1;
@@ -68,11 +68,11 @@ aspectdef DataflowGraph
 	}
 	//Insert prints for variable declarations
 	for (var i = 0; i < nodes.length; i++) {
-		explore(nodes[i], logger);
+		createNodes(nodes[i], logger);
 	}
 	//Connect nodes and create operations
 	for (var i = 0; i < nodes.length; i++) {
-		connect(nodes[i], logger);
+		connectNodes(nodes[i], logger);
 	}
 	//End graph
 	var ret = scope.children[scope.children.length-2];
@@ -119,30 +119,56 @@ function incrementVar(node, variable) {
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(variable + "++;"));
 }
 
-function explore(node, logger) {
-	//println(node.joinpointType);
+//Create nodes
+function createNodes(node, logger) {
+	var nodes = [];
+	if (node.numChildren > 0)
+		nodes = node.children.slice();
 	if (node.joinPointType == "expression") {
-		handleExpression(node, logger);
+		addConstant(node, logger);
 	}
 	if (node.joinPointType == "vardecl") {
-		handleVarDecl(node, logger);
+		addVar(node, logger);
 	}
-	for (var i = 0; i < node.children.length; i++)
-		explore(node.children[i], logger);
+	if (node.joinPointType == "binaryOp" || node.joinPointType == "unaryOp") {
+		if (node.parent.parent.type != "loop")
+			addOperation(node, logger);
+	}
+	if (node.joinPointType == "arrayAccess") {
+		addArrayAccess(node, logger);
+	}
+	for (var i = 0; i < nodes.length; i++)
+		createNodes(nodes[i], logger);
 }
 
-function handleExpression(node, logger) {
+//Create edges (connect the nodes)
+function connectNodes(node, logger) {
+	var nodes = [];
+	if (node.numChildren > 0)
+		nodes = node.children.slice();
+	if (node.joinPointType == "statement") {
+		if (node.parent.joinPointType != "loop") {
+			connectStatement(node, logger);
+			return;
+		}
+	}
+	for (var i = 0; i < nodes.length; i++)
+		connectNodes(nodes[i], logger);
+}
+
+//Functions to add nodes
+function addConstant(node, logger) {
 	//expression is a constant
 	incrementVar(node, "n_const");
 	logger.text("const")
 		.int(ClavaJoinPoints.varRef("n_const", ClavaJoinPoints.builtinType("int")))
 		.text(" [label=\\\"" + node.code + "\\\", att1=const];\\n")
 		.log(node, true);
-	node.setUserField("label", node.name); 
-	//TODO: other cases
+	node.setUserField("label", "n_const"); 
+	//TODO: other cases, if justified
 }
 
-function handleVarDecl(node, logger) {
+function addVar(node, logger) {
 	if (!isNotLoopVar(node))
 		return;
 	logger.text(node.name)
@@ -151,19 +177,40 @@ function handleVarDecl(node, logger) {
 	node.setUserField("label", node.name); 
 }
 
-function connect(node, logger) {
-	//println(node.joinpointType);
-	if (node.joinPointType == "statement") {
-		if (node.parent.joinPointType != "loop") {
-			handleStatement(node, logger);
-			return;
-		}
-	}
-	for (var i = 0; i < node.children.length; i++)
-		connect(node.children[i], logger);
+function addOperation(node, logger) {
+	incrementVar(node, "n_op");
+	logger.text("\\\"op")
+		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
+		.text("\\\" [label=\\\"" + node.kind + ", att1=op\\\"]\\n")
+		.log(node, true);
 }
 
-function handleStatement(node, logger) {
+function addArrayAccess(node, logger) {
+	logger.text("\\\"" + node.children[0].code + "[")
+		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
+		.text("]\\\" [label=\\\"" + node.children[0].code + "[")
+		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
+		.text("\\\"]\\n")
+		.log(node, true);
+}
+
+function addVarref(node, logger) {
+	//TODO, not relevant for current example
+	//Same as array access, but do not perform if parent is array access
+}
+
+//Functions to add edges
+function addEdge(node, logger, source, dest) {
+	incrementVar(node, "n_edge");
+	logger.text(source + " -> " + dest + " [label=\\\"")
+		.int(ClavaJoinPoints.varRef("n_edge", ClavaJoinPoints.builtinType("int")))
+		.text("\\\", ord=\\\"")
+		.int(ClavaJoinPoints.varRef("n_edge", ClavaJoinPoints.builtinType("int")))
+		.text("\\\"]\\n")
+		.log(node, true);
+}
+
+function connectStatement(node, logger) {
 	if (node.numChildren == 0)
 		return;
 	var child = node.firstChild;
@@ -175,7 +222,7 @@ function handleStatement(node, logger) {
 		if (child.firstChild.joinPointType == "expression") {
 			var source = child.firstChild.userField("label");
 			var dest = child.userField("label");
-			logger.text(source + " -> " + dest).log(node, true);
+			addEdge(node, logger, source, dest);
 		}			
 	}
 	if (child.joinPointType == "binaryOp") {

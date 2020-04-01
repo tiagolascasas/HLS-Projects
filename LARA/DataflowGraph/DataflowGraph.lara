@@ -54,6 +54,7 @@ aspectdef DataflowGraph
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));		//Counts operations (e.g. +, -)
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));		
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_edge = 0;"));		//Counts edges
+	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_temp = 0;"));		//Counts temporary vars
 	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("//End: counter variables"));
 	//Get index of first operation
 	var startIdx = -1;
@@ -164,7 +165,7 @@ function addConstant(node, logger) {
 		.int(ClavaJoinPoints.varRef("n_const", ClavaJoinPoints.builtinType("int")))
 		.text(" [label=\\\"" + node.code + "\\\", att1=const];\\n")
 		.log(node, true);
-	node.setUserField("label", "n_const"); 
+	node.setUserField("label", {"name": "const%d", "var": "n_const"}); 
 	//TODO: other cases, if justified
 }
 
@@ -174,7 +175,7 @@ function addVar(node, logger) {
 	logger.text(node.name)
 		.text(" [label=\\\"" + node.name + "\\\", att1=var];\\n")
 		.log(node, true);
-	node.setUserField("label", node.name); 
+	node.setUserField("label", {"name": node.name, "var": "none"}); 
 }
 
 function addOperation(node, logger) {
@@ -183,6 +184,18 @@ function addOperation(node, logger) {
 		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
 		.text("\\\" [label=\\\"" + node.kind + ", att1=op\\\"]\\n")
 		.log(node, true);
+	node.setUserField("label", {"name": "op%d", "var": "n_op"});
+	//Also generate node for temporary result if it is part of a larger operation
+	if (node.parent.type == "unaryOp" || node.parent.type == "binaryOp") {
+		incrementVar(node, "n_op");
+		logger.text("\\\"temp")
+			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
+			.text("\\\" [label=\\\"temp_i" + node.line + "_")
+			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
+			.text("\\\"]\\n")
+			.log(node, true);
+		node.setUserField("temp", {"name": "temp_i" + node.line + "_%d", "var": "n_temp"});
+	}
 }
 
 function addArrayAccess(node, logger) {
@@ -192,6 +205,7 @@ function addArrayAccess(node, logger) {
 		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
 		.text("]\\\"]\\n")
 		.log(node, true);
+	node.setUserField("label", {"name": node.children[0].code + "[%d]", "var": node.children[1].code});
 }
 
 function addVarref(node, logger) {

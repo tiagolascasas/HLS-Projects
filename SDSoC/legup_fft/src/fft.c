@@ -21,7 +21,7 @@ short FIX_MPY(short a, short b) {
 }
 
 
-void fft(short old_Re[], short old_Im[], short Real[], short Imag[]) {
+void fft(short old_Re[Input_Size], short old_Im[Input_Size], short Real[Input_Size], short Imag[Input_Size]) {
 	short m, i, j, l, sin_index = 0, istep, shift, W_Imag, W_Real, // W = exp(-sqrt(-1)*2*pi/Input)Size
 			qi, qr, ti, tr; // Temporary coefficients
 	Real[0] = old_Re[0];

@@ -2,18 +2,29 @@
 <sdsproject:SDSProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" name="legup_fft" location="C:/Users/SPeCS/Desktop/SDxProjects/legup_fft" platform="C:/Xilinx/SDx/2019.1/platforms/zed/zed.xpfm" platformUID="xilinx.com:zed:zed:1.0" systemProject="legup_fft_system" sysConfig="standalone" runtime="C/C++" cpu="standalone" cpuInstance="ps7_cortexa9_0" os="standalone" ConfigType="Debug">
   <configuration name="Debug" id="com.xilinx.sdsoc.managedbuild.project.debug.1912243454">
     <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="2" enableHwSwTrace="false" traceApplication="false">
-      <accelerator name="FIX_MPY" filepath="src/fft.c" clkid="2" location="C:/Users/SPeCS/Desktop/SDxProjects/legup_fft/src/fft.c">
+      <accelerator name="FIX_MPY" filepath="src/fft.c" clkid="2" location="C:/Users/Tiago/Dev/HLS-Projects/SDSoC/legup_fft/src/fft.c">
         <args name="a"/>
         <args name="b"/>
       </accelerator>
-      <accelerator name="fft" filepath="src/fft.c" clkid="2" location="C:/Users/SPeCS/Desktop/SDxProjects/legup_fft/src/fft.c">
+      <accelerator name="fft" filepath="src/fft.c" clkid="2" location="C:/Users/Tiago/Dev/HLS-Projects/SDSoC/legup_fft/src/fft.c">
         <args name="old_Re"/>
         <args name="old_Im"/>
         <args name="Real"/>
         <args name="Imag"/>
       </accelerator>
     </configBuildOptions>
-    <lastBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="2" enableHwSwTrace="false" traceApplication="false"/>
+    <lastBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="2" enableHwSwTrace="false" traceApplication="false">
+      <accelerator name="FIX_MPY" filepath="src/fft.c" clkid="2" location="C:/Users/Tiago/Dev/HLS-Projects/SDSoC/legup_fft/src/fft.c">
+        <args name="a"/>
+        <args name="b"/>
+      </accelerator>
+      <accelerator name="fft" filepath="src/fft.c" clkid="2" location="C:/Users/Tiago/Dev/HLS-Projects/SDSoC/legup_fft/src/fft.c">
+        <args name="old_Re"/>
+        <args name="old_Im"/>
+        <args name="Real"/>
+        <args name="Imag"/>
+      </accelerator>
+    </lastBuildOptions>
   </configuration>
   <configuration name="Release" id="com.xilinx.sdsoc.managedbuild.project.release.444020051" dirty="true">
     <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="2" enableHwSwTrace="false" traceApplication="false">

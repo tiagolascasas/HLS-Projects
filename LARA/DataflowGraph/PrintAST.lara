@@ -30,6 +30,6 @@ function printLabel(node) {
 	var a = node.userField("alt");
 	if (a == undefined)
 		return s;
-	s += "  {\"name\": " + a.name + ", \"var\": " + a.var + "}";
+	s += "  {\"name\": " + a.name + ", \"var1\": " + a.var1 + ", \"var2\": " + a.var2 + "}";
 	return s;
 }

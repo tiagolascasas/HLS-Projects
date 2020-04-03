@@ -176,7 +176,7 @@ function addConstant(node, logger) {
 	//expression is a constant
 	incrementVar(node, "n_const");
 	logger.text("const")
-		.int(ClavaJoinPoints.varRef("n_const", ClavaJoinPoints.builtinType("int")))
+		.int(varToPrint("n_const"))
 		.text(" [label=\\\"" + node.code + "\\\", att1=const];\\n")
 		.log(node, true);
 	node.setUserField("label", {"name": "const", "var": "n_const"}); 
@@ -195,17 +195,17 @@ function addVar(node, logger) {
 function addOperation(node, logger) {
 	incrementVar(node, "n_op");
 	logger.text("op")
-		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
-		.text(" [label=\\\"" + node.kind + "\\\", att1=\\\"op\\\"]\\n")
+		.int(varToPrint("n_op"))
+		.text(" [label=\\\"" + convertOp(node.kind) + "\\\", att1=\\\"op\\\"]\\n")
 		.log(node, true);
 	node.setUserField("label", {"name": "op", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
 	if (node.parent.joinPointType == "unaryOp" || node.parent.joinPointType == "binaryOp") {
 		incrementVar(node, "n_op");
 		logger.text("\\\"temp")
-			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
+			.int(varToPrint("n_temp"))
 			.text("\\\" [label=\\\"temp_i" + node.line + "_")
-			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
+			.int(varToPrint("n_temp"))
 			.text("\\\"]\\n")
 			.log(node, true);
 		node.setUserField("alt", {"name": "temp_i" + node.line + "_", "var": "n_temp"});
@@ -215,12 +215,14 @@ function addOperation(node, logger) {
 function addArrayAccess(node, logger) {
 	var n = incrementArray(node, "n_" + node.children[0].code, node.children[1].code);
 	logger.text( node.children[0].code + "_arr")
-		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
+		.int(varToPrint(node.children[1].code))
+		.text("_")
+		.int(varToPrint(n))
 		.text(" [label=\\\"" + node.children[0].code + "[")
-		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
+		.int(varToPrint(node.children[1].code))
 		.text("]\\\"]\\n")
 		.log(node, true);
-	node.setUserField("label", {"name": node.children[0].code + "_arr", "var": n});
+	node.setUserField("label", {"name": node.children[0].code + "_arr", "var1": node.children[1].code, "var2": n});
 }
 
 function addVarref(node, logger) {
@@ -231,10 +233,18 @@ function addVarref(node, logger) {
 			return;
 		incrementVar(node, "n_" + node.name);
 		logger.text(node.name)
-			.int(ClavaJoinPoints.varRef("n_" + node.name, ClavaJoinPoints.builtinType("int")))
+			.int(varToPrint("n_" + node.name))
 			.text(" [label=\\\"" + node.name + "\\\"]\\n")
 			.log(node, true);
 		node.setUserField("label", {"name": node.name, "var": "n_" + node.name});
+	}
+}
+
+function convertOp(op) {
+	switch (op) {
+		case "mul": return "*";
+		case "add_assign": return "+";
+		default: return op;
 	}
 }
 
@@ -262,19 +272,36 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 		println("Cannot add edge");
 		return;
 	}
-
+	//Source
 	logger.text(source.name);
-	if (source.var != "none")
-		logger.int(ClavaJoinPoints.varRef(source.var, ClavaJoinPoints.builtinType("int")));
+	if (source.hasOwnProperty("var")) {
+		if (source.var != "none")
+			logger.int(varToPrint(source.var));
+	}
+	else {
+		logger.int(varToPrint(source.var1))
+			.text("_")
+			.int(varToPrint(source.var2));
+	}
+	//Destination
 	logger.text(" -> " + dest.name);
-	if (dest.var != "none")
-		logger.int(ClavaJoinPoints.varRef(dest.var, ClavaJoinPoints.builtinType("int")));
+	if (dest.hasOwnProperty("var")) {
+		if (dest.var != "none")
+			logger.int(ClavaJoinPoints.varRef(dest.var, ClavaJoinPoints.builtinType("int")));
+			//logger.int(ClavaJoinPoints.stmtLiteral(dest.var + "-1"));
+	}
+	else {
+		logger.int(varToPrint(dest.var1))
+			.text("_")
+			.int(varToPrint(dest.var2));
+	}
+	//Label
 	logger.text(" [label=\\\"")
-		.int(ClavaJoinPoints.varRef("n_edge", ClavaJoinPoints.builtinType("int")))
+		.int(varToPrint("n_edge"))
 		.text("\\\", ord=\\\"")
-		.int(ClavaJoinPoints.varRef("n_edge", ClavaJoinPoints.builtinType("int")))
+		.int(varToPrint("n_edge"))
 		.text("\\\"]\\n")
-		.log(node, true);
+		.log(node);
 }
 
 function connectNode(node, logger) {
@@ -300,4 +327,11 @@ function connectNode(node, logger) {
 		}
 		println("-----------------------");
 	}
+}
+
+function varToPrint(name, offset) {
+	if (offset == undefined)
+		return ClavaJoinPoints.varRef(name, ClavaJoinPoints.builtinType("int"));
+	else
+		return ClavaJoinPoints.stmtLiteral(name + "-" + offset);
 }

@@ -98,6 +98,21 @@ function isNotLoopVar(node) {
 	return !names.includes(node.name);
 }
 
+function loopChecker(node) {
+	while (node.joinPointType != "program") {
+		if (node.joinPointType == "scope") {
+			node.setUserField("inLoop", false);
+			return;
+		}
+		if (node.joinPointType == "loop"){
+			node.setUserField("inLoop", true);
+			return;
+		}
+		node = node.parent;
+	}
+	node.setUserField("inLoop", false);
+}
+
 function declareVariable(decl) {
 	var tokens = decl.code.split(" ");
 	for (var i = 0; i < tokens.length; i++) {
@@ -125,6 +140,8 @@ function createNodes(node, logger) {
 	var nodes = [];
 	if (node.numChildren > 0)
 		nodes = node.children.slice();
+	loopChecker(node);
+	
 	if (node.joinPointType == "expression") {
 		addConstant(node, logger);
 	}
@@ -143,21 +160,6 @@ function createNodes(node, logger) {
 	}
 	for (var i = 0; i < nodes.length; i++)
 		createNodes(nodes[i], logger);
-}
-
-//Create edges (connect the nodes)
-function connectNodes(node, logger) {
-	var nodes = [];
-	if (node.numChildren > 0)
-		nodes = node.children.slice();
-	if (node.joinPointType == "statement") {
-		if (node.parent.joinPointType != "loop") {
-			connectStatement(node, logger);
-			return;
-		}
-	}
-	for (var i = 0; i < nodes.length; i++)
-		connectNodes(nodes[i], logger);
 }
 
 //Functions to add nodes
@@ -187,7 +189,7 @@ function addOperation(node, logger) {
 		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
 		.text("\\\" [label=\\\"" + node.kind + "\\\", att1=op\\\"]\\n")
 		.log(node, true);
-	node.setUserField("label", {"name": "op%d", "var": "n_op"});
+	node.setUserField("label", {"name": "op", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
 	if (node.parent.type == "unaryOp" || node.parent.type == "binaryOp") {
 		incrementVar(node, "n_op");
@@ -197,7 +199,7 @@ function addOperation(node, logger) {
 			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
 			.text("\\\"]\\n")
 			.log(node, true);
-		node.setUserField("temp", {"name": "temp_i" + node.line + "_", "var": "n_temp"});
+		node.setUserField("alt", {"name": "temp_i" + node.line + "_", "var": "n_temp"});
 	}
 }
 
@@ -226,9 +228,29 @@ function addVarref(node, logger) {
 	}
 }
 
+//Create edges (connect the nodes)
+function connectNodes(node, logger) {
+	var nodes = [];
+	if (node.numChildren > 0)
+		nodes = node.children.slice();
+	if (!node.userField("inLoop"))
+		connectNode(node, logger);
+	for (var i = 0; i < nodes.length; i++)
+		connectNodes(nodes[i], logger);
+}
+
 //Functions to add edges
-function addEdge(node, logger, source, dest) {
+function addEdge(node, logger, sourceNode, destNode, alt) {
+	var source = sourceNode.userField("label");
+	var dest = destNode.userField("label");
+	if (alt == true)
+		dest = destNode.userField("alt");
 	incrementVar(node, "n_edge");
+	if (source == undefined || dest == undefined) {
+		println("Cannot add edge");
+		return;
+	}
+
 	logger.text(source.name);
 	if (source.var != "none")
 		logger.int(ClavaJoinPoints.varRef(source.var, ClavaJoinPoints.builtinType("int")));
@@ -243,25 +265,25 @@ function addEdge(node, logger, source, dest) {
 		.log(node, true);
 }
 
-function connectStatement(node, logger) {
+function connectNode(node, logger) {
 	if (node.numChildren == 0)
 		return;
-	var child = node.firstChild;
-	if (child.numChildren == 0) 
-		return;
+	var children = [];
+	if (node.numChildren > 0)
+		children = node.children.slice();
+	
+	if (node.joinPointType == "vardecl") {
+		addEdge(node, logger, node.firstChild, node);
+	}
+	if (node.joinPointType == "unaryOp") {
 
-	println("Handling expression \"" + node.code + "\"");
-	if (child.joinPointType == "vardecl") {
-		if (child.firstChild.joinPointType == "expression") {
-			var source = child.firstChild.userField("label");
-			var dest = child.userField("label");
-			addEdge(node, logger, source, dest);
-		}			
 	}
-	if (child.joinPointType == "binaryOp") {
-		
-	}
-	if (child.joinPointType == "unaryOp") {
-		
+	if (node.joinPointType == "binaryOp") {
+		for (var i = 0; i < children.length; i++) {
+			if (node.children[i].joinPointType == "binaryOp")
+				addEdge(node, logger, children[i], node, true);
+			else
+				addEdge(node, logger, children[i], node);
+		}
 	}
 }

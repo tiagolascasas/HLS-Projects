@@ -7,7 +7,7 @@ end
 
 function printLevel(node, n) {
 	if (node.joinPointType != "scope" && node.joinPointType != "function")
-		println(getSpaces(n) + node.joinPointType + "----------------------\"" + node.code + "\"");
+		println(getSpaces(n) + node.joinPointType + "--------" + printLabel(node));
 	else
 		println(getSpaces(n) + node.joinPointType);
 	for (var i = 0; i < node.children.length; i++)
@@ -18,5 +18,18 @@ function getSpaces(n) {
 	var s = "";
 	for (i = 0; i < n; i++)
 		s += "  ";
+	return s;
+}
+
+function printLabel(node) {
+	var s = "{\"name\": ";
+	var n = node.userField("label");
+	if (n == undefined)
+		return "";
+	s += n.name + ", \"var\": " + n.var + "}";
+	var a = node.userField("alt");
+	if (a == undefined)
+		return s;
+	s += "  {\"name\": " + a.name + ", \"var\": " + a.var + "}";
 	return s;
 }

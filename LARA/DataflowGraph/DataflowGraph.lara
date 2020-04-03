@@ -26,7 +26,7 @@ aspectdef DataflowGraph
 		if (elem["function"].name == funName)
 			root = elem["function"];
 	}	
-	call PrintAST(root);
+	//call PrintAST(root);
 
 	//Get scope and params
 	var scope;
@@ -71,6 +71,7 @@ aspectdef DataflowGraph
 	for (var i = 0; i < nodes.length; i++) {
 		createNodes(nodes[i], logger);
 	}
+	call PrintAST(root);
 	//Connect nodes and create operations
 	for (var i = 0; i < nodes.length; i++) {
 		connectNodes(nodes[i], logger);
@@ -197,7 +198,7 @@ function addOperation(node, logger) {
 		.log(node, true);
 	node.setUserField("label", {"name": "op", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
-	if (node.parent.type == "unaryOp" || node.parent.type == "binaryOp") {
+	if (node.parent.joinPointType == "unaryOp" || node.parent.joinPointType == "binaryOp") {
 		incrementVar(node, "n_op");
 		logger.text("\\\"temp")
 			.int(ClavaJoinPoints.varRef("n_temp", ClavaJoinPoints.builtinType("int")))
@@ -211,13 +212,13 @@ function addOperation(node, logger) {
 
 function addArrayAccess(node, logger) {
 	var n = incrementArray(node, "n_" + node.children[0].code, node.children[1].code);
-	logger.text( node.children[0].code + "_arr_")
+	logger.text( node.children[0].code + "_arr")
 		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
 		.text(" [label=\\\"" + node.children[0].code + "[")
 		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
 		.text("]\\\"]\\n")
 		.log(node, true);
-	node.setUserField("label", {"name": node.children[0].code + "_arr_", "var": n});
+	node.setUserField("label", {"name": node.children[0].code + "_arr", "var": n});
 }
 
 function addVarref(node, logger) {
@@ -250,8 +251,10 @@ function connectNodes(node, logger) {
 function addEdge(node, logger, sourceNode, destNode, alt) {
 	var source = sourceNode.userField("label");
 	var dest = destNode.userField("label");
-	if (alt == true)
+	if (alt == true) {
+		println("ALT");
 		dest = destNode.userField("alt");
+	}
 	incrementVar(node, "n_edge");
 	if (source == undefined || dest == undefined) {
 		println("Cannot add edge");

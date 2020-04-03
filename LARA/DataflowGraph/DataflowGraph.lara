@@ -185,7 +185,7 @@ function addOperation(node, logger) {
 	incrementVar(node, "n_op");
 	logger.text("\\\"op")
 		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
-		.text("\\\" [label=\\\"" + node.kind + ", att1=op\\\"]\\n")
+		.text("\\\" [label=\\\"" + node.kind + "\\\", att1=op\\\"]\\n")
 		.log(node, true);
 	node.setUserField("label", {"name": "op%d", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
@@ -202,9 +202,9 @@ function addOperation(node, logger) {
 }
 
 function addArrayAccess(node, logger) {
-	logger.text("\\\"" + node.children[0].code + "[")
+	logger.text("\\\"" + node.children[0].code + "[]")
 		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
-		.text("]\\\" [label=\\\"" + node.children[0].code + "[")
+		.text("\\\" [label=\\\"" + node.children[0].code + "[")
 		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
 		.text("]\\\"]\\n")
 		.log(node, true);

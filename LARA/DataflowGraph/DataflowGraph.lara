@@ -135,6 +135,12 @@ function incrementVar(node, variable) {
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(variable + "++;"));
 }
 
+function incrementArray(node, array, idx) {
+	s = array + "[" + idx + "]";
+	node.insertBefore(ClavaJoinPoints.stmtLiteral(s + "++;"));
+	return s;
+}
+
 //Create nodes
 function createNodes(node, logger) {
 	var nodes = [];
@@ -204,13 +210,14 @@ function addOperation(node, logger) {
 }
 
 function addArrayAccess(node, logger) {
-	logger.text("\\\"" + node.children[0].code + "[]")
-		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
-		.text("\\\" [label=\\\"" + node.children[0].code + "[")
-		.int(ClavaJoinPoints.varRef(node.children[1].code, ClavaJoinPoints.builtinType("int")))
+	var n = incrementArray(node, "n_" + node.children[0].code, node.children[1].code);
+	logger.text( node.children[0].code + "_arr_")
+		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
+		.text(" [label=\\\"" + node.children[0].code + "[")
+		.int(ClavaJoinPoints.varRef(n, ClavaJoinPoints.builtinType("int")))
 		.text("]\\\"]\\n")
 		.log(node, true);
-	node.setUserField("label", {"name": node.children[0].code + "[]", "var": node.children[1].code});
+	node.setUserField("label", {"name": node.children[0].code + "_arr_", "var": n});
 }
 
 function addVarref(node, logger) {

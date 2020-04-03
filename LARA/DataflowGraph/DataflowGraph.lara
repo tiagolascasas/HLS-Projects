@@ -185,9 +185,9 @@ function addVar(node, logger) {
 
 function addOperation(node, logger) {
 	incrementVar(node, "n_op");
-	logger.text("\\\"op")
+	logger.text("op")
 		.int(ClavaJoinPoints.varRef("n_op", ClavaJoinPoints.builtinType("int")))
-		.text("\\\" [label=\\\"" + node.kind + "\\\", att1=op\\\"]\\n")
+		.text(" [label=\\\"" + node.kind + "\\\", att1=\\\"op\\\"]\\n")
 		.log(node, true);
 	node.setUserField("label", {"name": "op", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
@@ -220,9 +220,9 @@ function addVarref(node, logger) {
 		if (node.parent.joinPointType != "binaryOp" && node.parent.joinPointType != "unaryOp")
 			return;
 		incrementVar(node, "n_" + node.name);
-		logger.text("\\\"" + node.name)
+		logger.text(node.name)
 			.int(ClavaJoinPoints.varRef("n_" + node.name, ClavaJoinPoints.builtinType("int")))
-			.text("\\\" [label=\\\"" + node.name + "\\\"]\\n")
+			.text(" [label=\\\"" + node.name + "\\\"]\\n")
 			.log(node, true);
 		node.setUserField("label", {"name": node.name, "var": "n_" + node.name});
 	}

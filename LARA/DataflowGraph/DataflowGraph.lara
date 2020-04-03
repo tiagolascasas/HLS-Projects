@@ -119,6 +119,8 @@ function declareVariable(decl) {
 	for (var i = 0; i < tokens.length; i++) {
 		if (tokens[i].indexOf(decl.name) != -1)
 			tokens[i] = "n_" + tokens[i];
+		if (tokens[i] == "const")
+			tokens[i] = "";
 	}
 	tokens = tokens.join(" ");
 	if (tokens.indexOf("=") == -1) {
@@ -251,11 +253,11 @@ function connectNodes(node, logger) {
 function addEdge(node, logger, sourceNode, destNode, alt) {
 	var source = sourceNode.userField("label");
 	var dest = destNode.userField("label");
-	if (alt == true) {
-		println("ALT");
-		dest = destNode.userField("alt");
+	if (alt) {
+		source = sourceNode.userField("alt");
 	}
 	incrementVar(node, "n_edge");
+	
 	if (source == undefined || dest == undefined) {
 		println("Cannot add edge");
 		return;
@@ -290,10 +292,12 @@ function connectNode(node, logger) {
 	}
 	if (node.joinPointType == "binaryOp") {
 		for (var i = 0; i < children.length; i++) {
+			println(children[i].joinPointType);
 			if (node.children[i].joinPointType == "binaryOp")
 				addEdge(node, logger, children[i], node, true);
 			else
 				addEdge(node, logger, children[i], node);
 		}
+		println("-----------------------");
 	}
 }

@@ -14,7 +14,7 @@ aspectdef DataflowGraph
 	input
 		funName
 	end
-
+	offsets["foo"] = "bar";
 	//Get function root
 	var root;
 	var filename = Clava.getProgram().files[0].name;
@@ -50,12 +50,12 @@ aspectdef DataflowGraph
 		firstOp.insertBefore(declareVariable(params[i]));
 	for (var i = 0; i < vars.length; i++)
 		firstOp.insertBefore(declareVariable(vars[i]));
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_const = 0;"));	//Counts constants
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_op = 0;"));		//Counts operations (e.g. +, -)
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_out = 0;"));		
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_edge = 0;"));		//Counts edges
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("int n_temp = 0;"));		//Counts temporary vars
-	firstOp.insertBefore(ClavaJoinPoints.stmtLiteral("//End: counter variables"));
+	firstOp.insertBefore(declareCounter("n_const"));	//Counts constants
+	firstOp.insertBefore(declareCounter("n_op"));		//Counts operations (e.g. +, -)
+	firstOp.insertBefore(declareCounter("n_out"));		
+	firstOp.insertBefore(declareCounter("n_edge"));		//Counts edges
+	firstOp.insertBefore(declareCounter("n_temp"));		//Counts temporary vars
+	firstOp.insertBefore(declareCounter("//End: counter variables"));
 	//Get index of first operation
 	var startIdx = -1;
 	for (var i = 0; i < scope.children.length; i++) {
@@ -80,6 +80,12 @@ aspectdef DataflowGraph
 	var ret = scope.children[scope.children.length-2];
 	logger.text("}\\n").log(ret, true);
 end
+
+function declareCounter(name) {
+	var n = ClavaJoinPoints.stmtLiteral("int " + name + " = 0;");
+	offsets[name] = 0;
+	return n;
+}
 
 function getVars(root) {
 	var vars = [];
@@ -115,10 +121,13 @@ function loopChecker(node) {
 }
 
 function declareVariable(decl) {
+	var canonName = "";
 	var tokens = decl.code.split(" ");
 	for (var i = 0; i < tokens.length; i++) {
-		if (tokens[i].indexOf(decl.name) != -1)
+		if (tokens[i].indexOf(decl.name) != -1) {
 			tokens[i] = "n_" + tokens[i];
+			canonName = tokens[i];
+		}
 		if (tokens[i] == "const")
 			tokens[i] = "";
 	}
@@ -131,6 +140,7 @@ function declareVariable(decl) {
 	}
 	if (tokens[tokens.length - 1] != ";")
 		tokens += ";";
+	offsets[canonName] = 0;
 	return ClavaJoinPoints.stmtLiteral(tokens);
 }
 
@@ -329,9 +339,20 @@ function connectNode(node, logger) {
 	}
 }
 
+//Functions to manage offsets of counter variables
+offsets = {};
+
 function varToPrint(name, offset) {
 	if (offset == undefined)
 		return ClavaJoinPoints.varRef(name, ClavaJoinPoints.builtinType("int"));
 	else
 		return ClavaJoinPoints.stmtLiteral(name + "-" + offset);
+}
+
+function getOffset(varName) {
+
+}
+
+function getReverseOffset(varName, offset) {
+
 }

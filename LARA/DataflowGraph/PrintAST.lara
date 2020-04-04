@@ -7,7 +7,7 @@ end
 
 function printLevel(node, n) {
 	if (node.joinPointType != "scope" && node.joinPointType != "function")
-		println(getSpaces(n) + node.joinPointType + "--------" + printLabel(node));
+		println(getSpaces(n) + node.joinPointType + "--------" + printLabel(node) + ", " + node.userField("inLoop"));
 	else
 		println(getSpaces(n) + node.joinPointType);
 	for (var i = 0; i < node.children.length; i++)

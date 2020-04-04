@@ -14,7 +14,6 @@ aspectdef DataflowGraph
 	input
 		funName
 	end
-	offsets["foo"] = "bar";
 	//Get function root
 	var root;
 	var filename = Clava.getProgram().files[0].name;
@@ -79,6 +78,12 @@ aspectdef DataflowGraph
 	//End graph
 	var ret = scope.children[scope.children.length-2];
 	logger.text("}\\n").log(ret, true);
+
+	var outp = '';
+	for (var property in offsets) {
+	  outp += property + ': ' + offsets[property]+'; ';
+	}
+	println(outp);
 end
 
 function declareCounter(name) {
@@ -109,15 +114,16 @@ function loopChecker(node) {
 	while (node.joinPointType != "program") {
 		if (node.joinPointType == "scope") {
 			node.setUserField("inLoop", false);
-			return;
+			return false;
 		}
 		if (node.joinPointType == "loop"){
 			node.setUserField("inLoop", true);
-			return;
+			return true;
 		}
 		node = node.parent;
 	}
 	node.setUserField("inLoop", false);
+	return false;
 }
 
 function declareVariable(decl) {
@@ -140,18 +146,23 @@ function declareVariable(decl) {
 	}
 	if (tokens[tokens.length - 1] != ";")
 		tokens += ";";
+	if (canonName.indexOf('[') != -1)
+		canonName = canonName.substr(0, canonName.indexOf('['));
 	offsets[canonName] = 0;
 	return ClavaJoinPoints.stmtLiteral(tokens);
 }
 
 function incrementVar(node, variable) {
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(variable + "++;"));
+	offsets[variable]++;
+	return offsets[variable];
 }
 
 function incrementArray(node, array, idx) {
 	s = array + "[" + idx + "]";
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(s + "++;"));
-	return s;
+	offsets[array]++;
+	return [s, offsets[array]];
 }
 
 //Create nodes
@@ -159,23 +170,23 @@ function createNodes(node, logger) {
 	var nodes = [];
 	if (node.numChildren > 0)
 		nodes = node.children.slice();
-	loopChecker(node);
-	
-	if (node.joinPointType == "expression") {
-		addConstant(node, logger);
-	}
-	if (node.joinPointType == "vardecl") {
-		addVar(node, logger);
-	}
-	if (node.joinPointType == "binaryOp" || node.joinPointType == "unaryOp") {
-		if (node.parent.parent.type != "loop")
-			addOperation(node, logger);
-	}
-	if (node.joinPointType == "arrayAccess") {
-		addArrayAccess(node, logger);
-	}
-	if (node.joinPointType == "varref") {
-		addVarref(node, logger);
+	if (!loopChecker(node)) {
+		if (node.joinPointType == "expression") {
+			addConstant(node, logger);
+		}
+		if (node.joinPointType == "vardecl") {
+			addVar(node, logger);
+		}
+		if (node.joinPointType == "binaryOp" || node.joinPointType == "unaryOp") {
+			if (node.parent.parent.type != "loop")
+				addOperation(node, logger);
+		}
+		if (node.joinPointType == "arrayAccess") {
+			addArrayAccess(node, logger);
+		}
+		if (node.joinPointType == "varref") {
+			addVarref(node, logger);
+		}
 	}
 	for (var i = 0; i < nodes.length; i++)
 		createNodes(nodes[i], logger);
@@ -211,7 +222,6 @@ function addOperation(node, logger) {
 	node.setUserField("label", {"name": "op", "var": "n_op"});
 	//Also generate node for temporary result if it is part of a larger operation
 	if (node.parent.joinPointType == "unaryOp" || node.parent.joinPointType == "binaryOp") {
-		incrementVar(node, "n_op");
 		logger.text("\\\"temp")
 			.int(varToPrint("n_temp"))
 			.text("\\\" [label=\\\"temp_i" + node.line + "_")
@@ -223,7 +233,9 @@ function addOperation(node, logger) {
 }
 
 function addArrayAccess(node, logger) {
-	var n = incrementArray(node, "n_" + node.children[0].code, node.children[1].code);
+	var res = incrementArray(node, "n_" + node.children[0].code, node.children[1].code);
+	var n = res[0];
+	var offset = res[1];
 	logger.text( node.children[0].code + "_arr")
 		.int(varToPrint(node.children[1].code))
 		.text("_")
@@ -276,12 +288,12 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 	if (alt) {
 		source = sourceNode.userField("alt");
 	}
-	incrementVar(node, "n_edge");
-	
 	if (source == undefined || dest == undefined) {
 		println("Cannot add edge");
 		return;
 	}
+	incrementVar(node, "n_edge");
+	
 	//Source
 	logger.text(source.name);
 	if (source.hasOwnProperty("var")) {
@@ -349,10 +361,6 @@ function varToPrint(name, offset) {
 		return ClavaJoinPoints.stmtLiteral(name + "-" + offset);
 }
 
-function getOffset(varName) {
-
-}
-
-function getReverseOffset(varName, offset) {
-
+function getInverseOffset(varName, offset) {
+	return offsets[varName] - offset;
 }

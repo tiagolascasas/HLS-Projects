@@ -87,9 +87,9 @@ aspectdef DataflowGraph
 end
 
 function declareCounter(name) {
-	var n = ClavaJoinPoints.stmtLiteral("int " + name + " = 0;");
+	var node = ClavaJoinPoints.stmtLiteral("int " + name + " = 0;");
 	offsets[name] = 0;
-	return n;
+	return node;
 }
 
 function getVars(root) {
@@ -155,14 +155,14 @@ function declareVariable(decl) {
 function incrementVar(node, variable) {
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(variable + "++;"));
 	offsets[variable]++;
-	return offsets[variable];
+	return offsets[variable]/* - 1*/;
 }
 
 function incrementArray(node, array, idx) {
 	s = array + "[" + idx + "]";
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(s + "++;"));
 	offsets[array]++;
-	return [s, offsets[array]];
+	return [s, offsets[array]/* - 1*/];
 }
 
 //Create nodes
@@ -207,14 +207,17 @@ function addConstant(node, logger) {
 function addVar(node, logger) {
 	if (!isNotLoopVar(node))
 		return;
+	var o = incrementVar(node, "n_" + node.name);
 	logger.text(node.name)
+		.int(varToPrint("n_" + node.name))
 		.text(" [label=\\\"" + node.name + "\\\", att1=var];\\n")
 		.log(node, true);
-	node.setUserField("label", {"name": node.name, "var": "none", "offset": -1}); 
+	node.setUserField("label", {"name": node.name, "var": "n_" + node.name, "offset": o}); 
 }
 
 function addOperation(node, logger) {
 	var o = incrementVar(node, "n_op");
+	println("offset in OP = " + o);
 	logger.text("op")
 		.int(varToPrint("n_op"))
 		.text(" [label=\\\"" + convertOp(node.kind) + "\\\", att1=\\\"op\\\"]\\n")
@@ -223,9 +226,9 @@ function addOperation(node, logger) {
 	//Also generate node for temporary result if it is part of a larger operation
 	if (node.parent.joinPointType == "unaryOp" || node.parent.joinPointType == "binaryOp") {
 		o = incrementVar(node, "n_temp");
-		logger.text("\\\"temp_l" + node.line + "_")
+		logger.text("temp_l" + node.line + "_")
 			.int(varToPrint("n_temp"))
-			.text("\\\" [label=\\\"temp_i" + node.line + "_")
+			.text(" [label=\\\"temp_l" + node.line + "_")
 			.int(varToPrint("n_temp"))
 			.text("\\\"]\\n")
 			.log(node, true);
@@ -259,7 +262,7 @@ function addVarref(node, logger) {
 			.int(varToPrint("n_" + node.name))
 			.text(" [label=\\\"" + node.name + "\\\"]\\n")
 			.log(node, true);
-		node.setUserField("label", {"name": node.name, "var": "n_" + node.name, "offset": -1});
+		node.setUserField("label", {"name": node.name, "var": "n_" + node.name, "offset": 0});
 	}
 }
 
@@ -283,19 +286,20 @@ function connectNodes(node, logger) {
 }
 
 //Functions to add edges
-function addEdge(node, logger, sourceNode, destNode, alt) {
+function addEdge(node, logger, sourceNode, destNode, alt, offset) {
 	var source = sourceNode.userField("label");
 	var dest = destNode.userField("label");
+	if (offset == undefined)
+		offset = 0;
 	if (alt) {
 		source = sourceNode.userField("alt");
 	}
 	if (sourceNode == destNode) {
 		source = sourceNode.userField("label");
 		dest = sourceNode.userField("alt");
-		println("here");
 	}
 	if (source == undefined || dest == undefined) {
-		println("Cannot add edge");
+		//println("Cannot add edge");
 		return;
 	}
 	incrementVar(node, "n_edge");
@@ -303,8 +307,9 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 	//Source
 	logger.text(source.name);
 	if (source.hasOwnProperty("var")) {
-		if (source.var != "none")
+		if (source.var != "none") {
 			logger.int(varToPrint(source.var, source.offset, dest.offset));
+		}	
 	}
 	else {
 		logger.int(varToPrint(source.var1))
@@ -315,12 +320,12 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 	logger.text(" -> " + dest.name);
 	if (dest.hasOwnProperty("var")) {
 		if (dest.var != "none")
-			logger.int(varToPrint(dest.var, dest.offset));
+			logger.int(varToPrint(dest.var, dest.offset + offset));
 	}
 	else {
-		logger.int(varToPrint(dest.var1, dest.offset))
+		logger.int(varToPrint(dest.var1, dest.offset + offset))
 			.text("_")
-			.int(varToPrint(dest.var2, dest.offset));
+			.int(varToPrint(dest.var2, dest.offset + offset));
 	}
 	//Label
 	logger.text(" [label=\\\"")
@@ -332,21 +337,21 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 }
 
 function connectNode(node, logger) {
-	if (node.numChildren == 0)
-		return;
+	//if (node.numChildren == 0)
+	//	return;
 	var children = [];
 	if (node.numChildren > 0)
 		children = node.children.slice();
-	
+
 	if (node.joinPointType == "vardecl") {
-		addEdge(node, logger, node.firstChild, node);
+		if (node.numChildren > 0)
+			addEdge(node, logger, node.firstChild, node);
 	}
 	if (node.joinPointType == "unaryOp") {
 
 	}
 	if (node.joinPointType == "binaryOp") {
 		for (var i = 0; i < children.length; i++) {
-			println(children[i].joinPointType);
 			if (node.children[i].joinPointType == "binaryOp") {
 				addEdge(node, logger, children[i], node, true);
 				addEdge(node, logger, children[i], children[i], true);
@@ -354,7 +359,11 @@ function connectNode(node, logger) {
 			else
 				addEdge(node, logger, children[i], node);
 		}
-		println("-----------------------");
+	}
+	if (node.joinPointType == "varref")  {
+		if (node.parent.joinPointType == "binaryOp") {
+			addEdge(node, logger, node.parent, node, false, 1);
+		}
 	}
 }
 
@@ -365,15 +374,13 @@ function varToPrint(name, offset) {
 	if (offset == undefined)
 		return ClavaJoinPoints.varRef(name, ClavaJoinPoints.builtinType("int"));
 	else {
-		if (offset != -1)
-			return ClavaJoinPoints.stmtLiteral(name + "-" + getInverseOffset(name, offset));
+		if (offset != NaN)
+			return ClavaJoinPoints.stmtLiteral(name + "-(" + invOffset(name, offset) + ")");
 		else
 			return ClavaJoinPoints.varRef(name, ClavaJoinPoints.builtinType("int"));
 	}
 }
 
-function getInverseOffset(varName, offset) {
-	if (varName.indexOf("[") != -1)
-		varName = varName.substr(0, varName.indexOf('['));
-	return offsets[varName] - offset;
+function invOffset(variable, offset) {
+	return offsets[variable] - offset;
 }

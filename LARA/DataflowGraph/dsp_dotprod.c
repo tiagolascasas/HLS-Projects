@@ -53,7 +53,7 @@
 /*                           All Rights Reserved.                           */
 /* ======================================================================== */
 
-#define NX 2
+#define NX 3
 
 int DSP_dotprod(const short x[NX], const short y[NX]){
     int sum = 0;
@@ -67,8 +67,8 @@ int DSP_dotprod(const short x[NX], const short y[NX]){
 
 int main() 
 {
-	const short x[NX] = {1, 2};
-	const short y[NX] = {3, 4};
+	const short x[NX] = {100, 200, 300};
+	const short y[NX] = {300, 400, 500};
 	int s = DSP_dotprod(x, y);
 	return s;
 }

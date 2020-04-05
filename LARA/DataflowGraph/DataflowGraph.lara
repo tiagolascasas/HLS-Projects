@@ -323,7 +323,7 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 		.text("\\\", ord=\\\"")
 		.int(varToPrint("n_edge"))
 		.text("\\\"]\\n")
-		.log(node);
+		.log(node, true);
 }
 
 function connectNode(node, logger) {

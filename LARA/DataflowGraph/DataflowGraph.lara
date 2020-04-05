@@ -289,6 +289,11 @@ function addEdge(node, logger, sourceNode, destNode, alt) {
 	if (alt) {
 		source = sourceNode.userField("alt");
 	}
+	if (sourceNode == destNode) {
+		source = sourceNode.userField("label");
+		dest = sourceNode.userField("alt");
+		println("here");
+	}
 	if (source == undefined || dest == undefined) {
 		println("Cannot add edge");
 		return;
@@ -342,8 +347,10 @@ function connectNode(node, logger) {
 	if (node.joinPointType == "binaryOp") {
 		for (var i = 0; i < children.length; i++) {
 			println(children[i].joinPointType);
-			if (node.children[i].joinPointType == "binaryOp")
+			if (node.children[i].joinPointType == "binaryOp") {
 				addEdge(node, logger, children[i], node, true);
+				addEdge(node, logger, children[i], children[i], true);
+			}
 			else
 				addEdge(node, logger, children[i], node);
 		}

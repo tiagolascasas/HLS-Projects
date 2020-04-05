@@ -7,7 +7,7 @@ end
 
 function printLevel(node, n) {
 	if (node.joinPointType != "scope" && node.joinPointType != "function")
-		println(getSpaces(n) + node.joinPointType + "--------" + getLabel(node));
+		println(getSpaces(n) + node.joinPointType + "--------" + getField(node, "label") + ", " + getField(node, "alt"));
 	else
 		println(getSpaces(n) + node.joinPointType);
 	for (var i = 0; i < node.children.length; i++)
@@ -21,9 +21,9 @@ function getSpaces(n) {
 	return s;
 }
 
-function getLabel(node) {
-	if (node.userField("label") == undefined)
+function getField(node, field) {
+	if (node.userField(field) == undefined)
 		return "";
 	else
-		return JSON.stringify(node.userField("label"));
+		return JSON.stringify(node.userField(field));
 }

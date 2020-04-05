@@ -223,13 +223,13 @@ function addOperation(node, logger) {
 	//Also generate node for temporary result if it is part of a larger operation
 	if (node.parent.joinPointType == "unaryOp" || node.parent.joinPointType == "binaryOp") {
 		o = incrementVar(node, "n_temp");
-		logger.text("\\\"temp")
+		logger.text("\\\"temp_l" + node.line + "_")
 			.int(varToPrint("n_temp"))
 			.text("\\\" [label=\\\"temp_i" + node.line + "_")
 			.int(varToPrint("n_temp"))
 			.text("\\\"]\\n")
 			.log(node, true);
-		node.setUserField("alt", {"name": "temp_i" + node.line + "_", "var": "n_temp", "offset": o});
+		node.setUserField("alt", {"name": "temp_l" + node.line + "_", "var": "n_temp", "offset": o});
 	}
 }
 

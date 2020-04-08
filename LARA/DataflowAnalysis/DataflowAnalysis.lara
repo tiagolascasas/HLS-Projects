@@ -1,0 +1,12 @@
+import weaver.WeaverJps;
+
+aspectdef DataflowAnalysis
+	input
+		funName
+	end
+
+	select file.function{funName}.body end
+	apply
+		$body.exec cfg();
+	end
+end

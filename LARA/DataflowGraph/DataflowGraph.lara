@@ -18,7 +18,7 @@ aspectdef DataflowGraph
 	var root;
 	var filename = Clava.getProgram().files[0].name;
 	var basename = filename.split(".");
-	var filename = funName + ".dot";
+	var filename = "graph.dot";/*funName + ".dot";*/
 	var logger = new Logger(undefined, filename);
 	//replace by filter, not sure of the syntax
 	for (var elem of WeaverJps.search("function").chain()){
@@ -77,7 +77,7 @@ aspectdef DataflowGraph
 	}
 	//End graph
 	var ret = scope.children[scope.children.length-2];
-	logger.text("}\\n").log(ret, true);
+	logger.text("}\\n").log(ret);
 
 	var outp = '';
 	for (var property in offsets) {

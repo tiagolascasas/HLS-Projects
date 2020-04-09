@@ -3,6 +3,7 @@ import clava.ClavaJoinPoints;
 import clava.Clava;
 import lara.Io;
 import lara.Csv;
+import MathHInfo;
 
 aspectdef MathAnalysis
 	input
@@ -10,10 +11,11 @@ aspectdef MathAnalysis
 		name
 	end
 	//Get functions from math.h
-	//TODO...
-	//Reading from a JSON file instead
-	var mathFun = Io.jsonObject("mathFun.json");
-
+	//If unable to read math.h, use a fallback
+	var mathFun = MathHInfo.getInfo();
+	if (mathFun.length < 3)
+		mathFun = MathHInfo.hardcodedFallback;
+	
 	if (report) {
 		call MathReport(mathFun, true, name);
 	} else {
@@ -118,6 +120,7 @@ aspectdef MathReplace
 				println("Replacing sqrt for sqrt64");
 				elem['call'].setName("rsqrt64");
 				elem['call'].ancestor('file').addInclude("rsqrt.h");
+				//elem['call'].ancestor('function').insert before rsqrt();
 			}
 			//pow(d, Int) -> d * ... * d
 			if ((fun == "pow" || fun == "powf") && types[1] == "Int" && /[0-9]\d*/.test(args[1].code)) {
@@ -152,8 +155,31 @@ aspectdef MathReplace
 	}
 end
 
-aspectdef HeaderToJSON
-	for (var elem of WeaverJps.search('comment').chain()) {
-		println(elem['comment']);
-	}
+
+codedef rsqrt %{
+
+static inline float rsqrt32(float number) {
+	uint32_t i;
+	float x2, y;
+	x2 = number * 0.5F;
+	y = number;
+	i = * (uint32_t *) &y;
+	i = 0x5f375a86 - (i >> 1);
+	y = *(float *) &i;
+	y = y * (1.5F - (x2 * y * y));
+	return y;
+}
+
+static inline double rsqrt64(double number) {
+	uint64_t i;
+	double x2, y;
+	x2 = number * 0.5;
+	y = number;
+	i = * (uint64_t *) &y;
+	i = 0x5fe6eb50c7b537a9 - (i >> 1);
+	y = * (double *) &i;
+	y = y * (1.5 - (x2 * y * y));
+	return y;
+}
+}%
 end

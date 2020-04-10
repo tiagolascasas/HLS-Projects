@@ -5,8 +5,8 @@ aspectdef DataflowAnalysis
 		funName
 	end
 
-	select file.function{funName}.body end
+	select file.function{funName}.body.loop end
 	apply
-		$body.exec cfg();
+		$body.exec dfg();
 	end
 end

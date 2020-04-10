@@ -1,0 +1,7 @@
+import WrapLoopCounter;
+import UnwrapMultiDecl;
+
+aspectdef ApplyAll
+	call UnwrapMultiDecl();
+	call WrapLoopCounter();
+end

@@ -6,8 +6,10 @@ aspectdef PrintAST
 end
 
 function printLevel(node, n) {
+	if (node.joinPointType == "statement" && node.numChildren == 0)
+		return;
 	if (node.joinPointType != "scope" && node.joinPointType != "function")
-		println(getSpaces(n) + node.joinPointType + "--------" + getField(node, "label") + ", " + getField(node, "alt"));
+		println(getSpaces(n) + node.joinPointType + getOp(node) + "--------" + getField(node, "label") + ", " + getField(node, "alt"));
 	else
 		println(getSpaces(n) + node.joinPointType);
 	for (var i = 0; i < node.children.length; i++)
@@ -26,4 +28,10 @@ function getField(node, field) {
 		return "";
 	else
 		return JSON.stringify(node.userField(field));
+}
+
+function getOp(node) {
+	if (node.joinPointType == "unaryOp" || node.joinPointType == "binaryOp")
+		return " {op: " + node.kind + "} ";
+	else return "";
 }

@@ -14,7 +14,9 @@
 */
 
 #include <stdio.h>
-#include "autcor_viv.h"
+//#include "autcor_viv.h"
+#define M 1
+#define N 1
 
 short ac[M]; // --- Resulting array of autocorrelation
 
@@ -31,7 +33,7 @@ void main() {
 	sd[i]=i;  
   }
   
-  FILE *f=fopen("graph_autcor.dot","w");
+  FILE *f=fopen("autcor.dot","w");
    int n_const=0;
    int n_temp=0;
    int n_op=0;

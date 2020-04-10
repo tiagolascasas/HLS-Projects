@@ -17,22 +17,17 @@ int DSP_dotprod(const short x[NX], const short y[NX])
 }
 
 //autocor
-#define N 2
-#define M 4
+#define N 1
+#define M 1
 
 void autcor(short ac[M], short sd[N + M])
 {
-    int i;
-    int k;
     int sum;
-    for (i = 0; i < N; i++)
-    {
-        sd[i] = i;
-    }
-    for (i = 0; i < M; i++)
+
+    for (int i = 0; i < M; i++)
     {
         sum = 0;
-        for (k = 0; k < N; k++)
+        for (int k = 0; k < N; k++)
         {
             sum += sd[k + M] * sd[k + M - i];
         }

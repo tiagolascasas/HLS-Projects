@@ -1,0 +1,25 @@
+Digraph G{
+const1 [label="0", att1=const];
+"sum_1" [label=sum, att1=var, att2=loc, att3=int ];
+const1->"sum_1" [label="1", ord="1"];
+"sd[1]_0_l" [label="sd[1]", att1=var, att2=inte, att3=short ];
+"sd[1]_0_r" [label="sd[1]", att1=var, att2=inte, att3=short ];
+op1 [label="*", att1=op];
+temp1 [label="temp_l57_i1", att1=var, att2=loc, att3=short ];
+"sd[1]_0_l"->op1 [label="2", ord="2", pos="l"];
+"sd[1]_0_r"->op1 [label="3", ord="3", pos="r"];
+op1->temp1 [label="4", ord="4"];
+temp1 [label="temp_l57_i1", att1=var, att2=loc, att3=short ];
+"sum_1" [label=sum, att1=var, att2=loc, att3=int ];
+op2 [label="+", att1=op ];
+"sum_2" [label=sum, att1=var, att2=loc, att3=int ];
+temp1->op2 [label="5", ord="5", pos="r"];
+"sum_1"->op2 [label="6", ord="6", pos="l"];
+op2->"sum_2" [label="7", ord="7"];
+const2 [label="15" , att1=const];
+op3 [label=">>", att1=op];
+"ac[0]_1" [label="ac[0]", att1=var, att2=inte, att3=short ];
+const2->op3 [label="8", ord="8", pos="r"];
+"sum_2"->op3 [label="9", ord="9", pos="l"];
+op3->"ac[0]_1" [label="10", ord="10"];
+}

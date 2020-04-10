@@ -8,7 +8,6 @@ const short K[] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
 
 void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SIZE*WIDTH_SIZE])
 {
-	int x;
     for (int row = 0; row < HEIGHT_SIZE - 3 + 1; row++)
     {
         for (int col = 0; col < WIDTH_SIZE - 3 + 1; col++)

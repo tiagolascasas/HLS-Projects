@@ -112,15 +112,14 @@ aspectdef MathReplace
 			//sqrtf -> rsqrt32
 			if (fun == "sqrtf" || (fun == "sqrt" && !types.includes("Double", 0))) {
 				println("Replacing sqrtf for rsqrt32");
-				elem['call'].setName("rsqrt32");
-				elem['call'].ancestor('file').addInclude("rsqrt.h");		
+				elem['call'].setName("fast_inv_sqrt32");
+				elem['call'].ancestor('file').addInclude("fast_math.h");		
 			}
 			//sqrt -> rsqrt64
 			if (fun == "sqrt" && types.includes("Double", 0)) {
 				println("Replacing sqrt for sqrt64");
-				elem['call'].setName("rsqrt64");
-				elem['call'].ancestor('file').addInclude("rsqrt.h");
-				//elem['call'].ancestor('function').insert before rsqrt();
+				elem['call'].setName("fast_inv_sqrt64");
+				elem['call'].ancestor('file').addInclude("fast_math.h");
 			}
 			//pow(d, Int) -> d * ... * d
 			if ((fun == "pow" || fun == "powf") && types[1] == "Int" && /[0-9]\d*/.test(args[1].code)) {

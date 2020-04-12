@@ -8,9 +8,9 @@ const short K[] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
 
 void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SIZE*WIDTH_SIZE])
 {
-    for (int row = 0; row < HEIGHT_SIZE - 3 + 1; row++)
+    for (int row = 0; row < 598; row++)
     {
-        for (int col = 0; col < WIDTH_SIZE - 3 + 1; col++)
+        for (int col = 0; col < 798; col++)
         {
             unsigned short sumval = 0;
             for (int wrow = 0; wrow < 3; wrow++)
@@ -27,14 +27,16 @@ void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SI
 }
 
 //DSP_dotprod
-#define NX 3
+#define NX 100
 
-int DSP_dotprod(const short x[NX], const short y[NX])
+int DSP_dotprod(short x[NX], const short y[NX])
 {
     int sum = 0;
 
-    for (int i = 0; i < NX; i++)
+    for (int i = 0; i < NX; i++) {
         sum += x[i] * y[i];
+        x[i] = 2;
+    }
 
     return sum;
 }
@@ -56,4 +58,15 @@ void autcor(short ac[M], short sd[N + M])
         }
         ac[i] = (sum >> 15);
     }
+}
+
+int foo() {
+	int x = 2;
+	int y = 4;
+	x = x + y;
+	y = y + y + y;
+	y = y * x;
+	for (int i = 0; i < 10; i++)
+		x += y;
+	return x;
 }

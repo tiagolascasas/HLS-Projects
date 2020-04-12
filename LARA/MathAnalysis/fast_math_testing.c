@@ -1,18 +1,20 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <math.h>
 
-inline float fast_fabs(float a) {
+float fast_fabs(float a) {
     unsigned int p2 = * (unsigned int *) &a; 
     p2 = p2 & 0X7FFFFFFF;
     return * (float *) &p2;
 }
 
-inline float fast_negate(float a) {
+float fast_symmetrical(float a) {
     unsigned int p2 = * (unsigned int *) &a; 
     p2 = p2 ^ (1 << 31);  // p2 ^ 0X80000000
     return * (float *) &p2;
 }
 
-inline float rsqrt32(float number) {
+float rsqrt32(float number) {
 	uint32_t i;
 	float x2, y;
 	x2 = number * 0.5F;
@@ -24,7 +26,7 @@ inline float rsqrt32(float number) {
 	return y;
 }
 
-inline double rsqrt64(double number) {
+double rsqrt64(double number) {
 	uint64_t i;
 	double x2, y;
 	x2 = number * 0.5;
@@ -37,19 +39,33 @@ inline double rsqrt64(double number) {
 }
 
 int main() {
+    printf("fabs\n");
     float a = -1.345f;
-    float aa = fast_fabs_condensed(a);
-    printf("%f\n", aa);
-    float b = -1.345f;
-    float bb = fast_fabs_condensed(b);
-    printf("%f\n", bb);
+    float aa = fast_fabs(a);
+    printf("%f -> %f\n", a, aa);
+    float b = 1.345f;
+    float bb = fast_fabs(b);
+    printf("%f -> %f\n", b, bb);
 
+    printf("symmetrical\n");
     float c = 2.450f;
-    float cc = fast_negate(c);
-    printf("%f\n", cc);
+    float cc = fast_symmetrical(c);
+    printf("%f -> %f\n", c, cc);
     float d = -2.450f;
-    float dd = fast_negate(dd);
-    printf("%f\n", dd);
+    float dd = fast_symmetrical(dd);
+    printf("%f -> %f\n", d, dd);
+
+    printf("sqrt float\n");
+    float e = 1256.45f;
+    float e1 = sqrtf(e);
+    float e2 = e * rsqrt32(e);
+    printf("%f -> %f | %f\n", e, e1, e2);
+
+    printf("sqrt double\n");
+    double f = 1256.45;
+    double f1 = sqrt(f);
+    double f2 = f * rsqrt64(f);
+    printf("%f -> %f | %f\n", f, f1, f2);
 
     return 0;
 }

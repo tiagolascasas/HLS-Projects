@@ -1,11 +1,15 @@
 #include <stdlib.h>
 
+//Helper functions
+int foo(int x) {
+	return x + x / x;
+}
+
 //Fir2D
 #define WIDTH_SIZE 800
 #define HEIGHT_SIZE 600
 
 const short K[] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
-
 void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SIZE*WIDTH_SIZE])
 {
     for (int row = 0; row < 598; row++)
@@ -26,22 +30,22 @@ void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SI
     }
 }
 
-//DSP_dotprod
+//misc_dsp_dotprod
 #define NX 100
 
 int DSP_dotprod(short x[NX], const short y[NX])
 {
     int sum = 0;
-
+    int foo = 0;
+	//this is a comment
     for (int i = 0; i < NX; i++) {
         sum += x[i] * y[i];
-        x[i] = 2;
     }
-
+	//this is another comment
     return sum;
 }
 
-//autocor
+//misc_autocor
 #define N 2
 #define M 4
 
@@ -60,13 +64,54 @@ void autcor(short ac[M], short sd[N + M])
     }
 }
 
-int foo() {
-	int x = 2;
-	int y = 4;
-	x = x + y;
-	y = y + y + y;
-	y = y * x;
-	for (int i = 0; i < 10; i++)
-		x += y;
-	return x;
+//misc_triangles_hypotenuse
+#define NUMBER_OF_TRIANGLES 100000
+
+int square(int x) {
+	return x * x;
+}
+
+void calc_hypotenuse(unsigned int first_array[NUMBER_OF_TRIANGLES], unsigned int second_array[NUMBER_OF_TRIANGLES], unsigned int hypotenuse_array[NUMBER_OF_TRIANGLES]) {
+      for(unsigned int x=0; x<NUMBER_OF_TRIANGLES; x++) {
+              hypotenuse_array[x] = sqrt(square(first_array[x]) +  square(second_array[x]));
+     }
+}
+
+//misc_filter_subband
+#define Nz 100
+#define Ns 100
+#define Nm 100
+
+void filter_subband_double(double z[Nz], double s[Ns], double m[Nm])
+{
+   double y[Ny];
+
+   for (int i=0;i<Ny;i++)
+   {
+     y[i] = 0.0;
+     for (int j=0; j<(int)Nz/Ny;j++)
+          y[i] += z[i+Ny*j];
+   }
+
+   for (int i=0;i<Ns;i++)
+   {
+       s[i]=0.0;
+       for (int j=0; j<Ny;j++)
+           s[i] += m[Ns*i+j] * y[j];
+   }
+}
+
+//misc_fir
+void fir_b_golden(int x[M],int  y[M], int c[N])
+{
+	int output;
+	for(int j=N-1; j<M; j++) {
+		output=0;
+		// Loop 2:
+		for(int i=0; i<N; i++) {
+			output+=c[i]*x[j-i];
+		}
+	
+		y[j] = output;
+	}
 }

@@ -52,7 +52,7 @@ int8 float_exception_flags = 0;
 | division and square root approximations.  (Can be specialized to target if
 | desired.)
 *----------------------------------------------------------------------------*/
-#include "softfloat-macros"
+#include "softfloat-macros.h"
 
 /*----------------------------------------------------------------------------
 | Functions and definitions to determine:  (1) whether tininess for underflow
@@ -62,7 +62,7 @@ int8 float_exception_flags = 0;
 | are propagated from function inputs to output.  These details are target-
 | specific.
 *----------------------------------------------------------------------------*/
-#include "softfloat-specialize"
+#include "softfloat-specialize.h"
 
 /*----------------------------------------------------------------------------
 | Returns the fraction bits of the double-precision floating-point value `a'.

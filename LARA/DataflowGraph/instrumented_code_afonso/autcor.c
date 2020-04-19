@@ -15,8 +15,8 @@
 
 #include <stdio.h>
 //#include "autcor_viv.h"
-#define M 1
-#define N 1
+#define M 2
+#define N 2
 
 short ac[M]; // --- Resulting array of autocorrelation
 

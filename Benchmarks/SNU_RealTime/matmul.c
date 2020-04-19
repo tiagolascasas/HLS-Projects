@@ -39,8 +39,12 @@
 /*                                                                       */
 /*                                                                       */
 /*************************************************************************/
+#include <stdlib.h>
+#include <time.h>
 
+#define SIZE 10000
 
+/* Original inputs
 #define SIZE 5
 
 int a[SIZE+1][SIZE+1] = { 0,0,0,0,0,0,
@@ -56,9 +60,9 @@ int b[SIZE+1][SIZE+1] = { 0,0,0,0,0,0,
 			    0,4,3,2,1,2,
 			    0,2,7,6,4,9 };
 int c[SIZE+1][SIZE+1];
+*/
 
-void matmul(a,b,c)
-  int a[SIZE+1][SIZE+1], b[SIZE+1][SIZE+1], c[SIZE+1][SIZE+1];
+void matmul(int a[SIZE+1][SIZE+1], int b[SIZE+1][SIZE+1], int c[SIZE+1][SIZE+1])
 {
   int i,j,k;
 
@@ -75,6 +79,17 @@ CL0:  for(i=1;i<=SIZE;i++)
 
 int main()
 {
+	srand(time(NULL));
+	int a[SIZE+1][SIZE+1];
+	int b[SIZE+1][SIZE+1];
+	int c[SIZE+1][SIZE+1];
+	for (int i = 0; i < SIZE+1; i++) {
+		for (int j = 0; j < SIZE+1; j++) {
+			a[i][j] = rand();
+			b[i][j] = rand();
+		}
+	} 
+
     matmul(a,b,c);
 	return 0;
 }

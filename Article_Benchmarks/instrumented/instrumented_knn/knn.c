@@ -91,7 +91,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
         for (int j = 0; j < NUM_FEATURES; j++)
         {
             n_knownFeatures[NUM_KNOWN_POINTS][NUM_FEATURES]++;
-            fprintf(f, "\"knownFeatures[%d][%d]_%d_l\" [label=\"xFeatures[%d][%d]\", att1=var, att2=inte, att3=double ];\n", i, j, n_knownFeatures[i][j], i, j);
+            fprintf(f, "\"knownFeatures[%d][%d]_%d_l\" [label=\"knownFeatures[%d][%d]\", att1=var, att2=inte, att3=double ];\n", i, j, n_knownFeatures[i][j], i, j);
         }
     }
     for (int i = 0; i < NUM_KNOWN_POINTS; i++)
@@ -106,13 +106,13 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
         n_BestPointsDistances[i]++;
         fprintf(f, "\"BestPointsDistances[%d]_%d_l\" [label=\"BestPointsDistances[%d]\", att1=var, att2=loc, att3=double ];\n", i, n_BestPointsDistances[i], i);
         ne++;
-        fprintf(f, "const%d->\"bottom_%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_BestPointsDistances[i], ne, ne);
+        fprintf(f, "const%d->\"BestPointsDistances[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_const, i, n_BestPointsDistances[i], ne, ne);
         n_const++;
         fprintf(f, "const%d [label=\"%d\", att1=const];\n", n_const, NUM_CLASSES);
         n_BestPointsClasses[i]++;
         fprintf(f, "\"BestPointsClasses[%d]_%d_l\" [label=\"BestPointsClasses[%d]\", att1=var, att2=loc, att3=char ];\n", i, n_BestPointsClasses[i], i);
         ne++;
-        fprintf(f, "const%d->\"bottom_%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_BestPointsClasses[i], ne, ne);
+        fprintf(f, "const%d->\"BestPointsClasses[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_const, i, n_BestPointsClasses[i], ne, ne);
     }
     //---------------------
     dtype BestPointsDistances[K];
@@ -139,7 +139,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
             n_temp++;
             fprintf(f, "temp%d [label=\"temp_l77_i%d\", att1=var, att2=loc, att3=float ];\n", n_temp, n_temp);
             ne++;
-            fprintf(f, "\"xFeatures[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", i, n_xFeatures[i], n_op, ne, ne);
+            fprintf(f, "\"xFeatures[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", j, n_xFeatures[j], n_op, ne, ne);
             ne++;
             fprintf(f, "\"knownFeatures[%d][%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", i, j, n_knownFeatures[i][j], n_op, ne, ne);
             ne++;
@@ -147,7 +147,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
             n_op++;
             fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
             ne++;
-            fprintf(f, "temp%d->op%d [label=\"%d\", ord=\"%d\"];\n", n_temp, n_op, ne);
+            fprintf(f, "temp%d->op%d [label=\"%d\", ord=\"%d\", mod=\"sqr(\"];\n", n_temp, n_op, ne);
             ne++;
             fprintf(f, "distance_%d->op%d [label=\"%d\", ord=\"%d\"];\n", n_distance, n_op, ne);
             n_distance++;
@@ -191,7 +191,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
             n_dbest++;
             fprintf(f, "\"dbest_%d\" [label=\"dbest\", att1=var, att2=loc, att3=float ];\n", n_dbest);
             ne++;
-            fprintf(f, "\"BestPointsDistances[%d]_%d_l\"->\"right_%d\" [label=\"%d\", ord=\"%d\"];\n", i, n_BestPointsDistances[i], n_dbest, ne, ne);
+            fprintf(f, "\"BestPointsDistances[%d]_%d_l\"->\"dbest_%d\" [label=\"%d\", ord=\"%d\"];\n", i, n_BestPointsDistances[i], n_dbest, ne, ne);
             //---------------------
             dtype dbest = BestPointsDistances[i];
 
@@ -231,11 +231,11 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
             n_const++;
             fprintf(f, "const%d [label=\"%d\", att1=const];\n", n_const, i);
             ne++;
-            fprintf(f, "\"temp%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp, n_mux, ne, ne);
+            fprintf(f, "\"const%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_const, n_mux, ne, ne);
             ne++;
             fprintf(f, "\"index_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_index, n_mux, ne, ne);
             n_index++;
-            fprintf(f, "\"index_%d\" [label=\"max\", att1=var, att2=loc, att3=float ];\n", n_index);
+            fprintf(f, "\"index_%d\" [label=\"index\", att1=var, att2=loc, att3=int ];\n", n_index);
             ne++;
             fprintf(f, "\"mux%d\"->index_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_index, ne, ne);
             //---------------------
@@ -252,7 +252,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
 
         //---------------------
         n_cbest++;
-        fprintf(f, "\"cbest_%d\" [label=\"cbest\", att1=var, att2=loc, att3=char ];\n", n_dbest);
+        fprintf(f, "\"cbest_%d\" [label=\"cbest\", att1=var, att2=loc, att3=char ];\n", n_cbest);
         ne++;
         fprintf(f, "\"BestPointsClasses[%d]_%d_l\"->\"cbest_%d\" [label=\"%d\", ord=\"%d\"];\n", index, n_BestPointsClasses[index], n_cbest, ne, ne);
         //---------------------
@@ -292,7 +292,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
         ne++;
         fprintf(f, "\"op%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_op, n_mux, ne, ne);
         ne++;
-        fprintf(f, "\"knownClasses[%d]_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", i, n_knownClasses[i], n_mux, ne, ne);
+        fprintf(f, "\"knownClasses[%d]_%d_l\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", i, n_knownClasses[i], n_mux, ne, ne);
         ne++;
         fprintf(f, "\"cbest_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_cbest, n_mux, ne, ne);
         n_BestPointsClasses[index]++;
@@ -359,7 +359,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
     n_mindist++;
     fprintf(f, "\"mindist_%d\" [label=\"mindist\", att1=var, att2=loc, att3=double ];\n", n_d3);
     ne++;
-    fprintf(f, "\"d1_%d\"->\"mindist_%d\" [label=\"%d\", ord=\"%d\"];\n", 2, n_d1, n_mindist, ne, ne);
+    fprintf(f, "\"d1_%d\"->\"mindist_%d\" [label=\"%d\", ord=\"%d\"];\n", n_d1, n_mindist, ne, ne);
     //---------------------
     dtype mindist = d1;
 
@@ -531,7 +531,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
     ne++;
     fprintf(f, "\"classID_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_classID, n_mux, ne, ne);
     n_classID++;
-    fprintf(f, "\"classID_%d\" [label=\"classID\", att1=var, att2=loc, att3=float ];\n", n_classID);
+    fprintf(f, "\"classID_%d\" [label=\"classID\", att1=var, att2=loc, att3=char ];\n", n_classID);
     ne++;
     fprintf(f, "\"mux%d\"->classID_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_classID, ne, ne);
     //---------------------
@@ -543,7 +543,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
     showBestPoints(BestPointsClasses, BestPointsDistances);
 
     //---------------------
-    fprintf(f, "\"out1\" [label=\"classID\", att1=var, att2=loc, att3=char ];\n");
+    fprintf(f, "\"out1\" [label=\"out\", att1=var, att2=loc, att3=char ];\n");
     ne++;
     fprintf(f, "\"classID_%d\"->\"out1\" [label=\"%d\", ord=\"%d\"];\n", n_classID, ne, ne);
     fprintf(f, "}\n");

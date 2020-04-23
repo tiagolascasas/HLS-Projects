@@ -59,80 +59,62 @@ float randFloat(float min, float max) {
 	NClasses: desired number of classes
 	*Known: the data structure with the points
 */
-void initializekNNModel(int Nknown, point *Known, int NFeatures, int NClasses) {
+void initializekNNModel(ftype instancesXfeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype classifIDs[NUM_KNOWN_POINTS]) {
 
 	// initialize the array of the data points to be preclassified: database of classified points
 	// this can be moved to a function
-	for(int i=0; i<Nknown; i++) {
-		point *x = &Known[i];
-		for(int j=0; j<NFeatures; j++) {
-			x->features[j] = getRandFeatureValue();  // from 0 to MAX_VALUE_OF_FEATURE
+	for(int i=0; i<NUM_KNOWN_POINTS; i++) {
+		for(int j=0; j<NUM_FEATURES; j++) {
+			instancesXfeatures[i][j] = getRandFeatureValue();  // from 0 to MAX_VALUE_OF_FEATURE
 			//printf("feature %e\n", x->features[j]);
 		}
 		// assign a random class ID to each vector i
-		x->classifID = (ctype) randInt(0, NClasses);
+		classifIDs[i] = (ctype) randInt(0, NUM_CLASSES);
 	}
 }
 
-/**
-	Update point
-*/
-void copy(bestpoint *p, point x, dtype distance, int NFeatures) {
-	point *p1 = &(p->x);
-	
-	p1->classifID = x.classifID;
-	
-	// copy features
-	for(int j=0; j<NFeatures; j++) {
-		p1->features[j] = x.features[j];
-	}
-	p->distance = distance;
-}
 
 /**
 	Show a point: includes the print of the values of its features and its class
 */
-void showPoint(point x, int NFeatures, char *classif[])  {
-		for(int j=0; j<NFeatures; j++) {
-			printf("--> feature %d: %e \n", j, x.features[j]);
+void showPoint(ftype xFeatures[NUM_FEATURES], ctype classifID)  {
+		for(int j=0; j<NUM_FEATURES; j++) {
+			printf("--> feature %d: %e \n", j, xFeatures[j]);
 		}
-		printf("--> class: %s\n", classif[(int) x.classifID]);
+		printf("--> class: %d\n", classifID);
 }
 	
 /**
 	Show the K nearest points
 */
-void showBestPoints(bestpoint *BestPoints, int KValue, int NFeatures, char *classif[]) {
-	for(int i=0; i<KValue; i++) {
+void showBestPoints(ctype BestPointsClasses[K], dtype BestPointsDistances[K]) {
+	for(int i=0; i<K; i++) {
 		printf("Best point %d: \n", i);
-		showPoint(BestPoints[i].x, NFeatures, classif);
-		printf("--> distance = %e: \n", BestPoints[i].distance);	
+		printf("--> class: %d\n", BestPointsClasses[i]);
+		printf("--> distance = %e: \n", BestPointsDistances[i]);	
 	}
 }
 
 /**
 	Show all the points with classes determined
 */
-void showPoints(point *KnownPoints, int Nknown, int NFeatures, char *classif[]) {
-	for(int i=0; i<Nknown; i++) {
+void showPoints(ftype instancesXfeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype classifIDs[NUM_KNOWN_POINTS]) {
+	for(int i=0; i<NUM_KNOWN_POINTS; i++) {
 		printf("Point %d: \n", i);
-		showPoint(KnownPoints[i], NFeatures, classif);
+		showPoint(instancesXfeatures[i], classifIDs[i]);
 	}
 }
 
 /**
 	Initializes the K BestPoints
 */
-void initializeBest(bestpoint *BestPoints, int KValue, int NFeatures, int NClasses) {
-	
-	for(int i=0; i<KValue; i++) {
-		bestpoint *bp = &BestPoints[i];
-		bp->distance = MAXDISTANCE;
-		point *x = &(bp->x);
+void initializeBest(ctype BestPointsClasses[K], dtype BestPointsDistances[K]) {
+	for(int i=0; i<K; i++) {
+		BestPointsDistances[i] = MAXDISTANCE;
+		/*point *x = &(bp->x);
 		for(int j=0; j<NFeatures; j++) {
 			x->features[j] = 0;
-		}
-		x->classifID = NClasses; // unknown
-		
+		}*/
+		BestPointsClasses[i] = NUM_CLASSES; // unknown
 	}
 }

@@ -109,11 +109,11 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         n_temp++;
         fprintf(f, "temp%d [label=\"temp_l70_i%d\", att1=var, att2=loc, att3=float ];\n", n_temp, n_temp);
         ne++;
-        fprintf(f, "\"op%d\"->\"temp_%d\" [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
+        fprintf(f, "\"op%d\"->\"temp%d\" [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
         n_op++;
         fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
         ne++;
-        fprintf(f, "\"temp_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_temp, n_op, ne, ne);
+        fprintf(f, "\"temp%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_temp, n_op, ne, ne);
         ne++;
         fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_cdf, n_op, ne, ne);
         n_cdf++;
@@ -131,11 +131,11 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         ne++;
         fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_cdf, n_op, ne, ne);
         ne++;
-        fprintf(f, "\"const_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_op, ne, ne);
+        fprintf(f, "\"const%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_op, ne, ne);
         n_temp++;
         fprintf(f, "temp%d [label=\"temp_l70_i%d\", att1=var, att2=loc, att3=float ];\n", n_temp, n_temp);
         ne++;
-        fprintf(f, "\"op%d\"->\"temp_%d\" [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
+        fprintf(f, "\"op%d\"->\"temp%d\" [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
         n_gray_level_mapping[i]++;
         fprintf(f, "\"gray_level_mapping[%d]_%d_l\" [label=\"gray_level_mapping[%d]\", att1=var, att2=inte, att3=int ];\n", i, n_gray_level_mapping[i], i);
         ne++;

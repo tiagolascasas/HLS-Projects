@@ -4,7 +4,7 @@
 	Version by João MP Cardoso
 	Email: jmpc@fe.up.pt
 	
-	December 2016
+	April 2020
 	FEUP, Porto, Portugal
 */
 
@@ -25,21 +25,21 @@
 /*
 	Update the set of best points so far.
 */
-void updateBest(dtype distance, point known, bestpoint *BestPoints, int NFeatures, int KValue);
+void updateBest(dtype distance, ctype classifID, dtype BestPointsDistances[K], ctype BestPointsClasses[K]);
 	
 /**
 	kNN function without classifying but returning the k nearest points
 	We use here a linear search.
 */
-void knn(point x, point *known, int Nknown, bestpoint *BestPoints, int NFeatures, int KValue);
+ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype knownClasses[NUM_KNOWN_POINTS]);
 
 /**
 	Classify based on the K BestPoints returned by the kNN function
 */
-ctype classify1NN(bestpoint *BestPoints); // specialized version for K=1
+ctype classify1NN(ctype BestPointsClasses[K]); // specialized version for K=1
 
-ctype classify3NN(bestpoint *BestPoints); // specialized version for K=3
+ctype classify3NN(ctype BestPointsClasses[K], dtype BestPointsDistances[K]); // specialized version for K=3
 
-ctype classifyKNN(bestpoint *BestPoints, int NClasses, int KValue); // generic version fot k>=1
+ctype classifyKNN(ctype BestPointsClasses[K], dtype BestPointsDistances[K]); // generic version fot k>=1
 
 #endif

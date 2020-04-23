@@ -4,7 +4,7 @@
 	Version by João MP Cardoso
 	Email: jmpc@fe.up.pt
 	
-	December 2016
+	April 2020
 	FEUP, Porto, Portugal
 */
 
@@ -48,31 +48,28 @@ float randFloat(float min, float max);
 	NClasses: desired number of classes
 	*Known: the data structure with the points
 */
-void initializekNNModel(int Nknown, point *Known, int NFeatures, int NClasses);
+//void initializekNNModel(int Nknown, point *Known, int NFeatures, int NClasses);
+void initializekNNModel(ftype instancesXfeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype classifIDs[NUM_KNOWN_POINTS]);
 
-/**
-	Update point
-*/
-void copy(bestpoint *p, point x, dtype distance, int NFeatures);
 
 /**
 	Show a point: includes the print of the values of its features and its class
 */
-void showPoint(point x, int NFeatures, char *classif[]);
+void showPoint(ftype xFeatures[NUM_FEATURES], ctype classifID);
 	
 /**
 	Show the K nearest points
 */
-void showBestPoints(bestpoint *BestPoints, int KValue, int NFeatures, char *classif[]);
+void showBestPoints(ctype BestPointsClasses[K], dtype BestPointsDistances[K]);
 
 /**
 	Show all the points with classes determined
 */
-void showPoints(point *KnownPoints, int Nknown, int NFeatures, char *classif[]);
+void showPoints(ftype instancesXfeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype classifIDs[NUM_KNOWN_POINTS]);
 
 /**
 	Initializes the K BestPoints
 */
-void initializeBest(bestpoint *BestPoints, int KValue, int NFeatures, int NClasses);
+void initializeBest(ctype BestPointsClasses[K], ftype BestPointsDistances[K]);
 
 #endif

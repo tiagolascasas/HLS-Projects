@@ -6,6 +6,7 @@ vivado_hls_examples/solution1/.tcls
 vivado_hls_examples/solution1/
 vivado_hls_examples/hlsparser.exe
 *.exe
+*.o
 woven_code
 output.dsp
 ast.txt

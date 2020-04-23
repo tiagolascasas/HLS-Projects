@@ -4,7 +4,7 @@
 	Version by João MP Cardoso
 	Email: jmpc@fe.up.pt
 	
-	December 2016
+	April 2020
 	FEUP, Porto, Portugal
 */
 
@@ -16,75 +16,108 @@
 	Points represent instances in the kNN model.
 	Those instances are the ones used in a previous learning phase.
 */
-void updateBest(dtype distance, point known, bestpoint *BestPoints, int NFeatures, int KValue) {
+void updateBest(dtype distance, ctype classifID, dtype BestPointsDistances[K], ctype BestPointsClasses[K]) {
 	dtype max = 0;
-	int index=0;
+	int index =0;
 
 	//find the worst point in the BestPoints
-	for(int i=0; i<KValue; i++) {
-		if(BestPoints[i].distance > max) {
-			max = BestPoints[i].distance;
+	for(int i=0; i<K; i++) {
+		
+		/*if(BestPointsDistances[i] > max) {
+			max = BestPointsDistances[i];
 			index = i;
-		}
+		}*/
+		dtype dbest = BestPointsDistances[i];
+		max = (dbest > max) ? dbest : max; 
+		index = (dbest > max) ? i : index;
 	}
 	// if the point is better (shorter distance) than the worst one (longer distance) in the BestPoints
 	// update BestPoints substituting the wrost one
-	if(distance < max) {
+	
+	/*if(distance < max) {
 		//printf("point is better %e\n", distance);
-		copy(&BestPoints[index], known, distance, NFeatures);
-	}
+		BestPointsDistances[index] = distance;
+		BestPointsClasses[index] = classifID;
+	}*/
+	dtype dbest = BestPointsDistances[index];
+	ctype cbest = BestPointsClasses[index];
+	
+	BestPointsDistances[index] = (distance < max) ? distance : dbest;
+	BestPointsClasses[index] = (distance < max) ? classifID : cbest;
 }
 
 /**
 	kNN function without classifying but returning the k nearest points
 	We use here a linear search.
 */
-void knn(point x, point *known, int Nknown, bestpoint *BestPoints, int NFeatures, int KValue) {
+ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype knownClasses[NUM_KNOWN_POINTS]) {
+
+	dtype BestPointsDistances[K]; // array with the distances of the K nearest points to the point to classify
+	ctype BestPointsClasses[K]; // array with the classes of the K nearest points to the point to classify
+
+
+	// initialize the data structures (array) with the K best points
+	initializeBest(BestPointsClasses, BestPointsDistances);
+
 
 	// perform the Euclidean distance between the point to classify and each one in the model
 	// and update the k best points if needed
-	for(int i=0; i<Nknown; i++) {
+	for(int i=0; i<NUM_KNOWN_POINTS; i++) {
 		dtype distance = (dtype) 0;
 		
 		// perform Euclidean distance
-		for(int j=0; j<NFeatures; j++) {
-			distance += sqr((dtype)x.features[j]-(dtype)known[i].features[j]);
+		for(int j=0; j<NUM_FEATURES; j++) {
+			distance += sqr((dtype) xFeatures[j]-(dtype) knownFeatures[i][j]);
 		}
 		distance = sqrt(distance);
 		//printf("distance %e\n", distance);
 		
 		// maintains the k best points updated
-		updateBest(distance, known[i], BestPoints, NFeatures, KValue);
+		updateBest(distance, knownClasses[i], BestPointsDistances, BestPointsClasses);
 	}
+	
+		// classify the point based on the K nearest points
+   	ctype classifyID;
+	#if K == 1
+		classifyID = classify1NN(BestPointsClasses);
+	#elif K == 3
+		classifyID = classify3NN(BestPointsClasses, BestPointsDistances);
+	#else
+		classifyID = classifyKNN(BestPointsClasses, BestPointsDistances);
+	#endif
+
+   	showBestPoints(BestPointsClasses, BestPointsDistances);
+   	
+   	return classifyID;
 }
 
 /**
 	Classify based on the K BestPoints returned by the kNN function
 	Specialized code when using K = 1
 */
-ctype classify1NN(bestpoint *BestPoints) {
-	point p = BestPoints[0].x; // there is only one point	
-	return p.classifID;
+ctype classify1NN(ctype BestPointsClasses[K]) {
+	ctype classifID = BestPointsClasses[0]; // there is only one point	
+	return classifID;
 }
 
 /**
 	Classify based on the K BestPoints returned by the kNN function
 	Specialized code when using K = 3
 */
-ctype classify3NN(bestpoint *BestPoints) {
+ctype classify3NN(ctype BestPointsClasses[K], dtype BestPointsDistances[K]) {
 		
-		point p1 = BestPoints[0].x;
-		dtype d1 = BestPoints[0].distance;
-		ctype c1 = p1.classifID;
-		point p2 = BestPoints[1].x;
-		dtype d2 = BestPoints[1].distance;
-		ctype c2 = p2.classifID;
-		point p3 = BestPoints[2].x;
-		dtype d3 = BestPoints[2].distance;
-		ctype c3 = p3.classifID;
+		ctype c1 = BestPointsClasses[0];
+		dtype d1 = BestPointsDistances[0];
 		
-		int classID;
+		ctype c2 = BestPointsClasses[1];
+		dtype d2 = BestPointsDistances[1];
 		
+		ctype c3 = BestPointsClasses[2];
+		dtype d3 = BestPointsDistances[2];
+		
+		ctype classID;
+		
+		/*
 		if(c1 == c2) {
 			classID = c1;
 		} else if(c1 == c3) {
@@ -103,6 +136,22 @@ ctype classify3NN(bestpoint *BestPoints) {
 				classID = c3;
 			}
 		}	
+		*/
+		dtype mindist = d1;
+		classID = c1;
+			
+		classID = (mindist > d2) ? c2 : c1;
+		mindist = (mindist > d2) ? d2 : c1;
+			
+		classID = (mindist > d3) ? c3 : c1;
+		//mindist = (mindist > d3) ? d3 : c1;
+		
+		classID = (c1 == c2) ? c1 : classID; 
+		classID = (c1 == c3) ? c1 : classID;
+		classID = (c1 == c3) ? c2 : classID;
+		classID = ((c1 != c2) && (c2 != c3)) ? c2 : classID;
+
+		
 	return classID;
 }
 
@@ -110,27 +159,34 @@ ctype classify3NN(bestpoint *BestPoints) {
 	This function can be heavely optimized by using specialized versions according to the value of K.
 	K=1, K=2, K=3, etc. Previous functions are examples of specialized code for K=1 and K=3.
 */
-ctype classifyKNN(bestpoint *BestPoints, int NClasses, int KValue) {
-	unsigned char histogram[NClasses+1];
-	for(int i=0; i<NClasses+1; i++) 
+ctype classifyKNN(ctype BestPointsClasses[K], dtype BestPointsDistances[K]) {
+	
+	unsigned char histogram[NUM_CLASSES+1];
+	
+	for(int i=0; i<NUM_CLASSES+1; i++) // last is not a class
 		histogram[i]=0;
 	
 	dtype min_distance = MAXDISTANCE;
+	int index;
 	
-	for(int i=0; i<KValue; i++) {
-		point p = BestPoints[i].x;
-		if(BestPoints[i].distance < min_distance) min_distance = BestPoints[i].distance;
-		
-		histogram[(unsigned int) p.classifID] += 1;
+	for(int i=0; i<K; i++) {
+		dtype distance = BestPointsDistances[i];
+		if(distance < min_distance) {	
+			min_distance = distance;
+			index = i;
+		}
+		histogram[(unsigned int) BestPointsClasses[i]] += 1;
 	}
 	unsigned char max = 0;
-	ctype classID = NClasses ; // the default is the unknwown
-	for(int i=0; i<NClasses +1; i++) {
+	ctype classID = NUM_CLASSES ; // the default is the unknwown
+	for(int i=0; i<NUM_CLASSES+1; i++) {
 		if(histogram[i] > max) {
 			max = histogram[i];
 			classID = i;
 		}
-	}		
+	}	
+	if(max == 1) classID = BestPointsClasses[index];
+	
 	//printf("\n#### Final kNN classification: %s: \n", classif[index]);
 	return classID;
 }

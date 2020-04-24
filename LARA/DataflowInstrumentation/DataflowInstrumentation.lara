@@ -1,0 +1,79 @@
+import weaver.WeaverJps;
+import clava.ClavaJoinPoints;
+import clava.Clava;
+import lara.code.Logger;
+import PrintAST;
+
+/**
+	Source code assumptions:
+	- Arrays have predetermined size
+	- No pointers
+	- Variables declared/initialized one at a time (e.g. no "int x, y = 0")
+**/
+
+var interfaces = {};
+var locals = {};
+var logger = null;
+var separator = "//---------------------";
+
+aspectdef DataflowInstrumentation
+	input
+		funName
+	end
+	//Get function root
+	var root;
+	var filename = Clava.getProgram().files[0].name;
+	var basename = filename.split(".");
+	var filename = funName + ".dot";
+	logger = new Logger(undefined, filename);
+	//replace by filter, not sure of the syntax
+	for (var elem of WeaverJps.search("function").chain()){
+		if (elem["function"].name == funName)
+			root = elem["function"];
+	}	
+	call PrintAST(root);
+
+	//Get scope and interface
+	var scope;
+	for (var i = 0; i < root.children.length; i++) {
+		if (root.children[i].joinPointType == "scope")
+			scope = root.children[i];
+		if (root.children[i].joinPointType == "param")
+			registerInterface(root.children[i]);
+	}
+end
+
+function splitMulti(str, tokens) {
+	var tempChar = tokens[0];
+	for(var i = 1; i < tokens.length; i++){
+		str = str.split(tokens[i]).join(tempChar);
+	}
+	str = str.split(tempChar);
+	var newStr = [];
+	for (var i = 0; i < str.length; i++) {
+		if (str[i] != "")
+			newStr.push(str[i]);
+	}
+	return newStr;
+}
+
+function registerInterface(param) {
+	var tokens = splitMulti(param.code, [' ', "]", "["]);
+	var interName = tokens[1];
+	tokens = tokens.splice(1);
+	interfaces[interName] = tokens;
+	println(interfaces[interName]);
+}
+
+function getCounterOfVar(name, info) {
+	var str = "n_" + name;
+	for (var i = 1; i < info.length; i++)
+		str += "[" + info[i] + "]";
+	return str;
+}
+
+function declareCounter(name) {
+	var info = (interfaces[name] == undefined) ? variables[name] : interfaces[name];
+	var init = (info.length == 1) ? " = 0;" : " = {0};";
+	return ClavaJoinPoints.stmtLiteral("int " + getCounterOfVar(name, info) + init);
+}

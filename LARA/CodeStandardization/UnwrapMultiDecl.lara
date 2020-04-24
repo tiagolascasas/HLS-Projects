@@ -1,3 +1,0 @@
-aspectdef UnwrapMultiDecl
-	println("Unwapping variables declared in a single line");
-end

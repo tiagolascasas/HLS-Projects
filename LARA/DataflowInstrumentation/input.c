@@ -156,6 +156,31 @@ void convolve2d(int input_image[NE][NE], int kernel[K][K], int output_image[NE][
     }
 }
 
+//utdsp matmul_10_10
+#define A_ROW 10
+#define A_COL 10
+#define B_ROW 10
+#define B_COL 10
+
+void mult(float a_matrix[A_ROW][A_COL], float b_matrix[B_ROW][B_COL],
+          float c_matrix[A_ROW][B_COL])
+{
+    float sum;
+
+    for (int i = 0; i < A_ROW; i++)
+    {
+        for (int j = 0; j < B_COL; j++)
+        {
+            sum = 0.0;
+            for (int k = 0; k < B_ROW; ++k)
+            {
+                sum += a_matrix[i][k] * b_matrix[k][j];
+            }
+            c_matrix[i][j] = sum;
+        }
+    }
+}
+
 int main()
 {
     const short x[NX] = {100, 200, 300};
@@ -200,6 +225,7 @@ int main()
     }
     svm_predict_graph(test_vector, &sum);*/
 
+    /*
     int input_image[NE][NE];
     int output_image[NE][NE];
     int kernel[K][K];
@@ -210,5 +236,21 @@ int main()
         for (int j = 0; j < K; j++)
             kernel[i][j] = rand() % 255;
     convolve2d(input_image, kernel, output_image);
-    printf("Edge detect finished\n");
+    printf("Edge detect finished\n");*/
+
+    float a_matrix[A_ROW][A_COL] = {0};
+    float b_matrix[A_ROW][A_COL] = {0};
+    float c_matrix[A_ROW][A_COL] = {0};
+
+    for (int i = 0; i < A_ROW; i++)
+    {
+        for (int j = 0; j < A_COL; j++)
+        {
+            a_matrix[i][j] = (float)rand() / (float)(RAND_MAX / 100000.0f);
+            b_matrix[i][j] = (float)rand() / (float)(RAND_MAX / 100000.0f);
+        }
+    }
+    mult(a_matrix, b_matrix, c_matrix);
+    printf("mattrix mult finished\n");
+    return 0;
 }

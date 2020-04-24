@@ -1,3 +1,0 @@
-aspectdef WrapLoopCounter
-	println("Wrapping loop counters");
-end

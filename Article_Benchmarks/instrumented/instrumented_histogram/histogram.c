@@ -103,9 +103,9 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         n_op++;
         fprintf(f, "op%d [label=\"/\", att1=op];\n", n_op);
         ne++;
-        fprintf(f, "\"histogram[%d]_%d_l\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", i, n_histogram[i], n_op, ne, ne);
+        fprintf(f, "\"histogram[%d]_%d_l\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", i, n_histogram[i], n_op, ne, ne);
         ne++;
-        fprintf(f, "\"pixels_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_pixels, n_op, ne, ne);
+        fprintf(f, "\"pixels_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_pixels, n_op, ne, ne);
         n_temp++;
         fprintf(f, "temp%d [label=\"temp_l70_i%d\", att1=var, att2=loc, att3=float ];\n", n_temp, n_temp);
         ne++;
@@ -113,9 +113,9 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         n_op++;
         fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
         ne++;
-        fprintf(f, "\"temp%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_temp, n_op, ne, ne);
+        fprintf(f, "\"temp%d\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne, ne);
         ne++;
-        fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_cdf, n_op, ne, ne);
+        fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_cdf, n_op, ne, ne);
         n_cdf++;
         fprintf(f, "\"cdf_%d\" [label=\"cdf\", att1=var, att2=loc, att3=float ];\n", n_cdf);
         ne++;
@@ -129,9 +129,9 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         n_const++;
         fprintf(f, "const%d [label=\"%.1f\", att1=const];\n", n_const, 255.0f);
         ne++;
-        fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_cdf, n_op, ne, ne);
+        fprintf(f, "\"cdf_%d\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_cdf, n_op, ne, ne);
         ne++;
-        fprintf(f, "\"const%d\"->\"op%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_op, ne, ne);
+        fprintf(f, "\"const%d\"->\"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_const, n_op, ne, ne);
         n_temp++;
         fprintf(f, "temp%d [label=\"temp_l70_i%d\", att1=var, att2=loc, att3=float ];\n", n_temp, n_temp);
         ne++;

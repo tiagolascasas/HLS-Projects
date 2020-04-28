@@ -155,7 +155,7 @@ void latnrm(float data[NPOINTS], float outa[NPOINTS], float coefficient[NPOINTS]
             n_op++;
             fprintf(f, "op%d [label=\"-\", att1=op];\n", n_op);
             ne++;
-            fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp, n_op, ne, ne);
+            fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne, ne);
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_temp++;
@@ -196,7 +196,7 @@ void latnrm(float data[NPOINTS], float outa[NPOINTS], float coefficient[NPOINTS]
             n_op++;
             fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
             ne++;
-            fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp, n_op, ne, ne);
+            fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne, ne);
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_temp++;
@@ -253,9 +253,9 @@ void latnrm(float data[NPOINTS], float outa[NPOINTS], float coefficient[NPOINTS]
             n_op++;
             fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
             ne++;
-            fprintf(f, "temp%d->op%d [label=\"%d\", ord=\"%d\"];\n", n_temp, n_op, ne);
+            fprintf(f, "temp%d->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne);
             ne++;
-            fprintf(f, "sum_%d->op%d [label=\"%d\", ord=\"%d\"];\n", n_sum, n_op, ne);
+            fprintf(f, "sum_%d->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_sum, n_op, ne);
             n_sum++;
             fprintf(f, "\"sum_%d\" [label=sum, att1=var, att2=loc, att3=float ];\n", n_sum);
             ne++;

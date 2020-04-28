@@ -125,7 +125,7 @@ void fft(float data_real[NPOINTS], float data_imag[NPOINTS], float coef_real[NPO
                 n_op++;
                 fprintf(f, "op%d [label=\"-\", att1=op];\n", n_op);
                 ne++;
-                fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp, n_op, ne, ne);
+                fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne, ne);
                 ne++;
                 fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
                 n_temp++;
@@ -166,7 +166,7 @@ void fft(float data_real[NPOINTS], float data_imag[NPOINTS], float coef_real[NPO
                 n_op++;
                 fprintf(f, "op%d [label=\"+\", att1=op];\n", n_op);
                 ne++;
-                fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp, n_op, ne, ne);
+                fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_temp, n_op, ne, ne);
                 ne++;
                 fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
                 n_temp++;
@@ -185,7 +185,7 @@ void fft(float data_real[NPOINTS], float data_imag[NPOINTS], float coef_real[NPO
                 n_op++;
                 fprintf(f, "op%d [label=\"-\", att1=op];\n", n_op);
                 ne++;
-                fprintf(f, "\"data_real[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", index, n_data_real[index], n_op, ne, ne);
+                fprintf(f, "\"data_real[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", index, n_data_real[index], n_op, ne, ne);
                 ne++;
                 fprintf(f, "\"temp_real_%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp_real, n_op, ne, ne);
                 n_temp++;

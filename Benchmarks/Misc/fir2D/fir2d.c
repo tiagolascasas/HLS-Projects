@@ -6,7 +6,7 @@
 
 const short K[] = {1, 2, 1, 2, 4, 2, 1, 2, 1};
 
-void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SIZE*WIDTH_SIZE])
+void fir2D(unsigned char in[HEIGHT_SIZE * WIDTH_SIZE], unsigned char out[HEIGHT_SIZE * WIDTH_SIZE])
 {
     for (int row = 0; row < HEIGHT_SIZE - 3 + 1; row++)
     {
@@ -28,10 +28,10 @@ void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SI
 
 int main()
 {
-    unsigned char image[HEIGHT_SIZE*WIDTH_SIZE];
-    for (int i = 0; i < HEIGHT_SIZE*WIDTH_SIZE; i++)
+    unsigned char image[HEIGHT_SIZE * WIDTH_SIZE];
+    for (int i = 0; i < HEIGHT_SIZE * WIDTH_SIZE; i++)
         image[i] = (unsigned char)(rand() % 255);
-    unsigned char smooth_image[HEIGHT_SIZE*WIDTH_SIZE];
+    unsigned char smooth_image[HEIGHT_SIZE * WIDTH_SIZE];
 
     fir2D(image, smooth_image);
     return 0;

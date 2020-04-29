@@ -62,36 +62,40 @@ int b[SIZE+1][SIZE+1] = { 0,0,0,0,0,0,
 int c[SIZE+1][SIZE+1];
 */
 
-void matmul(int a[SIZE+1][SIZE+1], int b[SIZE+1][SIZE+1], int c[SIZE+1][SIZE+1])
+void matmul(int a[SIZE + 1][SIZE + 1], int b[SIZE + 1][SIZE + 1], int c[SIZE + 1][SIZE + 1])
 {
-  int i,j,k;
+    int i, j, k;
 
-IL0:  for(i=1;i<=SIZE;i++)
-  IL1: for(j=1;j<=SIZE;j++)
-      c[i][j] = 0;
+IL0:
+    for (i = 1; i <= SIZE; i++)
+    IL1:
+        for (j = 1; j <= SIZE; j++)
+            c[i][j] = 0;
 
-CL0:  for(i=1;i<=SIZE;i++)
- CL1:   for(j=1;j<=SIZE;j++)
-  CL2:   for(k=1;k<=SIZE;k++)
-	c[i][j] += a[i][k] * b[k][j];
-
+CL0:
+    for (i = 1; i <= SIZE; i++)
+    CL1:
+        for (j = 1; j <= SIZE; j++)
+        CL2:
+            for (k = 1; k <= SIZE; k++)
+                c[i][j] += a[i][k] * b[k][j];
 }
 
 int main()
 {
-	srand(time(NULL));
-	int a[SIZE+1][SIZE+1];
-	int b[SIZE+1][SIZE+1];
-	int c[SIZE+1][SIZE+1];
-	for (int i = 0; i < SIZE+1; i++) {
-		for (int j = 0; j < SIZE+1; j++) {
-			a[i][j] = rand();
-			b[i][j] = rand();
-		}
-	} 
+    srand(time(NULL));
+    int a[SIZE + 1][SIZE + 1];
+    int b[SIZE + 1][SIZE + 1];
+    int c[SIZE + 1][SIZE + 1];
+    for (int i = 0; i < SIZE + 1; i++)
+    {
+        for (int j = 0; j < SIZE + 1; j++)
+        {
+            a[i][j] = rand();
+            b[i][j] = rand();
+        }
+    }
 
-    matmul(a,b,c);
-	return 0;
+    matmul(a, b, c);
+    return 0;
 }
-	 
-

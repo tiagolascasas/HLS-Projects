@@ -43,18 +43,17 @@
 #ifndef _DECODE_H_
 #define _DECODE_H_
 
-#define NUM_HUFF_TBLS       2
-#define NUM_QUANT_TBLS      4
-#define DCTSIZE             8
-#define DCTSIZE2           64
-
+#define NUM_HUFF_TBLS 2
+#define NUM_QUANT_TBLS 4
+#define DCTSIZE 8
+#define DCTSIZE2 64
 
 /*
  * Fix the number of components as 3
  */
-#define NUM_COMPONENT       3
+#define NUM_COMPONENT 3
 
-#define RGB_NUM  3
+#define RGB_NUM 3
 
 /*
  * Define the sample precision as 8
@@ -64,8 +63,8 @@
 #define MARKER_MARKER 0xff
 
 /* SAMPLING_FACTOR */
-#define SF1_1_1  0
-#define SF4_1_1  2
+#define SF1_1_1 0
+#define SF4_1_1 2
 
 char p_jinfo_data_precision;
 short p_jinfo_image_height;

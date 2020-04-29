@@ -38,9 +38,9 @@
 #include "rle.h"
 #include "proto.h"
 
-#define MAX(a,b)	((a)>(b)?(a):(b))
-#define MIN(a,b)	((a)<(b)?(a):(b))
-
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
 /*
  *--------------------------------------------------------------
  *
@@ -57,13 +57,13 @@
  *--------------------------------------------------------------
  */
 int
-JroundUp (a, b)
-    int a, b;
+    JroundUp(a, b) int a,
+    b;
 {
     a += b - 1;
     return a - (a % b);
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -81,8 +81,8 @@ JroundUp (a, b)
  *--------------------------------------------------------------
  */
 void
-DecoderStructInit (dcPtr)
-    DecompressInfo *dcPtr;
+    DecoderStructInit(dcPtr)
+        DecompressInfo *dcPtr;
 
 {
     short ci;
@@ -93,104 +93,111 @@ DecoderStructInit (dcPtr)
      */
     dcPtr->maxHsampFactor = 1;
     dcPtr->maxVsampFactor = 1;
-    for (ci = 0; ci < dcPtr->numComponents; ci++) {
-	compPtr = &dcPtr->compInfo[ci];
-	if ((compPtr->hSampFactor <= 0) || (compPtr->hSampFactor > 4) ||
-	    (compPtr->vSampFactor <= 0) || (compPtr->vSampFactor > 4)) {
-	    fprintf (stderr,  "Error: Bogus sampling factors");
-	    exit(1);
-	}
-	dcPtr->maxHsampFactor = MAX(dcPtr->maxHsampFactor,compPtr->hSampFactor);
-	dcPtr->maxVsampFactor = MAX(dcPtr->maxVsampFactor,compPtr->vSampFactor);
+    for (ci = 0; ci < dcPtr->numComponents; ci++)
+    {
+        compPtr = &dcPtr->compInfo[ci];
+        if ((compPtr->hSampFactor <= 0) || (compPtr->hSampFactor > 4) ||
+            (compPtr->vSampFactor <= 0) || (compPtr->vSampFactor > 4))
+        {
+            fprintf(stderr, "Error: Bogus sampling factors");
+            exit(1);
+        }
+        dcPtr->maxHsampFactor = MAX(dcPtr->maxHsampFactor, compPtr->hSampFactor);
+        dcPtr->maxVsampFactor = MAX(dcPtr->maxVsampFactor, compPtr->vSampFactor);
     }
 
     /*
      * Compute logical downsampled dimensions of components
      */
-    for (ci = 0; ci < dcPtr->numComponents; ci++) {
-	compPtr = &dcPtr->compInfo[ci];
-	compPtr->trueCompWidth = (dcPtr->imageWidth*compPtr->hSampFactor
-		    + dcPtr->maxHsampFactor - 1) / dcPtr->maxHsampFactor;
-	compPtr->trueCompHeight = (dcPtr->imageHeight*compPtr->vSampFactor
-		    + dcPtr->maxVsampFactor - 1) / dcPtr->maxVsampFactor;
+    for (ci = 0; ci < dcPtr->numComponents; ci++)
+    {
+        compPtr = &dcPtr->compInfo[ci];
+        compPtr->trueCompWidth = (dcPtr->imageWidth * compPtr->hSampFactor + dcPtr->maxHsampFactor - 1) / dcPtr->maxHsampFactor;
+        compPtr->trueCompHeight = (dcPtr->imageHeight * compPtr->vSampFactor + dcPtr->maxVsampFactor - 1) / dcPtr->maxVsampFactor;
     }
 
+    if (dcPtr->compsInScan == 1)
+    {
+        compPtr = dcPtr->curCompInfo[0];
 
-    if (dcPtr->compsInScan == 1) {
-	compPtr = dcPtr->curCompInfo[0];
-
-	/*
+        /*
 	 * for noninterleaved scan, always one block per MCU
 	 */
-	compPtr->MCUwidth = 1;
-	compPtr->MCUheight = 1;
-	compPtr->MCUblocks = 1;
+        compPtr->MCUwidth = 1;
+        compPtr->MCUheight = 1;
+        compPtr->MCUblocks = 1;
 
-	/*
+        /*
 	 * compute physical dimensions of component
 	 */
-	compPtr->downsampledWidth = JroundUp (compPtr->trueCompWidth, 8);
-	compPtr->downsampledHeight = JroundUp (compPtr->trueCompHeight, 8);
+        compPtr->downsampledWidth = JroundUp(compPtr->trueCompWidth, 8);
+        compPtr->downsampledHeight = JroundUp(compPtr->trueCompHeight, 8);
 
-	dcPtr->MCUsPerRow = compPtr->downsampledWidth / 8;
-	dcPtr->MCUrowsInScan = compPtr->downsampledHeight / 8;
+        dcPtr->MCUsPerRow = compPtr->downsampledWidth / 8;
+        dcPtr->MCUrowsInScan = compPtr->downsampledHeight / 8;
 
-	/*
+        /*
 	 * Prepare array describing MCU composition
 	 */
-	dcPtr->blocksInMCU = 1;
-	dcPtr->MCUmembership[0] = 0;
-    } else {
-	short ci, mcublks;
+        dcPtr->blocksInMCU = 1;
+        dcPtr->MCUmembership[0] = 0;
+    }
+    else
+    {
+        short ci, mcublks;
 
-	if (dcPtr->compsInScan > 4) {
-	    fprintf (stderr, "Too many components for interleaved scan");
-	    exit (1);
-	}
+        if (dcPtr->compsInScan > 4)
+        {
+            fprintf(stderr, "Too many components for interleaved scan");
+            exit(1);
+        }
 
-	dcPtr->MCUsPerRow = (dcPtr->imageWidth +
-			     8*dcPtr->maxHsampFactor - 1) /
-			    (8*dcPtr->maxHsampFactor);
-	dcPtr->MCUrowsInScan = (dcPtr->imageHeight +
-				dcPtr->maxVsampFactor*8 - 1) /
-			       (dcPtr->maxVsampFactor * 8);
-	dcPtr->blocksInMCU = 0;
+        dcPtr->MCUsPerRow = (dcPtr->imageWidth +
+                             8 * dcPtr->maxHsampFactor - 1) /
+                            (8 * dcPtr->maxHsampFactor);
+        dcPtr->MCUrowsInScan = (dcPtr->imageHeight +
+                                dcPtr->maxVsampFactor * 8 - 1) /
+                               (dcPtr->maxVsampFactor * 8);
+        dcPtr->blocksInMCU = 0;
 
-	for (ci = 0; ci < dcPtr->compsInScan; ci++) {
-	    compPtr = dcPtr->curCompInfo[ci];
+        for (ci = 0; ci < dcPtr->compsInScan; ci++)
+        {
+            compPtr = dcPtr->curCompInfo[ci];
 
-	    /*
+            /*
 	     * for interleaved scan, sampling factors give # of blocks per
 	     * component
 	     */
-	    compPtr->MCUwidth = compPtr->hSampFactor;
-	    compPtr->MCUheight = compPtr->vSampFactor;
-	    compPtr->MCUblocks = compPtr->MCUwidth * compPtr->MCUheight;
+            compPtr->MCUwidth = compPtr->hSampFactor;
+            compPtr->MCUheight = compPtr->vSampFactor;
+            compPtr->MCUblocks = compPtr->MCUwidth * compPtr->MCUheight;
 
-	    /*
+            /*
 	     * compute physical dimensions of component
 	     */
-	    compPtr->downsampledWidth =
-		    JroundUp(compPtr->trueCompWidth, 8*compPtr->MCUwidth);
-	    compPtr->downsampledHeight =
-		    JroundUp (compPtr->trueCompHeight, 8*compPtr->MCUheight);
+            compPtr->downsampledWidth =
+                JroundUp(compPtr->trueCompWidth, 8 * compPtr->MCUwidth);
+            compPtr->downsampledHeight =
+                JroundUp(compPtr->trueCompHeight, 8 * compPtr->MCUheight);
 
-	    /*
+            /*
 	     * Prepare array describing MCU composition
 	     */
-	    mcublks = compPtr->MCUblocks;
-	    if (dcPtr->blocksInMCU + mcublks > 10) {
-		fprintf (stderr,
-			 "Sampling factors too large for interleaved scan");
-		exit (1);
-	    }
-	    while (mcublks-- > 0) {
-		dcPtr->MCUmembership[dcPtr->blocksInMCU++] = ci;
-	    }
-	}
+            mcublks = compPtr->MCUblocks;
+            if (dcPtr->blocksInMCU + mcublks > 10)
+            {
+                fprintf(stderr,
+                        "Sampling factors too large for interleaved scan");
+                exit(1);
+            }
+            while (mcublks-- > 0)
+            {
+                dcPtr->MCUmembership[dcPtr->blocksInMCU++] = ci;
+            }
+        }
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -209,9 +216,9 @@ DecoderStructInit (dcPtr)
  *--------------------------------------------------------------
  */
 void
-CopyDecoderVars(dcPtr, enPtr)
-    DecompressInfo *dcPtr;
-    CompressInfo *enPtr;
+    CopyDecoderVars(dcPtr, enPtr)
+        DecompressInfo *dcPtr;
+CompressInfo *enPtr;
 {
     int i;
 
@@ -229,15 +236,17 @@ CopyDecoderVars(dcPtr, enPtr)
     enPtr->restartInterval = dcPtr->restartInterval;
     enPtr->MCUsPerRow = dcPtr->MCUsPerRow;
     enPtr->MCUrowsInScan = dcPtr->MCUrowsInScan;
-    for (i=0; i<10; i++) {
-	enPtr->MCUmembership[i] = dcPtr->MCUmembership[i];
+    for (i = 0; i < 10; i++)
+    {
+        enPtr->MCUmembership[i] = dcPtr->MCUmembership[i];
     }
-    for (i=0; i<4; i++) {
-	enPtr->acHuffTblPtrs[i] = dcPtr->acHuffTblPtrs[i];
-	enPtr->dcHuffTblPtrs[i] = dcPtr->dcHuffTblPtrs[i];
-	enPtr->quantTblPtrs[i] = dcPtr->quantTblPtrs[i];
-	enPtr->curCompInfo[i] = dcPtr->curCompInfo[i];
-	enPtr->lastDcVal[i] = 0;
+    for (i = 0; i < 4; i++)
+    {
+        enPtr->acHuffTblPtrs[i] = dcPtr->acHuffTblPtrs[i];
+        enPtr->dcHuffTblPtrs[i] = dcPtr->dcHuffTblPtrs[i];
+        enPtr->quantTblPtrs[i] = dcPtr->quantTblPtrs[i];
+        enPtr->curCompInfo[i] = dcPtr->curCompInfo[i];
+        enPtr->lastDcVal[i] = 0;
     }
     enPtr->compsInScan = enPtr->numComponents;
 }

@@ -24,20 +24,20 @@
 
 /*$Header: /home/kbs/jutta/src/gsm/gsm-1.0/inc/RCS/private.h,v 1.4 1994/11/28 20:25:03 jutta Exp $*/
 
-#ifndef	PRIVATE_H
-#define	PRIVATE_H
+#ifndef PRIVATE_H
+#define PRIVATE_H
 
-typedef short word;		/* 16 bit signed int    */
-typedef long longword;		/* 32 bit signed int    */
+typedef short word;    /* 16 bit signed int    */
+typedef long longword; /* 32 bit signed int    */
 
-#define	MIN_WORD	((-32767)-1)
-#define	MAX_WORD	( 32767)
+#define MIN_WORD ((-32767) - 1)
+#define MAX_WORD (32767)
 
-#define	SASR(x, by)	((x) >> (by))
+#define SASR(x, by) ((x) >> (by))
 
-#define GSM_MULT_R(a, b)	gsm_mult_r(a, b)
-#define GSM_MULT(a, b)		gsm_mult(a, b)
-#define GSM_ADD(a, b)		gsm_add(a, b)
-#define GSM_ABS(a)		gsm_abs(a)
+#define GSM_MULT_R(a, b) gsm_mult_r(a, b)
+#define GSM_MULT(a, b) gsm_mult(a, b)
+#define GSM_ADD(a, b) gsm_add(a, b)
+#define GSM_ABS(a) gsm_abs(a)
 
 #endif /* PRIVATE_H */

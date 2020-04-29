@@ -1,7 +1,7 @@
 /**
 	k-NN
 	
-	Version by João MP Cardoso
+	Version by Joï¿½o MP Cardoso
 	Email: jmpc@fe.up.pt
 	
 	April 2020
@@ -18,27 +18,25 @@
 
 #include "dataproperties.h"
 
-
 /**
 	Return a random integer number from min to max).
-*/	
+*/
 int randInt(int min, int max);
 
 /**
 	Return a random double number from min to max).
-*/	
+*/
 double randDouble(double min, double max);
 
 /**
 	Return a random float number from min to max).
-*/	
+*/
 float randFloat(float min, float max);
- 
-  
+
 /**
  	Return a random value for a feature.
 */
- ftype getRandFeatureValue();
+ftype getRandFeatureValue();
 
 /**
 	Initializes the kNN model with random values.
@@ -51,12 +49,11 @@ float randFloat(float min, float max);
 //void initializekNNModel(int Nknown, point *Known, int NFeatures, int NClasses);
 void initializekNNModel(ftype instancesXfeatures[NUM_KNOWN_POINTS][NUM_FEATURES], ctype classifIDs[NUM_KNOWN_POINTS]);
 
-
 /**
 	Show a point: includes the print of the values of its features and its class
 */
 void showPoint(ftype xFeatures[NUM_FEATURES], ctype classifID);
-	
+
 /**
 	Show the K nearest points
 */

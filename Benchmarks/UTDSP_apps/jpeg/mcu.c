@@ -36,7 +36,7 @@
 MCU *mcuTable;
 int numMCU;
 int currMCU;
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -56,9 +56,8 @@ int currMCU;
  *--------------------------------------------------------------
  */
 void
-InitMcuTable(numMCU,blocksInMCU)
-    int numMCU;
-    int blocksInMCU;
+    InitMcuTable(numMCU, blocksInMCU) int numMCU;
+int blocksInMCU;
 {
     int i, mcuSize;
     char *buffer;
@@ -69,7 +68,7 @@ InitMcuTable(numMCU,blocksInMCU)
      * is a whole multiple of sizeof(double).
      */
     mcuSize = blocksInMCU * sizeof(RLE);
-    mcuSize = JroundUp(mcuSize,sizeof(double));
+    mcuSize = JroundUp(mcuSize, sizeof(double));
 
     /*
      * Allocate the MCU table, and a buffer which will contain all
@@ -79,13 +78,14 @@ InitMcuTable(numMCU,blocksInMCU)
      */
     mcuTable = (MCU *)malloc(numMCU * sizeof(MCU));
     buffer = (char *)malloc(numMCU * mcuSize);
-    for (i=0; i<numMCU; i++) {
-	mcuTable[i] = (MCU)(buffer + i*mcuSize);
+    for (i = 0; i < numMCU; i++)
+    {
+        mcuTable[i] = (MCU)(buffer + i * mcuSize);
     }
 }
 
-#define MakeMCU(dcPtr)		(mcuTable[numMCU++])
-
+#define MakeMCU(dcPtr) (mcuTable[numMCU++])
+
 /*
  *--------------------------------------------------------------
  *
@@ -102,21 +102,22 @@ InitMcuTable(numMCU,blocksInMCU)
  *--------------------------------------------------------------
  */
 void
-PrintMCU (blocksInMCU, mcu)
-    int blocksInMCU;
-    MCU mcu;
+    PrintMCU(blocksInMCU, mcu) int blocksInMCU;
+MCU mcu;
 {
     RLE *rle;
     int i, b;
     static int callCount;
 
-    for (b=0; b<blocksInMCU; b++) {
-	callCount++;
-	rle = mcu+b;
-	printf ("%d: %d ", callCount, rle->dc);
-	for (i=0; i<rle->numAC; i++) {
-	    printf ("(%d %d)", rle->ac[i].index, rle->ac[i].value);
-	}
-	printf ("\n");
+    for (b = 0; b < blocksInMCU; b++)
+    {
+        callCount++;
+        rle = mcu + b;
+        printf("%d: %d ", callCount, rle->dc);
+        for (i = 0; i < rle->numAC; i++)
+        {
+            printf("(%d %d)", rle->ac[i].index, rle->ac[i].value);
+        }
+        printf("\n");
     }
 }

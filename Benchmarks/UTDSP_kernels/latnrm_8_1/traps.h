@@ -7,9 +7,9 @@
 
 #include <math.h>
 
-extern int input_dsp();			/* input_dsp  (dest,   words, type) */
-extern void output_dsp();		/* output_dsp (source, words, type) */
-/*
+extern int input_dsp();   /* input_dsp  (dest,   words, type) */
+extern void output_dsp(); /* output_dsp (source, words, type) */
+                          /*
 extern int abs();
 extern float fabs();
 extern float fmod();

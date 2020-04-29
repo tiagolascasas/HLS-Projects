@@ -57,24 +57,23 @@ these four paragraphs for those parts of this code that are retained.
 *----------------------------------------------------------------------------*/
 
 INLINE void
-shift64RightJamming (bits64 a, int16 count, bits64 * zPtr)
+shift64RightJamming(bits64 a, int16 count, bits64 *zPtr)
 {
-  bits64 z;
+    bits64 z;
 
-  if (count == 0)
+    if (count == 0)
     {
-      z = a;
+        z = a;
     }
-  else if (count < 64)
+    else if (count < 64)
     {
-      z = (a >> count) | ((a << ((-count) & 63)) != 0);
+        z = (a >> count) | ((a << ((-count) & 63)) != 0);
     }
-  else
+    else
     {
-      z = (a != 0);
+        z = (a != 0);
     }
-  *zPtr = z;
-
+    *zPtr = z;
 }
 
 /*----------------------------------------------------------------------------
@@ -83,42 +82,40 @@ shift64RightJamming (bits64 a, int16 count, bits64 * zPtr)
 *----------------------------------------------------------------------------*/
 
 static int8
-countLeadingZeros32 (bits32 a)
+countLeadingZeros32(bits32 a)
 {
-  static const int8 countLeadingZerosHigh[256] = {
-    8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,
-    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-  };
-  int8 shiftCount;
+    static const int8 countLeadingZerosHigh[256] = {
+        8, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4,
+        3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int8 shiftCount;
 
-  shiftCount = 0;
-  if (a < 0x10000)
+    shiftCount = 0;
+    if (a < 0x10000)
     {
-      shiftCount += 16;
-      a <<= 16;
+        shiftCount += 16;
+        a <<= 16;
     }
-  if (a < 0x1000000)
+    if (a < 0x1000000)
     {
-      shiftCount += 8;
-      a <<= 8;
+        shiftCount += 8;
+        a <<= 8;
     }
-  shiftCount += countLeadingZerosHigh[a >> 24];
-  return shiftCount;
-
+    shiftCount += countLeadingZerosHigh[a >> 24];
+    return shiftCount;
 }
 
 /*----------------------------------------------------------------------------
@@ -127,20 +124,19 @@ countLeadingZeros32 (bits32 a)
 *----------------------------------------------------------------------------*/
 
 static int8
-countLeadingZeros64 (bits64 a)
+countLeadingZeros64(bits64 a)
 {
-  int8 shiftCount;
+    int8 shiftCount;
 
-  shiftCount = 0;
-  if (a < ((bits64) 1) << 32)
+    shiftCount = 0;
+    if (a < ((bits64)1) << 32)
     {
-      shiftCount += 32;
+        shiftCount += 32;
     }
-  else
+    else
     {
-      a >>= 32;
+        a >>= 32;
     }
-  shiftCount += countLeadingZeros32 (a);
-  return shiftCount;
-
+    shiftCount += countLeadingZeros32(a);
+    return shiftCount;
 }

@@ -52,25 +52,23 @@
  * GLOBAL is defined in exactly one file mpeg2dec.c)
  */
 
-
 /* Get_Bits.c */
-void Fill_Buffer _ANSI_ARGS_ ((void));
-unsigned int Show_Bits _ANSI_ARGS_ ((int n));
-unsigned int Get_Bits1 _ANSI_ARGS_ ((void));
-void Flush_Buffer _ANSI_ARGS_ ((int n));
-unsigned int Get_Bits _ANSI_ARGS_ ((int n));
-int Get_Byte _ANSI_ARGS_ ((void));
+void Fill_Buffer _ANSI_ARGS_((void));
+unsigned int Show_Bits _ANSI_ARGS_((int n));
+unsigned int Get_Bits1 _ANSI_ARGS_((void));
+void Flush_Buffer _ANSI_ARGS_((int n));
+unsigned int Get_Bits _ANSI_ARGS_((int n));
+int Get_Byte _ANSI_ARGS_((void));
 
 /* getvlc.c */
-int Get_motion_code _ANSI_ARGS_ ((void));
-int Get_dmvector _ANSI_ARGS_ ((void));
-int Get_coded_block_pattern _ANSI_ARGS_ ((void));
-
+int Get_motion_code _ANSI_ARGS_((void));
+int Get_dmvector _ANSI_ARGS_((void));
+int Get_coded_block_pattern _ANSI_ARGS_((void));
 
 /* motion.c */
 void motion_vector
-_ANSI_ARGS_ ((int *PMV, int *dmvector, int h_r_size, int v_r_size, int dmv,
-	      int mvscale, int full_pel_vector));
+    _ANSI_ARGS_((int *PMV, int *dmvector, int h_r_size, int v_r_size, int dmv,
+                 int mvscale, int full_pel_vector));
 
 int System_Stream_Flag;
 

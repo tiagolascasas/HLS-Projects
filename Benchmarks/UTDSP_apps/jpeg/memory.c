@@ -38,11 +38,11 @@
 #include "rle.h"
 #include "proto.h"
 
-static char myInputBuffer[1<<20];
+static char myInputBuffer[1 << 20];
 static int myInputBufferOffset;
 static int numStdinBytes;
 static int stdoutTotal;
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -58,11 +58,11 @@ static int stdoutTotal;
  *
  *--------------------------------------------------------------
  */
-FillInputBuffer ()
+FillInputBuffer()
 {
     numStdinBytes = fread(myInputBuffer, 1, sizeof(myInputBuffer), stdin);
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -80,18 +80,18 @@ FillInputBuffer ()
  *--------------------------------------------------------------
  */
 int
-ReadJpegData (buffer, numBytes)
-    char *buffer;		/* Place to put new data */
-    int numBytes;		/* Number of bytes to put */
+    ReadJpegData(buffer, numBytes) char *buffer; /* Place to put new data */
+int numBytes;                                    /* Number of bytes to put */
 {
-    if (numStdinBytes-myInputBufferOffset < numBytes) {
-	numBytes = numStdinBytes-myInputBufferOffset;
+    if (numStdinBytes - myInputBufferOffset < numBytes)
+    {
+        numBytes = numStdinBytes - myInputBufferOffset;
     }
-    memcpy (buffer, myInputBuffer+myInputBufferOffset, numBytes);
+    memcpy(buffer, myInputBuffer + myInputBufferOffset, numBytes);
     myInputBufferOffset += numBytes;
     return numBytes;
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -109,17 +109,15 @@ ReadJpegData (buffer, numBytes)
  *
  *--------------------------------------------------------------
  */
-WriteJpegData  (buffer, numBytes)
-    char *buffer;               /* Data to write */
-    int numBytes;               /* Number of bytes to write */
+WriteJpegData(buffer, numBytes) char *buffer; /* Data to write */
+int numBytes;                                 /* Number of bytes to write */
 {
     stdoutTotal += numBytes;
     return numBytes;
 }
 int
-main(argc, argv)
-    int argc;
-    char **argv;
+    main(argc, argv) int argc;
+char **argv;
 {
     DecompressInfo dcInfo;
     CompressInfo enInfo;
@@ -127,60 +125,65 @@ main(argc, argv)
     MCU mcu;
 
     FillInputBuffer();
-    InitMcuTable (8000, 6);
-    for (count=0; count<100; count++) {
-	myInputBufferOffset = 0;
-	numMCU = 0;
-	memset (&dcInfo, 0, sizeof(dcInfo));
-	memset (&enInfo, 0, sizeof(enInfo));
+    InitMcuTable(8000, 6);
+    for (count = 0; count < 100; count++)
+    {
+        myInputBufferOffset = 0;
+        numMCU = 0;
+        memset(&dcInfo, 0, sizeof(dcInfo));
+        memset(&enInfo, 0, sizeof(enInfo));
 
-	/*
+        /*
 	 * Read the JPEG File header, up to scan header, and initialize all
 	 * the variables in the decompression information structure.
 	 */
-	ReadFileHeader (&dcInfo);
+        ReadFileHeader(&dcInfo);
 
-	/*
+        /*
 	 * Loop through each scan in image.  ReadScanHeader returns
 	 * 0 once it consumes and EOI marker.
 	 */
-	if (!ReadScanHeader (&dcInfo)) {
-	    fprintf (stderr, "Empty JPEG file\n");
-	    exit (1);
-	}
-	DecoderStructInit (&dcInfo);
-	HuffDecoderInit (&dcInfo);
+        if (!ReadScanHeader(&dcInfo))
+        {
+            fprintf(stderr, "Empty JPEG file\n");
+            exit(1);
+        }
+        DecoderStructInit(&dcInfo);
+        HuffDecoderInit(&dcInfo);
 
-	/*
+        /*
 	 * Decompress everything into MCU's
 	 */
-	maxMcu = dcInfo.MCUsPerRow * dcInfo.MCUrowsInScan;
-	for (i = 0; i < maxMcu; i++) {
-	    mcu = MakeMCU(&dcInfo);
-	    DecodeMCUrle (&dcInfo, mcu);
-	}
+        maxMcu = dcInfo.MCUsPerRow * dcInfo.MCUrowsInScan;
+        for (i = 0; i < maxMcu; i++)
+        {
+            mcu = MakeMCU(&dcInfo);
+            DecodeMCUrle(&dcInfo, mcu);
+        }
 
-	if (ReadScanHeader (&dcInfo)) {
-	    fprintf (stderr, "Warning: multiple scans detected in JPEG file\n");
-	    fprintf (stderr, "         not currently supported\n");
-	    fprintf (stderr, "         ignoring extra scans\n");
-	}
+        if (ReadScanHeader(&dcInfo))
+        {
+            fprintf(stderr, "Warning: multiple scans detected in JPEG file\n");
+            fprintf(stderr, "         not currently supported\n");
+            fprintf(stderr, "         ignoring extra scans\n");
+        }
 
-	/*
+        /*
 	 * Set up the compression information structure, write
 	 * the file headers, and encode all the data.
 	 */
-	CopyDecoderVars(&dcInfo, &enInfo);
-	HuffEncoderInit (&enInfo);
-	WriteFileHeader (&enInfo);
-	WriteScanHeader (&enInfo);
-	for (i = 0; i < numMCU; i++) {
-	    mcu = mcuTable[i];
-	    HuffEncode (&enInfo, mcu);
-	}
-	HuffEncoderTerm ();
-	WriteFileTrailer (&enInfo);
-	FlushBytes ();
+        CopyDecoderVars(&dcInfo, &enInfo);
+        HuffEncoderInit(&enInfo);
+        WriteFileHeader(&enInfo);
+        WriteScanHeader(&enInfo);
+        for (i = 0; i < numMCU; i++)
+        {
+            mcu = mcuTable[i];
+            HuffEncode(&enInfo, mcu);
+        }
+        HuffEncoderTerm();
+        WriteFileTrailer(&enInfo);
+        FlushBytes();
     }
-    printf ("Wrote %d bytes\n", stdoutTotal);
+    printf("Wrote %d bytes\n", stdoutTotal);
 }

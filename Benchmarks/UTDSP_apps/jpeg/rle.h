@@ -29,19 +29,20 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-
-typedef struct RleElem {
+typedef struct RleElem
+{
     uchar index;
     short value;
 } RleElem;
 
-typedef struct RLE {
+typedef struct RLE
+{
     short dc;
     uchar numAC;
     RleElem ac[63];
 } RLE;
 
-#define	ALLOC_RLE()	((RLE *)malloc(sizeof(RLE)))
+#define ALLOC_RLE() ((RLE *)malloc(sizeof(RLE)))
 
 /*
  * An MCU (minimum coding unit) is an array of RLE blocks
@@ -52,4 +53,4 @@ extern MCU *mcuTable;
 extern int numMCU;
 extern int currMCU;
 
-#define MakeMCU(dcPtr)		(mcuTable[numMCU++])
+#define MakeMCU(dcPtr) (mcuTable[numMCU++])

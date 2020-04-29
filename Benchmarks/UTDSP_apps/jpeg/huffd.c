@@ -38,29 +38,29 @@
 #include "io.h"
 #include "proto.h"
 
-#define RST0    0xD0            /* RST0 marker code */
+#define RST0 0xD0 /* RST0 marker code */
 
-static long getBuffer;		/* current bit-extraction buffer */
-static int bitsLeft;		/* # of unused bits in it */
+static long getBuffer; /* current bit-extraction buffer */
+static int bitsLeft;   /* # of unused bits in it */
 
 /*
  * The following variables keep track of the input buffer for the JPEG
  * data, which is read by ReadJpegData
  */
 uchar inputBuffer[JPEG_BUF_SIZE]; /* Input buffer for JPEG data */
-int numInputBytes;		/* The total number of bytes in inputBuffer */
-int maxInputBytes;		/* Size of inputBuffer */
-int inputBufferOffset;		/* Offset of current byte */
+int numInputBytes;                /* The total number of bytes in inputBuffer */
+int maxInputBytes;                /* Size of inputBuffer */
+int inputBufferOffset;            /* Offset of current byte */
 
-unsigned int bitMask[] = {  0xffffffff, 0x7fffffff, 0x3fffffff, 0x1fffffff, 
-			    0x0fffffff, 0x07ffffff, 0x03ffffff, 0x01ffffff,
-			    0x00ffffff, 0x007fffff, 0x003fffff, 0x001fffff,
-			    0x000fffff, 0x0007ffff, 0x0003ffff, 0x0001ffff,
-			    0x0000ffff, 0x00007fff, 0x00003fff, 0x00001fff,
-			    0x00000fff, 0x000007ff, 0x000003ff, 0x000001ff,
-			    0x000000ff, 0x0000007f, 0x0000003f, 0x0000001f,
-			    0x0000000f, 0x00000007, 0x00000003, 0x00000001};
-
+unsigned int bitMask[] = {0xffffffff, 0x7fffffff, 0x3fffffff, 0x1fffffff,
+                          0x0fffffff, 0x07ffffff, 0x03ffffff, 0x01ffffff,
+                          0x00ffffff, 0x007fffff, 0x003fffff, 0x001fffff,
+                          0x000fffff, 0x0007ffff, 0x0003ffff, 0x0001ffff,
+                          0x0000ffff, 0x00007fff, 0x00003fff, 0x00001fff,
+                          0x00000fff, 0x000007ff, 0x000003ff, 0x000001ff,
+                          0x000000ff, 0x0000007f, 0x0000003f, 0x0000001f,
+                          0x0000000f, 0x00000007, 0x00000003, 0x00000001};
+
 /*
  *--------------------------------------------------------------
  *
@@ -79,9 +79,9 @@ unsigned int bitMask[] = {  0xffffffff, 0x7fffffff, 0x3fffffff, 0x1fffffff,
  *--------------------------------------------------------------
  */
 
-static void 
-FixHuffTbl (htbl)
-    HuffmanTable *htbl;
+static void
+    FixHuffTbl(htbl)
+        HuffmanTable *htbl;
 {
     int p, i, l, lastp, si;
     char huffsize[257];
@@ -95,13 +95,13 @@ FixHuffTbl (htbl)
      * Note that this is in code-length order.
      */
     p = 0;
-    for (l = 1; l <= 16; l++) {
-	for (i = 1; i <= (int)htbl->bits[l]; i++)
-	    huffsize[p++] = (char)l;
+    for (l = 1; l <= 16; l++)
+    {
+        for (i = 1; i <= (int)htbl->bits[l]; i++)
+            huffsize[p++] = (char)l;
     }
     huffsize[p] = 0;
     lastp = p;
-
 
     /*
      * Figure C.2: generate the codes themselves
@@ -110,13 +110,15 @@ FixHuffTbl (htbl)
     code = 0;
     si = huffsize[0];
     p = 0;
-    while (huffsize[p]) {
-	while (((int)huffsize[p]) == si) {
-	    huffcode[p++] = code;
-	    code++;
-	}
-	code <<= 1;
-	si++;
+    while (huffsize[p])
+    {
+        while (((int)huffsize[p]) == si)
+        {
+            huffcode[p++] = code;
+            code++;
+        }
+        code <<= 1;
+        si++;
     }
 
     /*
@@ -125,26 +127,31 @@ FixHuffTbl (htbl)
      * Set any codeless symbols to have code length 0; this allows
      * EmitBits to detect any attempt to emit such symbols.
      */
-    memset (htbl->ehufsi, 0, sizeof(htbl->ehufsi));
+    memset(htbl->ehufsi, 0, sizeof(htbl->ehufsi));
 
-    for (p = 0; p < lastp; p++) {
-	htbl->ehufco[htbl->huffval[p]] = huffcode[p];
-	htbl->ehufsi[htbl->huffval[p]] = huffsize[p];
+    for (p = 0; p < lastp; p++)
+    {
+        htbl->ehufco[htbl->huffval[p]] = huffcode[p];
+        htbl->ehufsi[htbl->huffval[p]] = huffsize[p];
     }
 
     /*
      * Figure F.15: generate decoding tables
      */
     p = 0;
-    for (l = 1; l <= 16; l++) {
-	if (htbl->bits[l]) {
-	    htbl->valptr[l] = p;
-	    htbl->mincode[l] = huffcode[p];
-	    p += htbl->bits[l];
-	    htbl->maxcode[l] = huffcode[p - 1];
-	} else {
-	    htbl->maxcode[l] = -1;
-	}
+    for (l = 1; l <= 16; l++)
+    {
+        if (htbl->bits[l])
+        {
+            htbl->valptr[l] = p;
+            htbl->mincode[l] = huffcode[p];
+            p += htbl->bits[l];
+            htbl->maxcode[l] = huffcode[p - 1];
+        }
+        else
+        {
+            htbl->maxcode[l] = -1;
+        }
     }
 
     /*
@@ -159,23 +166,29 @@ FixHuffTbl (htbl)
      * If size is zero, it means that more than 8 bits are in the huffman
      * code (this happens about 3-4% of the time).
      */
-    bzero (htbl->numbits, sizeof(htbl->numbits));
-    for (p=0; p<lastp; p++) {
-	size = huffsize[p];
-	if (size <= 8) {
-	    value = htbl->huffval[p];
-	    code = huffcode[p];
-	    ll = code << (8-size);
-	    if (size < 8) {
-		ul = ll | bitMask[24+size];
-	    } else {
-		ul = ll;
-	    }
-	    for (i=ll; i<=ul; i++) {
-		htbl->numbits[i] = size;
-		htbl->value[i] = value;
-	    }
-	}
+    bzero(htbl->numbits, sizeof(htbl->numbits));
+    for (p = 0; p < lastp; p++)
+    {
+        size = huffsize[p];
+        if (size <= 8)
+        {
+            value = htbl->huffval[p];
+            code = huffcode[p];
+            ll = code << (8 - size);
+            if (size < 8)
+            {
+                ul = ll | bitMask[24 + size];
+            }
+            else
+            {
+                ul = ll;
+            }
+            for (i = ll; i <= ul; i++)
+            {
+                htbl->numbits[i] = size;
+                htbl->value[i] = value;
+            }
+        }
     }
 }
 
@@ -196,19 +209,18 @@ FixHuffTbl (htbl)
  * buffer could be used.)  
  */
 
-#define BITS_PER_LONG	(8*sizeof(long))
-#define MIN_GET_BITS  (BITS_PER_LONG-7)	   /* max value for long getBuffer */
+#define BITS_PER_LONG (8 * sizeof(long))
+#define MIN_GET_BITS (BITS_PER_LONG - 7) /* max value for long getBuffer */
 
 /*
  * bmask[n] is mask for n rightmost bits
  */
 static int bmask[] = {0x0000,
-	 0x0001, 0x0003, 0x0007, 0x000F,
-	 0x001F, 0x003F, 0x007F, 0x00FF,
-	 0x01FF, 0x03FF, 0x07FF, 0x0FFF,
-	 0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF};
+                      0x0001, 0x0003, 0x0007, 0x000F,
+                      0x001F, 0x003F, 0x007F, 0x00FF,
+                      0x01FF, 0x03FF, 0x07FF, 0x0FFF,
+                      0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF};
 
-
 /*
  *--------------------------------------------------------------
  *
@@ -227,81 +239,91 @@ static int bmask[] = {0x0000,
  */
 
 static void
-FillBitBuffer (nbits)
-    int nbits;
+    FillBitBuffer(nbits) int nbits;
 {
     int c, c2;
 
-    while (bitsLeft < MIN_GET_BITS) {
-	c = GetJpegChar ();
+    while (bitsLeft < MIN_GET_BITS)
+    {
+        c = GetJpegChar();
 
-	/*
+        /*
 	 * If it's 0xFF, check and discard stuffed zero byte
 	 */
-	if (c == 0xFF) {
-	    c2 = GetJpegChar ();
+        if (c == 0xFF)
+        {
+            c2 = GetJpegChar();
 
-	    if (c2 != 0) {
+            if (c2 != 0)
+            {
 
-		/*
+                /*
 		 * Oops, it's actually a marker indicating end of
 		 * compressed data.  Better put it back for use later.
 		 */
-		UnGetJpegChar (c2);
-		UnGetJpegChar (c);
+                UnGetJpegChar(c2);
+                UnGetJpegChar(c);
 
-		/*
+                /*
 		 * There should be enough bits still left in the data
 		 * segment; if so, just break out of the while loop.
 		 */
-		if (bitsLeft >= nbits)
-		    break;
+                if (bitsLeft >= nbits)
+                    break;
 
-		/*
+                /*
 		 * Uh-oh.  Corrupted data: stuff zeroes into the data
 		 * stream, since this sometimes occurs when we are on the
 		 * last show_bits(8) during decoding of the Huffman
 		 * segment.
 		 */
-		c = 0;
-	    }
-	}
-	/*
+                c = 0;
+            }
+        }
+        /*
 	 * OK, load c into getBuffer
 	 */
-	getBuffer = (getBuffer << 8) | c;
-	bitsLeft += 8;
+        getBuffer = (getBuffer << 8) | c;
+        bitsLeft += 8;
     }
 }
-
 
 /* Macros to make things go at some speed! */
 /* NB: parameter to get_bits should be simple variable, not expression */
 
-#define show_bits(nbits,rv) {						\
-    if (bitsLeft < nbits) FillBitBuffer(nbits);				\
-    rv = (getBuffer >> (bitsLeft-(nbits))) & bmask[nbits];		\
-}
+#define show_bits(nbits, rv)                                     \
+    {                                                            \
+        if (bitsLeft < nbits)                                    \
+            FillBitBuffer(nbits);                                \
+        rv = (getBuffer >> (bitsLeft - (nbits))) & bmask[nbits]; \
+    }
 
-#define show_bits8(rv) {						\
-	if (bitsLeft < 8) FillBitBuffer(8);				\
-	rv = (getBuffer >> (bitsLeft-8)) & 0xff;			\
-}
+#define show_bits8(rv)                             \
+    {                                              \
+        if (bitsLeft < 8)                          \
+            FillBitBuffer(8);                      \
+        rv = (getBuffer >> (bitsLeft - 8)) & 0xff; \
+    }
 
-#define flush_bits(nbits) {						\
-	bitsLeft -= (nbits);						\
-}
+#define flush_bits(nbits)    \
+    {                        \
+        bitsLeft -= (nbits); \
+    }
 
-#define get_bits(nbits,rv) {						\
-	if (bitsLeft < nbits) FillBitBuffer(nbits);			\
-	rv = ((getBuffer >> (bitsLeft -= (nbits)))) & bmask[nbits];	\
-}
+#define get_bits(nbits, rv)                                         \
+    {                                                               \
+        if (bitsLeft < nbits)                                       \
+            FillBitBuffer(nbits);                                   \
+        rv = ((getBuffer >> (bitsLeft -= (nbits)))) & bmask[nbits]; \
+    }
 
-#define get_bit(rv) {							\
-	if (!bitsLeft) FillBitBuffer(1);				\
-	rv = (getBuffer >> (--bitsLeft)) & 1;	 			\
-}
-
+#define get_bit(rv)                           \
+    {                                         \
+        if (!bitsLeft)                        \
+            FillBitBuffer(1);                 \
+        rv = (getBuffer >> (--bitsLeft)) & 1; \
+    }
+
 /*
  *--------------------------------------------------------------
  *
@@ -318,43 +340,49 @@ FillBitBuffer (nbits)
  *
  *--------------------------------------------------------------
  */
-#define HuffDecode(htbl,rv)						\
-{									\
-    int l, code, temp;							\
-									\
-    /*									\
-     * If the huffman code is less than 8 bits, we can use the fast	\
-     * table lookup to get its value.  It's more than 8 bits about	\
-     * 3-4% of the time.						\
-     */									\
-    show_bits8(code);							\
-    if (htbl->numbits[code]) {						\
-	flush_bits(htbl->numbits[code]);				\
-	rv=htbl->value[code];						\
-    }  else {								\
-	flush_bits(8);							\
-	l = 8;								\
-	while (code > htbl->maxcode[l]) {				\
-	    get_bit(temp);						\
-	    code = (code << 1) | temp;					\
-	    l++;							\
-	}								\
-									\
-	/*								\
-	 * With garbage input we may reach the sentinel value l = 17.	\
-	 */								\
-									\
-	if (l > 16) {							\
-	    fprintf (stderr, "Corrupt JPEG data: bad Huffman code");	\
-	    rv = 0;		/* fake a zero as the safest result */	\
-	} else {							\
-	    rv = htbl->huffval[htbl->valptr[l] +			\
-		((int)(code - htbl->mincode[l]))];			\
-	}								\
-    }									\
-}
+#define HuffDecode(htbl, rv)                                              \
+    {                                                                     \
+        int l, code, temp;                                                \
+                                                                          \
+        /*                                                                \
+         * If the huffman code is less than 8 bits, we can use the fast   \
+         * table lookup to get its value.  It's more than 8 bits about    \
+         * 3-4% of the time.                                              \
+         */                                                               \
+        show_bits8(code);                                                 \
+        if (htbl->numbits[code])                                          \
+        {                                                                 \
+            flush_bits(htbl->numbits[code]);                              \
+            rv = htbl->value[code];                                       \
+        }                                                                 \
+        else                                                              \
+        {                                                                 \
+            flush_bits(8);                                                \
+            l = 8;                                                        \
+            while (code > htbl->maxcode[l])                               \
+            {                                                             \
+                get_bit(temp);                                            \
+                code = (code << 1) | temp;                                \
+                l++;                                                      \
+            }                                                             \
+                                                                          \
+            /*                                                            \
+             * With garbage input we may reach the sentinel value l = 17. \
+             */                                                           \
+                                                                          \
+            if (l > 16)                                                   \
+            {                                                             \
+                fprintf(stderr, "Corrupt JPEG data: bad Huffman code");   \
+                rv = 0; /* fake a zero as the safest result */            \
+            }                                                             \
+            else                                                          \
+            {                                                             \
+                rv = htbl->huffval[htbl->valptr[l] +                      \
+                                   ((int)(code - htbl->mincode[l]))];     \
+            }                                                             \
+        }                                                                 \
+    }
 
-
 /*
  *--------------------------------------------------------------
  *
@@ -371,24 +399,24 @@ FillBitBuffer (nbits)
  *--------------------------------------------------------------
  */
 
-static int extendTest[16] =	/* entry n is 2**(n-1) */
-{0, 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040, 0x0080,
- 0x0100, 0x0200, 0x0400, 0x0800, 0x1000, 0x2000, 0x4000};
+static int extendTest[16] = /* entry n is 2**(n-1) */
+    {0, 0x0001, 0x0002, 0x0004, 0x0008, 0x0010, 0x0020, 0x0040, 0x0080,
+     0x0100, 0x0200, 0x0400, 0x0800, 0x1000, 0x2000, 0x4000};
 
-static int extendOffset[16] =	/* entry n is (-1 << n) + 1 */
-{0, ((-1) << 1) + 1, ((-1) << 2) + 1, ((-1) << 3) + 1, ((-1) << 4) + 1,
- ((-1) << 5) + 1, ((-1) << 6) + 1, ((-1) << 7) + 1, ((-1) << 8) + 1,
- ((-1) << 9) + 1, ((-1) << 10) + 1, ((-1) << 11) + 1, ((-1) << 12) + 1,
- ((-1) << 13) + 1, ((-1) << 14) + 1, ((-1) << 15) + 1};
+static int extendOffset[16] = /* entry n is (-1 << n) + 1 */
+    {0, ((-1) << 1) + 1, ((-1) << 2) + 1, ((-1) << 3) + 1, ((-1) << 4) + 1,
+     ((-1) << 5) + 1, ((-1) << 6) + 1, ((-1) << 7) + 1, ((-1) << 8) + 1,
+     ((-1) << 9) + 1, ((-1) << 10) + 1, ((-1) << 11) + 1, ((-1) << 12) + 1,
+     ((-1) << 13) + 1, ((-1) << 14) + 1, ((-1) << 15) + 1};
 
-#define HuffExtend(x,s) {					\
-    if ((x) < extendTest[s]) {					\
-	(x) += extendOffset[s];					\
-    }								\
-}
+#define HuffExtend(x, s)            \
+    {                               \
+        if ((x) < extendTest[s])    \
+        {                           \
+            (x) += extendOffset[s]; \
+        }                           \
+    }
 
-
-
 /*
  *--------------------------------------------------------------
  *
@@ -405,9 +433,9 @@ static int extendOffset[16] =	/* entry n is (-1 << n) + 1 */
  *
  *--------------------------------------------------------------
  */
-void 
-HuffDecoderInit (dcPtr)
-    DecompressInfo *dcPtr;
+void
+    HuffDecoderInit(dcPtr)
+        DecompressInfo *dcPtr;
 {
     short ci;
     JpegComponentInfo *compptr;
@@ -417,29 +445,31 @@ HuffDecoderInit (dcPtr)
      */
     bitsLeft = 0;
 
-    for (ci = 0; ci < dcPtr->compsInScan; ci++) {
-	compptr = dcPtr->curCompInfo[ci];
-	/*
+    for (ci = 0; ci < dcPtr->compsInScan; ci++)
+    {
+        compptr = dcPtr->curCompInfo[ci];
+        /*
 	 * Make sure requested tables are present
 	 */
-	if ((dcPtr->dcHuffTblPtrs[compptr->dcTblNo] == NULL) ||
-	    (dcPtr->acHuffTblPtrs[compptr->acTblNo] == NULL)) {
-	    fprintf (stderr, "Error: Use of undefined Huffman table\n");
-	    exit (1);
-	}
+        if ((dcPtr->dcHuffTblPtrs[compptr->dcTblNo] == NULL) ||
+            (dcPtr->acHuffTblPtrs[compptr->acTblNo] == NULL))
+        {
+            fprintf(stderr, "Error: Use of undefined Huffman table\n");
+            exit(1);
+        }
 
-	/*
+        /*
 	 * Compute derived values for Huffman tables.
 	 * We may do this more than once for same table, but it's not a
 	 * big deal
 	 */
-	FixHuffTbl (dcPtr->dcHuffTblPtrs[compptr->dcTblNo]);
-	FixHuffTbl (dcPtr->acHuffTblPtrs[compptr->acTblNo]);
+        FixHuffTbl(dcPtr->dcHuffTblPtrs[compptr->dcTblNo]);
+        FixHuffTbl(dcPtr->acHuffTblPtrs[compptr->acTblNo]);
 
-	/*
+        /*
 	 * Initialize DC predictions to 0
 	 */
-	dcPtr->lastDcVal[ci] = 0;
+        dcPtr->lastDcVal[ci] = 0;
     }
 
     /*
@@ -448,7 +478,7 @@ HuffDecoderInit (dcPtr)
     dcPtr->restartsToGo = dcPtr->restartInterval;
     dcPtr->nextRestartNum = 0;
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -464,9 +494,9 @@ HuffDecoderInit (dcPtr)
  *
  *--------------------------------------------------------------
  */
-static void 
-ProcessRestart (dcPtr)
-    DecompressInfo *dcPtr;
+static void
+    ProcessRestart(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int c, nbytes;
     short ci;
@@ -480,38 +510,42 @@ ProcessRestart (dcPtr)
     /*
      * Scan for next JPEG marker
      */
-    do {
-	do {			/* skip any non-FF bytes */
-	    nbytes++;
-	    c = GetJpegChar ();
-	} while (c != 0xFF);
-	do {			/* skip any duplicate FFs */
-	    /*
+    do
+    {
+        do
+        { /* skip any non-FF bytes */
+            nbytes++;
+            c = GetJpegChar();
+        } while (c != 0xFF);
+        do
+        { /* skip any duplicate FFs */
+            /*
 	     * we don't increment nbytes here since extra FFs are legal
 	     */
-	    c = GetJpegChar ();
-	} while (c == 0xFF);
-    } while (c == 0);		/* repeat if it was a stuffed FF/00 */
+            c = GetJpegChar();
+        } while (c == 0xFF);
+    } while (c == 0); /* repeat if it was a stuffed FF/00 */
 
     if (nbytes != 1)
-	fprintf (stderr, 
-	   "Corrupt JPEG data: %d extraneous bytes before marker 0x%02x",
-		 nbytes - 1, c);
+        fprintf(stderr,
+                "Corrupt JPEG data: %d extraneous bytes before marker 0x%02x",
+                nbytes - 1, c);
 
-    if (c != (RST0 + dcPtr->nextRestartNum)) {
-	/*
+    if (c != (RST0 + dcPtr->nextRestartNum))
+    {
+        /*
 	 * Uh-oh, the restart markers have been messed up too.
 	 * Just bail out.
 	 */
-	fprintf (stderr, "Error: Corrupt JPEG data.  Exiting...\n");
-	exit(1);
+        fprintf(stderr, "Error: Corrupt JPEG data.  Exiting...\n");
+        exit(1);
     }
 
     /*
      * Re-initialize DC predictions to 0
      */
     for (ci = 0; ci < dcPtr->compsInScan; ci++)
-	dcPtr->lastDcVal[ci] = 0;
+        dcPtr->lastDcVal[ci] = 0;
 
     /*
      * Update restart state
@@ -520,7 +554,6 @@ ProcessRestart (dcPtr)
     dcPtr->nextRestartNum = (dcPtr->nextRestartNum + 1) & 7;
 }
 
-
 /*
  *--------------------------------------------------------------
  *
@@ -539,9 +572,9 @@ ProcessRestart (dcPtr)
  *--------------------------------------------------------------
  */
 void
-DecodeMCUrle (dcPtr, mcuRLE)
-    DecompressInfo *dcPtr;
-    MCU mcuRLE;
+    DecodeMCUrle(dcPtr, mcuRLE)
+        DecompressInfo *dcPtr;
+MCU mcuRLE;
 {
     register int s, k, r;
     short blkn, ci, n;
@@ -553,71 +586,82 @@ DecodeMCUrle (dcPtr, mcuRLE)
     /*
      * Account for restart interval, process restart marker if needed
      */
-    if (dcPtr->restartInterval) {
-	if (dcPtr->restartsToGo == 0)
-	    ProcessRestart (dcPtr);
-	dcPtr->restartsToGo--;
+    if (dcPtr->restartInterval)
+    {
+        if (dcPtr->restartsToGo == 0)
+            ProcessRestart(dcPtr);
+        dcPtr->restartsToGo--;
     }
 
     /*
      * Outer loop handles each block in the MCU
      */
-    for (blkn = 0; blkn < dcPtr->blocksInMCU; blkn++) {
-	rle = mcuRLE+blkn;
-	ci = dcPtr->MCUmembership[blkn];
-	compptr = dcPtr->curCompInfo[ci];
-	actbl = dcPtr->acHuffTblPtrs[compptr->acTblNo];
-	dctbl = dcPtr->dcHuffTblPtrs[compptr->dcTblNo];
+    for (blkn = 0; blkn < dcPtr->blocksInMCU; blkn++)
+    {
+        rle = mcuRLE + blkn;
+        ci = dcPtr->MCUmembership[blkn];
+        compptr = dcPtr->curCompInfo[ci];
+        actbl = dcPtr->acHuffTblPtrs[compptr->acTblNo];
+        dctbl = dcPtr->dcHuffTblPtrs[compptr->dcTblNo];
 
-	/*
+        /*
 	 * Section F.2.2.1: decode the DC coefficient difference
 	 */
-	HuffDecode (dctbl,s);
-	if (s) {
-	    get_bits(s,r);
-	    HuffExtend(r,s);
-	} else {
-	    r = 0;
-	}
+        HuffDecode(dctbl, s);
+        if (s)
+        {
+            get_bits(s, r);
+            HuffExtend(r, s);
+        }
+        else
+        {
+            r = 0;
+        }
 
-	/* 
+        /* 
 	 * Convert DC difference to actual value, update lastDcVal
 	 */
-	r += dcPtr->lastDcVal[ci];
-	dcPtr->lastDcVal[ci] = r;
+        r += dcPtr->lastDcVal[ci];
+        dcPtr->lastDcVal[ci] = r;
 
-	/*
+        /*
 	 * Descale and output the DC coefficient (assumes ZAG[0] = 0)
 	 */
-	rle->dc = r;
+        rle->dc = r;
 
-	/*
+        /*
 	 * Section F.2.2.2: decode the AC coefficients
 	 */
-	n=0;
-	k=1;
-	while (k < 64) {
-	    HuffDecode (actbl,r);
+        n = 0;
+        k = 1;
+        while (k < 64)
+        {
+            HuffDecode(actbl, r);
 
-	    s = r & 0xf;
+            s = r & 0xf;
 
-	    if (s) {
-		k += (r >> 4);
-		get_bits(s,r);
-		HuffExtend(r,s);
+            if (s)
+            {
+                k += (r >> 4);
+                get_bits(s, r);
+                HuffExtend(r, s);
 
-		/*
+                /*
 		 * Put index, value pair in rle
 		 */
-		rle->ac[n].index = k++;
-		rle->ac[n].value = r;
-		n++;
-	    } else if (r == 0xf0) {
-		k += 16;
-	    } else {
-		break;
-	    }
-	}
-	rle->numAC = n;
+                rle->ac[n].index = k++;
+                rle->ac[n].value = r;
+                n++;
+            }
+            else if (r == 0xf0)
+            {
+                k += 16;
+            }
+            else
+            {
+                break;
+            }
+        }
+        rle->numAC = n;
     }
 }

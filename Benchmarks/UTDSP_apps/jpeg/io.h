@@ -27,12 +27,12 @@
 /*
  * Size of the output buffer
  */
-#define JPEG_BUF_SIZE   4096
-#define RST0    0xD0            /* RST0 marker code */
+#define JPEG_BUF_SIZE 4096
+#define RST0 0xD0 /* RST0 marker code */
 
-extern char outputBuffer[JPEG_BUF_SIZE];       /* output buffer */
+extern char outputBuffer[JPEG_BUF_SIZE]; /* output buffer */
 extern int bytesInBuffer;
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -49,9 +49,11 @@ extern int bytesInBuffer;
  *
  *--------------------------------------------------------------
  */
-#define EmitByte(val)  {						\
-    if (bytesInBuffer >= JPEG_BUF_SIZE) {				\
-	FlushBytes();							\
-    }									\
-    outputBuffer[bytesInBuffer++] = (char)(val);			\
-}
+#define EmitByte(val)                                \
+    {                                                \
+        if (bytesInBuffer >= JPEG_BUF_SIZE)          \
+        {                                            \
+            FlushBytes();                            \
+        }                                            \
+        outputBuffer[bytesInBuffer++] = (char)(val); \
+    }

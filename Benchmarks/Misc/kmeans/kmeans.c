@@ -47,7 +47,7 @@
 */
 
 /**
-	modifications of types by João MP Cardoso, FEUP/UP, Dec. 2016
+	modifications of types by Joï¿½o MP Cardoso, FEUP/UP, Dec. 2016
 */
 
 #include <stdlib.h>
@@ -56,90 +56,105 @@
 
 #include "kmeans.h"
 
-ctype * k_means(ftype **data, int n, int m, int k, dtype t, ftype **centroids) {
-	
-   /* output cluster label for each data point */
-   ctype *labels = (ctype*) calloc(n, sizeof(int));
+ctype *k_means(ftype **data, int n, int m, int k, dtype t, ftype **centroids)
+{
 
-   int h, i, j; /* loop counters, of course :) */
-   
-   int *counts = (int*) calloc(k, sizeof(int)); /* size of each cluster */
-   dtype old_error, error = MAXVAL; /* sum of squared euclidean distance */
-   ftype **c = centroids ? centroids : (ftype**)calloc(k, sizeof(ftype*));
-   ftype **c1 = (ftype**) calloc(k, sizeof(ftype*)); /* temp centroids */
+    /* output cluster label for each data point */
+    ctype *labels = (ctype *)calloc(n, sizeof(int));
 
-   assert(data && k > 0 && k <= n && m > 0 && t >= 0); /* for debugging */
+    int h, i, j; /* loop counters, of course :) */
 
-   /****
+    int *counts = (int *)calloc(k, sizeof(int)); /* size of each cluster */
+    dtype old_error, error = MAXVAL;             /* sum of squared euclidean distance */
+    ftype **c = centroids ? centroids : (ftype **)calloc(k, sizeof(ftype *));
+    ftype **c1 = (ftype **)calloc(k, sizeof(ftype *)); /* temp centroids */
+
+    assert(data && k > 0 && k <= n && m > 0 && t >= 0); /* for debugging */
+
+    /****
    ** initialization */
-   for (h = i = 0; i < k; h += n / k, i++) {
-      c1[i] = (ftype*)calloc(m, sizeof(ftype));
-      if (!centroids) {
-         c[i] = (ftype*)calloc(m, sizeof(ftype));
-      }
-      /* pick k points as initial centroids */
-      for (j = m; j-- > 0; c[i][j] = data[h][j]);
-   }
+    for (h = i = 0; i < k; h += n / k, i++)
+    {
+        c1[i] = (ftype *)calloc(m, sizeof(ftype));
+        if (!centroids)
+        {
+            c[i] = (ftype *)calloc(m, sizeof(ftype));
+        }
+        /* pick k points as initial centroids */
+        for (j = m; j-- > 0; c[i][j] = data[h][j])
+            ;
+    }
 
-   /****
+    /****
    ** main loop */
 
-   do {
-      /* save error from last step */
-      old_error = error, error = 0;
+    do
+    {
+        /* save error from last step */
+        old_error = error, error = 0;
 
-      /* clear old counts and temp centroids */
-      for (i = 0; i < k; counts[i++] = 0) {
-         for (j = 0; j < m; c1[i][j++] = 0);
-      }
+        /* clear old counts and temp centroids */
+        for (i = 0; i < k; counts[i++] = 0)
+        {
+            for (j = 0; j < m; c1[i][j++] = 0)
+                ;
+        }
 
-      for (h = 0; h < n; h++) {
-         /* identify the closest cluster */
-         dtype min_distance = DBL_MAX;
-         for (i = 0; i < k; i++) {
-            dtype distance = (dtype) 0;
-            
-            //for (j = m; j-- > 0; distance += pow(data[h][j] - c[i][j], 2));
-			for (j = m; j-- > 0; distance += sqr((dtype) data[h][j] - (dtype) c[i][j])); // changed by jmpc
-            
-            if (distance < min_distance) {
-               labels[h] = i;
-               min_distance = distance;
+        for (h = 0; h < n; h++)
+        {
+            /* identify the closest cluster */
+            dtype min_distance = DBL_MAX;
+            for (i = 0; i < k; i++)
+            {
+                dtype distance = (dtype)0;
+
+                //for (j = m; j-- > 0; distance += pow(data[h][j] - c[i][j], 2));
+                for (j = m; j-- > 0; distance += sqr((dtype)data[h][j] - (dtype)c[i][j]))
+                    ; // changed by jmpc
+
+                if (distance < min_distance)
+                {
+                    labels[h] = i;
+                    min_distance = distance;
+                }
             }
-         }
-         /* update size and temp centroid of the destination cluster */
-         for (j = m; j-- > 0; c1[(int) labels[h]][j] += data[h][j]);
-         counts[(int) labels[h]]++;
-         /* update standard error */
-         error += min_distance;
-      }
+            /* update size and temp centroid of the destination cluster */
+            for (j = m; j-- > 0; c1[(int)labels[h]][j] += data[h][j])
+                ;
+            counts[(int)labels[h]]++;
+            /* update standard error */
+            error += min_distance;
+        }
 
-      for (i = 0; i < k; i++) { /* update all centroids */
-         for (j = 0; j < m; j++) {
-            c[i][j] = counts[i] ? c1[i][j] / counts[i] : c1[i][j];
-         }
-      }
+        for (i = 0; i < k; i++)
+        { /* update all centroids */
+            for (j = 0; j < m; j++)
+            {
+                c[i][j] = counts[i] ? c1[i][j] / counts[i] : c1[i][j];
+            }
+        }
 
-   } while (fabs(error - old_error) > t);
+    } while (fabs(error - old_error) > t);
 
-   /****
+    /****
    ** housekeeping 
    */
-   for (i = 0; i < k; i++) {
-      if (!centroids) {
-         free(c[i]);
-      }
-      free(c1[i]);
-   }
+    for (i = 0; i < k; i++)
+    {
+        if (!centroids)
+        {
+            free(c[i]);
+        }
+        free(c1[i]);
+    }
 
-   if (!centroids) {
-      free(c);
-   }
-   free(c1);
+    if (!centroids)
+    {
+        free(c);
+    }
+    free(c1);
 
-   free(counts);
+    free(counts);
 
-   return labels;
+    return labels;
 }
-
-

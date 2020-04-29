@@ -53,21 +53,14 @@
    of the tables in Annex B to a form more convenient towards 
    parallel (more than one-bit-at-a-time) decoding */
 
-
 /* Table B-10, motion_code, codes 0001 ... 01xx */
 const char MVtab0[8][2] = {
-  {ERROR, 0}, {3, 3}, {2, 2}, {2, 2},
-  {1, 1}, {1, 1}, {1, 1}, {1, 1}
-};
+    {ERROR, 0}, {3, 3}, {2, 2}, {2, 2}, {1, 1}, {1, 1}, {1, 1}, {1, 1}};
 
 /* Table B-10, motion_code, codes 0000011 ... 000011x */
 const char MVtab1[8][2] = {
-  {ERROR, 0}, {ERROR, 0}, {ERROR, 0}, {7, 6},
-  {6, 6}, {5, 6}, {4, 5}, {4, 5}
-};
+    {ERROR, 0}, {ERROR, 0}, {ERROR, 0}, {7, 6}, {6, 6}, {5, 6}, {4, 5}, {4, 5}};
 
 /* Table B-10, motion_code, codes 0000001100 ... 000001011x */
 const char MVtab2[12][2] = {
-  {16, 9}, {15, 9}, {14, 9}, {13, 9}, {12, 9}, {11, 9},
-  {10, 8}, {10, 8}, {9, 8}, {9, 8}, {8, 8}, {8, 8}
-};
+    {16, 9}, {15, 9}, {14, 9}, {13, 9}, {12, 9}, {11, 9}, {10, 8}, {10, 8}, {9, 8}, {9, 8}, {8, 8}, {8, 8}};

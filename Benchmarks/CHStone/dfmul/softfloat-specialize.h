@@ -60,29 +60,25 @@ these four paragraphs for those parts of this code that are retained.
 | should be simply `float_exception_flags |= flags;'.
 *----------------------------------------------------------------------------*/
 
-void
-float_raise (int8 flags)
+void float_raise(int8 flags)
 {
-  float_exception_flags |= flags;
-
+    float_exception_flags |= flags;
 }
 
 /*----------------------------------------------------------------------------
 | The pattern for a default generated double-precision NaN.
 *----------------------------------------------------------------------------*/
-#define float64_default_nan LIT64( 0x7FFFFFFFFFFFFFFF )
+#define float64_default_nan LIT64(0x7FFFFFFFFFFFFFFF)
 
 /*----------------------------------------------------------------------------
 | Returns 1 if the double-precision floating-point value `a' is a NaN;
 | otherwise returns 0.
 *----------------------------------------------------------------------------*/
 
-flag
-float64_is_nan (float64 a)
+flag float64_is_nan(float64 a)
 {
 
-  return (LIT64 (0xFFE0000000000000) < (bits64) (a << 1));
-
+    return (LIT64(0xFFE0000000000000) < (bits64)(a << 1));
 }
 
 /*----------------------------------------------------------------------------
@@ -90,12 +86,10 @@ float64_is_nan (float64 a)
 | NaN; otherwise returns 0.
 *----------------------------------------------------------------------------*/
 
-flag
-float64_is_signaling_nan (float64 a)
+flag float64_is_signaling_nan(float64 a)
 {
 
-  return (((a >> 51) & 0xFFF) == 0xFFE) && (a & LIT64 (0x0007FFFFFFFFFFFF));
-
+    return (((a >> 51) & 0xFFF) == 0xFFE) && (a & LIT64(0x0007FFFFFFFFFFFF));
 }
 
 /*----------------------------------------------------------------------------
@@ -105,18 +99,17 @@ float64_is_signaling_nan (float64 a)
 *----------------------------------------------------------------------------*/
 
 static float64
-propagateFloat64NaN (float64 a, float64 b)
+propagateFloat64NaN(float64 a, float64 b)
 {
-  flag aIsNaN, aIsSignalingNaN, bIsNaN, bIsSignalingNaN;
+    flag aIsNaN, aIsSignalingNaN, bIsNaN, bIsSignalingNaN;
 
-  aIsNaN = float64_is_nan (a);
-  aIsSignalingNaN = float64_is_signaling_nan (a);
-  bIsNaN = float64_is_nan (b);
-  bIsSignalingNaN = float64_is_signaling_nan (b);
-  a |= LIT64 (0x0008000000000000);
-  b |= LIT64 (0x0008000000000000);
-  if (aIsSignalingNaN | bIsSignalingNaN)
-    float_raise (float_flag_invalid);
-  return bIsSignalingNaN ? b : aIsSignalingNaN ? a : bIsNaN ? b : a;
-
+    aIsNaN = float64_is_nan(a);
+    aIsSignalingNaN = float64_is_signaling_nan(a);
+    bIsNaN = float64_is_nan(b);
+    bIsSignalingNaN = float64_is_signaling_nan(b);
+    a |= LIT64(0x0008000000000000);
+    b |= LIT64(0x0008000000000000);
+    if (aIsSignalingNaN | bIsSignalingNaN)
+        float_raise(float_flag_invalid);
+    return bIsSignalingNaN ? b : aIsSignalingNaN ? a : bIsNaN ? b : a;
 }

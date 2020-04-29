@@ -41,59 +41,60 @@
 /* 
  * Enumerate all the JPEG marker codes
  */
-typedef enum {
-      M_SOF0 = 0xc0,
-      M_SOF1 = 0xc1,
-      M_SOF2 = 0xc2,
-      M_SOF3 = 0xc3,
+typedef enum
+{
+    M_SOF0 = 0xc0,
+    M_SOF1 = 0xc1,
+    M_SOF2 = 0xc2,
+    M_SOF3 = 0xc3,
 
-      M_SOF5 = 0xc5,
-      M_SOF6 = 0xc6,
-      M_SOF7 = 0xc7,
+    M_SOF5 = 0xc5,
+    M_SOF6 = 0xc6,
+    M_SOF7 = 0xc7,
 
-      M_JPG = 0xc8,
-      M_SOF9 = 0xc9,
-      M_SOF10 = 0xca,
-      M_SOF11 = 0xcb,
+    M_JPG = 0xc8,
+    M_SOF9 = 0xc9,
+    M_SOF10 = 0xca,
+    M_SOF11 = 0xcb,
 
-      M_SOF13 = 0xcd,
-      M_SOF14 = 0xce,
-      M_SOF15 = 0xcf,
+    M_SOF13 = 0xcd,
+    M_SOF14 = 0xce,
+    M_SOF15 = 0xcf,
 
-      M_DHT = 0xc4,
+    M_DHT = 0xc4,
 
-      M_DAC = 0xcc,
+    M_DAC = 0xcc,
 
-      M_RST0 = 0xd0,
-      M_RST1 = 0xd1,
-      M_RST2 = 0xd2,
-      M_RST3 = 0xd3,
-      M_RST4 = 0xd4,
-      M_RST5 = 0xd5,
-      M_RST6 = 0xd6,
-      M_RST7 = 0xd7,
+    M_RST0 = 0xd0,
+    M_RST1 = 0xd1,
+    M_RST2 = 0xd2,
+    M_RST3 = 0xd3,
+    M_RST4 = 0xd4,
+    M_RST5 = 0xd5,
+    M_RST6 = 0xd6,
+    M_RST7 = 0xd7,
 
-      M_SOI = 0xd8,
-      M_EOI = 0xd9,
-      M_SOS = 0xda,
-      M_DQT = 0xdb,
-      M_DNL = 0xdc,
-      M_DRI = 0xdd,
-      M_DHP = 0xde,
-      M_EXP = 0xdf,
+    M_SOI = 0xd8,
+    M_EOI = 0xd9,
+    M_SOS = 0xda,
+    M_DQT = 0xdb,
+    M_DNL = 0xdc,
+    M_DRI = 0xdd,
+    M_DHP = 0xde,
+    M_EXP = 0xdf,
 
-      M_APP0 = 0xe0,
-      M_APP15 = 0xef,
+    M_APP0 = 0xe0,
+    M_APP15 = 0xef,
 
-      M_JPG0 = 0xf0,
-      M_JPG13 = 0xfd,
-      M_COM = 0xfe,
+    M_JPG0 = 0xf0,
+    M_JPG13 = 0xfd,
+    M_COM = 0xfe,
 
-      M_TEM = 0x01,
+    M_TEM = 0x01,
 
-      M_ERROR = 0x100
+    M_ERROR = 0x100
 } JpegMarker;
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -111,15 +112,15 @@ typedef enum {
  *--------------------------------------------------------------
  */
 static uint
-Get2bytes (dcPtr)
-    DecompressInfo *dcPtr;
+    Get2bytes(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int a;
 
     a = GetJpegChar();
     return (a << 8) + GetJpegChar();
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -137,18 +138,19 @@ Get2bytes (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-SkipVariable (dcPtr)
-    DecompressInfo *dcPtr;
+    SkipVariable(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int length;
 
-    length = Get2bytes (dcPtr) - 2;
+    length = Get2bytes(dcPtr) - 2;
 
-    while (length--) {
-	GetJpegChar();
+    while (length--)
+    {
+        GetJpegChar();
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -166,8 +168,8 @@ SkipVariable (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-GetDht (dcPtr)
-    DecompressInfo *dcPtr;
+    GetDht(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int length;
     uchar bits[17];
@@ -175,49 +177,57 @@ GetDht (dcPtr)
     int i, index, count;
     HuffmanTable **htblptr;
 
-    length = Get2bytes (dcPtr) - 2;
+    length = Get2bytes(dcPtr) - 2;
 
-    while (length) {
-	index = GetJpegChar();
+    while (length)
+    {
+        index = GetJpegChar();
 
-	bits[0] = 0;
-	count = 0;
-	for (i = 1; i <= 16; i++) {
-	    bits[i] = GetJpegChar();
-	    count += bits[i];
-	}
+        bits[0] = 0;
+        count = 0;
+        for (i = 1; i <= 16; i++)
+        {
+            bits[i] = GetJpegChar();
+            count += bits[i];
+        }
 
-	if (count > 256) {
-	    fprintf (stderr, "Bogus DHT counts");
-	    exit (1);
-	}
+        if (count > 256)
+        {
+            fprintf(stderr, "Bogus DHT counts");
+            exit(1);
+        }
 
-	for (i = 0; i < count; i++)
-	    huffval[i] = GetJpegChar();
+        for (i = 0; i < count; i++)
+            huffval[i] = GetJpegChar();
 
-	length -= 1 + 16 + count;
+        length -= 1 + 16 + count;
 
-	if (index & 0x10) {	/* AC table definition */
-	    index -= 0x10;
-	    htblptr = &dcPtr->acHuffTblPtrs[index];
-	} else {		/* DC table definition */
-	    htblptr = &dcPtr->dcHuffTblPtrs[index];
-	}
+        if (index & 0x10)
+        { /* AC table definition */
+            index -= 0x10;
+            htblptr = &dcPtr->acHuffTblPtrs[index];
+        }
+        else
+        { /* DC table definition */
+            htblptr = &dcPtr->dcHuffTblPtrs[index];
+        }
 
-	if (index < 0 || index >= 4) {
-	    fprintf (stderr, "Bogus DHT index %d", index);
-	    exit (1);
-	}
+        if (index < 0 || index >= 4)
+        {
+            fprintf(stderr, "Bogus DHT index %d", index);
+            exit(1);
+        }
 
-	if (*htblptr == NULL) {
-	    *htblptr = (HuffmanTable *) malloc (sizeof (HuffmanTable));
-	}
+        if (*htblptr == NULL)
+        {
+            *htblptr = (HuffmanTable *)malloc(sizeof(HuffmanTable));
+        }
 
-	memcpy ((*htblptr)->bits, bits, sizeof ((*htblptr)->bits));
-	memcpy ((*htblptr)->huffval, huffval, sizeof ((*htblptr)->huffval));
+        memcpy((*htblptr)->bits, bits, sizeof((*htblptr)->bits));
+        memcpy((*htblptr)->huffval, huffval, sizeof((*htblptr)->huffval));
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -235,46 +245,52 @@ GetDht (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-GetDqt (dcPtr)
-    DecompressInfo *dcPtr;
+    GetDqt(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int length;
     int n, i, prec;
     ushort tmp;
     short *quantPtr;
 
-    length = Get2bytes (dcPtr) - 2;
+    length = Get2bytes(dcPtr) - 2;
 
-    while (length) {
-	n = GetJpegChar();
-	prec = n >> 4;
-	n &= 0x0F;
+    while (length)
+    {
+        n = GetJpegChar();
+        prec = n >> 4;
+        n &= 0x0F;
 
-	if (n >= 4) {
-	    fprintf (stderr, "Bogus table number %d", n);
-	    exit (1);
-	}
+        if (n >= 4)
+        {
+            fprintf(stderr, "Bogus table number %d", n);
+            exit(1);
+        }
 
-	if (dcPtr->quantTblPtrs[n] == NULL) {
-	    dcPtr->quantTblPtrs[n] = (short *) malloc (64*sizeof (short));
-	}
-	quantPtr = dcPtr->quantTblPtrs[n];
+        if (dcPtr->quantTblPtrs[n] == NULL)
+        {
+            dcPtr->quantTblPtrs[n] = (short *)malloc(64 * sizeof(short));
+        }
+        quantPtr = dcPtr->quantTblPtrs[n];
 
-	for (i = 0; i < 64; i++) {
-	    tmp = GetJpegChar();
-	    if (prec) {
-		tmp = (tmp << 8) + GetJpegChar();
-	    }
-	    quantPtr[i] = tmp;
-	}
+        for (i = 0; i < 64; i++)
+        {
+            tmp = GetJpegChar();
+            if (prec)
+            {
+                tmp = (tmp << 8) + GetJpegChar();
+            }
+            quantPtr[i] = tmp;
+        }
 
-	length -= 65;
-	if (prec) {
-	    length -= 64;
-	}
+        length -= 65;
+        if (prec)
+        {
+            length -= 64;
+        }
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -292,17 +308,18 @@ GetDqt (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-GetDri (dcPtr)
-    DecompressInfo *dcPtr;
+    GetDri(dcPtr)
+        DecompressInfo *dcPtr;
 {
-    if (Get2bytes (dcPtr) != 4) {
-	fprintf (stderr, "Bogus length in DRI");
-	exit (1);
+    if (Get2bytes(dcPtr) != 4)
+    {
+        fprintf(stderr, "Bogus length in DRI");
+        exit(1);
     }
 
-    dcPtr->restartInterval = (ushort) Get2bytes (dcPtr);
+    dcPtr->restartInterval = (ushort)Get2bytes(dcPtr);
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -320,50 +337,53 @@ GetDri (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-GetApp0 (dcPtr)
-    DecompressInfo *dcPtr;
+    GetApp0(dcPtr)
+        DecompressInfo *dcPtr;
 {
 #define JFIF_LEN 14
     int length;
     uchar b[JFIF_LEN];
     int buffp;
 
-    length = Get2bytes (dcPtr) - 2;
+    length = Get2bytes(dcPtr) - 2;
 
     /*
      * See if a JFIF APP0 marker is present
      */
 
-    if (length >= JFIF_LEN) {
-	for (buffp = 0; buffp < JFIF_LEN; buffp++)
-	    b[buffp] = GetJpegChar();
-	length -= JFIF_LEN;
+    if (length >= JFIF_LEN)
+    {
+        for (buffp = 0; buffp < JFIF_LEN; buffp++)
+            b[buffp] = GetJpegChar();
+        length -= JFIF_LEN;
 
-	if (strncmp (b, "JFIF", 5) == 0) {
-	    /*
+        if (strncmp(b, "JFIF", 5) == 0)
+        {
+            /*
 	     * Found JFIF APP0 marker: check version
 	     * Major version must be 1
 	     */
-	    if (b[5] != 1) {
-		fprintf (stderr, "Unsupported JFIF revision number %d.%02d",
-			  b[5], b[6]);
-		exit (1);
-	    }
+            if (b[5] != 1)
+            {
+                fprintf(stderr, "Unsupported JFIF revision number %d.%02d",
+                        b[5], b[6]);
+                exit(1);
+            }
 
-	    /*
+            /*
 	     * Minor version should be 0..2, but try to process anyway if
 	     * newer
 	     */
-	    dcPtr->densityUnit = b[7];
-	    dcPtr->Xdensity = (b[8] << 8) + b[9];
-	    dcPtr->Ydensity = (b[10] << 8) + b[11];
-	}
+            dcPtr->densityUnit = b[7];
+            dcPtr->Xdensity = (b[8] << 8) + b[9];
+            dcPtr->Ydensity = (b[10] << 8) + b[11];
+        }
     }
 
-    while (length-- > 0)	/* skip any remaining data */
-	(void)GetJpegChar();
+    while (length-- > 0) /* skip any remaining data */
+        (void)GetJpegChar();
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -383,20 +403,20 @@ GetApp0 (dcPtr)
  */
 
 static void
-GetSof (dcPtr, code)
-    DecompressInfo *dcPtr;
-    int code;
+    GetSof(dcPtr, code)
+        DecompressInfo *dcPtr;
+int code;
 {
     int length;
     short ci;
     int c;
     JpegComponentInfo *compptr;
 
-    length = Get2bytes (dcPtr);
+    length = Get2bytes(dcPtr);
 
     dcPtr->dataPrecision = GetJpegChar();
-    dcPtr->imageHeight = Get2bytes (dcPtr);
-    dcPtr->imageWidth = Get2bytes (dcPtr);
+    dcPtr->imageHeight = Get2bytes(dcPtr);
+    dcPtr->imageWidth = Get2bytes(dcPtr);
     dcPtr->numComponents = GetJpegChar();
 
     /*
@@ -404,37 +424,40 @@ GetSof (dcPtr, code)
      * specified as 0 and is later redefined by DNL.  As long as we
      * have to check that, might as well have a general sanity check.
      */
-    if ((dcPtr->imageHeight <= 0 ) ||
-	(dcPtr->imageWidth <= 0) || 
-	(dcPtr->numComponents <= 0)) {
-	fprintf (stderr, "Empty JPEG image (DNL not supported)");
-	exit(1);
+    if ((dcPtr->imageHeight <= 0) ||
+        (dcPtr->imageWidth <= 0) ||
+        (dcPtr->numComponents <= 0))
+    {
+        fprintf(stderr, "Empty JPEG image (DNL not supported)");
+        exit(1);
     }
 
-    if (dcPtr->dataPrecision != 8) {
-	fprintf (stderr, "Unsupported JPEG data precision");
-	exit(1);
+    if (dcPtr->dataPrecision != 8)
+    {
+        fprintf(stderr, "Unsupported JPEG data precision");
+        exit(1);
     }
 
-    if (length != (dcPtr->numComponents * 3 + 8)) {
-	fprintf (stderr, "Bogus SOF length");
-	exit (1);
+    if (length != (dcPtr->numComponents * 3 + 8))
+    {
+        fprintf(stderr, "Bogus SOF length");
+        exit(1);
     }
 
-    dcPtr->compInfo = (JpegComponentInfo *) malloc
-	(dcPtr->numComponents * sizeof (JpegComponentInfo));
+    dcPtr->compInfo = (JpegComponentInfo *)malloc(dcPtr->numComponents * sizeof(JpegComponentInfo));
 
-    for (ci = 0; ci < dcPtr->numComponents; ci++) {
-	compptr = &dcPtr->compInfo[ci];
-	compptr->componentIndex = ci;
-	compptr->componentId = GetJpegChar();
-	c = GetJpegChar();
-	compptr->hSampFactor = (c >> 4) & 15;
-	compptr->vSampFactor = (c) & 15;
-	compptr->quantTblNo = GetJpegChar();
+    for (ci = 0; ci < dcPtr->numComponents; ci++)
+    {
+        compptr = &dcPtr->compInfo[ci];
+        compptr->componentIndex = ci;
+        compptr->componentId = GetJpegChar();
+        c = GetJpegChar();
+        compptr->hSampFactor = (c >> 4) & 15;
+        compptr->vSampFactor = (c)&15;
+        compptr->quantTblNo = GetJpegChar();
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -452,52 +475,56 @@ GetSof (dcPtr, code)
  *--------------------------------------------------------------
  */
 static void
-GetSos (dcPtr)
-    DecompressInfo *dcPtr;
+    GetSos(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int length;
     int i, ci, n, c, cc;
     JpegComponentInfo *compptr;
 
-    length = Get2bytes (dcPtr);
+    length = Get2bytes(dcPtr);
 
-    n = GetJpegChar();		/* Number of components */
+    n = GetJpegChar(); /* Number of components */
     dcPtr->compsInScan = n;
     length -= 3;
 
-    if (length != (n * 2 + 3) || n < 1 || n > 4) {
-	fprintf (stderr, "Bogus SOS length");
-	exit (1);
+    if (length != (n * 2 + 3) || n < 1 || n > 4)
+    {
+        fprintf(stderr, "Bogus SOS length");
+        exit(1);
     }
 
+    for (i = 0; i < n; i++)
+    {
+        cc = GetJpegChar();
+        c = GetJpegChar();
+        length -= 2;
 
-    for (i = 0; i < n; i++) {
-	cc = GetJpegChar();
-	c = GetJpegChar();
-	length -= 2;
+        for (ci = 0; ci < dcPtr->numComponents; ci++)
+            if (cc == dcPtr->compInfo[ci].componentId)
+            {
+                break;
+            }
 
-	for (ci = 0; ci < dcPtr->numComponents; ci++)
-	    if (cc == dcPtr->compInfo[ci].componentId) {
-		break;
-	    }
+        if (ci >= dcPtr->numComponents)
+        {
+            fprintf(stderr, "Invalid component number in SOS");
+            exit(1);
+        }
 
-	if (ci >= dcPtr->numComponents) {
-	    fprintf (stderr, "Invalid component number in SOS");
-	    exit (1);
-	}
-
-	compptr = &dcPtr->compInfo[ci];
-	dcPtr->curCompInfo[i] = compptr;
-	compptr->dcTblNo = (c >> 4) & 15;
-	compptr->acTblNo = (c) & 15;
+        compptr = &dcPtr->compInfo[ci];
+        dcPtr->curCompInfo[i] = compptr;
+        compptr->dcTblNo = (c >> 4) & 15;
+        compptr->acTblNo = (c)&15;
     }
 
-    while (length > 0) {
-	(void)GetJpegChar();
-	length--;
+    while (length > 0)
+    {
+        (void)GetJpegChar();
+        length--;
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -515,8 +542,8 @@ GetSos (dcPtr)
  *--------------------------------------------------------------
  */
 static void
-GetSoi (dcPtr)
-    DecompressInfo *dcPtr;
+    GetSoi(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int i;
 
@@ -526,14 +553,11 @@ GetSoi (dcPtr)
 
     dcPtr->restartInterval = 0;
 
-    dcPtr->densityUnit = 0;	/* set default JFIF APP0 values */
+    dcPtr->densityUnit = 0; /* set default JFIF APP0 values */
     dcPtr->Xdensity = 1;
     dcPtr->Ydensity = 1;
 }
 
-
-
-
 /*
  *--------------------------------------------------------------
  *
@@ -551,32 +575,35 @@ GetSoi (dcPtr)
  *--------------------------------------------------------------
  */
 static int
-NextMarker (dcPtr)
-    DecompressInfo *dcPtr;
+    NextMarker(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int c, nbytes;
 
     nbytes = 0;
-    do {
-	/*
+    do
+    {
+        /*
 	 * skip any non-FF bytes
 	 */
-	do {
-	    nbytes++;
-	    c = GetJpegChar();
-	} while (c != 0xFF);
-	/*
+        do
+        {
+            nbytes++;
+            c = GetJpegChar();
+        } while (c != 0xFF);
+        /*
 	 * skip any duplicate FFs without incrementing nbytes, since
 	 * extra FFs are legal
 	 */
-	do {
-	    c = GetJpegChar();
-	} while (c == 0xFF);
-    } while (c == 0);		/* repeat if it was a stuffed FF/00 */
+        do
+        {
+            c = GetJpegChar();
+        } while (c == 0xFF);
+    } while (c == 0); /* repeat if it was a stuffed FF/00 */
 
     return c;
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -594,70 +621,72 @@ NextMarker (dcPtr)
  *--------------------------------------------------------------
  */
 static JpegMarker
-ProcessTables (dcPtr)
-    DecompressInfo *dcPtr;
+    ProcessTables(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int c;
 
-    while (1) {
-	c = NextMarker (dcPtr);
+    while (1)
+    {
+        c = NextMarker(dcPtr);
 
-	switch (c) {
-	case M_SOF0:
-	case M_SOF1:
-	case M_SOF2:
-	case M_SOF3:
-	case M_SOF5:
-	case M_SOF6:
-	case M_SOF7:
-	case M_JPG:
-	case M_SOF9:
-	case M_SOF10:
-	case M_SOF11:
-	case M_SOF13:
-	case M_SOF14:
-	case M_SOF15:
-	case M_SOI:
-	case M_EOI:
-	case M_SOS:
-	    return ((JpegMarker)c);
+        switch (c)
+        {
+        case M_SOF0:
+        case M_SOF1:
+        case M_SOF2:
+        case M_SOF3:
+        case M_SOF5:
+        case M_SOF6:
+        case M_SOF7:
+        case M_JPG:
+        case M_SOF9:
+        case M_SOF10:
+        case M_SOF11:
+        case M_SOF13:
+        case M_SOF14:
+        case M_SOF15:
+        case M_SOI:
+        case M_EOI:
+        case M_SOS:
+            return ((JpegMarker)c);
 
-	case M_DHT:
-	    GetDht (dcPtr);
-	    break;
+        case M_DHT:
+            GetDht(dcPtr);
+            break;
 
-	case M_DQT:
-	    GetDqt (dcPtr);
-	    break;
+        case M_DQT:
+            GetDqt(dcPtr);
+            break;
 
-	case M_DRI:
-	    GetDri (dcPtr);
-	    break;
+        case M_DRI:
+            GetDri(dcPtr);
+            break;
 
-	case M_APP0:
-	    GetApp0 (dcPtr);
-	    break;
+        case M_APP0:
+            GetApp0(dcPtr);
+            break;
 
-	case M_RST0:		/* these are all parameterless */
-	case M_RST1:
-	case M_RST2:
-	case M_RST3:
-	case M_RST4:
-	case M_RST5:
-	case M_RST6:
-	case M_RST7:
-	case M_TEM:
-	    fprintf (stderr, "Warning: unexpected marker 0x%02x", c);
-	    break;
+        case M_RST0: /* these are all parameterless */
+        case M_RST1:
+        case M_RST2:
+        case M_RST3:
+        case M_RST4:
+        case M_RST5:
+        case M_RST6:
+        case M_RST7:
+        case M_TEM:
+            fprintf(stderr, "Warning: unexpected marker 0x%02x", c);
+            break;
 
-	default:		/* must be DNL, DHP, EXP, APPn, JPGn, COM,
+        default: /* must be DNL, DHP, EXP, APPn, JPGn, COM,
 				 * or RESn */
-	    SkipVariable (dcPtr);
-	    break;
-	}
+            SkipVariable(dcPtr);
+            break;
+        }
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -675,8 +704,8 @@ ProcessTables (dcPtr)
  *--------------------------------------------------------------
  */
 void
-ReadFileHeader (dcPtr)
-    DecompressInfo *dcPtr;
+    ReadFileHeader(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int c, c2;
 
@@ -686,30 +715,32 @@ ReadFileHeader (dcPtr)
      */
     c = GetJpegChar();
     c2 = GetJpegChar();
-    if ((c != 0xFF) || (c2 != M_SOI)) {
-	fprintf (stderr, "Not a JPEG file\n");
-	exit (1);
+    if ((c != 0xFF) || (c2 != M_SOI))
+    {
+        fprintf(stderr, "Not a JPEG file\n");
+        exit(1);
     }
 
-    GetSoi (dcPtr);		/* OK, process SOI */
+    GetSoi(dcPtr); /* OK, process SOI */
 
     /*
      * Process markers until SOF
      */
-    c = ProcessTables (dcPtr);
+    c = ProcessTables(dcPtr);
 
-    switch (c) {
+    switch (c)
+    {
     case M_SOF0:
     case M_SOF1:
-	GetSof (dcPtr, c);
-	break;
+        GetSof(dcPtr, c);
+        break;
 
     default:
-	fprintf (stderr, "Unsupported SOF marker type 0x%02x", c);
-	break;
+        fprintf(stderr, "Unsupported SOF marker type 0x%02x", c);
+        break;
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -726,27 +757,28 @@ ReadFileHeader (dcPtr)
  *--------------------------------------------------------------
  */
 int
-ReadScanHeader (dcPtr)
-    DecompressInfo *dcPtr;
+    ReadScanHeader(dcPtr)
+        DecompressInfo *dcPtr;
 {
     int c;
 
     /*
      * Process markers until SOS or EOI
      */
-    c = ProcessTables (dcPtr);
+    c = ProcessTables(dcPtr);
 
-    switch (c) {
+    switch (c)
+    {
     case M_SOS:
-	GetSos (dcPtr);
-	return 1;
+        GetSos(dcPtr);
+        return 1;
 
     case M_EOI:
-	return 0;
+        return 0;
 
     default:
-	fprintf (stderr, "Unexpected marker 0x%02x", c);
-	break;
+        fprintf(stderr, "Unexpected marker 0x%02x", c);
+        break;
     }
     return 0;
 }

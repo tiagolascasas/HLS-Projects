@@ -29,8 +29,6 @@
  * PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
  */
 
-
-
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned int uint;
@@ -38,37 +36,38 @@ typedef unsigned int uint;
 /*
  * The following structure stores basic information about one component.
  */
-typedef struct JpegComponentInfo {
+typedef struct JpegComponentInfo
+{
     /*
      * These values are fixed over the whole image.
      * They are read from the SOF marker.
      */
-    short componentId;		/* identifier for this component (0..255) */
-    short componentIndex;	/* its index in SOF or cPtr->compInfo[] */
-    short hSampFactor;		/* horizontal sampling factor (1..4) */
-    short vSampFactor;		/* vertical sampling factor (1..4) */
-    short quantTblNo;		/* quantization table selector (0..3) */
+    short componentId;    /* identifier for this component (0..255) */
+    short componentIndex; /* its index in SOF or cPtr->compInfo[] */
+    short hSampFactor;    /* horizontal sampling factor (1..4) */
+    short vSampFactor;    /* vertical sampling factor (1..4) */
+    short quantTblNo;     /* quantization table selector (0..3) */
 
     /*
      * These values may vary between scans
     /* They are read from the SOS marker.
     */
-    short dcTblNo;		/* DC entropy table selector (0..3) */
-    short acTblNo;		/* AC entropy table selector (0..3) */
+    short dcTblNo; /* DC entropy table selector (0..3) */
+    short acTblNo; /* AC entropy table selector (0..3) */
 
     /* 
      * These values are computed during startup.
      */
-    int trueCompWidth;		/* component's image width in samples */
-    int trueCompHeight;		/* component's image height in samples */
+    int trueCompWidth;  /* component's image width in samples */
+    int trueCompHeight; /* component's image height in samples */
 
     /*
      * the above are the logical dimensions of the Downsampled image
      * These values are computed before starting a scan of the component
      */
-    short MCUwidth;		/* number of blocks per MCU, horizontally */
-    short MCUheight;		/* number of blocks per MCU, vertically */
-    short MCUblocks;		/* MCUwidth * MCUheight */
+    short MCUwidth;  /* number of blocks per MCU, horizontally */
+    short MCUheight; /* number of blocks per MCU, vertically */
+    short MCUblocks; /* MCUwidth * MCUheight */
 
     /*
      * The next two values are the trueCompXXX values rounded up
@@ -77,10 +76,9 @@ typedef struct JpegComponentInfo {
      * step.  NOTE: these values differ depending on whether the
      * component is interleaved or not!!
      */
-    int downsampledWidth;	/* image width in samples, after expansion */
-    int downsampledHeight;	/* image height in samples, after expansion */
+    int downsampledWidth;  /* image width in samples, after expansion */
+    int downsampledHeight; /* image height in samples, after expansion */
 } JpegComponentInfo;
-
 
 /*
  * One of the following structures is created for each huffman coding
@@ -88,7 +86,8 @@ typedef struct JpegComponentInfo {
  * may be some extra fields for encoding that aren't used in the decoding
  * and vice-versa.
  */
-typedef struct HuffmanTable {
+typedef struct HuffmanTable
+{
     /*
      * These two fields directly represent the contents of a JPEG DHT
      * marker
@@ -122,10 +121,11 @@ typedef struct HuffmanTable {
  * One of the following structures is used to pass around the
  * compression information.
  */
-typedef struct CompressInfo {
-    int imageWidth;		/* input image width */
-    int imageHeight;		/* input image height */
-    int dataPrecision;		/* bits of precision in image data */
+typedef struct CompressInfo
+{
+    int imageWidth;    /* input image width */
+    int imageHeight;   /* input image height */
+    int dataPrecision; /* bits of precision in image data */
 
     /*
      * These three values are not used by the JPEG code, only copied
@@ -133,16 +133,15 @@ typedef struct CompressInfo {
      * for dots/inch, or 2 for dots/cm.  Note that the pixel aspect ratio
      * is defined by Xdensity/Ydensity even when densityUnit=0.
      */
-    uchar densityUnit;		/* JFIF code for pixel size units */
-    ushort Xdensity;		/* Horizontal pixel density */
-    ushort Ydensity;		/* Vertical pixel density */
-
+    uchar densityUnit; /* JFIF code for pixel size units */
+    ushort Xdensity;   /* Horizontal pixel density */
+    ushort Ydensity;   /* Vertical pixel density */
 
     /*
      *compInfo[i] describes component that appears i'th in SOF
      */
     JpegComponentInfo *compInfo;
-    short numComponents;	/* # of color components in JPEG image */
+    short numComponents; /* # of color components in JPEG image */
 
     /*
      * Pointers to coefficient quantization tables, or NULL if not
@@ -162,29 +161,29 @@ typedef struct CompressInfo {
      * restartInRows (in which case the correct restartInterval will
      * be figured for each scan).
      */
-    short restartInterval;	/* MCUs/(restart interval), 0 -> no restart */
-    int restartInRows;		/* if > 0, MCU rows per restart interval */
+    short restartInterval; /* MCUs/(restart interval), 0 -> no restart */
+    int restartInRows;     /* if > 0, MCU rows per restart interval */
 
     /*
      * These fields are computed during JpegCompress startup
      */
-    short maxHsampFactor;	/* largest hSampFactor */
-    short maxVsampFactor;	/* largest vSampFactor */
+    short maxHsampFactor; /* largest hSampFactor */
+    short maxVsampFactor; /* largest vSampFactor */
 
     /*
      * These fields are valid during any one scan
      */
-    short compsInScan;		/* # of JPEG components output this time */
+    short compsInScan; /* # of JPEG components output this time */
 
     /*
      * *curCompInfo[i] describes component that appears i'th in SOS
      */
     JpegComponentInfo *curCompInfo[4];
 
-    int MCUsPerRow;		/* # of MCUs across the image */
-    int MCUrowsInScan;		/* # of MCU rows in the image */
+    int MCUsPerRow;    /* # of MCUs across the image */
+    int MCUrowsInScan; /* # of MCU rows in the image */
 
-    short blocksInMCU;		/* # of DCT blocks per MCU */
+    short blocksInMCU; /* # of DCT blocks per MCU */
 
     /*
      * MCUmembership[i] is index in curCompInfo of component owning
@@ -194,31 +193,32 @@ typedef struct CompressInfo {
     /* 
      * These fields are private data for the entropy encoder
      */
-    short lastDcVal[4];		/* last DC coef for each comp */
-    short restartsToGo;		/* MCUs left in this restart interval */
-    short nextRestartNum;	/* # of next RSTn marker (0..7) */
+    short lastDcVal[4];   /* last DC coef for each comp */
+    short restartsToGo;   /* MCUs left in this restart interval */
+    short nextRestartNum; /* # of next RSTn marker (0..7) */
 } CompressInfo;
 
 /*
  * One of the following structures is used to pass around the
  * decompression information.
  */
-typedef struct DecompressInfo {
+typedef struct DecompressInfo
+{
     /*
      * These fields are set by ReadFileHeader or ReadScanHeader
      */
-    int imageWidth;		/* overall image width */
-    int imageHeight;		/* overall image height */
+    int imageWidth;  /* overall image width */
+    int imageHeight; /* overall image height */
 
-    short dataPrecision;	/* bits of precision in image data */
+    short dataPrecision; /* bits of precision in image data */
 
     /* These three values are not used by the JPEG code, merely copied */
     /* from the JFIF APP0 marker (if any). */
-    uchar densityUnit;		/* JFIF code for pixel size units */
-    ushort Xdensity;		/* Horizontal pixel density */
-    ushort Ydensity;		/* Vertical pixel density */
+    uchar densityUnit; /* JFIF code for pixel size units */
+    ushort Xdensity;   /* Horizontal pixel density */
+    ushort Ydensity;   /* Vertical pixel density */
 
-    short numComponents;	/* # of color components in JPEG image */
+    short numComponents; /* # of color components in JPEG image */
     JpegComponentInfo *compInfo;
     /* compInfo[i] describes component that appears i'th in SOF */
 
@@ -229,53 +229,53 @@ typedef struct DecompressInfo {
     HuffmanTable *acHuffTblPtrs[4];
     /* ptrs to Huffman coding tables, or NULL if not defined */
 
-    short restartInterval;	/* MCUs per restart interval, 0 = no restart */
+    short restartInterval; /* MCUs per restart interval, 0 = no restart */
 
     /*
      * These fields are computed during JpegDecompress startup
      */
-    short maxHsampFactor;	/* largest hSampFactor */
-    short maxVsampFactor;	/* largest vSampFactor */
+    short maxHsampFactor; /* largest hSampFactor */
+    short maxVsampFactor; /* largest vSampFactor */
 
     /*
      * These fields are valid during any one scan
      */
-    short compsInScan;		/* # of JPEG components input this time */
+    short compsInScan; /* # of JPEG components input this time */
 
     /*
      * *curCompInfo[i] describes component that appears i'th in SOS
      */
     JpegComponentInfo *curCompInfo[4];
 
-    int MCUsPerRow;		/* # of MCUs across the image */
-    int MCUrowsInScan;		/* # of MCU rows in the image */
+    int MCUsPerRow;    /* # of MCUs across the image */
+    int MCUrowsInScan; /* # of MCU rows in the image */
 
     /*
      * MCUmembership[i] is index in curCompInfo of component owning
      * i'th block in an MCU
      */
     short MCUmembership[10];
-    short blocksInMCU;		/* # of DCT blocks per MCU */
+    short blocksInMCU; /* # of DCT blocks per MCU */
 
     /*
      * these fields are private data for the entropy encoder
      */
-    short lastDcVal[4];		/* last DC coef for each comp */
-    short restartsToGo;		/* MCUs left in this restart interval */
-    short nextRestartNum;	/* # of next RSTn marker (0..7) */
+    short lastDcVal[4];   /* last DC coef for each comp */
+    short restartsToGo;   /* MCUs left in this restart interval */
+    short nextRestartNum; /* # of next RSTn marker (0..7) */
 } DecompressInfo;
 
-#define RST0    0xD0            /* RST0 marker code */
+#define RST0 0xD0 /* RST0 marker code */
 
 /*
  * The following variables keep track of the input buffer for the JPEG
  * data, which is read by ReadJpegData
  */
-extern uchar inputBuffer[];	/* Input buffer for JPEG data */
-extern int numInputBytes;	/* The total number of bytes in inputBuffer */
-extern int maxInputBytes;	/* Size of inputBuffer */
-extern int inputBufferOffset;	/* Offset of current byte */
-
+extern uchar inputBuffer[];   /* Input buffer for JPEG data */
+extern int numInputBytes;     /* The total number of bytes in inputBuffer */
+extern int maxInputBytes;     /* Size of inputBuffer */
+extern int inputBufferOffset; /* Offset of current byte */
+
 /*
  *--------------------------------------------------------------
  *
@@ -292,13 +292,7 @@ extern int inputBufferOffset;	/* Offset of current byte */
  *
  *--------------------------------------------------------------
  */
-#define GetJpegChar()							\
-    ((inputBufferOffset < numInputBytes)?				\
-     inputBuffer[inputBufferOffset++]:					\
-     (numInputBytes = 2+ReadJpegData(inputBuffer+2,JPEG_BUF_SIZE-2),	\
-      inputBufferOffset = 2,						\
-      ((inputBufferOffset < numInputBytes)?				\
-       inputBuffer[inputBufferOffset++]:				\
-       EOF)))
+#define GetJpegChar() \
+    ((inputBufferOffset < numInputBytes) ? inputBuffer[inputBufferOffset++] : (numInputBytes = 2 + ReadJpegData(inputBuffer + 2, JPEG_BUF_SIZE - 2), inputBufferOffset = 2, ((inputBufferOffset < numInputBytes) ? inputBuffer[inputBufferOffset++] : EOF)))
 
-#define UnGetJpegChar(ch)	(inputBuffer[--inputBufferOffset]=(ch))
+#define UnGetJpegChar(ch) (inputBuffer[--inputBufferOffset] = (ch))

@@ -37,7 +37,7 @@
 #include "jpeg.h"
 #include "rle.h"
 #include "proto.h"
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -55,13 +55,12 @@
  *--------------------------------------------------------------
  */
 int
-ReadJpegData (buffer, numBytes)
-    char *buffer;		/* Place to put new data */
-    int numBytes;		/* Number of bytes to put */
+    ReadJpegData(buffer, numBytes) char *buffer; /* Place to put new data */
+int numBytes;                                    /* Number of bytes to put */
 {
     return fread(buffer, 1, numBytes, stdin);
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -79,17 +78,15 @@ ReadJpegData (buffer, numBytes)
  *
  *--------------------------------------------------------------
  */
-WriteJpegData  (buffer, numBytes)
-    char *buffer;               /* Data to write */
-    int numBytes;               /* Number of bytes to write */
+WriteJpegData(buffer, numBytes) char *buffer; /* Data to write */
+int numBytes;                                 /* Number of bytes to write */
 {
     return fwrite(buffer, 1, numBytes, stdout);
 }
 
 int
-main(argc, argv)
-    int argc;
-    char **argv;
+    main(argc, argv) int argc;
+char **argv;
 {
     DecompressInfo dcInfo;
     CompressInfo enInfo;
@@ -98,40 +95,43 @@ main(argc, argv)
     MCU mcu;
     RLE *rle;
 
-    memset (&dcInfo, 0, sizeof(dcInfo));
-    memset (&enInfo, 0, sizeof(enInfo));
+    memset(&dcInfo, 0, sizeof(dcInfo));
+    memset(&enInfo, 0, sizeof(enInfo));
 
     /*
      * Read the JPEG File header, up to scan header, and initialize all
      * the variables in the decompression information structure.
      */
-    ReadFileHeader (&dcInfo);
+    ReadFileHeader(&dcInfo);
 
     /*
      * Loop through each scan in image.  ReadScanHeader returns
      * 0 once it consumes and EOI marker.
      */
-    if (!ReadScanHeader (&dcInfo)) {
-	fprintf (stderr, "Empty JPEG file\n");
-	exit (1);
+    if (!ReadScanHeader(&dcInfo))
+    {
+        fprintf(stderr, "Empty JPEG file\n");
+        exit(1);
     }
-    DecoderStructInit (&dcInfo);
-    HuffDecoderInit (&dcInfo);
+    DecoderStructInit(&dcInfo);
+    HuffDecoderInit(&dcInfo);
 
     /*
      * Decompress everything into MCU's
      */
     maxMcu = dcInfo.MCUsPerRow * dcInfo.MCUrowsInScan;
-    InitMcuTable (maxMcu, dcInfo.blocksInMCU);
-    for (i = 0; i < maxMcu; i++) {
-	mcu = MakeMCU(&dcInfo);
-	DecodeMCUrle (&dcInfo, mcu);
+    InitMcuTable(maxMcu, dcInfo.blocksInMCU);
+    for (i = 0; i < maxMcu; i++)
+    {
+        mcu = MakeMCU(&dcInfo);
+        DecodeMCUrle(&dcInfo, mcu);
     }
 
-    if (ReadScanHeader (&dcInfo)) {
-	fprintf (stderr, "Warning: multiple scans detected in JPEG file\n");
-	fprintf (stderr, "         not currently supported\n");
-	fprintf (stderr, "         ignoring extra scans\n");
+    if (ReadScanHeader(&dcInfo))
+    {
+        fprintf(stderr, "Warning: multiple scans detected in JPEG file\n");
+        fprintf(stderr, "         not currently supported\n");
+        fprintf(stderr, "         ignoring extra scans\n");
     }
 
     /*
@@ -140,23 +140,27 @@ main(argc, argv)
      * (i.e., zigzag index >= 4) that are low energy (value = +/-1)
      * to zero.
      */
-    for (i = 0; i < numMCU; i++) {
-	mcu = mcuTable[i];
-	for (j = 0; j < dcInfo.blocksInMCU; j++) {
-	    rle = mcu+j;
-	    for (k=0, l=0; k<rle->numAC; k++) {
-		/*
+    for (i = 0; i < numMCU; i++)
+    {
+        mcu = mcuTable[i];
+        for (j = 0; j < dcInfo.blocksInMCU; j++)
+        {
+            rle = mcu + j;
+            for (k = 0, l = 0; k < rle->numAC; k++)
+            {
+                /*
 		 * Copy if zigzag index < 4 or value isn't +/- 1
 		 */
-		if ((rle->ac[k].index < 4) ||
-		    ((rle->ac[k].value != 1) && (rle->ac[k].value != -1))) {
-		    rle->ac[l].index = rle->ac[k].index;
-		    rle->ac[l].value = rle->ac[k].value;
-		    l++;
-		}
-	    }
-	    rle->numAC = l;
-	}
+                if ((rle->ac[k].index < 4) ||
+                    ((rle->ac[k].value != 1) && (rle->ac[k].value != -1)))
+                {
+                    rle->ac[l].index = rle->ac[k].index;
+                    rle->ac[l].value = rle->ac[k].value;
+                    l++;
+                }
+            }
+            rle->numAC = l;
+        }
     }
 
     /*
@@ -164,18 +168,20 @@ main(argc, argv)
      * the file headers, and encode all the data.
      */
     CopyDecoderVars(&dcInfo, &enInfo);
-    HuffEncoderInit (&enInfo);
-    WriteFileHeader (&enInfo);
-    WriteScanHeader (&enInfo);
-    for (i = 0; i < numMCU; i++) {
-	mcu = mcuTable[i];
-	HuffEncode (&enInfo, mcu);
+    HuffEncoderInit(&enInfo);
+    WriteFileHeader(&enInfo);
+    WriteScanHeader(&enInfo);
+    for (i = 0; i < numMCU; i++)
+    {
+        mcu = mcuTable[i];
+        HuffEncode(&enInfo, mcu);
     }
-    HuffEncoderTerm ();
-    WriteFileTrailer (&enInfo);
-    FlushBytes ();
+    HuffEncoderTerm();
+    WriteFileTrailer(&enInfo);
+    FlushBytes();
     fflush(stdout);
-    if (ferror(stdout)) {
-	fprintf (stderr, "Output file write error\n");
+    if (ferror(stdout))
+    {
+        fprintf(stderr, "Output file write error\n");
     }
 }

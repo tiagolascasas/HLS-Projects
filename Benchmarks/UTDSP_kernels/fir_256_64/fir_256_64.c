@@ -14,15 +14,14 @@ void fir(float input[], float output[], float coefficient[]);
 
 main()
 {
-  input_dsp (coefficients, NTAPS, 0);
-  input_dsp (input, NTAPS, 0);
+    input_dsp(coefficients, NTAPS, 0);
+    input_dsp(input, NTAPS, 0);
 
-  fir(input, output, coefficients);
+    fir(input, output, coefficients);
 
-  output_dsp (input, NTAPS, 0);
-  output_dsp (coefficients, NTAPS, 0);
-  output_dsp (output, NPOINTS, 0);
-
+    output_dsp(input, NTAPS, 0);
+    output_dsp(coefficients, NTAPS, 0);
+    output_dsp(output, NPOINTS, 0);
 }
 
 void fir(float input[], float output[], float coefficient[])
@@ -30,27 +29,28 @@ void fir(float input[], float output[], float coefficient[])
 /*     output:         output sample array */
 /*     coefficient:    coefficient array */
 {
-  int i;
-  int j;
+    int i;
+    int j;
 
-  float sum;
+    float sum;
 
-  for (i = 0; i < 1; i++) {
-    sum = 0.0;
+    for (i = 0; i < 1; i++)
+    {
+        sum = 0.0;
 
-    for (j = 0; j < NTAPS; j++) {
+        for (j = 0; j < NTAPS; j++)
+        {
 
 #ifdef GCCmod
-      if (i-j < 0)
-        sum += input[i-j+NTAPS] * coefficient[j];
-      else
-        sum += input[i-j] * coefficient[j];
+            if (i - j < 0)
+                sum += input[i - j + NTAPS] * coefficient[j];
+            else
+                sum += input[i - j] * coefficient[j];
 
 #else
-      sum += input[i-j] * coefficient[j];
+            sum += input[i - j] * coefficient[j];
 #endif
-
+        }
+        output[i] = sum;
     }
-    output[i] = sum;
-  }
 }

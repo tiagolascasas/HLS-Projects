@@ -56,22 +56,22 @@ typedef unsigned long long float64;
 /*----------------------------------------------------------------------------
 | Software IEC/IEEE floating-point underflow tininess-detection mode.
 *----------------------------------------------------------------------------*/
-#define float_tininess_after_rounding   0
-#define float_tininess_before_rounding  1
+#define float_tininess_after_rounding 0
+#define float_tininess_before_rounding 1
 
 /*----------------------------------------------------------------------------
 | Software IEC/IEEE floating-point rounding mode.
 *----------------------------------------------------------------------------*/
-#define float_round_nearest_even  0
-#define float_round_to_zero       1
-#define float_round_up            2
-#define float_round_down          3
+#define float_round_nearest_even 0
+#define float_round_to_zero 1
+#define float_round_up 2
+#define float_round_down 3
 
 /*----------------------------------------------------------------------------
 | Software IEC/IEEE floating-point exception flags.
 *----------------------------------------------------------------------------*/
-#define float_flag_inexact     1
-#define float_flag_divbyzero   2
-#define float_flag_underflow   4
-#define float_flag_overflow    8
-#define float_flag_invalid    16
+#define float_flag_inexact 1
+#define float_flag_divbyzero 2
+#define float_flag_underflow 4
+#define float_flag_overflow 8
+#define float_flag_invalid 16

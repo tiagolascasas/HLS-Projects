@@ -39,34 +39,34 @@
 #include "io.h"
 #include "proto.h"
 
-#define RST0    0xD0            /* RST0 marker code */
-#define	MIN_BUF_FREE	512	/* Min Buffer free for EncodeOneBlock */
+#define RST0 0xD0        /* RST0 marker code */
+#define MIN_BUF_FREE 512 /* Min Buffer free for EncodeOneBlock */
 
 /*
  * Lookup table for number of bits is a 8 bit value.  Initialized
  * in HuffEncoderInit.
  */
-static int numBitsTable [256];
+static int numBitsTable[256];
 
 static int bmask[] = {0x0000,
-	 0x00000001, 0x00000003, 0x00000007, 0x0000000F,
-	 0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF,
-	 0x000001FF, 0x000003FF, 0x000007FF, 0x00000FFF,
-	 0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF,
-	 0x0001FFFF, 0x0003FFFF, 0x0007FFFF, 0x000FFFFF,
-	 0x001FFFFF, 0x003FFFFF, 0x007FFFFF, 0x00FFFFFF,
-	 0x01FFFFFF, 0x03FFFFFF, 0x07FFFFFF, 0x0FFFFFFF,
-	 0x1FFFFFFF, 0x3FFFFFFF, 0x7FFFFFFF, 0xFFFFFFFF};
+                      0x00000001, 0x00000003, 0x00000007, 0x0000000F,
+                      0x0000001F, 0x0000003F, 0x0000007F, 0x000000FF,
+                      0x000001FF, 0x000003FF, 0x000007FF, 0x00000FFF,
+                      0x00001FFF, 0x00003FFF, 0x00007FFF, 0x0000FFFF,
+                      0x0001FFFF, 0x0003FFFF, 0x0007FFFF, 0x000FFFFF,
+                      0x001FFFFF, 0x003FFFFF, 0x007FFFFF, 0x00FFFFFF,
+                      0x01FFFFFF, 0x03FFFFFF, 0x07FFFFFF, 0x0FFFFFFF,
+                      0x1FFFFFFF, 0x3FFFFFFF, 0x7FFFFFFF, 0xFFFFFFFF};
 
 /*
  * Static variables for output buffering.
  */
-static int huffPutBuffer;	/* current bit-accumulation buffer */
-static int huffPutBits;		/* # of bits now in it */
+static int huffPutBuffer; /* current bit-accumulation buffer */
+static int huffPutBits;   /* # of bits now in it */
 
-char outputBuffer[JPEG_BUF_SIZE];	/* output buffer */
+char outputBuffer[JPEG_BUF_SIZE]; /* output buffer */
 int bytesInBuffer;
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -83,14 +83,13 @@ int bytesInBuffer;
  *
  *--------------------------------------------------------------
  */
-void 
-FlushBytes ()
+void FlushBytes()
 {
     if (bytesInBuffer)
-	WriteJpegData (outputBuffer, bytesInBuffer);
+        WriteJpegData(outputBuffer, bytesInBuffer);
     bytesInBuffer = 0;
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -107,10 +106,11 @@ FlushBytes ()
  *
  *--------------------------------------------------------------
  */
-#define EmitByteNoFlush(val)  {						\
-    outputBuffer[bytesInBuffer++] = (char)(val);			\
-}
-
+#define EmitByteNoFlush(val)                         \
+    {                                                \
+        outputBuffer[bytesInBuffer++] = (char)(val); \
+    }
+
 /*
  *--------------------------------------------------------------
  *
@@ -133,9 +133,9 @@ FlushBytes ()
  *--------------------------------------------------------------
  */
 static void
-EmitBits(code, size)
-    ushort code;
-    int size;
+    EmitBits(code, size)
+        ushort code;
+int size;
 {
     int putBuffer;
     int putBits;
@@ -143,30 +143,32 @@ EmitBits(code, size)
     /*
      * if size is 0, caller used an invalid Huffman table entry
      */
-    assert (size != 0);
+    assert(size != 0);
 
     /*
      * Mask off any excess bits in code.
      */
     putBits = (size);
-    putBuffer = ((code) & bmask[putBits]);
+    putBuffer = ((code)&bmask[putBits]);
     putBits += huffPutBits;
     putBuffer <<= 24 - putBits;
     putBuffer |= huffPutBuffer;
 
-    while (putBits >= 8) {
-	int c;
-	c = (putBuffer >> 16) & 0xFF;
+    while (putBits >= 8)
+    {
+        int c;
+        c = (putBuffer >> 16) & 0xFF;
 
-	/*
+        /*
 	 * Output whole bytes we've accumulated with byte stuffing
 	 */
-	EmitByteNoFlush (c);
-	if (c == 0xFF) {
-	    EmitByteNoFlush (0);
-	}
-	putBuffer <<= 8;
-	putBits -= 8;
+        EmitByteNoFlush(c);
+        if (c == 0xFF)
+        {
+            EmitByteNoFlush(0);
+        }
+        putBuffer <<= 8;
+        putBits -= 8;
     }
 
     /*
@@ -176,7 +178,6 @@ EmitBits(code, size)
     huffPutBits = putBits;
 }
 
-
 /*
  *--------------------------------------------------------------
  *
@@ -194,19 +195,18 @@ EmitBits(code, size)
  *--------------------------------------------------------------
  */
 
-static void 
-FlushBits ()
+static void
+FlushBits()
 {
     /*
      * The first call forces output of any partial bytes.
      * We can then zero the buffer.
      */
-    EmitBits ((ushort) 0x7F, 7);
+    EmitBits((ushort)0x7F, 7);
     huffPutBuffer = 0;
     huffPutBits = 0;
 }
 
-
 /*
  *--------------------------------------------------------------
  *
@@ -224,11 +224,11 @@ FlushBits ()
  *
  *--------------------------------------------------------------
  */
-static void 
-EncodeOneBlock (rle, dctbl, actbl)
-    RLE *rle;
-    HuffmanTable *dctbl;
-    HuffmanTable *actbl;
+static void
+    EncodeOneBlock(rle, dctbl, actbl)
+        RLE *rle;
+HuffmanTable *dctbl;
+HuffmanTable *actbl;
 {
     register int temp, temp2;
     register int nbits;
@@ -238,96 +238,106 @@ EncodeOneBlock (rle, dctbl, actbl)
      * Encode the DC coefficient difference per section F.1.2.1
      */
     temp = temp2 = rle->dc;
-    if (temp < 0) {
-	temp = -temp;
-	/*
+    if (temp < 0)
+    {
+        temp = -temp;
+        /*
 	 * For a negative input, want temp2 = bitwise complement of
 	 * abs(input).  This code assumes we are on a two's complement
 	 * machine.
 	 */
-	temp2--;
+        temp2--;
     }
 
     /*
      * Find the number of bits needed for the magnitude of the coefficient
      */
-    if (temp) {
-	nbits = numBitsTable[temp&0xff];
-	while (temp >= 256) {
-	    temp >>= 8;
-	    nbits += numBitsTable[temp&0xff];
-	}
-    } else {
-	nbits = 0;
+    if (temp)
+    {
+        nbits = numBitsTable[temp & 0xff];
+        while (temp >= 256)
+        {
+            temp >>= 8;
+            nbits += numBitsTable[temp & 0xff];
+        }
+    }
+    else
+    {
+        nbits = 0;
     }
 
     /*
      * Emit the Huffman-coded symbol for the number of bits
      */
-    EmitBits (dctbl->ehufco[nbits], dctbl->ehufsi[nbits]);
+    EmitBits(dctbl->ehufco[nbits], dctbl->ehufsi[nbits]);
 
     /*
      * Emit that number of bits of the value, if positive,
      * or the complement of its magnitude, if negative.
      */
     if (nbits)
-	EmitBits ((ushort) temp2, nbits);
+        EmitBits((ushort)temp2, nbits);
 
     /*
      * Encode the AC coefficients per section F.1.2.2
      */
     k = 1;
-    for (i=0; i<rle->numAC; i++) {
-	temp = rle->ac[i].value;
-	r = rle->ac[i].index - k;
-	k = rle->ac[i].index + 1;
+    for (i = 0; i < rle->numAC; i++)
+    {
+        temp = rle->ac[i].value;
+        r = rle->ac[i].index - k;
+        k = rle->ac[i].index + 1;
 
-	/*
+        /*
 	 * if run length > 15, must emit special run-length-16 codes
 	 * (0xF0)
 	 */
-	while (r > 15) {
-	    EmitBits (actbl->ehufco[0xF0], actbl->ehufsi[0xF0]);
-	    r -= 16;
-	}
+        while (r > 15)
+        {
+            EmitBits(actbl->ehufco[0xF0], actbl->ehufsi[0xF0]);
+            r -= 16;
+        }
 
-	temp2 = temp;
-	if (temp < 0) {
-	    temp = -temp;
-	    temp2--;
-	}
+        temp2 = temp;
+        if (temp < 0)
+        {
+            temp = -temp;
+            temp2--;
+        }
 
-	/*
+        /*
 	 * Find the number of bits needed for the magnitude of the
 	 * coefficient
 	 */
-	nbits = numBitsTable[temp&0xff];
-	while (temp >= 256) {
-	    temp >>= 8;
-	    nbits += numBitsTable[temp&0xff];
-	}
+        nbits = numBitsTable[temp & 0xff];
+        while (temp >= 256)
+        {
+            temp >>= 8;
+            nbits += numBitsTable[temp & 0xff];
+        }
 
-	/*
+        /*
 	 * Emit Huffman symbol for run length / number of bits
 	 */
-	r = (r << 4) + nbits;
-	EmitBits (actbl->ehufco[r], actbl->ehufsi[r]);
+        r = (r << 4) + nbits;
+        EmitBits(actbl->ehufco[r], actbl->ehufsi[r]);
 
-	/*
+        /*
 	 * Emit that number of bits of the value, if positive,
 	 * or the complement of its magnitude, if negative.
 	 */
-	EmitBits ((ushort) temp2, nbits);
+        EmitBits((ushort)temp2, nbits);
     }
 
     /*
      * If the last coef(s) wasn't index=63, send end-of-block code.
      */
-    if (k != 64) {
-	EmitBits (actbl->ehufco[0], actbl->ehufsi[0]);
+    if (k != 64)
+    {
+        EmitBits(actbl->ehufco[0], actbl->ehufsi[0]);
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -344,9 +354,9 @@ EncodeOneBlock (rle, dctbl, actbl)
  *
  *--------------------------------------------------------------
  */
-void 
-HuffEncoderInit (cPtr)
-    CompressInfo *cPtr;
+void
+    HuffEncoderInit(cPtr)
+        CompressInfo *cPtr;
 {
     short ci, i, nbits, temp;
     JpegComponentInfo *compptr;
@@ -365,8 +375,9 @@ HuffEncoderInit (cPtr)
     /*
      * Initialize DC predictions to 0
      */
-    for (ci = 0; ci < cPtr->compsInScan; ci++) {
-	cPtr->lastDcVal[ci] = 0;
+    for (ci = 0; ci < cPtr->compsInScan; ci++)
+    {
+        cPtr->lastDcVal[ci] = 0;
     }
 
     /*
@@ -374,20 +385,22 @@ HuffEncoderInit (cPtr)
      */
     cPtr->restartsToGo = cPtr->restartInterval;
     cPtr->nextRestartNum = 0;
-    
+
     /*
      * Initialize number of bits lookup table.
      */
-    for (i=0; i<256; i++) {
-	temp = i;
-	nbits = 1;
-	while (temp >>= 1) {
-	    nbits++;
-	}
-	numBitsTable[i] = nbits;
+    for (i = 0; i < 256; i++)
+    {
+        temp = i;
+        nbits = 1;
+        while (temp >>= 1)
+        {
+            nbits++;
+        }
+        numBitsTable[i] = nbits;
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -403,22 +416,22 @@ HuffEncoderInit (cPtr)
  *
  *--------------------------------------------------------------
  */
-static void 
-EmitRestart (cPtr)
-    CompressInfo *cPtr;
+static void
+    EmitRestart(cPtr)
+        CompressInfo *cPtr;
 {
     short ci;
 
-    FlushBits ();
+    FlushBits();
 
-    EmitByteNoFlush (0xFF);
-    EmitByteNoFlush (RST0 + cPtr->nextRestartNum);
+    EmitByteNoFlush(0xFF);
+    EmitByteNoFlush(RST0 + cPtr->nextRestartNum);
 
     /*
      * Re-initialize DC predictions to 0
      */
     for (ci = 0; ci < cPtr->compsInScan; ci++)
-	cPtr->lastDcVal[ci] = 0;
+        cPtr->lastDcVal[ci] = 0;
 
     /*
      * Update restart state
@@ -427,7 +440,7 @@ EmitRestart (cPtr)
     cPtr->nextRestartNum++;
     cPtr->nextRestartNum &= 7;
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -444,10 +457,10 @@ EmitRestart (cPtr)
  *
  *--------------------------------------------------------------
  */
-void 
-HuffEncode (cPtr, mcu)
-    CompressInfo * cPtr;
-    MCU mcu;
+void
+    HuffEncode(cPtr, mcu)
+        CompressInfo *cPtr;
+MCU mcu;
 {
     short blkn, ci;
     JpegComponentInfo *compptr;
@@ -457,32 +470,35 @@ HuffEncode (cPtr, mcu)
     /*
      * Account for restart interval, emit restart marker if needed
      */
-    if (cPtr->restartInterval) {
-	if (cPtr->restartsToGo == 0)
-	    EmitRestart (cPtr);
-	cPtr->restartsToGo--;
+    if (cPtr->restartInterval)
+    {
+        if (cPtr->restartsToGo == 0)
+            EmitRestart(cPtr);
+        cPtr->restartsToGo--;
     }
-    if (bytesInBuffer >= JPEG_BUF_SIZE-MIN_BUF_FREE) {
-	FlushBytes();
+    if (bytesInBuffer >= JPEG_BUF_SIZE - MIN_BUF_FREE)
+    {
+        FlushBytes();
     }
 
-    for (blkn = 0; blkn < cPtr->blocksInMCU; blkn++) {
-	ci = cPtr->MCUmembership[blkn];
-	compptr = cPtr->curCompInfo[ci];
-	rle = mcu+blkn;
+    for (blkn = 0; blkn < cPtr->blocksInMCU; blkn++)
+    {
+        ci = cPtr->MCUmembership[blkn];
+        compptr = cPtr->curCompInfo[ci];
+        rle = mcu + blkn;
 
-	/*
+        /*
 	 * Convert DC value to difference, update lastDcVal
 	 */
-	temp = rle->dc;
-	rle->dc -= cPtr->lastDcVal[ci];
-	cPtr->lastDcVal[ci] = temp;
-	EncodeOneBlock (rle,
-			cPtr->dcHuffTblPtrs[compptr->dcTblNo],
-			cPtr->acHuffTblPtrs[compptr->acTblNo]);
+        temp = rle->dc;
+        rle->dc -= cPtr->lastDcVal[ci];
+        cPtr->lastDcVal[ci] = temp;
+        EncodeOneBlock(rle,
+                       cPtr->dcHuffTblPtrs[compptr->dcTblNo],
+                       cPtr->acHuffTblPtrs[compptr->acTblNo]);
     }
 }
-
+
 /*
  *--------------------------------------------------------------
  *
@@ -498,12 +514,11 @@ HuffEncode (cPtr, mcu)
  *
  *--------------------------------------------------------------
  */
-void 
-HuffEncoderTerm ()
+void HuffEncoderTerm()
 {
     /*
      * Flush out the last data
      */
-    FlushBits ();
-    FlushBytes ();
+    FlushBits();
+    FlushBytes();
 }

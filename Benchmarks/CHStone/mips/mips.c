@@ -88,219 +88,217 @@ int main_result;
 |     outData : expected output data                                       |
 +--------------------------------------------------------------------------+
 */
-const int A[8] = { 22, 5, -9, 3, -17, 38, 0, 11 };
-const int outData[8] = { -17, -9, 0, 3, 5, 11, 22, 38 };
+const int A[8] = {22, 5, -9, 3, -17, 38, 0, 11};
+const int outData[8] = {-17, -9, 0, 3, 5, 11, 22, 38};
 
-#define IADDR(x)	(((x)&0x000000ff)>>2)
-#define DADDR(x)	(((x)&0x000000ff)>>2)
+#define IADDR(x) (((x)&0x000000ff) >> 2)
+#define DADDR(x) (((x)&0x000000ff) >> 2)
 
-int
-main ()
+int main()
 {
-  long long hilo;
-  int reg[32];
-  int Hi = 0;
-  int Lo = 0;
-  int pc = 0;
-  int dmem[64];
-  int j;
+    long long hilo;
+    int reg[32];
+    int Hi = 0;
+    int Lo = 0;
+    int pc = 0;
+    int dmem[64];
+    int j;
 
-  unsigned int ins;
-  int op;
-  int rs;
-  int rt;
-  int rd;
-  int shamt;
-  int funct;
-  short address;
-  int tgtadr;
+    unsigned int ins;
+    int op;
+    int rs;
+    int rt;
+    int rd;
+    int shamt;
+    int funct;
+    short address;
+    int tgtadr;
 
     while (1)
     {
-      int i;
-      int n_inst;
+        int i;
+        int n_inst;
 
-      n_inst = 0;
-      main_result = 0;
+        n_inst = 0;
+        main_result = 0;
 
-      for (i = 0; i < 32; i++)
-	{
-	  reg[i] = 0;
-	}
-      reg[29] = 0x7fffeffc;
+        for (i = 0; i < 32; i++)
+        {
+            reg[i] = 0;
+        }
+        reg[29] = 0x7fffeffc;
 
-      for (i = 0; i < 64; i++)
-	{
-	  dmem[i] = A[i];
-	}
+        for (i = 0; i < 64; i++)
+        {
+            dmem[i] = A[i];
+        }
 
-      pc = 0x00400000;
+        pc = 0x00400000;
 
-      do
-	{
-	  ins = imem[IADDR (pc)];
-	  pc = pc + 4;
+        do
+        {
+            ins = imem[IADDR(pc)];
+            pc = pc + 4;
 
-	  op = ins >> 26;
+            op = ins >> 26;
 
-	  switch (op)
-	    {
-	    case R:
-	      funct = ins & 0x3f;
-	      shamt = (ins >> 6) & 0x1f;
-	      rd = (ins >> 11) & 0x1f;
-	      rt = (ins >> 16) & 0x1f;
-	      rs = (ins >> 21) & 0x1f;
+            switch (op)
+            {
+            case R:
+                funct = ins & 0x3f;
+                shamt = (ins >> 6) & 0x1f;
+                rd = (ins >> 11) & 0x1f;
+                rt = (ins >> 16) & 0x1f;
+                rs = (ins >> 21) & 0x1f;
 
-	      switch (funct)
-		{
+                switch (funct)
+                {
 
-		case ADDU:
-		  reg[rd] = reg[rs] + reg[rt];
-		  break;
-		case SUBU:
-		  reg[rd] = reg[rs] - reg[rt];
-		  break;
+                case ADDU:
+                    reg[rd] = reg[rs] + reg[rt];
+                    break;
+                case SUBU:
+                    reg[rd] = reg[rs] - reg[rt];
+                    break;
 
-		case MULT:
-		  hilo = (long long) reg[rs] * (long long) reg[rt];
-		  Lo = hilo & 0x00000000ffffffffULL;
-		  Hi = ((int) (hilo >> 32)) & 0xffffffffUL;
-		  break;
-		case MULTU:
-		  hilo =
-		    (unsigned long long) ((unsigned int) (reg[rs])) *
-		    (unsigned long long) ((unsigned int) (reg[rt]));
-		  Lo = hilo & 0x00000000ffffffffULL;
-		  Hi = ((int) (hilo >> 32)) & 0xffffffffUL;
-		  break;
+                case MULT:
+                    hilo = (long long)reg[rs] * (long long)reg[rt];
+                    Lo = hilo & 0x00000000ffffffffULL;
+                    Hi = ((int)(hilo >> 32)) & 0xffffffffUL;
+                    break;
+                case MULTU:
+                    hilo =
+                        (unsigned long long)((unsigned int)(reg[rs])) *
+                        (unsigned long long)((unsigned int)(reg[rt]));
+                    Lo = hilo & 0x00000000ffffffffULL;
+                    Hi = ((int)(hilo >> 32)) & 0xffffffffUL;
+                    break;
 
-		case MFHI:
-		  reg[rd] = Hi;
-		  break;
-		case MFLO:
-		  reg[rd] = Lo;
-		  break;
+                case MFHI:
+                    reg[rd] = Hi;
+                    break;
+                case MFLO:
+                    reg[rd] = Lo;
+                    break;
 
-		case AND:
-		  reg[rd] = reg[rs] & reg[rt];
-		  break;
-		case OR:
-		  reg[rd] = reg[rs] | reg[rt];
-		  break;
-		case XOR:
-		  reg[rd] = reg[rs] ^ reg[rt];
-		  break;
-		case SLL:
-		  reg[rd] = reg[rt] << shamt;
-		  break;
-		case SRL:
-		  reg[rd] = reg[rt] >> shamt;
-		  break;
-		case SLLV:
-		  reg[rd] = reg[rt] << reg[rs];
-		  break;
-		case SRLV:
-		  reg[rd] = reg[rt] >> reg[rs];
-		  break;
+                case AND:
+                    reg[rd] = reg[rs] & reg[rt];
+                    break;
+                case OR:
+                    reg[rd] = reg[rs] | reg[rt];
+                    break;
+                case XOR:
+                    reg[rd] = reg[rs] ^ reg[rt];
+                    break;
+                case SLL:
+                    reg[rd] = reg[rt] << shamt;
+                    break;
+                case SRL:
+                    reg[rd] = reg[rt] >> shamt;
+                    break;
+                case SLLV:
+                    reg[rd] = reg[rt] << reg[rs];
+                    break;
+                case SRLV:
+                    reg[rd] = reg[rt] >> reg[rs];
+                    break;
 
-		case SLT:
-		  reg[rd] = reg[rs] < reg[rt];
-		  break;
-		case SLTU:
-		  reg[rd] = (unsigned int) reg[rs] < (unsigned int) reg[rt];
-		  break;
+                case SLT:
+                    reg[rd] = reg[rs] < reg[rt];
+                    break;
+                case SLTU:
+                    reg[rd] = (unsigned int)reg[rs] < (unsigned int)reg[rt];
+                    break;
 
-		case JR:
-		  pc = reg[rs];
-		  break;
-		default:
-		  pc = 0;	// error
-		  break;
-		}
-	      break;
+                case JR:
+                    pc = reg[rs];
+                    break;
+                default:
+                    pc = 0; // error
+                    break;
+                }
+                break;
 
-	    case J:
-	      tgtadr = ins & 0x3ffffff;
-	      pc = tgtadr << 2;
-	      break;
-	    case JAL:
-	      tgtadr = ins & 0x3ffffff;
-	      reg[31] = pc;
-	      pc = tgtadr << 2;
-	      break;
+            case J:
+                tgtadr = ins & 0x3ffffff;
+                pc = tgtadr << 2;
+                break;
+            case JAL:
+                tgtadr = ins & 0x3ffffff;
+                reg[31] = pc;
+                pc = tgtadr << 2;
+                break;
 
-	    default:
+            default:
 
-	      address = ins & 0xffff;
-	      rt = (ins >> 16) & 0x1f;
-	      rs = (ins >> 21) & 0x1f;
-	      switch (op)
-		{
-		case ADDIU:
-		  reg[rt] = reg[rs] + address;
-		  break;
+                address = ins & 0xffff;
+                rt = (ins >> 16) & 0x1f;
+                rs = (ins >> 21) & 0x1f;
+                switch (op)
+                {
+                case ADDIU:
+                    reg[rt] = reg[rs] + address;
+                    break;
 
-		case ANDI:
-		  reg[rt] = reg[rs] & (unsigned short) address;
-		  break;
-		case ORI:
-		  reg[rt] = reg[rs] | (unsigned short) address;
-		  break;
-		case XORI:
-		  reg[rt] = reg[rs] ^ (unsigned short) address;
-		  break;
+                case ANDI:
+                    reg[rt] = reg[rs] & (unsigned short)address;
+                    break;
+                case ORI:
+                    reg[rt] = reg[rs] | (unsigned short)address;
+                    break;
+                case XORI:
+                    reg[rt] = reg[rs] ^ (unsigned short)address;
+                    break;
 
-		case LW:
-		  reg[rt] = dmem[DADDR (reg[rs] + address)];
-		  break;
-		case SW:
-		  dmem[DADDR (reg[rs] + address)] = reg[rt];
-		  break;
+                case LW:
+                    reg[rt] = dmem[DADDR(reg[rs] + address)];
+                    break;
+                case SW:
+                    dmem[DADDR(reg[rs] + address)] = reg[rt];
+                    break;
 
-		case LUI:
-		  reg[rt] = address << 16;
-		  break;
+                case LUI:
+                    reg[rt] = address << 16;
+                    break;
 
-		case BEQ:
-		  if (reg[rs] == reg[rt])
-		    pc = pc - 4 + (address << 2);
-		  break;
-		case BNE:
-		  if (reg[rs] != reg[rt])
-		    pc = pc - 4 + (address << 2);
-		  break;
-		case BGEZ:
-		  if (reg[rs] >= 0)
-		    pc = pc - 4 + (address << 2);
-		  break;
+                case BEQ:
+                    if (reg[rs] == reg[rt])
+                        pc = pc - 4 + (address << 2);
+                    break;
+                case BNE:
+                    if (reg[rs] != reg[rt])
+                        pc = pc - 4 + (address << 2);
+                    break;
+                case BGEZ:
+                    if (reg[rs] >= 0)
+                        pc = pc - 4 + (address << 2);
+                    break;
 
-		case SLTI:
-		  reg[rt] = reg[rs] < address;
-		  break;
+                case SLTI:
+                    reg[rt] = reg[rs] < address;
+                    break;
 
-		case SLTIU:
-		  reg[rt] = (unsigned int) reg[rs] < (unsigned short) address;
-		  break;
+                case SLTIU:
+                    reg[rt] = (unsigned int)reg[rs] < (unsigned short)address;
+                    break;
 
-		default:
-		  pc = 0;	/* error */
-		  break;
-		}
-	      break;
-	    }
-	  reg[0] = 0;
-	  n_inst = n_inst + 1;
-	}
-      while (pc != 0);
+                default:
+                    pc = 0; /* error */
+                    break;
+                }
+                break;
+            }
+            reg[0] = 0;
+            n_inst = n_inst + 1;
+        } while (pc != 0);
 
-      main_result += (n_inst != 611);
-      for (j = 0; j < 8; j++)
-	{
-	  main_result += (dmem[j] != outData[j]);
-	}
+        main_result += (n_inst != 611);
+        for (j = 0; j < 8; j++)
+        {
+            main_result += (dmem[j] != outData[j]);
+        }
 
-      printf ("%d\n", main_result);
-      return main_result;
+        printf("%d\n", main_result);
+        return main_result;
     }
 }

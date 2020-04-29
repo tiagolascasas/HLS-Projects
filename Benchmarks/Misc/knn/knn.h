@@ -1,7 +1,7 @@
 /**
 	k-NN
 	
-	Version by João MP Cardoso
+	Version by Joï¿½o MP Cardoso
 	Email: jmpc@fe.up.pt
 	
 	April 2020
@@ -21,12 +21,11 @@
 #include "utils.h"
 #include "macros.h"
 
-
 /*
 	Update the set of best points so far.
 */
 void updateBest(dtype distance, ctype classifID, dtype BestPointsDistances[K], ctype BestPointsClasses[K]);
-	
+
 /**
 	kNN function without classifying but returning the k nearest points
 	We use here a linear search.

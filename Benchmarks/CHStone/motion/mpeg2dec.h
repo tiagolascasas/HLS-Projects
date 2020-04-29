@@ -46,8 +46,7 @@
 
 #define ERROR (-1)
 
-#define SEQUENCE_END_CODE       0x1B7
-
+#define SEQUENCE_END_CODE 0x1B7
 
 /* mv_format */
 #define MV_FIELD 0

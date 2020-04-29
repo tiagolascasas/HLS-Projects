@@ -32,15 +32,17 @@
 @param input       Input image
 @param output      Output image
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
-void ImgBox(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM]) {
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
+void ImgBox(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM])
+{
 #pragma HLS INLINE
-	HwBox<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>(input, output);
+    HwBox<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>(input, output);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
-void ImgBox(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE	
-	HwBox<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
+void ImgBox(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwBox<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
 }
 
 /** @brief  Convolves the input with the client supplied convolution matrix. The output image dimensions should be the same as the dimensions of the input image.
@@ -54,15 +56,17 @@ void ImgBox(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WI
 @param output      Output image
 @param conv        The custom convolution kernel
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgConvolve(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM], const DataType conv[KERN_SIZE][KERN_SIZE]) {
-#pragma HLS INLINE		
-	HwConvolve<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output, conv);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgConvolve(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM], const DataType conv[KERN_SIZE][KERN_SIZE])
+{
+#pragma HLS INLINE
+    HwConvolve<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output, conv);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgConvolve(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM], const DataType conv[KERN_SIZE][KERN_SIZE]) {
-#pragma HLS INLINE		
-	HwConvolve<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output, conv);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgConvolve(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM], const DataType conv[KERN_SIZE][KERN_SIZE])
+{
+#pragma HLS INLINE
+    HwConvolve<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output, conv);
 }
 
 /** @brief  Implements Dilation, which grows the white space in a Boolean image. The output image dimensions should be the same as the dimensions of the input image.
@@ -75,15 +79,17 @@ void ImgConvolve(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIG
 @param input       Input image
 @param output      Output image
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgDilate(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwDilate<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgDilate(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwDilate<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgDilate(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwDilate<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgDilate(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwDilate<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
 }
 
 /** @brief  Implements Erosion, which shrinks the white space in a Boolean image. The output image dimensions should be the same as the dimensions of the input image.
@@ -96,15 +102,17 @@ void ImgDilate(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT
 @param input       Input image
 @param output      Output image
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgErode(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwErode<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgErode(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwErode<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgErode(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwErode<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgErode(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwErode<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
 }
 
 /** @brief  Computes a Gaussian filter over a window of the input image. The output image dimensions should be the same as the dimensions of the input image.
@@ -118,15 +126,17 @@ void ImgErode(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*
 @param input       Input image
 @param output      Output image
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
-void ImgGaussian(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwGaussian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>(input, output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
+void ImgGaussian(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwGaussian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>(input, output);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
-void ImgGaussian(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwGaussian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE, vx_bool SEPARABLE>
+void ImgGaussian(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwGaussian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE, SEPARABLE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
 }
 
 /** @brief  Computes a median pixel value over a window of the input image. The output image dimensions should be the same as the dimensions of the input image.
@@ -139,15 +149,17 @@ void ImgGaussian(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIG
 @param input       Input image
 @param output      Output image
 */
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgMedian(vx_image<DataType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwMedian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgMedian(vx_image<DataType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DataType, VEC_NUM> output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwMedian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output);
 }
-template<typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgMedian(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwMedian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
+template <typename DataType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
+void ImgMedian(DataType input[(HEIGHT * WIDTH) / VEC_NUM], DataType output[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwMedian<DataType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<DataType, VEC_NUM> *)input, (vx_image<DataType, VEC_NUM> *)output);
 }
 
 /** @brief  Implements the Scharr Image Filter Kernel. The output images dimensions should be the same as the dimensions of the input image. 
@@ -162,14 +174,16 @@ void ImgMedian(DataType input[(HEIGHT*WIDTH) / VEC_NUM], DataType output[(HEIGHT
 @param output2     The output image (y derivative)
 */
 template <typename SrcType, typename DstType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_border_e BORDER_TYPE>
-void ImgScharr3x3(vx_image<SrcType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output1[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output2[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwScharr3x3<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, BORDER_TYPE>(input, output1, output2);
+void ImgScharr3x3(vx_image<SrcType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output1[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output2[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwScharr3x3<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, BORDER_TYPE>(input, output1, output2);
 }
 template <typename SrcType, typename DstType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_border_e BORDER_TYPE>
-void ImgScharr3x3(SrcType input[(HEIGHT*WIDTH) / VEC_NUM], DstType output1[(HEIGHT*WIDTH) / VEC_NUM], DstType output2[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwScharr3x3<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, BORDER_TYPE>((vx_image<SrcType, VEC_NUM> *)input, (vx_image<DstType, VEC_NUM> *)output1, (vx_image<DstType, VEC_NUM> *)output2);
+void ImgScharr3x3(SrcType input[(HEIGHT * WIDTH) / VEC_NUM], DstType output1[(HEIGHT * WIDTH) / VEC_NUM], DstType output2[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwScharr3x3<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, BORDER_TYPE>((vx_image<SrcType, VEC_NUM> *)input, (vx_image<DstType, VEC_NUM> *)output1, (vx_image<DstType, VEC_NUM> *)output2);
 }
 
 /** @brief  Implements the Sobel Image Filter Kernel. The output images dimensions should be the same as the dimensions of the input image. 
@@ -185,14 +199,16 @@ void ImgScharr3x3(SrcType input[(HEIGHT*WIDTH) / VEC_NUM], DstType output1[(HEIG
 @param output2     The output image (y derivative)
 */
 template <typename SrcType, typename DstType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgSobel(vx_image<SrcType, VEC_NUM> input[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output1[(HEIGHT*WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output2[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwSobel<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output1, output2);
+void ImgSobel(vx_image<SrcType, VEC_NUM> input[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output1[(HEIGHT * WIDTH) / VEC_NUM], vx_image<DstType, VEC_NUM> output2[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwSobel<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>(input, output1, output2);
 }
 template <typename SrcType, typename DstType, vx_uint8 VEC_NUM, vx_uint16 WIDTH, vx_uint16 HEIGHT, vx_uint8 KERN_SIZE, vx_border_e BORDER_TYPE>
-void ImgSobel(SrcType input[(HEIGHT*WIDTH) / VEC_NUM], DstType output1[(HEIGHT*WIDTH) / VEC_NUM], DstType output2[(HEIGHT*WIDTH) / VEC_NUM]) {
-#pragma HLS INLINE		
-	HwSobel<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<SrcType, VEC_NUM> *)input, (vx_image<DstType, VEC_NUM> *)output1, (vx_image<DstType, VEC_NUM> *)output2);
+void ImgSobel(SrcType input[(HEIGHT * WIDTH) / VEC_NUM], DstType output1[(HEIGHT * WIDTH) / VEC_NUM], DstType output2[(HEIGHT * WIDTH) / VEC_NUM])
+{
+#pragma HLS INLINE
+    HwSobel<SrcType, DstType, VECTOR_PIXELS(HEIGHT, WIDTH, VEC_NUM), VEC_NUM, WIDTH, HEIGHT, KERN_SIZE, BORDER_TYPE>((vx_image<SrcType, VEC_NUM> *)input, (vx_image<DstType, VEC_NUM> *)output1, (vx_image<DstType, VEC_NUM> *)output2);
 }
 
 #endif /* SRC_IMG_FILTER_BASE_H_ */

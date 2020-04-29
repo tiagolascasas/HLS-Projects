@@ -17,24 +17,24 @@ void iir(float input[NPOINTS], float output[NPOINTS],
 
 main()
 {
-  int i;
+    int i;
 
-  float *pcoef = coefficient[0][0];
-  float *pint = internal_state[0][0];
+    float *pcoef = coefficient[0][0];
+    float *pint = internal_state[0][0];
 
-  for(i=0;i<NPOINTS;i++)
-  {
-    pcoef[i]=1;
-    pint[i]=1;
-  }
-  input_dsp(input,NPOINTS,0);
+    for (i = 0; i < NPOINTS; i++)
+    {
+        pcoef[i] = 1;
+        pint[i] = 1;
+    }
+    input_dsp(input, NPOINTS, 0);
 
-  iir(input, output, coefficient, internal_state);
+    iir(input, output, coefficient, internal_state);
 
-  output_dsp(input,NPOINTS,0);
-  output_dsp(coefficient,NPOINTS,0);
-  output_dsp(internal_state,NPOINTS,0);
-  output_dsp(output,NPOINTS,0);
+    output_dsp(input, NPOINTS, 0);
+    output_dsp(coefficient, NPOINTS, 0);
+    output_dsp(internal_state, NPOINTS, 0);
+    output_dsp(output, NPOINTS, 0);
 }
 
 void iir(float input[NPOINTS], float output[NPOINTS],
@@ -45,54 +45,54 @@ void iir(float input[NPOINTS], float output[NPOINTS],
 /* coefficient:     coefficient array */
 /* internal_state:  internal state array */
 {
-  int i, imod8, imodNSECTIONS;
-  int j;
+    int i, imod8, imodNSECTIONS;
+    int j;
 
-  float state_2, state_1;
-  float coef_a21, coef_a11, coef_b21, coef_b11;
-  float sum;
+    float state_2, state_1;
+    float coef_a21, coef_a11, coef_b21, coef_b11;
+    float sum;
 
-  for (i = 0; i < NPOINTS; ++i) {
+    for (i = 0; i < NPOINTS; ++i)
+    {
 
 #ifdef GCCmod
-    imod8 = i % 8;
-    imodNSECTIONS = i % NSECTIONS;
+        imod8 = i % 8;
+        imodNSECTIONS = i % NSECTIONS;
 #endif
 
-    sum = input[i];
+        sum = input[i];
 
-    for (j = 0; j < NSECTIONS; ++j) {
+        for (j = 0; j < NSECTIONS; ++j)
+        {
 
 #ifdef GCCmod
-      state_2 = internal_state[imod8][j][0];
-      state_1 = internal_state[imod8][j][1];
+            state_2 = internal_state[imod8][j][0];
+            state_1 = internal_state[imod8][j][1];
 
-      sum -= internal_state[imod8][j][0] * coefficient[imodNSECTIONS][j][0] +
-		internal_state[imod8][j][1] * coefficient[imodNSECTIONS][j][1];
+            sum -= internal_state[imod8][j][0] * coefficient[imodNSECTIONS][j][0] +
+                   internal_state[imod8][j][1] * coefficient[imodNSECTIONS][j][1];
 
-      internal_state[imod8][j][0] = internal_state[imod8][j][1];
-      internal_state[imod8][j][1] = sum;
+            internal_state[imod8][j][0] = internal_state[imod8][j][1];
+            internal_state[imod8][j][1] = sum;
 
-      sum += state_2 * coefficient[imodNSECTIONS][j][2] +
-				state_1 * coefficient[imodNSECTIONS][j][3];
+            sum += state_2 * coefficient[imodNSECTIONS][j][2] +
+                   state_1 * coefficient[imodNSECTIONS][j][3];
 
 #else
 
-      state_2 = internal_state[i][j][0];
-      state_1 = internal_state[i][j][1];
+            state_2 = internal_state[i][j][0];
+            state_1 = internal_state[i][j][1];
 
-      sum -= internal_state[i][j][0] * coefficient[i][j][0] +
-				internal_state[i][j][1] * coefficient[i][j][1];
+            sum -= internal_state[i][j][0] * coefficient[i][j][0] +
+                   internal_state[i][j][1] * coefficient[i][j][1];
 
-      internal_state[i][j][0] = internal_state[i][j][1];
-      internal_state[i][j][1] = sum;
+            internal_state[i][j][0] = internal_state[i][j][1];
+            internal_state[i][j][1] = sum;
 
-      sum += state_2 * coefficient[i][j][2] + state_1 * coefficient[i][j][3];
+            sum += state_2 * coefficient[i][j][2] + state_1 * coefficient[i][j][3];
 #endif
+        }
 
+        output[i] = sum;
     }
-
-    output[i] = sum;
-
-  }
 }

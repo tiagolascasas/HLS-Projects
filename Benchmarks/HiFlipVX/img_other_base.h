@@ -40,15 +40,17 @@
 * @param input        The input image
 * @param output       The output image
 */
-template<typename SrcType, typename DstType, const vx_uint8 VEC_SIZE, const vx_uint32 IMG_PIXEL, const vx_convert_policy_e CONV_POLICY, const vx_uint16 SHIFT>
-void ImgConvertBitDepth(vx_image<SrcType, VEC_SIZE> input[IMG_PIXEL], vx_image<DstType, VEC_SIZE> output[IMG_PIXEL]) {
+template <typename SrcType, typename DstType, const vx_uint8 VEC_SIZE, const vx_uint32 IMG_PIXEL, const vx_convert_policy_e CONV_POLICY, const vx_uint16 SHIFT>
+void ImgConvertBitDepth(vx_image<SrcType, VEC_SIZE> input[IMG_PIXEL], vx_image<DstType, VEC_SIZE> output[IMG_PIXEL])
+{
 #pragma HLS INLINE
-	ConvertBitDepth<SrcType, DstType, VEC_SIZE, IMG_PIXEL, CONV_POLICY, SHIFT>(input, output);
+    ConvertBitDepth<SrcType, DstType, VEC_SIZE, IMG_PIXEL, CONV_POLICY, SHIFT>(input, output);
 }
-template<typename SrcType, typename DstType, const vx_uint8 VEC_SIZE, const vx_uint32 IMG_PIXEL, const vx_convert_policy_e CONV_POLICY, const vx_uint16 SHIFT>
-void ImgConvertBitDepth(SrcType input[IMG_PIXEL], DstType output[IMG_PIXEL]) {
+template <typename SrcType, typename DstType, const vx_uint8 VEC_SIZE, const vx_uint32 IMG_PIXEL, const vx_convert_policy_e CONV_POLICY, const vx_uint16 SHIFT>
+void ImgConvertBitDepth(SrcType input[IMG_PIXEL], DstType output[IMG_PIXEL])
+{
 #pragma HLS INLINE
-	ConvertBitDepth<SrcType, DstType, VEC_SIZE, IMG_PIXEL, CONV_POLICY, SHIFT>(input, output);
+    ConvertBitDepth<SrcType, DstType, VEC_SIZE, IMG_PIXEL, CONV_POLICY, SHIFT>(input, output);
 }
 
 /** @brief  Converts the Color of an image between RGB/RGBX/Gray \n
@@ -67,10 +69,11 @@ void ImgConvertBitDepth(SrcType input[IMG_PIXEL], DstType output[IMG_PIXEL]) {
 * @param input       The input image
 * @param output      The output image
 */
-template<typename SrcType, typename DstType, const vx_uint32 IMG_PIXELS, vx_df_image_e INPUT_TYPE, vx_df_image_e OUTPUT_TYPE>
-void ImgConvertColor(SrcType input[IMG_PIXELS], DstType output[IMG_PIXELS]) {
+template <typename SrcType, typename DstType, const vx_uint32 IMG_PIXELS, vx_df_image_e INPUT_TYPE, vx_df_image_e OUTPUT_TYPE>
+void ImgConvertColor(SrcType input[IMG_PIXELS], DstType output[IMG_PIXELS])
+{
 #pragma HLS INLINE
-	ConvertColor<SrcType, DstType, IMG_PIXELS, INPUT_TYPE, OUTPUT_TYPE>(input, output);
+    ConvertColor<SrcType, DstType, IMG_PIXELS, INPUT_TYPE, OUTPUT_TYPE>(input, output);
 }
 
 /** @brief  Implements the Channel Extraction Kernel. \n
@@ -81,10 +84,11 @@ void ImgConvertColor(SrcType input[IMG_PIXELS], DstType output[IMG_PIXELS]) {
 * @param input       The input image
 * @param output      The output image
 */
-template<typename SrcType, const vx_uint16 CHANNEL_ID, const vx_uint32 IMG_PIXELS, vx_df_image_e INPUT_TYPE>
-void ImgChannelExtract(SrcType input[IMG_PIXELS], vx_uint8 output[IMG_PIXELS]) {
-#pragma HLS INLINE	
-	ChannelExtract<SrcType, CHANNEL_ID, IMG_PIXELS, INPUT_TYPE>(input, output);
+template <typename SrcType, const vx_uint16 CHANNEL_ID, const vx_uint32 IMG_PIXELS, vx_df_image_e INPUT_TYPE>
+void ImgChannelExtract(SrcType input[IMG_PIXELS], vx_uint8 output[IMG_PIXELS])
+{
+#pragma HLS INLINE
+    ChannelExtract<SrcType, CHANNEL_ID, IMG_PIXELS, INPUT_TYPE>(input, output);
 }
 
 /** @brief  Implements the Channel Combine Kernel.
@@ -98,10 +102,11 @@ void ImgChannelExtract(SrcType input[IMG_PIXELS], vx_uint8 output[IMG_PIXELS]) {
 * @param input3         The 4. plane of the input image (optional)
 * @param output         The output image
 */
-template<typename DstType, vx_uint16 CHANNEL_AMOUNT, vx_uint32 IMG_PIXELS, vx_df_image_e OUTPUT_TYPE>
-void ImgChannelCombine(vx_uint8 input0[IMG_PIXELS], vx_uint8 input1[IMG_PIXELS], vx_uint8 input2[IMG_PIXELS], vx_uint8 input3[IMG_PIXELS], DstType output[IMG_PIXELS]) {
-#pragma HLS INLINE	
-	ChannelCombine<DstType, CHANNEL_AMOUNT, IMG_PIXELS, OUTPUT_TYPE>(input0, input1, input2, input3, output);
+template <typename DstType, vx_uint16 CHANNEL_AMOUNT, vx_uint32 IMG_PIXELS, vx_df_image_e OUTPUT_TYPE>
+void ImgChannelCombine(vx_uint8 input0[IMG_PIXELS], vx_uint8 input1[IMG_PIXELS], vx_uint8 input2[IMG_PIXELS], vx_uint8 input3[IMG_PIXELS], DstType output[IMG_PIXELS])
+{
+#pragma HLS INLINE
+    ChannelCombine<DstType, CHANNEL_AMOUNT, IMG_PIXELS, OUTPUT_TYPE>(input0, input1, input2, input3, output);
 }
 
 /** @brief  Scale an image down using bilinear or nearest neighbor interpolation
@@ -113,10 +118,11 @@ void ImgChannelCombine(vx_uint8 input0[IMG_PIXELS], vx_uint8 input1[IMG_PIXELS],
 * @param input       The input image
 * @param output      The output image
 */
-template<vx_uint16 COLS_IN, vx_uint16 ROWS_IN, vx_uint16 COLS_OUT, vx_uint16 ROWS_OUT, vx_interpolation_type_e SCALE_TYPE>
-void ImgScaleImage(vx_uint8 input[COLS_IN*ROWS_IN], vx_uint8 output[COLS_OUT*ROWS_OUT]) {
+template <vx_uint16 COLS_IN, vx_uint16 ROWS_IN, vx_uint16 COLS_OUT, vx_uint16 ROWS_OUT, vx_interpolation_type_e SCALE_TYPE>
+void ImgScaleImage(vx_uint8 input[COLS_IN * ROWS_IN], vx_uint8 output[COLS_OUT * ROWS_OUT])
+{
 #pragma HLS INLINE
-	ScaleImage<COLS_IN, ROWS_IN, COLS_OUT, ROWS_OUT, SCALE_TYPE>(input, output);
+    ScaleImage<COLS_IN, ROWS_IN, COLS_OUT, ROWS_OUT, SCALE_TYPE>(input, output);
 }
 
 /** @brief  Computes the integral image of the input. The output image dimensions should be the same as the dimensions of the input image.
@@ -126,10 +132,11 @@ void ImgScaleImage(vx_uint8 input[COLS_IN*ROWS_IN], vx_uint8 output[COLS_OUT*ROW
 * @param input       The input image
 * @param output      The output image
 */
-template<const vx_uint16 IMG_COLS, const vx_uint16 IMG_ROWS>
-void ImgIntegral(vx_uint8 input[IMG_ROWS*IMG_COLS], vx_uint32 output[IMG_ROWS*IMG_COLS]) {
+template <const vx_uint16 IMG_COLS, const vx_uint16 IMG_ROWS>
+void ImgIntegral(vx_uint8 input[IMG_ROWS * IMG_COLS], vx_uint32 output[IMG_ROWS * IMG_COLS])
+{
 #pragma HLS INLINE
-	Integral<IMG_COLS, IMG_ROWS>(input, output);
+    Integral<IMG_COLS, IMG_ROWS>(input, output);
 }
 
 /** @brief  Generates a distribution from an image.
@@ -142,10 +149,11 @@ void ImgIntegral(vx_uint8 input[IMG_ROWS*IMG_COLS], vx_uint32 output[IMG_ROWS*IM
 * @param input                The input image (vx_uint8, vx_uint16)
 * @param output               The output image (vx_uint32)
 */
-template<typename SrcType, const vx_uint32 IMG_PIXELS, const vx_uint32 DISTRIBUTION_BINS, const vx_uint32 DISTRIBUTION_RANG, const SrcType DISTRIBUTION_OFFSET>
-void ImgHistogram(SrcType input[IMG_PIXELS], vx_uint32 output[IMG_PIXELS]) {
+template <typename SrcType, const vx_uint32 IMG_PIXELS, const vx_uint32 DISTRIBUTION_BINS, const vx_uint32 DISTRIBUTION_RANG, const SrcType DISTRIBUTION_OFFSET>
+void ImgHistogram(SrcType input[IMG_PIXELS], vx_uint32 output[IMG_PIXELS])
+{
 #pragma HLS INLINE
-	Histogram<SrcType, IMG_PIXELS, DISTRIBUTION_BINS, DISTRIBUTION_RANG, DISTRIBUTION_OFFSET>(input, output);
+    Histogram<SrcType, IMG_PIXELS, DISTRIBUTION_BINS, DISTRIBUTION_RANG, DISTRIBUTION_OFFSET>(input, output);
 }
 
 /** @brief  Implements the Table Lookup Image Kernel. The output image dimensions should be the same as the dimensions of the input image.
@@ -157,10 +165,11 @@ void ImgHistogram(SrcType input[IMG_PIXELS], vx_uint32 output[IMG_PIXELS]) {
 * @param input       The input image (vx_uint8, vx_int16)
 * @param output      The output image (vx_uint8, vx_int16)
 */
-template<typename DataType, const vx_uint32 IMG_PIXELS, const vx_uint32 LUT_COUNT, const vx_uint32 LUT_OFFSET>
-void ImgTableLookup(DataType input[IMG_PIXELS], DataType lut[LUT_COUNT], DataType output[IMG_PIXELS]) {
-#pragma HLS INLINE	
-	TableLookup<DataType, IMG_PIXELS, LUT_COUNT, LUT_OFFSET>(input, lut, output);
+template <typename DataType, const vx_uint32 IMG_PIXELS, const vx_uint32 LUT_COUNT, const vx_uint32 LUT_OFFSET>
+void ImgTableLookup(DataType input[IMG_PIXELS], DataType lut[LUT_COUNT], DataType output[IMG_PIXELS])
+{
+#pragma HLS INLINE
+    TableLookup<DataType, IMG_PIXELS, LUT_COUNT, LUT_OFFSET>(input, lut, output);
 }
 
 #endif /* SRC_IMG_OTHER_BASE_H_ */

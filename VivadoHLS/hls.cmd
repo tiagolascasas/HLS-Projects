@@ -1,0 +1,1 @@
+hlsparser C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\solution1\syn\report\csynth.xml %1 %2

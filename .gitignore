@@ -1,13 +1,9 @@
-vivado_hls_examples/solution1/impl
-vivado_hls_examples/solution1/.autopilot
-vivado_hls_examples/solution1/.debug
-vivado_hls_examples/solution1/syn
-vivado_hls_examples/solution1/.tcls
-vivado_hls_examples/solution1/
-vivado_hls_examples/hlsparser.exe
+VivadoHLS/solution1
+VivadoHLS/hlsparser.exe
 *.exe
 *.o
 woven_code
 output.dsp
 ast.txt
 knn.dot
+vivado_hls.log

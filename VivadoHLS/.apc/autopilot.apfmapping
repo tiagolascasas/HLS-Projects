@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="fast_math.h" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\fast_math.h"/>
-    <originFiles name="math_testing.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\math_testing.c"/>
+    <originFiles name="fir2d.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\fir2d.c"/>
   </source>
   <testbench/>
 </autopilotfilemapping:AutoPilotFileMapping>

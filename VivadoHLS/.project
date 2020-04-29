@@ -42,14 +42,9 @@
 			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/solution1/.tcls</location>
 		</link>
 		<link>
-			<name>source/fast_math.h</name>
+			<name>source/fir2d.c</name>
 			<type>1</type>
-			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/fast_math.h</location>
-		</link>
-		<link>
-			<name>source/math_testing.c</name>
-			<type>1</type>
-			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/math_testing.c</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/fir2d.c</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>

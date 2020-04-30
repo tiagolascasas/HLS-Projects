@@ -24,15 +24,12 @@ void fir(int p1[SIZE], int p2[SIZE], int in[SIZE])
     int n_sumval = 0;
 
     int n_p1[SIZE] = {0};
-    int n_p2[SIZE] = {0};
     int n_in[SIZE] = {0};
     fprintf(f, "Digraph G{\n");
     for (int i = 0; i < SIZE; i++)
     {
         n_p1[i]++;
         fprintf(f, "\"p1[%d]_%d_l\" [label=\"p1[%d]\", att1=var, att2=inte, att3=int ];\n", i, n_p1[i], i);
-        n_p2[i]++;
-        fprintf(f, "\"p2[%d]_%d_l\" [label=\"p2[%d]\", att1=var, att2=inte, att3=int ];\n", i, n_p2[i], i);
         n_in[i]++;
         fprintf(f, "\"in[%d]_%d_l\" [label=\"in[%d]\", att1=var, att2=inte, att3=int ];\n", i, n_in[i], i);
     }
@@ -82,7 +79,7 @@ void fir(int p1[SIZE], int p2[SIZE], int in[SIZE])
                     ne++;
                     fprintf(f, "\"in[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", (row + wrow) * WIDTH + col + wcol, n_in[(row + wrow) * WIDTH + col + wcol], n_op, ne, ne);
                     ne++;
-                    fprintf(f, "\"k[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", wrow * 3 + wcol, n_K[wrow * 3 + wcol], n_op, ne, ne);
+                    fprintf(f, "\"K[%d]_%d_l\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", wrow * 3 + wcol, n_K[wrow * 3 + wcol], n_op, ne, ne);
                     ne++;
                     fprintf(f, "op%d->temp%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
 
@@ -93,7 +90,7 @@ void fir(int p1[SIZE], int p2[SIZE], int in[SIZE])
                     ne++;
                     fprintf(f, "sumval_%d->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_sumval, n_op, ne, ne);
                     n_sumval++;
-                    fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=float ];\n", n_sumval);
+                    fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=int ];\n", n_sumval);
                     ne++;
                     fprintf(f, "op%d->sumval_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sumval, ne, ne);
                     //---------------------
@@ -110,7 +107,7 @@ void fir(int p1[SIZE], int p2[SIZE], int in[SIZE])
             ne++;
             fprintf(f, "const%d->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_const, n_op, ne, ne);
             n_sumval++;
-            fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=float ];\n", n_sumval);
+            fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=int];\n", n_sumval);
             ne++;
             fprintf(f, "op%d->sumval_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sumval, ne, ne);
             //---------------------
@@ -232,9 +229,9 @@ void edge(int p1[SIZE], int p2[SIZE])
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_htmp++;
-            fprintf(f, "htmp_%d [label=\"htmp\", ord=\"%d\", pos=\"r\"];\n", n_htmp, ne, ne);
+            fprintf(f, "htmp_%d [label=\"htmp\", att1=var, att2=loc, att3=int ];\n", n_htmp);
             ne++;
-            fprintf(f, "op%d->htmp_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_htmp, ne, ne);
+            fprintf(f, "op%d->htmp_%d [label=\"%d\", ord=\"%d\" ];\n", n_op, n_htmp, ne, ne);
             //---------------------
             int htmp = (p1[(v + 2) * WIDTH + h] - p1[v * WIDTH + h]) +
                        (p1[(v + 2) * WIDTH + h + 2] - p1[v * WIDTH + h + 2]) +
@@ -273,7 +270,7 @@ void edge(int p1[SIZE], int p2[SIZE])
             fprintf(f, "\"htmp_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_htmp, n_mux, ne, ne);
 
             n_htmp++;
-            fprintf(f, "\"htmp_%d\" [label=\"htmp\", att1=var, att2=loc, att3=char ];\n", n_htmp);
+            fprintf(f, "\"htmp_%d\" [label=\"htmp\", att1=var, att2=loc, att3=int ];\n", n_htmp);
             ne++;
             fprintf(f, "\"mux%d\"->htmp_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_htmp, ne, ne);
             //---------------------
@@ -346,9 +343,9 @@ void edge(int p1[SIZE], int p2[SIZE])
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_vtmp++;
-            fprintf(f, "vtmp_%d [label=\"vtmp\", ord=\"%d\", pos=\"r\"];\n", n_htmp, ne, ne);
+            fprintf(f, "vtmp_%d [label=\"vtmp\", att1=var, att2=loc, att3=int];\n", n_vtmp);
             ne++;
-            fprintf(f, "op%d->vtmp_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_htmp, ne, ne);
+            fprintf(f, "op%d->vtmp_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_vtmp, ne, ne);
             //---------------------
             int vtmp = (p1[v * WIDTH + h + 2] - p1[v * WIDTH + h]) +
                        (p1[(v + 2) * WIDTH + h + 2] - p1[(v + 2) * WIDTH + h]) +
@@ -387,7 +384,7 @@ void edge(int p1[SIZE], int p2[SIZE])
             fprintf(f, "\"vtmp_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_vtmp, n_mux, ne, ne);
 
             n_vtmp++;
-            fprintf(f, "\"vtmp_%d\" [label=\"vtmp\", att1=var, att2=loc, att3=char ];\n", n_vtmp);
+            fprintf(f, "\"vtmp_%d\" [label=\"vtmp\", att1=var, att2=loc, att3=int ];\n", n_vtmp);
             ne++;
             fprintf(f, "\"mux%d\"->vtmp_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_vtmp, ne, ne);
             //---------------------
@@ -401,9 +398,9 @@ void edge(int p1[SIZE], int p2[SIZE])
             ne++;
             fprintf(f, "\"vtmp_%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_vtmp, n_op, ne, ne);
             n_sum++;
-            fprintf(f, "sum_%d [label=\"sum\", ord=\"%d\", pos=\"r\"];\n", n_sum, ne, ne);
+            fprintf(f, "sum_%d [label=\"sum\", att1=var, att2=loc, att3=int ];\n", n_sum);
             ne++;
-            fprintf(f, "op%d->sum_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_sum, ne, ne);
+            fprintf(f, "op%d->sum_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sum, ne, ne);
             //---------------------
             int sum = htmp + vtmp;
 
@@ -429,7 +426,7 @@ void edge(int p1[SIZE], int p2[SIZE])
             fprintf(f, "\"sum_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_sum, n_mux, ne, ne);
 
             n_sum++;
-            fprintf(f, "\"sum_%d\" [label=\"sum\", att1=var, att2=loc, att3=char ];\n", n_sum);
+            fprintf(f, "\"sum_%d\" [label=\"sum\", att1=var, att2=loc, att3=int ];\n", n_sum);
             ne++;
             fprintf(f, "\"mux%d\"->sum_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_sum, ne, ne);
             //---------------------
@@ -439,7 +436,7 @@ void edge(int p1[SIZE], int p2[SIZE])
             n_p2[(v + 1) * WIDTH + h + 1]++;
             fprintf(f, "\"p2[%d]_%d_l\" [label=\"p2[%d]\", att1=var, att2=inte, att3=int ];\n", (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], (v + 1) * WIDTH + h + 1);
             ne++;
-            fprintf(f, "sum_%d->\"p2[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_sum, (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], (v + 1) * WIDTH + h + 1, ne, ne);
+            fprintf(f, "sum_%d->\"p2[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_sum, (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], ne, ne);
             //---------------------
             p2[(v + 1) * WIDTH + h + 1] = sum;
         }
@@ -564,7 +561,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
                     ne++;
                     fprintf(f, "sumval_%d->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_sumval, n_op, ne, ne);
                     n_sumval++;
-                    fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=float ];\n", n_sumval);
+                    fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=int ];\n", n_sumval);
                     ne++;
                     fprintf(f, "op%d->sumval_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sumval, ne, ne);
                     //---------------------
@@ -581,7 +578,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             ne++;
             fprintf(f, "const%d->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_const, n_op, ne, ne);
             n_sumval++;
-            fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=float ];\n", n_sumval);
+            fprintf(f, "\"sumval_%d\" [label=sumval, att1=var, att2=loc, att3=int ];\n", n_sumval);
             ne++;
             fprintf(f, "op%d->sumval_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sumval, ne, ne);
             //---------------------
@@ -667,9 +664,9 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_htmp++;
-            fprintf(f, "htmp_%d [label=\"htmp\", ord=\"%d\", pos=\"r\"];\n", n_htmp, ne, ne);
+            fprintf(f, "htmp_%d [label=\"htmp\", att1=var, att2=loc, att3=int ];\n", n_htmp);
             ne++;
-            fprintf(f, "op%d->htmp_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_htmp, ne, ne);
+            fprintf(f, "op%d->htmp_%d [label=\"%d\", ord=\"%d\" ];\n", n_op, n_htmp, ne, ne);
             //---------------------
             int htmp = (p1[(v + 2) * WIDTH + h] - p1[v * WIDTH + h]) +
                        (p1[(v + 2) * WIDTH + h + 2] - p1[v * WIDTH + h + 2]) +
@@ -708,7 +705,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             fprintf(f, "\"htmp_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_htmp, n_mux, ne, ne);
 
             n_htmp++;
-            fprintf(f, "\"htmp_%d\" [label=\"htmp\", att1=var, att2=loc, att3=char ];\n", n_htmp);
+            fprintf(f, "\"htmp_%d\" [label=\"htmp\", att1=var, att2=loc, att3=int ];\n", n_htmp);
             ne++;
             fprintf(f, "\"mux%d\"->htmp_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_htmp, ne, ne);
             //---------------------
@@ -781,9 +778,9 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             ne++;
             fprintf(f, "\"temp%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_temp - 1, n_op, ne, ne);
             n_vtmp++;
-            fprintf(f, "vtmp_%d [label=\"vtmp\", ord=\"%d\", pos=\"r\"];\n", n_htmp, ne, ne);
+            fprintf(f, "vtmp_%d [label=\"vtmp\", att1=var, att2=loc, att3=int];\n", n_vtmp);
             ne++;
-            fprintf(f, "op%d->vtmp_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_htmp, ne, ne);
+            fprintf(f, "op%d->vtmp_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_vtmp, ne, ne);
             //---------------------
             int vtmp = (p1[v * WIDTH + h + 2] - p1[v * WIDTH + h]) +
                        (p1[(v + 2) * WIDTH + h + 2] - p1[(v + 2) * WIDTH + h]) +
@@ -822,7 +819,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             fprintf(f, "\"vtmp_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_vtmp, n_mux, ne, ne);
 
             n_vtmp++;
-            fprintf(f, "\"vtmp_%d\" [label=\"vtmp\", att1=var, att2=loc, att3=char ];\n", n_vtmp);
+            fprintf(f, "\"vtmp_%d\" [label=\"vtmp\", att1=var, att2=loc, att3=int ];\n", n_vtmp);
             ne++;
             fprintf(f, "\"mux%d\"->vtmp_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_vtmp, ne, ne);
             //---------------------
@@ -836,9 +833,9 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             ne++;
             fprintf(f, "\"vtmp_%d\"->op%d [label=\"%d\", ord=\"%d\", pos=\"r\"];\n", n_vtmp, n_op, ne, ne);
             n_sum++;
-            fprintf(f, "sum_%d [label=\"sum\", ord=\"%d\", pos=\"r\"];\n", n_sum, ne, ne);
+            fprintf(f, "sum_%d [label=\"sum\", att1=var, att2=loc, att3=int ];\n", n_sum);
             ne++;
-            fprintf(f, "op%d->sum_%d [label=\"%d\", att1=var, att2=loc, att3=int ];\n", n_op, n_sum, ne, ne);
+            fprintf(f, "op%d->sum_%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_sum, ne, ne);
             //---------------------
             int sum = htmp + vtmp;
 
@@ -864,7 +861,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             fprintf(f, "\"sum_%d\"->mux%d [label=\"%d\", ord=\"%d\", pos=\"f\"];\n", n_sum, n_mux, ne, ne);
 
             n_sum++;
-            fprintf(f, "\"sum_%d\" [label=\"sum\", att1=var, att2=loc, att3=char ];\n", n_sum);
+            fprintf(f, "\"sum_%d\" [label=\"sum\", att1=var, att2=loc, att3=int ];\n", n_sum);
             ne++;
             fprintf(f, "\"mux%d\"->sum_%d [label=\"%d\", ord=\"%d\", pos=\"l\"];\n", n_mux, n_sum, ne, ne);
             //---------------------
@@ -874,7 +871,7 @@ void fir_edge(int p1[SIZE], int p2[SIZE], int in[SIZE])
             n_p2[(v + 1) * WIDTH + h + 1]++;
             fprintf(f, "\"p2[%d]_%d_l\" [label=\"p2[%d]\", att1=var, att2=inte, att3=int ];\n", (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], (v + 1) * WIDTH + h + 1);
             ne++;
-            fprintf(f, "sum_%d->\"p2[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_sum, (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], (v + 1) * WIDTH + h + 1, ne, ne);
+            fprintf(f, "sum_%d->\"p2[%d]_%d_l\" [label=\"%d\", ord=\"%d\"];\n", n_sum, (v + 1) * WIDTH + h + 1, n_p2[(v + 1) * WIDTH + h + 1], ne, ne);
             //---------------------
             p2[(v + 1) * WIDTH + h + 1] = sum;
         }

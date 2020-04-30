@@ -1,5 +1,9 @@
 #include <stdlib.h>
 
+float g1 = 2;
+float g2 = 4;
+int g3 = 123;
+
 //Helper functions
 int foo(int x) {
 	return x + x / x;

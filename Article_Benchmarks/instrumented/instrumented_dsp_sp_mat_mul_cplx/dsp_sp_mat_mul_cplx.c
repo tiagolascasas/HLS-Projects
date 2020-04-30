@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define NR1 (8)
 #define NC1 (4)
 #define NC2 (8)
@@ -8,6 +10,17 @@ float ptr_x2[2 * NC1 * NC2];
 
 void DSPF_sp_mat_mul_cplx_cn(const float *x1, const int r1, const int c1, const float *x2, const int c2, float *y)
 {
+    //---------------------
+    FILE *f = fopen("DSPF_sp_mat_mul_cplx_cn", "w");
+    int n_const = 0;
+    int n_temp = 0;
+    int ne = 0;
+    int n_op = 0;
+    int n_mux = 0;
+
+    int n_real = 0;
+    int n_imag = 0;
+    //---------------------
     float real, imag;
     int i, j, k;
 
@@ -20,6 +33,9 @@ void DSPF_sp_mat_mul_cplx_cn(const float *x1, const int r1, const int c1, const 
 
             for (k = 0; k < c1; k++)
             {
+                //---------------------
+
+                //---------------------
                 real += (x1[i * 2 * c1 + 2 * k] * x2[k * 2 * c2 + 2 * j] - x1[i * 2 * c1 + 2 * k + 1] * x2[k * 2 * c2 + 2 * j + 1]);
                 imag += (x1[i * 2 * c1 + 2 * k] * x2[k * 2 * c2 + 2 * j + 1] + x1[i * 2 * c1 + 2 * k + 1] * x2[k * 2 * c2 + 2 * j]);
             }

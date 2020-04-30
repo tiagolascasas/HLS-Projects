@@ -2,6 +2,7 @@ VivadoHLS/solution1
 VivadoHLS/hlsparser.exe
 *.exe
 *.o
+a.out
 woven_code
 output.dsp
 ast.txt

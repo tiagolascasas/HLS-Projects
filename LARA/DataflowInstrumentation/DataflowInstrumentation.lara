@@ -14,12 +14,12 @@ import PrintAST;
 var interfaces = {};
 var locals = {};
 var logger = null;
-var separator = "//---------------------";
 
 aspectdef DataflowInstrumentation
 	input
 		funName
 	end
+	
 	//Get function root
 	var root;
 	var filename = Clava.getProgram().files[0].name;
@@ -41,7 +41,74 @@ aspectdef DataflowInstrumentation
 		if (root.children[i].joinPointType == "param")
 			registerInterface(root.children[i]);
 	}
+	var children = scope.children.slice();
+
+	//Get global vars as interfaces
+	//TODO
+	//registerInterface...
+
+	//Get local vars
+	for (var elem of WeaverJps.search("vardecl").chain()){
+		registerLocal(elem["vardecl"]);
+	}
+
+	//Begin graph and create counters
+	var firstOp = scope.children[0];
+	logger.text("Digraph G {\\n").log(firstOp, true);
+	createSeparator(firstOp);
+	createDefaultCounters(firstOp);
+	for (var entry in locals) {
+		//declareLocalCounter(firstOp, entry);
+	}
+	for (var entry in interfaces) {
+		//declareInterfaceCounter(firstOp, interfaces);
+	}
+	
+	//Load all interfaces
+	loadInterfaces(scope);
+	createSeparator(firstOp);
+
+	//Go through each statement and generate nodes and edges
+	println(children.length);
+	explore(children);
+
+	//Close graph
+	logger.text("}").log(scope.children[scope.length - 1]);
+	
 end
+
+function explore(children) {
+	for (var i = 0; i < children.length; i++) {
+		var child = children[i];
+		if (child.joinPointType == "statement")
+			handleStatement(child);
+		if (child.joinPointType == "loop") {
+			explore(child.children[3].children.slice());
+		}
+	}
+}
+
+//--------------------
+// Counters
+//--------------------
+function createDefaultCounters(node) {
+	var defCounters = ["const", "temp", "op", "mux"];
+	for (var i = 0; i < defCounters.length; i++)
+		node.insertBefore(ClavaJoinPoints.stmtLiteral("int n_" + defCounters[i] + " = 0;"));
+	node.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
+}
+
+function declareInterfaceCounter(node, name) {
+	var info = interfaces[name];
+	var init = (info.length == 1) ? " = 0;" : " = {0};";
+	node.insertBefore(ClavaJoinPoints.stmtLiteral("int " + getCounterOfVar(name, info) + init));
+}
+
+function declareLocalCounter(node, name) {
+	var info = locals[name];
+	var init = (info.length == 1) ? " = 0;" : " = {0};";
+	node.insertBefore(ClavaJoinPoints.stmtLiteral("int " + getCounterOfVar(name, info) + init));
+}
 
 function splitMulti(str, tokens) {
 	var tempChar = tokens[0];
@@ -60,9 +127,19 @@ function splitMulti(str, tokens) {
 function registerInterface(param) {
 	var tokens = splitMulti(param.code, [' ', "]", "["]);
 	var interName = tokens[1];
-	tokens = tokens.splice(1);
+	tokens.splice(1, 1);
 	interfaces[interName] = tokens;
-	println(interfaces[interName]);
+	//println(interfaces[interName]);
+}
+
+function registerLocal(local) {
+	var tokens = splitMulti(local.code, [' ', "]", "["]);
+	var locName = tokens[1];
+	tokens.splice(1, 1);
+	if (tokens.indexOf("=") != -1)
+		tokens = tokens.slice(0, tokens.indexOf("="));
+	locals[locName] = tokens;
+	//println(locals[locName]);
 }
 
 function getCounterOfVar(name, info) {
@@ -72,8 +149,77 @@ function getCounterOfVar(name, info) {
 	return str;
 }
 
-function declareCounter(name) {
-	var info = (interfaces[name] == undefined) ? variables[name] : interfaces[name];
-	var init = (info.length == 1) ? " = 0;" : " = {0};";
-	return ClavaJoinPoints.stmtLiteral("int " + getCounterOfVar(name, info) + init);
+function loadInterfaces(node) {
+
+}
+
+//--------------------
+// Create nodes
+//--------------------
+function incrementCounter(node, variable, indexes) {
+	if (variable == "ne") {
+		node.insertBefore(ClavaJoinPoints.stmtLiteral("ne++;"));
+		return;
+	}
+	if (indexes != undefined) {
+		var access = "";
+		for (var i = 0; i < indexes.length; i++) {
+			access += "[" + indexes[i] + "]";
+		}
+		node.insertBefore(ClavaJoinPoints.stmtLiteral("n_" + variable + accesses + "++;"));
+	}
+	else {
+		node.insertBefore(ClavaJoinPoints.stmtLiteral("n_" + variable + "++;"));
+	}	
+}
+
+function storeVar(node, variable) {
+	incrementCounter(node, variable);
+	//insert print
+}
+
+function storeArray(node, variable, indexes) {
+	incrementCounter(node, variable, indexes);
+	//insert print
+}
+
+function createOp(node, op) {
+	incrementCounter(node, "op");
+	//insert print
+}
+
+function createMux(node) {
+	incrementCounter(node, "mux");
+	//insert print
+}
+
+function createConst(node, num) {
+	incrementCounter(node, "const");
+	//insert print
+}
+
+function createTemp(node) {
+	incrementCounter(node, "temp");
+	//insert print
+}
+
+function createSeparator(node) {
+	var separator = "//---------------------";
+	node.insertBefore(ClavaJoinPoints.stmtLiteral(separator));
+}
+
+//--------------------
+// Create edges
+//--------------------
+function createEdge(node, source, dest) {
+	incrementCounter("ne");
+}
+
+//--------------------
+// Handle statements
+//--------------------
+function handleStatement(node) {
+	createSeparator(node);
+	//handle by joinpoint type
+	createSeparator(node);
 }

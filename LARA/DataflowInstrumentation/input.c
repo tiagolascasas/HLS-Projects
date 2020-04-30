@@ -165,9 +165,9 @@ void convolve2d(int input_image[NE][NE], int kernel[K][K], int output_image[NE][
 void mult(float a_matrix[A_ROW][A_COL], float b_matrix[B_ROW][B_COL],
           float c_matrix[A_ROW][B_COL])
 {
-    float sum, i, j;
+    float sum;
 
-    for (i = 0; i < A_ROW; i++)
+    for (int i = 0; i < A_ROW; i++)
     {
         for (int j = 0; j < B_COL; j++)
         {

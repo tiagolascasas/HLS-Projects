@@ -48,20 +48,21 @@ aspectdef DataflowInstrumentation
 	//registerInterface...
 
 	//Get local vars
-	for (var elem of WeaverJps.search("vardecl").chain()){
-		registerLocal(elem["vardecl"]);
+	for (var elem of WeaverJps.search("function", {name: funName}).search("vardecl")){
+		registerLocal(elem);
 	}
 
 	//Begin graph and create counters
 	var firstOp = scope.children[0];
 	logger.text("Digraph G {\\n").log(firstOp, true);
+	
 	createSeparator(firstOp);
 	createDefaultCounters(firstOp);
 	for (var entry in locals) {
-		//declareLocalCounter(firstOp, entry);
+		declareLocalCounter(firstOp, entry);
 	}
 	for (var entry in interfaces) {
-		//declareInterfaceCounter(firstOp, interfaces);
+		declareInterfaceCounter(firstOp, entry);
 	}
 	
 	//Load all interfaces
@@ -69,7 +70,6 @@ aspectdef DataflowInstrumentation
 	createSeparator(firstOp);
 
 	//Go through each statement and generate nodes and edges
-	println(children.length);
 	explore(children);
 
 	//Close graph
@@ -81,7 +81,7 @@ function explore(children) {
 	for (var i = 0; i < children.length; i++) {
 		var child = children[i];
 		if (child.joinPointType == "statement")
-			handleStatement(child);
+			handleStatement(child.children[0]);
 		if (child.joinPointType == "loop") {
 			explore(child.children[3].children.slice());
 		}
@@ -129,17 +129,19 @@ function registerInterface(param) {
 	var interName = tokens[1];
 	tokens.splice(1, 1);
 	interfaces[interName] = tokens;
-	//println(interfaces[interName]);
 }
 
 function registerLocal(local) {
 	var tokens = splitMulti(local.code, [' ', "]", "["]);
 	var locName = tokens[1];
+	if (locals[locName] != undefined)
+		return;
+	if (interfaces[locName] != undefined)
+		return;
 	tokens.splice(1, 1);
 	if (tokens.indexOf("=") != -1)
 		tokens = tokens.slice(0, tokens.indexOf("="));
 	locals[locName] = tokens;
-	//println(locals[locName]);
 }
 
 function getCounterOfVar(name, info) {
@@ -219,7 +221,25 @@ function createEdge(node, source, dest) {
 // Handle statements
 //--------------------
 function handleStatement(node) {
+	var type = node.joinPointType;
 	createSeparator(node);
-	//handle by joinpoint type
+	if (type == "vardecl")
+		handleVardecl(node);
+	if (type == "binaryOp")
+		handleBinaryOp(node);
+	if (type == "unaryOp")
+		handleUnaryOp(node);
 	createSeparator(node);
+}
+
+function handleVardecl(node) {
+	println("vardecl found");
+}
+
+function handleBinaryOp(node) {
+	println(node.kind);
+}
+
+function handleUnaryOp(node) {
+	println(node.code);
 }

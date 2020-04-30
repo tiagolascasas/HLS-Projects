@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="fir2d.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\fir2d.c"/>
+    <originFiles name="triangles_hypotenuse.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\triangles_hypotenuse.c"/>
   </source>
   <testbench/>
 </autopilotfilemapping:AutoPilotFileMapping>

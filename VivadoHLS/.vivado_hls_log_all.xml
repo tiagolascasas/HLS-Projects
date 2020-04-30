@@ -11,11 +11,7 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog>
-        <logs message="WARNING: [SYN 201-107] Renaming port name 'fir2D/out' to 'fir2D/out_r' to avoid the conflict with HDL keywords or other object names." projectName="VivadoHLS" solutionName="solution1" date="2020-04-29T01:44:13.683+0100" type="Warning"/>
-        <logs message="WARNING: [SYN 201-107] Renaming port name 'fir2D/in' to 'fir2D/in_r' to avoid the conflict with HDL keywords or other object names." projectName="VivadoHLS" solutionName="solution1" date="2020-04-29T01:44:13.665+0100" type="Warning"/>
-        <logs message="WARNING: [XFORM 203-124] Array  'out': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order." projectName="VivadoHLS" solutionName="solution1" date="2020-04-29T01:44:13.089+0100" type="Warning"/>
-      </synLog>
+      <synLog/>
       <simLog/>
       <mgLog/>
       <packageLog/>

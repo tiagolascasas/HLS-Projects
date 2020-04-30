@@ -52,11 +52,11 @@
 /*                           All Rights Reserved.                           */
 /* ======================================================================== */
 
-int DSP_dotprod_c(const short *x, const short *y, int nx)
+int DSP_dotprod(const short *x, const short *y, int nx)
 {
-    int sum = 0, i;
+    int sum = 0;
 
-    for (i = 0; i < nx; i++)
+    for (int i = 0; i < nx; i++)
         sum += x[i] * y[i];
 
     return sum;

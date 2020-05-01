@@ -1,12 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #define NR1 (8)
 #define NC1 (4)
 #define NC2 (8)
 
-float ptr_y_cn[2 * NR1 * NC2];
-float ptr_x1[2 * NR1 * NC1];
-float ptr_x2[2 * NC1 * NC2];
-
-void DSPF_sp_mat_mul_cplx_cn(const float *x1, const int r1, const int c1, const float *x2, const int c2, float *y)
+void DSPF_sp_mat_mul_cplx_cn(float x1[2 * NR1 * NC1], int r1, int c1, float x2[2 * NC1 * NC2], int c2, float y[2 * NR1 * NC2])
 {
     float real, imag;
     int i, j, k;
@@ -27,4 +26,23 @@ void DSPF_sp_mat_mul_cplx_cn(const float *x1, const int r1, const int c1, const 
             y[i * 2 * c2 + 2 * j + 1] = imag;
         }
     }
+}
+
+int main()
+{
+    float ptr_y_cn[2 * NR1 * NC2] = {0};
+    for (int i = 0; i < 2 * NR1 * NC2; i++)
+        ptr_y_cn[i] = rand();
+
+    float ptr_x1[2 * NR1 * NC1] = {0};
+    for (int i = 0; i < 2 * NR1 * NC1; i++)
+        ptr_x1[i] = rand();
+
+    float ptr_x2[2 * NC1 * NC2] = {0};
+    for (int i = 0; i < 2 * NC1 * NC2; i++)
+        ptr_x2[i] = rand();
+
+    DSPF_sp_mat_mul_cplx_cn(ptr_x1, NR1, NC1, ptr_x2, NC2, ptr_y_cn);
+
+    return 0;
 }

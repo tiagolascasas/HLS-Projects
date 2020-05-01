@@ -1,10 +1,10 @@
 #include <stdlib.h>
 
+//Helper functions
 float g1 = 2;
 float g2 = 4;
 int g3 = 123;
 
-//Helper functions
 int foo(int x) {
 	return x + x / x;
 }
@@ -40,12 +40,11 @@ void fir2D(unsigned char in[HEIGHT_SIZE*WIDTH_SIZE], unsigned char out[HEIGHT_SI
 int DSP_dotprod(short x[NX], const short y[NX])
 {
     int sum = 0;
-    int foo = 0;
-	//this is a comment
+
     for (int i = 0; i < NX; i++) {
         sum += x[i] * y[i];
     }
-	//this is another comment
+
     return sum;
 }
 
@@ -81,32 +80,8 @@ void calc_hypotenuse(unsigned int first_array[NUMBER_OF_TRIANGLES], unsigned int
      }
 }
 
-//misc_filter_subband
-#define Nz 100
-#define Ns 100
-#define Nm 100
-
-void filter_subband_double(double z[Nz], double s[Ns], double m[Nm])
-{
-   double y[Ny];
-
-   for (int i=0;i<Ny;i++)
-   {
-     y[i] = 0.0;
-     for (int j=0; j<(int)Nz/Ny;j++)
-          y[i] += z[i+Ny*j];
-   }
-
-   for (int i=0;i<Ns;i++)
-   {
-       s[i]=0.0;
-       for (int j=0; j<Ny;j++)
-           s[i] += m[Ns*i+j] * y[j];
-   }
-}
-
 //misc_fir
-void fir_b_golden(int x[M],int  y[M], int c[N])
+void fir(int x[M],int  y[M], int c[N])
 {
 	int output;
 	for(int j=N-1; j<M; j++) {

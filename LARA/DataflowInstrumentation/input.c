@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <math.h>
 
+int global1;
+int global2 = 0;
+float global3;
+
 //DSP_dotprod
 #define NX 3
 
@@ -10,8 +14,11 @@ int DSP_dotprod(const short x[NX], const short y[NX])
     int sum = 0;
     int i;
 
-    for (i = 0; i < NX; i++)
+    for (i = 0; i < NX; i++) {
         sum += x[i] * y[i];
+        sum = x[i] * y[i];
+        sum = sum + x[i] * y[i];
+    }
 
     return sum;
 }

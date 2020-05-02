@@ -14,6 +14,8 @@ import PrintAST;
 var interfaces = {};
 var locals = {};
 var logger = null;
+var CM = "\\\"";
+var NL = "\\n";
 
 aspectdef DataflowInstrumentation
 	input
@@ -44,8 +46,10 @@ aspectdef DataflowInstrumentation
 	var children = scope.children.slice();
 
 	//Get global vars as interfaces
-	//TODO
-	//registerInterface...
+	for (var elem of WeaverJps.search("vardecl")) {
+		if (elem.isGlobal)
+			registerInterface(elem);
+	}
 
 	//Get local vars
 	for (var elem of WeaverJps.search("function", {name: funName}).search("vardecl")){
@@ -155,9 +159,33 @@ function loadInterfaces(node) {
 
 }
 
+function isLocal(varName) {
+	return (locals[varName] != undefined);
+}
+
+function isInterface(varName) {
+	return (interfaces[varName] != undefined);
+}
+
 //--------------------
 // Create nodes
 //--------------------
+function refCounter(name) {
+	name = "n_" + name;
+	return ClavaJoinPoints.varRef(name, ClavaJoinPoints.builtinType("int"));
+}
+
+function refArrayCounter(name, indexes) {
+	name = "n_" + name;
+	for (var i = 0; i < indexes.length; i++)
+		name += "[" + indexes[i] + "]";
+	return ClavaJoinPoints.stmtLiteral(name);
+}
+
+function refAnyExpr(code) {
+	return ClavaJoinPoints.stmtLiteral(code);
+}
+
 function incrementCounter(node, variable, indexes) {
 	if (variable == "ne") {
 		node.insertBefore(ClavaJoinPoints.stmtLiteral("ne++;"));
@@ -177,32 +205,82 @@ function incrementCounter(node, variable, indexes) {
 
 function storeVar(node, variable) {
 	incrementCounter(node, variable);
-	//insert print
+	var att1 = "var";
+	var att2 = "";
+	var att3 = "";
+	if (isLocal(variable)) {
+		att2 = "loc";
+		att3 = locals[variable][0];
+	}
+	if (isInterface(variable)) {
+		att2 = "inte";
+		att3 = interfaces[variable][0];
+	}
+	logger.text(CM + variable + "_")
+		.int(refCounter(variable))
+		.text(CM + " [label=" + CM + variable + CM + ", att1=" + att1 + ", att2=" + att2 + ", att3=" + att3 + "];" + NL)
+		.log(node, true);
 }
 
 function storeArray(node, variable, indexes) {
 	incrementCounter(node, variable, indexes);
-	//insert print
+	var att1 = "var";
+	var att2 = "";
+	var att3 = "";
+	if (isLocal(variable)) {
+		att2 = "loc";
+		att3 = locals[variable][0];
+	}
+	if (isInterface(variable)) {
+		att2 = "inte";
+		att3 = interfaces[variable][0];
+	}
+	logger.text(CM + variable );
+	for (var i = 0; i < indexes.length; i++) {
+		logger.text("[").int(refAnyExpr(indexes[i])).text("]");
+	}
+	logger.text("_").int(refArrayCounter(variable)).text("_l") + CM;
+	logger.text(" [label=" + CM + variable);
+	for (var i = 0; i < indexes.length; i++) {
+		logger.text("[").int(refAnyExpr(indexes[i])).text("]");
+	}
+	logger.text(CM + ", att1=" + att1 + ", att2=" + att2 + ", att3=" + att3 + "];" + NL)
+	.log(node, true);
 }
 
 function createOp(node, op) {
 	incrementCounter(node, "op");
-	//insert print
+	logger.text(CM + "op")
+		.int(refCounter("op"))
+		.text(CM + " [label=" + CM + op + CM + ", att1=op];" + NL)
+		.log(node, true);
 }
 
 function createMux(node) {
+	//TODO: include OP attribute?
 	incrementCounter(node, "mux");
-	//insert print
+	logger.text(CM + "mux")
+		.int(refCounter("mux"))
+		.text(CM + " [label=" + CM + "mux")
+		.int(refCounter("mux"))
+		.text(CM + ", att1=mux];" + NL)
+		.log(node, true);
 }
 
 function createConst(node, num) {
 	incrementCounter(node, "const");
-	//insert print
+	logger.text(CM + "const")
+		.int(refCounter("const"))
+		.text(CM + " [label=" + CM + num + CM + ", att1=const];" + NL)
+		.log(node, true);
 }
 
-function createTemp(node) {
+function createTemp(node, type) {
 	incrementCounter(node, "temp");
-	//insert print
+	logger.text(CM + "temp")
+		.int(refCounter("temp"))
+		.text(CM + " [label=" + CM + "temp_l" + node.line + "_i" + CM + ", att1=var, att2=loc, att3=" + type + "];" + NL)
+		.log(node, true);
 }
 
 function createSeparator(node) {
@@ -238,8 +316,21 @@ function handleVardecl(node) {
 
 function handleBinaryOp(node) {
 	println(node.kind);
+	var opKind = mapOperation(node.kind);
+	
+	createOp(node, opKind);
+	
 }
 
 function handleUnaryOp(node) {
 	println(node.code);
+}
+
+//--------------------
+// Utils
+//--------------------
+function mapOperation(op) {
+	if (op.includes("add"))
+		return "+";
+	return "undefined_op";
 }

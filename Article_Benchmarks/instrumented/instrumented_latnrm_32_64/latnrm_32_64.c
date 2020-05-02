@@ -84,11 +84,11 @@ void latnrm(float data[NPOINTS], float outa[NPOINTS], float coefficient[NPOINTS]
     float top;
     //---------------------
     n_const++;
-    fprintf(f, "const%d [label=\"0.0\", att1=const];\n", n_const);
-    fprintf(f, "\"bottom_%d\" [label=sum, att1=var, att2=loc, att3=float ];\n", n_bottom + 1);
-    ne++;
-    fprintf(f, "const%d->\"bottom_%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_bottom + 1, ne, ne);
+    fprintf(f, "const%d [label=\"0\", att1=const];\n", n_const);
     n_bottom++;
+    fprintf(f, "\"bottom_%d\" [label=bottom, att1=var, att2=loc, att3=float ];\n", n_bottom);
+    ne++;
+    fprintf(f, "const%d->\"bottom_%d\" [label=\"%d\", ord=\"%d\"];\n", n_const, n_bottom, ne, ne);
     //---------------------
     float bottom = 0;
     float sum;
@@ -205,7 +205,7 @@ void latnrm(float data[NPOINTS], float outa[NPOINTS], float coefficient[NPOINTS]
             fprintf(f, "op%d->temp%d [label=\"%d\", ord=\"%d\"];\n", n_op, n_temp, ne, ne);
 
             n_bottom++;
-            fprintf(f, "\"bottom_%d\" [label=\"left\", att1=var, att2=loc, att3=float ];\n", n_bottom);
+            fprintf(f, "\"bottom_%d\" [label=\"bottom\", att1=var, att2=loc, att3=float ];\n", n_bottom);
             ne++;
             fprintf(f, "temp%d->\"bottom_%d\" [label=\"%d\", ord=\"%d\"];\n", n_temp, n_bottom, ne, ne);
             //---------------------

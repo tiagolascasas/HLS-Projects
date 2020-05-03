@@ -43,7 +43,7 @@ void hist(int image[N][N], int histogram[L], int gray_level_mapping[L])
         for (int j = 0; j < N; j++)
         {
             n_image[i][j]++;
-            fprintf(f, "\"n_image[%d][%d]_%d_l\" [label=\"data_imag[%d][%d]\", att1=var, att2=inte, att3=float ];\n", i, j, n_image[i][j], i, j);
+            fprintf(f, "\"image[%d][%d]_%d_l\" [label=\"image[%d][%d]\", att1=var, att2=inte, att3=float ];\n", i, j, n_image[i][j], i, j);
         }
     }
     //---------------------

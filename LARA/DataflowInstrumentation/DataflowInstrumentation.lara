@@ -84,7 +84,7 @@ aspectdef DataflowInstrumentation
 	explore(children);
 
 	//Close graph
-	logger.text("}").log(scope.children[scope.length - 1]);
+	logger.text("}").log(scope.children[scope.children.length - 1], true);
 	
 end
 
@@ -241,7 +241,7 @@ function storeArray(node, variable, indexes) {
 	for (var i = 0; i < indexes.length; i++) {
 		logger.text("[").int(refAnyExpr(indexes[i])).text("]");
 	}
-	logger.text("_").int(refArrayCounter(variable, indexes)).text("_l") + CM;
+	logger.text("_").int(refArrayCounter(variable, indexes)).text("_l" + CM);
 	logger.text(" [label=" + CM + variable);
 	for (var i = 0; i < indexes.length; i++) {
 		logger.text("[").int(refAnyExpr(indexes[i])).text("]");

@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include <math.h>
 
-int global1;
-int global2 = 0;
-float global3;
-double global4[10][10] = {0};
-
 //DSP_dotprod
 #define NX 3
 

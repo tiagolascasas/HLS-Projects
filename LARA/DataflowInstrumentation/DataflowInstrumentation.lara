@@ -14,6 +14,7 @@ import PrintAST;
 var interfaces = {};
 var locals = {};
 var logger = null;
+var defCounters = ["const", "temp", "op", "mux"];
 var CM = "\\\"";
 var NL = "\\n";
 
@@ -32,7 +33,11 @@ aspectdef DataflowInstrumentation
 	for (var elem of WeaverJps.search("function").chain()){
 		if (elem["function"].name == funName)
 			root = elem["function"];
-	}	
+	}
+	if (root == undefined) {
+		println("Function " + funName + " not found, terminating...");
+		return;
+	}
 	call PrintAST(root);
 
 	//Get scope and interface
@@ -70,7 +75,9 @@ aspectdef DataflowInstrumentation
 	}
 	
 	//Load all interfaces
-	loadInterfaces(scope);
+	for (var inter in interfaces) {
+		initializeInterface(firstOp, inter);
+	}
 	createSeparator(firstOp);
 
 	//Go through each statement and generate nodes and edges
@@ -96,7 +103,6 @@ function explore(children) {
 // Counters
 //--------------------
 function createDefaultCounters(node) {
-	var defCounters = ["const", "temp", "op", "mux"];
 	for (var i = 0; i < defCounters.length; i++)
 		node.insertBefore(ClavaJoinPoints.stmtLiteral("int n_" + defCounters[i] + " = 0;"));
 	node.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
@@ -155,10 +161,6 @@ function getCounterOfVar(name, info) {
 	return str;
 }
 
-function loadInterfaces(node) {
-
-}
-
 function isLocal(varName) {
 	return (locals[varName] != undefined);
 }
@@ -196,7 +198,7 @@ function incrementCounter(node, variable, indexes) {
 		for (var i = 0; i < indexes.length; i++) {
 			access += "[" + indexes[i] + "]";
 		}
-		node.insertBefore(ClavaJoinPoints.stmtLiteral("n_" + variable + accesses + "++;"));
+		node.insertBefore(ClavaJoinPoints.stmtLiteral("n_" + variable + access + "++;"));
 	}
 	else {
 		node.insertBefore(ClavaJoinPoints.stmtLiteral("n_" + variable + "++;"));
@@ -239,7 +241,7 @@ function storeArray(node, variable, indexes) {
 	for (var i = 0; i < indexes.length; i++) {
 		logger.text("[").int(refAnyExpr(indexes[i])).text("]");
 	}
-	logger.text("_").int(refArrayCounter(variable)).text("_l") + CM;
+	logger.text("_").int(refArrayCounter(variable, indexes)).text("_l") + CM;
 	logger.text(" [label=" + CM + variable);
 	for (var i = 0; i < indexes.length; i++) {
 		logger.text("[").int(refAnyExpr(indexes[i])).text("]");
@@ -279,7 +281,9 @@ function createTemp(node, type) {
 	incrementCounter(node, "temp");
 	logger.text(CM + "temp")
 		.int(refCounter("temp"))
-		.text(CM + " [label=" + CM + "temp_l" + node.line + "_i" + CM + ", att1=var, att2=loc, att3=" + type + "];" + NL)
+		.text(CM + " [label=" + CM + "temp")
+		.int(refCounter("temp"))
+		.text(CM + ", att1=var, att2=loc, att3=" + type + "];" + NL)
 		.log(node, true);
 }
 
@@ -291,8 +295,41 @@ function createSeparator(node) {
 //--------------------
 // Create edges
 //--------------------
-function createEdge(node, source, dest) {
-	incrementCounter("ne");
+function createEdge(node, source, dest, pos) {
+	incrementCounter(node, "ne");
+	logger.text(CM);
+	if (source.length == 1) {
+		if (source[0] in defCounters)
+			logger.text(source[0]).int(refCounter(source[0]));
+		else
+			logger.text(source[0]).text("_").int(refCounter(source[0]));
+	}
+	else {
+		logger.text(source[0]);
+		for (var i = 1; i < source.length; i++)
+			logger.text("[").int(refAnyExpr(source[i])).text("]");
+		logger.text("_").int(refArrayCounter(source[0], source.slice(1))).text("_l");
+	}
+	logger.text(CM + " -> " + CM);
+	if (dest.length == 1) {
+		if (dest[0] in defCounters)
+			logger.text(dest[0]).int(refCounter(dest[0]));
+		else
+			logger.text(dest[0]).text("_").int(refCounter(dest[0]));
+	}
+	else {
+		logger.text(dest[0]);
+		for (var i = 1; i < dest.length; i++)
+			logger.text("[").int(refAnyExpr(dest[i])).text("]");
+		logger.text("_").int(refArrayCounter(dest[0], dest.slice(1))).text("_l");
+	}
+	logger.text(CM + " [label=" + CM)
+		.int(refCounter("ne"))
+		.text(CM + ", ord=" + CM)
+		.int(refCounter("ne"));
+	if (pos != undefined)
+		logger.text(CM + ", pos=" + CM + pos);
+	logger.text(CM + "];").log(node, true);
 }
 
 //--------------------
@@ -304,7 +341,7 @@ function handleStatement(node) {
 	if (type == "vardecl")
 		handleVardecl(node);
 	if (type == "binaryOp")
-		handleBinaryOp(node);
+		handleAssign(node);
 	if (type == "unaryOp")
 		handleUnaryOp(node);
 	createSeparator(node);
@@ -314,23 +351,130 @@ function handleVardecl(node) {
 	println("vardecl found");
 }
 
-function handleBinaryOp(node) {
-	println(node.kind);
-	var opKind = mapOperation(node.kind);
+function handleAssign(node) {
+	//Build rhs node(s)
+	var rhsInfo = ["const"];
+	if (node.right.joinPointType == "varref")
+		rhsInfo = handleVarref(node.right);
+	if (node.right.joinPointType == "binaryOp")
+		rhsInfo = handleBinaryOp(node.right);
+	if (node.right.joinPointType == "arrayAccess")
+		rhsInfo = handleArrayAccess(node.right);
 	
-	createOp(node, opKind);
+	//Build lhs node
+	var lhsInfo = ["const"];
+	if (node.left.joinPointType == "arrayAccess") {
+		lhsInfo = handleArrayAccess(node.left);
+	}
+	if (node.left.joinPointType == "varref") {
+		lhsInfo = handleVarref(node.left);
+	}
+
+	//If assignment, load extra node and build op
+	if (node.kind.includes("_")) {
+		var opKind = mapOperation(node.kind);
+		createOp(node, opKind);
+		createEdge(node, rhsInfo, ["op"], "r");
+		createEdge(node, lhsInfo, ["op"], "l");
+		rhsInfo = ["op"];
+	}
+
+	if (node.left.joinPointType == "arrayAccess") {
+		storeArray(node, lhsInfo[0], lhsInfo.slice(1));
+	}
+	if (node.left.joinPointType == "varref") {
+		storeVar(node, lhsInfo[0], []);
+	}
 	
+	//Create assignment edge
+	createEdge(node, rhsInfo, lhsInfo);
 }
 
 function handleUnaryOp(node) {
 	println(node.code);
+	return ["const"];
+}
+
+function handleVarref(node) {
+	return [node.name];
+}
+
+function handleArrayAccess(node) {
+	var info = [node.arrayVar.name];
+	for (var i = 0; i < node.subscript.length; i++)
+		info.push(node.subscript[i].code);
+	return info;
+}
+
+function handleBinaryOp(node) {
+	//Build rhs
+	var rhsInfo = [];
+	if (node.right.joinPointType == "varref")
+		rhsInfo = handleVarref(node.right);
+	if (node.right.joinPointType == "binaryOp")
+		rhsInfo = handleBinaryOp(node.right);
+	if (node.right.joinPointType == "arrayAccess")
+		rhsInfo = handleArrayAccess(node.right);
+
+	//Build lhs
+	var lhsInfo = [];
+	if (node.left.joinPointType == "varref")
+		lhsInfo = handleVarref(node.left);
+	if (node.left.joinPointType == "binaryOp")
+		lhsInfo = handleBinaryOp(node.left);
+	if (node.left.joinPointType == "arrayAccess")
+		lhsInfo = handleArrayAccess(node.left);
+
+	//Build op
+	var opKind = mapOperation(node.kind);
+	createOp(node, opKind);
+	createEdge(node, rhsInfo, ["op"], "r");
+	createEdge(node, lhsInfo, ["op"], "l");
+
+	//Build temp
+	createTemp(node, "float");
+	createEdge(node, ["op"], ["temp"]);
+	return ["temp"];
 }
 
 //--------------------
 // Utils
 //--------------------
 function mapOperation(op) {
-	if (op.includes("add"))
-		return "+";
-	return "undefined_op";
+	switch (op) {
+		case "mul": return "*";
+		case "div": return "/";
+		case "rem": return "%";
+		case "add": return "+";
+		case "sub": return "-";
+		case "shl": return "<<";
+		case "shr": return ">>";
+		case "cmp": return "cmp";
+		case "lt": return "<";
+		case "gt": return ">";
+		case "le": return "<=";
+		case "ge": return ">=";
+		case "eq": return "==";
+		case "ne": return "!=";
+		case "and": return "&";
+		case "xor": return "^";
+		case "or": return "|";
+		case "l_and": return "&&";
+		case "l_or": return "||";
+		case "assign": return "=";
+		case "mul_assign": return "*";
+		case "rem_assign": return "%";
+		case "add_assign": return "+";
+		case "sub_assign": return "-";
+		case "shl_assign": return "<<";
+		case "shr_assign": return ">>";
+		case "and_assign": return "&&";
+		case "xor_assign": return "^";
+		case "or_assign": return "||";
+	}
+	return op;
+}
+
+function initializeInterface(node, variable) {
+
 }

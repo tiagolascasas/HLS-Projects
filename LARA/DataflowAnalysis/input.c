@@ -9,6 +9,50 @@ int foo(int x) {
 	return x + x / x;
 }
 
+//Kalman
+void kalman(int Y[16], int A[16 * 16], int K[16 * 16], int G[16 * 16], int V[4])
+{
+    int i, j, index, temp;
+    int X[16];
+
+    /* Initializing state Vector X */
+    for (i = 0; i < 16; i++)
+    {
+        X[i] = 0;
+    }
+
+    /* Initializing state Vector Y */
+    for (i = 13; i < 16; i++)
+    {
+        Y[i] = 0;
+    }
+
+    /* -- Computing state Vector X */
+    for (i = 0; i < 16; i++)
+    {
+        temp = 0;
+        for (j = 0; j < 16; j++)
+        {
+            index = i * 16 + j;
+            temp += (A[index] * X[j] + K[index] * Y[j]);
+        }
+        X[i] = temp;
+    }
+
+    /* -- Computing output Vector V */
+    // it only uses 4x16 elements of G
+    for (i = 0; i < 4; i++)
+    {
+        temp = 0;
+        for (j = 0; j < 16; j++)
+        {
+            index = i * 16 + j;
+            temp += (G[index] * X[j]);
+        }
+        V[i] = (temp * Y[i + 1]);
+    }
+}
+
 //Fir2D
 #define WIDTH_SIZE 800
 #define HEIGHT_SIZE 600

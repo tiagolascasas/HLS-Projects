@@ -7,9 +7,9 @@ aspectdef DataflowAnalysis
 
 	select file.function{funName}.body.loop end
 	apply
-		println("Control-flow Graph");
-		$body.exec cfg();
-		println("Data-flow Graph");
+		//println("Control-flow Graph");
+		//$body.exec cfg();
+		//println("Data-flow Graph");
 		$body.exec dfg();
 	end
 end

@@ -5,19 +5,18 @@
 int global1;
 int global2 = 0;
 float global3;
+double global4[10][10] = {0};
 
 //DSP_dotprod
 #define NX 3
 
-int DSP_dotprod(const short x[NX], const short y[NX])
+int DSP_dotprod(short x[NX], short y[NX])
 {
     int sum = 0;
     int i;
 
     for (i = 0; i < NX; i++) {
         sum += x[i] * y[i];
-        sum = x[i] * y[i];
-        sum = sum + x[i] * y[i];
     }
 
     return sum;

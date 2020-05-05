@@ -18,6 +18,7 @@ int DSP_dotprod(short x[NX], short y[NX])
     for (i = 0; i < NX; i++) {
         sum += x[i] * y[i];
     }
+    sum = (sum != i) ? x[0] : y[0] + x[0];
 
     return sum;
 }

@@ -353,22 +353,10 @@ function handleVardecl(node) {
 
 function handleAssign(node) {
 	//Build rhs node(s)
-	var rhsInfo = ["const"];
-	if (node.right.joinPointType == "varref")
-		rhsInfo = handleVarref(node.right);
-	if (node.right.joinPointType == "binaryOp")
-		rhsInfo = handleBinaryOp(node.right);
-	if (node.right.joinPointType == "arrayAccess")
-		rhsInfo = handleArrayAccess(node.right);
+	var rhsInfo = getInfo(node.right);
 	
 	//Build lhs node
-	var lhsInfo = ["const"];
-	if (node.left.joinPointType == "arrayAccess") {
-		lhsInfo = handleArrayAccess(node.left);
-	}
-	if (node.left.joinPointType == "varref") {
-		lhsInfo = handleVarref(node.left);
-	}
+	var lhsInfo = getInfo(node.left);
 
 	//If assignment, load extra node and build op
 	if (node.kind.includes("_")) {
@@ -408,22 +396,10 @@ function handleArrayAccess(node) {
 
 function handleBinaryOp(node) {
 	//Build rhs
-	var rhsInfo = [];
-	if (node.right.joinPointType == "varref")
-		rhsInfo = handleVarref(node.right);
-	if (node.right.joinPointType == "binaryOp")
-		rhsInfo = handleBinaryOp(node.right);
-	if (node.right.joinPointType == "arrayAccess")
-		rhsInfo = handleArrayAccess(node.right);
+	var rhsInfo = getInfo(node.right);
 
 	//Build lhs
-	var lhsInfo = [];
-	if (node.left.joinPointType == "varref")
-		lhsInfo = handleVarref(node.left);
-	if (node.left.joinPointType == "binaryOp")
-		lhsInfo = handleBinaryOp(node.left);
-	if (node.left.joinPointType == "arrayAccess")
-		lhsInfo = handleArrayAccess(node.left);
+	var lhsInfo = getInfo(node.left);
 
 	//Build op
 	var opKind = mapOperation(node.kind);
@@ -435,6 +411,46 @@ function handleBinaryOp(node) {
 	createTemp(node, "float");
 	createEdge(node, ["op"], ["temp"]);
 	return ["temp"];
+}
+
+function getInfo(node) {
+	var info = ["null"];
+	if (node.joinPointType == "varref")
+		info = handleVarref(node);
+	if (node.joinPointType == "binaryOp")
+		info = handleBinaryOp(node);
+	if (node.joinPointType == "arrayAccess")
+		info = handleArrayAccess(node);
+	if (node.joinPointType == "expression")
+		info = handleExpression(node);
+	return info;
+}
+
+function handleExpression(node) {
+	if (node.children.length == 3 && node.children[0].joinPointType == "expression") {
+		//Build comparison
+		var cmpInfo = getInfo(node.children[0].children[0]);
+
+		//Build true value
+		var trueInfo = getInfo(node.children[1]);
+
+		//Build false value
+		var falseInfo = getInfo(node.children[2]);
+
+		//Build multiplexer
+		createMux(node);
+		createEdge(node, cmpInfo, ["mux"], "sel");
+		createEdge(node, trueInfo, ["mux"], "t");
+		createEdge(node, falseInfo, ["mux"], "f");
+		return ["mux"];
+	}
+	if (node.children.length == 1)
+		return getInfo(node.children[0]);
+	if (node.children.length == 0) {
+		createConst(node, node.code);
+		return ["const"];
+	}
+	return ["null"];
 }
 
 //--------------------

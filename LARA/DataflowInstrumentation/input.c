@@ -5,7 +5,7 @@
 //DSP_dotprod
 #define NX 3
 
-int DSP_dotprod(short x[NX], short y[NX])
+int DSP_dotprod(const short x[NX], const short y[NX])
 {
     int sum = 0;
     int i;
@@ -13,7 +13,7 @@ int DSP_dotprod(short x[NX], short y[NX])
     for (i = 0; i < NX; i++) {
         sum += x[i] * y[i];
     }
-    sum = (sum != i) ? x[0] : y[0] + x[0];
+    //sum = (sum != i) ? x[0] : y[0] + x[0];
 
     return sum;
 }

@@ -14,7 +14,7 @@ import PrintAST;
 var interfaces = {};
 var locals = {};
 var logger = null;
-var defCounters = ["const", "temp", "op", "mux"];
+var defCounters = ["const", "temp", "op", "mux", "ne"];
 var CM = "\\\"";
 var NL = "\\n";
 
@@ -84,7 +84,7 @@ aspectdef DataflowInstrumentation
 	explore(children);
 
 	//Close graph
-	logger.text("}").log(scope.children[scope.children.length - 1], true);
+	logger.text("\n}").log(scope.children[scope.children.length - 2], true);
 	
 end
 
@@ -105,7 +105,6 @@ function explore(children) {
 function createDefaultCounters(node) {
 	for (var i = 0; i < defCounters.length; i++)
 		node.insertBefore(ClavaJoinPoints.stmtLiteral("int n_" + defCounters[i] + " = 0;"));
-	node.insertBefore(ClavaJoinPoints.stmtLiteral("int ne = 0;"));
 }
 
 function declareInterfaceCounter(node, name) {
@@ -134,23 +133,36 @@ function splitMulti(str, tokens) {
 	return newStr;
 }
 
+function filterCommonKeywords(value, index, arr) {
+	var common = ["const", "static"];
+	return !common.includes(value);
+}
+
 function registerInterface(param) {
 	var tokens = splitMulti(param.code, [' ', "]", "["]);
+	if (tokens.indexOf("=") != -1)
+		tokens = tokens.slice(0, tokens.indexOf("="));
+	tokens = tokens.filter(filterCommonKeywords);
 	var interName = tokens[1];
 	tokens.splice(1, 1);
+	if (interfaces[interName] != undefined)
+		return;
+	println(interName + " -> " + tokens);
 	interfaces[interName] = tokens;
 }
 
 function registerLocal(local) {
 	var tokens = splitMulti(local.code, [' ', "]", "["]);
-	var locName = tokens[1];
-	if (locals[locName] != undefined)
-		return;
-	if (interfaces[locName] != undefined)
-		return;
-	tokens.splice(1, 1);
 	if (tokens.indexOf("=") != -1)
 		tokens = tokens.slice(0, tokens.indexOf("="));
+	tokens = tokens.filter(filterCommonKeywords);
+	var locName = tokens[1];
+	tokens.splice(1, 1);
+	if (interfaces[locName] != undefined)
+		return;
+	if (locals[locName] != undefined)
+		return;
+	println(locName + " -> " + tokens);
 	locals[locName] = tokens;
 }
 
@@ -189,10 +201,6 @@ function refAnyExpr(code) {
 }
 
 function incrementCounter(node, variable, indexes) {
-	if (variable == "ne") {
-		node.insertBefore(ClavaJoinPoints.stmtLiteral("ne++;"));
-		return;
-	}
 	if (indexes != undefined) {
 		var access = "";
 		for (var i = 0; i < indexes.length; i++) {
@@ -299,7 +307,7 @@ function createEdge(node, source, dest, pos) {
 	incrementCounter(node, "ne");
 	logger.text(CM);
 	if (source.length == 1) {
-		if (source[0] in defCounters)
+		if (defCounters.includes(source[0]))
 			logger.text(source[0]).int(refCounter(source[0]));
 		else
 			logger.text(source[0]).text("_").int(refCounter(source[0]));
@@ -312,7 +320,7 @@ function createEdge(node, source, dest, pos) {
 	}
 	logger.text(CM + " -> " + CM);
 	if (dest.length == 1) {
-		if (dest[0] in defCounters)
+		if (defCounters.includes(dest[0]))
 			logger.text(dest[0]).int(refCounter(dest[0]));
 		else
 			logger.text(dest[0]).text("_").int(refCounter(dest[0]));
@@ -348,7 +356,12 @@ function handleStatement(node) {
 }
 
 function handleVardecl(node) {
-	println("vardecl found");
+	//Not contemplating arrays, TODO if necessary
+	if (node.children.length != 1)
+		return;
+	var info = getInfo(node.children[0]);
+	storeVar(node, [node.name]);
+	createEdge(node, info, [node.name]);
 }
 
 function handleAssign(node) {
@@ -492,5 +505,24 @@ function mapOperation(op) {
 }
 
 function initializeInterface(node, variable) {
+	var level = 0;
+	var stmt = "";
+	var info = [];
+	var indexes = ["_i", "_j", "_k", "_l", "_m", "_n"];
+	for (var i = 1; i < interfaces[variable].length; i++) {
+		stmt += "for (int " + indexes[level] + " = 0; " + indexes[level] + " < " + interfaces[variable][i] + "; " + indexes[level] + "++) {\n";
+		info.push(indexes[level]);
+		level++;
+	}
+	node.insertBefore(ClavaJoinPoints.stmtLiteral(stmt));
 
+	if (level != 0)
+		storeArray(node, variable, info);
+	else
+		storeVar(node, variable);
+
+	stmt = "";
+	for (var i = 0; i < level; i++)
+	stmt += "}\n";
+	node.insertBefore(ClavaJoinPoints.stmtLiteral(stmt));
 }

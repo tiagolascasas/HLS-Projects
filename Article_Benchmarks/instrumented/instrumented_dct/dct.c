@@ -25,21 +25,39 @@ void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8
     int n_CosTrans[8][8] = {0};
     int n_OutIm[8][8] = {0};
     int n_CosBlock[8][8] = {0};
-    //---------------------
+    for (int _i = 0; _i < 8; _i++)
+    {
+        for (int _j = 0; _j < 8; _j++)
+        {
+            n_InIm[_i][_j]++;
+            fprintf(log_file_0, "\"InIm[%d][%d]_%d_l\" [label=\"InIm[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_InIm[_i][_j], _i, _j);
+        }
+    }
     for (int _i = 0; _i < 8; _i++)
     {
         for (int _j = 0; _j < 8; _j++)
         {
             n_TempBlock[_i][_j]++;
             fprintf(log_file_0, "\"TempBlock[%d][%d]_%d_l\" [label=\"TempBlock[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_TempBlock[_i][_j], _i, _j);
-            n_CosBlock[_i][_j]++;
-            fprintf(log_file_0, "\"CosBlock[%d][%d]_%d_l\" [label=\"CosBlock[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_CosBlock[_i][_j], _i, _j);
-            n_CosTrans[_i][_j]++;
-            fprintf(log_file_0, "\"CosTrans[%d][%d]_%d_l\" [label=\"CosTrans[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_CosTrans[_i][_j], _i, _j);
-            n_InIm[_i][_j]++;
-            fprintf(log_file_0, "\"InIm[%d][%d]_%d_l\" [label=\"InIm[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_InIm[_i][_j], _i, _j);
         }
     }
+    for (int _i = 0; _i < 8; _i++)
+    {
+        for (int _j = 0; _j < 8; _j++)
+        {
+            n_CosTrans[_i][_j]++;
+            fprintf(log_file_0, "\"CosTrans[%d][%d]_%d_l\" [label=\"CosTrans[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_CosTrans[_i][_j], _i, _j);
+        }
+    }
+    for (int _i = 0; _i < 8; _i++)
+    {
+        for (int _j = 0; _j < 8; _j++)
+        {
+            n_CosBlock[_i][_j]++;
+            fprintf(log_file_0, "\"CosBlock[%d][%d]_%d_l\" [label=\"CosBlock[%d][%d]\", att1=var, att2=inte, att3=int];\n", _i, _j, n_CosBlock[_i][_j], _i, _j);
+        }
+    }
+    //---------------------
     //---------------------
     //---------------------
     int i, j, k, aux;
@@ -52,7 +70,7 @@ void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8
             n_aux++;
             fprintf(log_file_0, "\"aux_%d\" [label=\"aux\", att1=var, att2=loc, att3=int];\n", n_aux);
             n_ne++;
-            fprintf(log_file_0, "\"const_%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_aux, n_ne, n_ne);
+            fprintf(log_file_0, "\"const%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_aux, n_ne, n_ne);
             //---------------------
             aux = 0;
             for (k = 0; k < 8; k++)
@@ -61,23 +79,23 @@ void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8
                 n_op++;
                 fprintf(log_file_0, "\"op%d\" [label=\"*\", att1=op];\n", n_op);
                 n_ne++;
-                fprintf(log_file_0, "\"CosTrans[%d][%d]_%d_l\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", k, j, n_CosTrans[k][j], n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"CosTrans[%d][%d]_%d_l\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", k, j, n_CosTrans[k][j], n_op, n_ne, n_ne);
                 n_ne++;
-                fprintf(log_file_0, "\"InIm[%d][%d]_%d_l\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", i, k, n_InIm[i][k], n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"InIm[%d][%d]_%d_l\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", i, k, n_InIm[i][k], n_op, n_ne, n_ne);
                 n_temp++;
                 fprintf(log_file_0, "\"temp%d\" [label=\"temp%d\", att1=var, att2=loc, att3=float];\n", n_temp, n_temp);
                 n_ne++;
-                fprintf(log_file_0, "\"op_%d\" -> \"temp_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_temp, n_ne, n_ne);
+                fprintf(log_file_0, "\"op%d\" -> \"temp%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_temp, n_ne, n_ne);
                 n_op++;
                 fprintf(log_file_0, "\"op%d\" [label=\"+\", att1=op];\n", n_op);
                 n_ne++;
-                fprintf(log_file_0, "\"temp_%d\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", n_temp, n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"temp%d\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", n_temp, n_op, n_ne, n_ne);
                 n_ne++;
-                fprintf(log_file_0, "\"aux_%d\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", n_aux, n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"aux_%d\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", n_aux, n_op, n_ne, n_ne);
                 n_aux++;
                 fprintf(log_file_0, "\"aux_%d\" [label=\"aux\", att1=var, att2=loc, att3=int];\n", n_aux);
                 n_ne++;
-                fprintf(log_file_0, "\"op_%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_aux, n_ne, n_ne);
+                fprintf(log_file_0, "\"op%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_aux, n_ne, n_ne);
                 //---------------------
                 aux += InIm[i][k] * CosTrans[k][j];
             }
@@ -98,7 +116,7 @@ void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8
             n_aux++;
             fprintf(log_file_0, "\"aux_%d\" [label=\"aux\", att1=var, att2=loc, att3=int];\n", n_aux);
             n_ne++;
-            fprintf(log_file_0, "\"const_%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_aux, n_ne, n_ne);
+            fprintf(log_file_0, "\"const%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_aux, n_ne, n_ne);
             //---------------------
             aux = 0;
             for (k = 0; k < 8; k++)
@@ -107,23 +125,23 @@ void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8
                 n_op++;
                 fprintf(log_file_0, "\"op%d\" [label=\"*\", att1=op];\n", n_op);
                 n_ne++;
-                fprintf(log_file_0, "\"CosBlock[%d][%d]_%d_l\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", i, k, n_CosBlock[i][k], n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"CosBlock[%d][%d]_%d_l\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", i, k, n_CosBlock[i][k], n_op, n_ne, n_ne);
                 n_ne++;
-                fprintf(log_file_0, "\"TempBlock[%d][%d]_%d_l\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", k, j, n_TempBlock[k][j], n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"TempBlock[%d][%d]_%d_l\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", k, j, n_TempBlock[k][j], n_op, n_ne, n_ne);
                 n_temp++;
                 fprintf(log_file_0, "\"temp%d\" [label=\"temp%d\", att1=var, att2=loc, att3=float];\n", n_temp, n_temp);
                 n_ne++;
-                fprintf(log_file_0, "\"op_%d\" -> \"temp_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_temp, n_ne, n_ne);
+                fprintf(log_file_0, "\"op%d\" -> \"temp%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_temp, n_ne, n_ne);
                 n_op++;
                 fprintf(log_file_0, "\"op%d\" [label=\"+\", att1=op];\n", n_op);
                 n_ne++;
-                fprintf(log_file_0, "\"temp_%d\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", n_temp, n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"temp%d\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"r\"];", n_temp, n_op, n_ne, n_ne);
                 n_ne++;
-                fprintf(log_file_0, "\"aux_%d\" -> \"op_%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", n_aux, n_op, n_ne, n_ne);
+                fprintf(log_file_0, "\"aux_%d\" -> \"op%d\" [label=\"%d\", ord=\"%d\", pos=\"l\"];", n_aux, n_op, n_ne, n_ne);
                 n_aux++;
                 fprintf(log_file_0, "\"aux_%d\" [label=\"aux\", att1=var, att2=loc, att3=int];\n", n_aux);
                 n_ne++;
-                fprintf(log_file_0, "\"op_%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_aux, n_ne, n_ne);
+                fprintf(log_file_0, "\"op%d\" -> \"aux_%d\" [label=\"%d\", ord=\"%d\"];", n_op, n_aux, n_ne, n_ne);
                 //---------------------
                 aux += TempBlock[k][j] * CosBlock[i][k];
             }

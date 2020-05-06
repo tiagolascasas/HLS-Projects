@@ -8,7 +8,6 @@ import PrintAST;
 	Source code assumptions:
 	- Arrays have predetermined size
 	- No pointers
-	- Variables declared/initialized one at a time (e.g. no "int x, y = 0")
 **/
 
 var interfaces = {};
@@ -84,8 +83,7 @@ aspectdef DataflowInstrumentation
 	explore(children);
 
 	//Close graph
-	logger.text("\n}").log(scope.children[scope.children.length - 2], true);
-	
+	logger.text("}").log(scope.children[scope.children.length - 1], true);
 end
 
 function explore(children) {
@@ -134,7 +132,7 @@ function splitMulti(str, tokens) {
 }
 
 function filterCommonKeywords(value, index, arr) {
-	var common = ["const", "static"];
+	var common = ["const", "static", "unsigned"];
 	return !common.includes(value);
 }
 
@@ -147,7 +145,6 @@ function registerInterface(param) {
 	tokens.splice(1, 1);
 	if (interfaces[interName] != undefined)
 		return;
-	println(interName + " -> " + tokens);
 	interfaces[interName] = tokens;
 }
 
@@ -162,7 +159,6 @@ function registerLocal(local) {
 		return;
 	if (locals[locName] != undefined)
 		return;
-	println(locName + " -> " + tokens);
 	locals[locName] = tokens;
 }
 
@@ -281,7 +277,7 @@ function createConst(node, num) {
 	incrementCounter(node, "const");
 	logger.text(CM + "const")
 		.int(refCounter("const"))
-		.text(CM + " [label=" + CM + num + CM + ", att1=const];" + NL)
+		.text(CM + " [label=" + CM + parseInt(num) + CM + ", att1=const];" + NL)
 		.log(node, true);
 }
 
@@ -303,12 +299,16 @@ function createSeparator(node) {
 //--------------------
 // Create edges
 //--------------------
-function createEdge(node, source, dest, pos) {
+function createEdge(node, source, dest, pos, offset) {
 	incrementCounter(node, "ne");
 	logger.text(CM);
 	if (source.length == 1) {
-		if (defCounters.includes(source[0]))
-			logger.text(source[0]).int(refCounter(source[0]));
+		if (defCounters.includes(source[0])) {
+			if (source[0] == "temp" && offset != undefined)
+				logger.text(source[0]).int(refAnyExpr("n_temp" + offset));
+			else
+				logger.text(source[0]).int(refCounter(source[0]));
+		}
 		else
 			logger.text(source[0]).text("_").int(refCounter(source[0]));
 	}
@@ -320,8 +320,12 @@ function createEdge(node, source, dest, pos) {
 	}
 	logger.text(CM + " -> " + CM);
 	if (dest.length == 1) {
-		if (defCounters.includes(dest[0]))
-			logger.text(dest[0]).int(refCounter(dest[0]));
+		if (defCounters.includes(dest[0])) {
+			if (dest[0] == "temp" && offset != undefined)
+				logger.text(dest[0]).int(refAnyExpr("n_temp" + offset));
+			else
+				logger.text(dest[0]).int(refCounter(dest[0]));
+		}
 		else
 			logger.text(dest[0]).text("_").int(refCounter(dest[0]));
 	}
@@ -375,7 +379,10 @@ function handleAssign(node) {
 	if (node.kind.includes("_")) {
 		var opKind = mapOperation(node.kind);
 		createOp(node, opKind);
-		createEdge(node, rhsInfo, ["op"], "r");
+		if (rhsInfo[0] == "temp" && lhsInfo[0] == "temp")
+			createEdge(node, rhsInfo, ["op"], "r", "-1");
+		else
+			createEdge(node, rhsInfo, ["op"], "r");
 		createEdge(node, lhsInfo, ["op"], "l");
 		rhsInfo = ["op"];
 	}
@@ -392,8 +399,16 @@ function handleAssign(node) {
 }
 
 function handleUnaryOp(node) {
-	println(node.code);
-	return ["const"];
+	if (node.kind.includes("pre") || node.kind.includes("post")) {
+		createOp(node, mapOperation(node.kind));
+		var info = handleVarref(node.children[0]);
+		createConst(node, "1");
+		createEdge(node, ["const"], ["op"], "r");
+		createEdge(node, info, ["op"], "l");
+		storeVar(node, info[0], []);
+		createEdge(node, ["op"], info);
+	}
+	else return ["const"];
 }
 
 function handleVarref(node) {
@@ -417,7 +432,10 @@ function handleBinaryOp(node) {
 	//Build op
 	var opKind = mapOperation(node.kind);
 	createOp(node, opKind);
-	createEdge(node, rhsInfo, ["op"], "r");
+	if (rhsInfo[0] == "temp" && lhsInfo[0] == "temp")
+		createEdge(node, rhsInfo, ["op"], "r", "-1");
+	else
+		createEdge(node, rhsInfo, ["op"], "r");
 	createEdge(node, lhsInfo, ["op"], "l");
 
 	//Build temp
@@ -500,6 +518,10 @@ function mapOperation(op) {
 		case "and_assign": return "&&";
 		case "xor_assign": return "^";
 		case "or_assign": return "||";
+		case "post_int": return "+";
+		case "post_dec": return "-";
+		case "pre_inc": return "+";
+		case "pre_dec": return "-";
 	}
 	return op;
 }

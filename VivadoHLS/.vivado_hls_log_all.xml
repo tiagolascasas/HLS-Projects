@@ -11,7 +11,12 @@
   </errorLogs>
   <warningLogs>
     <logs>
-      <synLog/>
+      <synLog>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('TempBlock_load_2', VivadoHLS/dct.c:46) on array 'TempBlock' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'TempBlock'." projectName="VivadoHLS" solutionName="solution1" date="2020-05-10T02:44:39.467+0100" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('CosTrans_load_8', VivadoHLS/dct.c:31) on array 'CosTrans' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'CosTrans'." projectName="VivadoHLS" solutionName="solution1" date="2020-05-10T02:44:39.107+0100" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('InIm_load_2', VivadoHLS/dct.c:31) on array 'InIm' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'InIm'." projectName="VivadoHLS" solutionName="solution1" date="2020-05-10T02:44:38.901+0100" type="Warning"/>
+        <logs message="WARNING: [HLS 200-40] In file included from VivadoHLS/dct.c:1:&#xD;&#xA;VivadoHLS/dct.c:66:13: warning: array index 8 is past the end of the array (which contains 8 elements) [-Warray-bounds]&#xD;&#xA;            InIm[8][8] = i;&#xD;&#xA;            ^       ~&#xD;&#xA;VivadoHLS/dct.c:55:5: note: array 'InIm' declared here&#xD;&#xA;    int InIm[8][8] = {0};&#xD;&#xA;    ^&#xD;&#xA;1 warning generated." projectName="VivadoHLS" solutionName="solution1" date="2020-05-10T02:44:33.704+0100" type="Warning"/>
+      </synLog>
       <simLog/>
       <mgLog/>
       <packageLog/>

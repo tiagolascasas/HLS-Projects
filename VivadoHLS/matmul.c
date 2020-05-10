@@ -66,17 +66,11 @@ void matmul(int a[SIZE + 1][SIZE + 1], int b[SIZE + 1][SIZE + 1], int c[SIZE + 1
 {
     int i, j, k;
 
-IL0:
     for (i = 1; i <= SIZE; i++)
-    IL1:
         for (j = 1; j <= SIZE; j++)
             c[i][j] = 0;
-
-CL0:
     for (i = 1; i <= SIZE; i++)
-    CL1:
         for (j = 1; j <= SIZE; j++)
-        CL2:
             for (k = 1; k <= SIZE; k++)
                 c[i][j] += a[i][k] * b[k][j];
 }

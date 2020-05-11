@@ -5,7 +5,7 @@ aspectdef DataflowAnalysis
 		funName
 	end
 
-	select file.function{funName}.body.loop end
+	select file.function{funName}.body end
 	apply
 		//println("Control-flow Graph");
 		//$body.exec cfg();

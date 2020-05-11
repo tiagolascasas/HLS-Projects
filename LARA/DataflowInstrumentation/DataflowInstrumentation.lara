@@ -89,8 +89,17 @@ end
 function explore(children) {
 	for (var i = 0; i < children.length; i++) {
 		var child = children[i];
-		if (child.joinPointType == "statement")
-			handleStatement(child.children[0]);
+		if (child.joinPointType == "statement") {
+			if (child.children.length == 1) {
+				handleStatement(child.children[0]);
+			}
+			if (child.children.length > 1) {
+				if (child.children[0].joinPointType == "vardecl") {
+					for (var j = 0; j < child.children.length; j++)
+						handleStatement(child.children[j]);
+				}
+			}
+		}
 		if (child.joinPointType == "loop") {
 			explore(child.children[3].children.slice());
 		}
@@ -545,6 +554,6 @@ function initializeInterface(node, variable) {
 
 	stmt = "";
 	for (var i = 0; i < level; i++)
-	stmt += "}\n";
+		stmt += "}\n";
 	node.insertBefore(ClavaJoinPoints.stmtLiteral(stmt));
 }

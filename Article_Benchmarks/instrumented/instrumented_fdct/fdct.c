@@ -108,6 +108,14 @@ void fdct(short dct_io_ptr[256], short dct_o[256], int num_fdcts)
     n_ne++;
     fprintf(log_file_0, "\"const%d\" -> \"c1_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c1, n_ne, n_ne);
     //---------------------
+    //---------------------
+    n_const++;
+    fprintf(log_file_0, "\"const%d\" [label=\"9632\", att1=const];\n", n_const);
+    n_c3++;
+    fprintf(log_file_0, "\"c3_%d\" [label=\"c3\", att1=var, att2=loc, att3=short];\n", n_c3);
+    n_ne++;
+    fprintf(log_file_0, "\"const%d\" -> \"c3_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c3, n_ne, n_ne);
+    //---------------------
     unsigned short const c1 = 0x2C62, c3 = 0x25A0;
     //---------------------
     n_const++;
@@ -117,6 +125,14 @@ void fdct(short dct_io_ptr[256], short dct_o[256], int num_fdcts)
     n_ne++;
     fprintf(log_file_0, "\"const%d\" -> \"c5_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c5, n_ne, n_ne);
     //---------------------
+    //---------------------
+    n_const++;
+    fprintf(log_file_0, "\"const%d\" [label=\"2260\", att1=const];\n", n_const);
+    n_c7++;
+    fprintf(log_file_0, "\"c7_%d\" [label=\"c7\", att1=var, att2=loc, att3=short];\n", n_c7);
+    n_ne++;
+    fprintf(log_file_0, "\"const%d\" -> \"c7_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c7, n_ne, n_ne);
+    //---------------------
     unsigned short const c5 = 0x1924, c7 = 0x08D4;
     //---------------------
     n_const++;
@@ -125,6 +141,14 @@ void fdct(short dct_io_ptr[256], short dct_o[256], int num_fdcts)
     fprintf(log_file_0, "\"c0_%d\" [label=\"c0\", att1=var, att2=loc, att3=short];\n", n_c0);
     n_ne++;
     fprintf(log_file_0, "\"const%d\" -> \"c0_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c0, n_ne, n_ne);
+    //---------------------
+    //---------------------
+    n_const++;
+    fprintf(log_file_0, "\"const%d\" [label=\"10703\", att1=const];\n", n_const);
+    n_c2++;
+    fprintf(log_file_0, "\"c2_%d\" [label=\"c2\", att1=var, att2=loc, att3=short];\n", n_c2);
+    n_ne++;
+    fprintf(log_file_0, "\"const%d\" -> \"c2_%d\" [label=\"%d\", ord=\"%d\"];", n_const, n_c2, n_ne, n_ne);
     //---------------------
     unsigned short const c0 = 0xB505, c2 = 0x29CF;
     //---------------------

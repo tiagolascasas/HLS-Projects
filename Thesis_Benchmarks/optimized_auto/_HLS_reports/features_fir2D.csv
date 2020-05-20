@@ -1,0 +1,5 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,unsigned short sumval = 0,477204,0,0,1,0,0,0,0,0->sumval
+2,sumval += (unsigned short) in[(row + wrow) * 800 + (col + wcol)] * (unsigned short) K[wrow * 3 + wcol],4294836,5,2,1,0,8,0,5,row->+->*->+->in->*->+->sumval
+3,sumval = sumval / 16,477204,1,0,1,0,1,0,1,16->/->sumval
+4,out[row * 800 + col] = (unsigned char) sumval,477204,3,0,0,1,2,0,2,row->*->+->out

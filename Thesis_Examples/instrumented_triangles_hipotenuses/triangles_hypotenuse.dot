@@ -1,0 +1,29 @@
+Digraph G{
+"first_array[0]_1_l" [label="first_array[0]", att1=var, att2=inte, att3=float ];
+"second_array[0]_1_l" [label="second_array[0]", att1=var, att2=inte, att3=float ];
+"first_array[1]_1_l" [label="first_array[1]", att1=var, att2=inte, att3=float ];
+"second_array[1]_1_l" [label="second_array[1]", att1=var, att2=inte, att3=float ];
+"first_array[2]_1_l" [label="first_array[2]", att1=var, att2=inte, att3=float ];
+"second_array[2]_1_l" [label="second_array[2]", att1=var, att2=inte, att3=float ];
+op1 [label="+", att1=op];
+temp1 [label="temp_l77_i1", att1=var, att2=loc, att3=float ];
+"first_array[0]_1_l"->op1 [label="1", ord="1", pos="l", mod="square("];
+"second_array[0]_1_l"->op1 [label="2", ord="2", pos="r", mod="square("];
+op1->temp1 [label="3", ord="3"];
+"hypotenuse_array[0]_1" [label="hypotenuse_array[0]", att1=var, att2=inte, att3=float ];
+temp1->"hypotenuse_array[0]_1" [label="4", ord="2", mod="sqrt("];
+op2 [label="+", att1=op];
+temp2 [label="temp_l77_i2", att1=var, att2=loc, att3=float ];
+"first_array[1]_1_l"->op2 [label="5", ord="5", pos="l", mod="square("];
+"second_array[1]_1_l"->op2 [label="6", ord="6", pos="r", mod="square("];
+op2->temp2 [label="7", ord="7"];
+"hypotenuse_array[1]_1" [label="hypotenuse_array[1]", att1=var, att2=inte, att3=float ];
+temp2->"hypotenuse_array[1]_1" [label="8", ord="6", mod="sqrt("];
+op3 [label="+", att1=op];
+temp3 [label="temp_l77_i3", att1=var, att2=loc, att3=float ];
+"first_array[2]_1_l"->op3 [label="9", ord="9", pos="l", mod="square("];
+"second_array[2]_1_l"->op3 [label="10", ord="10", pos="r", mod="square("];
+op3->temp3 [label="11", ord="11"];
+"hypotenuse_array[2]_1" [label="hypotenuse_array[2]", att1=var, att2=inte, att3=float ];
+temp3->"hypotenuse_array[2]_1" [label="12", ord="10", mod="sqrt("];
+}

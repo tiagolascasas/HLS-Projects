@@ -1,0 +1,149 @@
+Digraph G {
+node [penwidth=2.5]
+subgraph cluster12{
+n59 [label="outa" color="goldenrod2"]
+n60 [label="i" color="red"]
+n61 [label="sum" color="darkgreen"]
+}
+subgraph cluster11{
+n50 [label="+" color="darkorchid2"]
+n51 [label="sum" color="goldenrod2"]
+n52 [label="*" color="darkorchid2"]
+n53 [label="internal_state" color="darkgreen"]
+n54 [label="j" color="red"]
+n55 [label="coefficient" color="darkgreen"]
+n56 [label="+" color="darkorchid2"]
+n58 [label="32" color="gray36"]
+}
+subgraph cluster10{
+n47 [label="sum" color="goldenrod2"]
+n48 [label="0.0" color="gray36"]
+}
+subgraph cluster9{
+n44 [label="internal_state" color="goldenrod2"]
+n45 [label="33" color="gray36"]
+n46 [label="top" color="darkgreen"]
+}
+subgraph cluster8{
+n41 [label="internal_state" color="goldenrod2"]
+n42 [label="32" color="gray36"]
+n43 [label="bottom" color="darkgreen"]
+}
+subgraph cluster7{
+n29 [label="bottom" color="goldenrod2"]
+n30 [label="+" color="darkorchid2"]
+n31 [label="*" color="darkorchid2"]
+n32 [label="coefficient" color="darkgreen"]
+n33 [label="-" color="darkorchid2"]
+n34 [label="j" color="red"]
+n35 [label="1" color="gray36"]
+n36 [label="right" color="darkgreen"]
+n37 [label="*" color="darkorchid2"]
+n38 [label="coefficient" color="darkgreen"]
+n40 [label="left" color="darkgreen"]
+}
+subgraph cluster6{
+n17 [label="top" color="goldenrod2"]
+n18 [label="-" color="darkorchid2"]
+n19 [label="*" color="darkorchid2"]
+n20 [label="coefficient" color="darkgreen"]
+n21 [label="-" color="darkorchid2"]
+n22 [label="j" color="red"]
+n23 [label="1" color="gray36"]
+n24 [label="left" color="darkgreen"]
+n25 [label="*" color="darkorchid2"]
+n26 [label="coefficient" color="darkgreen"]
+n28 [label="right" color="darkgreen"]
+}
+subgraph cluster5{
+n14 [label="internal_state" color="goldenrod2"]
+n15 [label="j" color="red"]
+n16 [label="bottom" color="darkgreen"]
+}
+subgraph cluster4{
+n11 [label="right" color="goldenrod2"]
+n12 [label="internal_state" color="darkgreen"]
+n13 [label="j" color="red"]
+}
+subgraph cluster3{
+n9 [label="left" color="goldenrod2"]
+n10 [label="top" color="darkgreen"]
+}
+subgraph cluster2{
+n5 [label="top" color="goldenrod2"]
+n6 [label="data" color="darkgreen"]
+n7 [label="i" color="red"]
+}
+subgraph cluster1{
+n1 [label="bottom" color="goldenrod2"]
+n3 [label="0" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n4 [label="loop i" color="blue1"]
+n8 [label="loop j" color="blue1"]
+n49 [label="loop j" color="blue1"]
+n3 -> n1 [label="", color=black]
+n7 -> n6 [label="", color=red]
+n6 -> n5 [label="", color=black]
+n10 -> n9 [label="", color=black]
+n13 -> n12 [label="", color=red]
+n12 -> n11 [label="", color=black]
+n15 -> n14 [label="", color=red]
+n16 -> n14 [label="", color=black]
+n22 -> n21 [label="", color=black]
+n23 -> n21 [label="", color=black]
+n21 -> n20 [label="", color=red]
+n20 -> n19 [label="", color=black]
+n24 -> n19 [label="", color=black]
+n22 -> n26 [label="", color=red]
+n26 -> n25 [label="", color=black]
+n28 -> n25 [label="", color=black]
+n19 -> n18 [label="", color=black]
+n25 -> n18 [label="", color=black]
+n18 -> n17 [label="", color=black]
+n34 -> n33 [label="", color=black]
+n35 -> n33 [label="", color=black]
+n33 -> n32 [label="", color=red]
+n32 -> n31 [label="", color=black]
+n36 -> n31 [label="", color=black]
+n34 -> n38 [label="", color=red]
+n38 -> n37 [label="", color=black]
+n40 -> n37 [label="", color=black]
+n31 -> n30 [label="", color=black]
+n37 -> n30 [label="", color=black]
+n30 -> n29 [label="", color=black]
+n8 -> n9 [label="x31", color=blue]
+n8 -> n11 [label="x31", color=blue]
+n8 -> n14 [label="x31", color=blue]
+n8 -> n17 [label="x31", color=blue]
+n8 -> n29 [label="x31", color=blue]
+n42 -> n41 [label="", color=red]
+n43 -> n41 [label="", color=black]
+n45 -> n44 [label="", color=red]
+n46 -> n44 [label="", color=black]
+n48 -> n47 [label="", color=black]
+n54 -> n53 [label="", color=red]
+n54 -> n56 [label="", color=black]
+n58 -> n56 [label="", color=black]
+n56 -> n55 [label="", color=red]
+n53 -> n52 [label="", color=black]
+n55 -> n52 [label="", color=black]
+n52 -> n50 [label="", color=black]
+n51 -> n50 [label="", color=black]
+n50 -> n51 [label="", color=black]
+n49 -> n51 [label="x32", color=blue]
+n60 -> n59 [label="", color=red]
+n61 -> n59 [label="", color=black]
+n4 -> n5 [label="x64", color=blue]
+n4 -> n8 [label="x64", color=blue]
+n4 -> n41 [label="x64", color=blue]
+n4 -> n44 [label="x64", color=blue]
+n4 -> n47 [label="x64", color=blue]
+n4 -> n49 [label="x64", color=blue]
+n4 -> n59 [label="x64", color=blue]
+n1 -> n4 [label="", color="#b54707"]
+labelloc="t"
+label="Data-flow Graph - latnrm"
+}

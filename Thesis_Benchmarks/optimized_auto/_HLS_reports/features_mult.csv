@@ -1,0 +1,4 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,sum = 0.0,100,0,0,1,0,0,0,0,0.0->sum
+2,sum += a_matrix[i][k] * b_matrix[k][j],1000,4,2,1,0,2,0,2,i->a_matrix->*->+->sum
+3,c_matrix[i][j] = sum,100,3,0,0,1,0,0,0,i->c_matrix

@@ -1,0 +1,49 @@
+Digraph G {
+node [penwidth=2.5]
+subgraph cluster3{
+n15 [label="c_matrix" color="goldenrod2"]
+n16 [label="i" color="red"]
+n17 [label="j" color="red"]
+n18 [label="sum" color="darkgreen"]
+}
+subgraph cluster2{
+n6 [label="+" color="darkorchid2"]
+n7 [label="sum" color="goldenrod2"]
+n8 [label="*" color="darkorchid2"]
+n9 [label="a_matrix" color="darkgreen"]
+n10 [label="i" color="red"]
+n11 [label="k" color="red"]
+n12 [label="b_matrix" color="darkgreen"]
+n14 [label="j" color="red"]
+}
+subgraph cluster1{
+n3 [label="sum" color="goldenrod2"]
+n4 [label="0.0" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n1 [label="loop i" color="blue1"]
+n2 [label="loop j" color="blue1"]
+n5 [label="loop k" color="blue1"]
+n4 -> n3 [label="", color=black]
+n10 -> n9 [label="", color=red]
+n11 -> n9 [label="", color=red]
+n11 -> n12 [label="", color=red]
+n14 -> n12 [label="", color=red]
+n9 -> n8 [label="", color=black]
+n12 -> n8 [label="", color=black]
+n8 -> n6 [label="", color=black]
+n7 -> n6 [label="", color=black]
+n6 -> n7 [label="", color=black]
+n5 -> n7 [label="x10", color=blue]
+n16 -> n15 [label="", color=red]
+n17 -> n15 [label="", color=red]
+n18 -> n15 [label="", color=black]
+n2 -> n3 [label="x10", color=blue]
+n2 -> n5 [label="x10", color=blue]
+n2 -> n15 [label="x10", color=blue]
+n1 -> n2 [label="x10", color=blue]
+labelloc="t"
+label="Data-flow Graph - mult"
+}

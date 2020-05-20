@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-short dct_io_ptr[256];
-short dct_o[256];
+
 void fdct(short dct_io_ptr[256], short dct_o[256], int num_fdcts)
 {
     FILE *log_file_0 = fopen("fdct.dot", "w+");
@@ -2184,13 +2183,15 @@ void fdct(short dct_io_ptr[256], short dct_o[256], int num_fdcts)
 
 int main()
 {
+    short dct_io_ptr[256] = {0};
+    short dct_o[256] = {0};
     int i;
     /*input data*/
     for (i = 0; i < 4 * 8 * 8; i++)
     {
         dct_io_ptr[i] = i;
     }
-    fdct(dct_io_ptr, dct_o, 4);
+    fdct(dct_io_ptr, dct_o, 1);
     /*write data stream to output*/
     // for now just calculate a checksum
     long checksum = 0;

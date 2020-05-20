@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <math.h>
 
 //Helper functions
 float g1 = 2;
@@ -7,7 +8,45 @@ int g3 = 123;
 
 int foo(int x)
 {
-    return x + x / x;
+    int a = 0;
+    for (int i = 0; i < 32; i++) {
+    	int b = 0;
+    	for (int j = 0; j < 16; j++) {
+    		int c = a + b;
+    		int d = c;
+    		for (int k = 0; k < 8; k++) {
+    			int e = 15;
+    		}
+    	}
+    }
+}
+
+int bar(int x)
+{
+	int a = 1;
+	int b = 2;
+	int c = a + b;
+	return c / a;
+}
+
+int funTest(int x[32], int y[16]) 
+{
+	int n1 = 500;
+	int n2 = 200;
+	n2 = foo(n1);
+	for (int i = 0; i < 32; i++) 
+	{
+		int z = 0;
+		z = bar(n2);
+		for (int j = 0; j < 16; j++) 
+		{
+			int n3 = foo(n1);
+			int n4 = bar(n2);
+			int n5 = sqrt(n1);
+			y[j] = n4; 
+		}
+	}
+	return n1;
 }
 
 //dct
@@ -26,7 +65,10 @@ void dct(
     int CosTrans[8][8],
     int OutIm[8][8])
 {
-    int i, j, k, aux;
+    int i;// = 0;
+    int j = 0;
+    int k;// = 0;
+    int aux = 0;
 
     for (i = 0; i < 8; i++)
         for (j = 0; j < 8; j++)
@@ -168,6 +210,19 @@ void calc_hypotenuse(unsigned int first_array[NUMBER_OF_TRIANGLES], unsigned int
     }
 }
 
+//gcd
+int gcd(int n1, int n2) {  
+    while (n1 != n2) {  
+        if (n1 > n2) {
+            n1 = n1 - n2;
+        }      
+        else {    
+            n2 = n2 - n1;
+        }      
+    }  
+    return n1;  
+}  
+
 //misc_fir
 void fir(int x[M], int y[M], int c[N])
 {
@@ -175,7 +230,6 @@ void fir(int x[M], int y[M], int c[N])
     for (int j = N - 1; j < M; j++)
     {
         output = 0;
-        // Loop 2:
         for (int i = 0; i < N; i++)
         {
             output += c[i] * x[j - i];

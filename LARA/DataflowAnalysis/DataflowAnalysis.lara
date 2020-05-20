@@ -7,9 +7,60 @@ aspectdef DataflowAnalysis
 
 	select file.function{funName}.body end
 	apply
-		//println("Control-flow Graph");
-		//$body.exec cfg();
-		//println("Data-flow Graph");
 		$body.exec dfg();
 	end
+end
+
+aspectdef RunBenchmarks
+	call MiscHLS();
+	call DsplibHLS();
+	call KnnHLS();
+	call UtdspHLS();
+	//call TestHLS();
+end
+
+aspectdef MiscHLS
+	var fun = [
+		"svm_predict", 
+		"kalman", 
+		"fir_k_a", 
+		"fir2D", 
+		"dct", 
+		"calc_hypotenuse"
+		];
+	for (var i = 0; i < fun.length; i++)
+		call DataflowAnalysis(fun[i]);
+end
+
+aspectdef DsplibHLS
+	var fun = [
+		"DSP_autocor", 
+		"DSP_dotprod", 
+		"DSPF_sp_mat_mul_cplx_cn", 
+		];
+	for (var i = 0; i < fun.length; i++)
+		call DataflowAnalysis(fun[i]);
+end
+
+aspectdef KnnHLS
+
+end
+
+aspectdef UtdspHLS
+	var fun = [
+		"fft",
+		"latnrm",
+		"mult",
+	];
+	for (var i = 0; i < fun.length; i++)
+		call DataflowAnalysis(fun[i]);
+end
+
+aspectdef TestHLS
+	var fun = [
+		"constFolding",
+		"unwrapDecls",
+	];
+	for (var i = 0; i < fun.length; i++)
+		call DataflowAnalysis(fun[i]);
 end

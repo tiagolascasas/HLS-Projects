@@ -1,0 +1,13 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,float bottom = 0,1,0,0,1,0,0,0,0,0->bottom
+2,top = data[i],64,1,1,1,0,0,0,0,i->data->top
+3,left = top,1984,1,0,1,0,0,0,0,top->left
+4,right = internal_state[j],1984,1,1,1,0,0,0,0,j->internal_state->right
+5,internal_state[j] = bottom,1984,2,0,0,1,0,0,0,j->internal_state
+6,top = coefficient[j - 1] * left - coefficient[j] * right,1984,3,2,1,0,4,0,3,j->-->coefficient->*->-->top
+7,bottom = coefficient[j - 1] * right + coefficient[j] * left,1984,3,2,1,0,4,0,3,j->-->coefficient->*->+->bottom
+8,internal_state[32] = bottom,64,1,0,0,1,0,0,0,32->internal_state
+9,internal_state[33] = top,64,1,0,0,1,0,0,0,33->internal_state
+10,sum = 0.0,64,0,0,1,0,0,0,0,0.0->sum
+11,sum += internal_state[j] * coefficient[j + 32],2048,2,2,1,0,3,0,3,32->+->coefficient->*->+->sum
+12,outa[i] = sum,64,2,0,0,1,0,0,0,i->outa

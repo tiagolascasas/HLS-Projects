@@ -1,0 +1,31 @@
+Digraph G {
+node [penwidth=2.5]
+subgraph cluster2{
+n5 [label="+" color="darkorchid2"]
+n6 [label="sum" color="goldenrod2"]
+n7 [label="*" color="darkorchid2"]
+n8 [label="x" color="darkgreen"]
+n9 [label="i" color="red"]
+n10 [label="y" color="darkgreen"]
+}
+subgraph cluster1{
+n1 [label="sum" color="goldenrod2"]
+n3 [label="0" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n4 [label="loop i" color="blue1"]
+n3 -> n1 [label="", color=black]
+n9 -> n8 [label="", color=red]
+n9 -> n10 [label="", color=red]
+n8 -> n7 [label="", color=black]
+n10 -> n7 [label="", color=black]
+n7 -> n5 [label="", color=black]
+n6 -> n5 [label="", color=black]
+n5 -> n6 [label="", color=black]
+n4 -> n6 [label="x100", color=blue]
+n1 -> n4 [label="", color="#b54707"]
+labelloc="t"
+label="Data-flow Graph - DSP_dotprod"
+}

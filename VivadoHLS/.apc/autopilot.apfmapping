@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="dct.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\dct.c"/>
+    <originFiles name="array_streaming.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\array_streaming.c"/>
+    <originFiles name="test_bench.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\test_bench.c"/>
   </source>
-  <testbench/>
+  <testbench>
+    <originFiles name="test_bench.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\test_bench.c"/>
+  </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

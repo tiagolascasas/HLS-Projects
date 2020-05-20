@@ -1,0 +1,11 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,X[i] = 0,16,1,0,0,1,0,0,0,i->X
+2,Y[i] = 0,4,1,0,0,1,0,0,0,i->Y
+3,temp = 0,16,0,0,1,0,0,0,0,0->temp
+4,index = i * 16 + j,256,2,0,1,0,2,0,2,i->*->+->index
+5,temp += (A[index] * X[j] + K[index] * Y[j]),256,3,4,1,0,4,0,3,index->A->*->+->+->temp
+6,X[i] = temp,16,2,0,0,1,0,0,0,i->X
+7,temp = 0,4,0,0,1,0,0,0,0,0->temp
+8,index = i * 16 + j,64,2,0,1,0,2,0,2,i->*->+->index
+9,temp += (G[index] * X[j]),64,3,2,1,0,2,0,2,index->G->*->+->temp
+10,V[i] = (temp * Y[i + 1]),4,2,1,0,1,2,0,2,1->+->Y->*->V

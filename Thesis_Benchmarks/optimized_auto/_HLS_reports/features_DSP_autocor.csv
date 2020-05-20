@@ -1,0 +1,4 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,sum = 0,16,0,0,1,0,0,0,0,0->sum
+2,sum += sd[k + 16] * sd[k + 16 - i],512,3,2,1,0,5,0,4,16->+->-->sd->*->+->sum
+3,ac[i] = (sum >> 15),16,2,0,0,1,1,0,1,sum->>>->ac

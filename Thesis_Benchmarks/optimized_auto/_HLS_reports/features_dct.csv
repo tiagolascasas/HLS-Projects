@@ -1,0 +1,7 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,aux = 0,64,0,0,1,0,0,0,0,0->aux
+2,aux += InIm[i][k] * CosTrans[k][j],512,4,2,1,0,2,0,2,i->InIm->*->+->aux
+3,TempBlock[i][j] = aux,64,3,0,0,1,0,0,0,i->TempBlock
+4,aux = 0,64,0,0,1,0,0,0,0,0->aux
+5,aux += TempBlock[k][j] * CosBlock[i][k],512,4,2,1,0,2,0,2,k->TempBlock->*->+->aux
+6,OutIm[i][j] = aux,64,3,0,0,1,0,0,0,i->OutIm

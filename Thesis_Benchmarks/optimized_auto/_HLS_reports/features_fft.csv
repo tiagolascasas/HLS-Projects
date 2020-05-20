@@ -1,0 +1,13 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,int groupsPerStage = 1,1,0,0,1,0,0,0,0,1->groupsPerStage
+2,int buttersPerGroup = 512,1,0,0,1,0,0,0,0,512->buttersPerGroup
+3,Wr = coef_real[(1 << i) - 1 + j],10,2,1,1,0,3,0,3,1-><<->-->+->coef_real->Wr
+4,Wi = coef_imag[(1 << i) - 1 + j],10,2,1,1,0,3,0,3,1-><<->-->+->coef_imag->Wi
+5,temp_real = Wr * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] - Wi * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k],5120,5,2,1,0,11,0,6,2->*->*->+->+->data_real->*->-->temp_real
+6,temp_imag = Wi * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] + Wr * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k],5120,5,2,1,0,11,0,6,2->*->*->+->+->data_real->*->+->temp_imag
+7,data_real[2 * j * buttersPerGroup + buttersPerGroup + k] = data_real[2 * j * buttersPerGroup + k] - temp_real,5120,4,1,0,1,8,0,4,2->*->*->+->+->data_real
+8,data_real[2 * j * buttersPerGroup + k] += temp_real,5120,4,1,0,1,4,0,3,2->*->*->+->data_real
+9,data_imag[2 * j * buttersPerGroup + buttersPerGroup + k] = data_imag[2 * j * buttersPerGroup + k] - temp_imag,5120,4,1,0,1,8,0,4,2->*->*->+->+->data_imag
+10,data_imag[2 * j * buttersPerGroup + k] += temp_imag,5120,4,1,0,1,4,0,3,2->*->*->+->data_imag
+11,groupsPerStage <<= 1,10,1,0,1,0,1,0,1,1-><<->groupsPerStage
+12,buttersPerGroup >>= 1,10,1,0,1,0,1,0,1,1->>>->buttersPerGroup

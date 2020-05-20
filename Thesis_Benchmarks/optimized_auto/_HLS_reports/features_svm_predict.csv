@@ -1,0 +1,7 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,int sum = 0,1,0,0,1,0,0,0,0,0->sum
+2,diff = test_vector[j] - sup_vectors[j][i],22464,2,2,1,0,1,0,1,j->test_vector->-->diff
+3,diff = diff * diff,22464,1,0,1,0,1,0,1,*->diff
+4,norma = norma + diff,22464,2,0,1,0,1,0,1,diff->+->norma
+5,sum = sum + (exp(-8 * norma) * sv_coeff[i]),1248,3,1,1,0,4,1,5,-1->*->*->exp->*->+->sum
+6,norma = 0,1248,0,0,1,0,0,0,0,0->norma

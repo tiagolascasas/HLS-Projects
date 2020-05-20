@@ -2,6 +2,16 @@
 #include <stdio.h>
 #include <math.h>
 
+//thesis example
+void example(int a[2][2], int b[2]) {
+	for (int i = 0; i < 2; i++) {
+		int sum = 0;
+		for (int j = 0; j < 2; j++)
+			sum += a[i][j];
+		b[i] = sum;
+	}	
+}
+
 //DSP_dotprod
 #define NX 3
 

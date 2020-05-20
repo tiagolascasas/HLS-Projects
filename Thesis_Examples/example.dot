@@ -1,0 +1,38 @@
+Digraph G {
+"a[0][0]_1_l" [label="a[0][0]", att1=var, att2=inte, att3=int];
+"a[0][1]_1_l" [label="a[0][1]", att1=var, att2=inte, att3=int];
+"a[1][0]_1_l" [label="a[1][0]", att1=var, att2=inte, att3=int];
+"a[1][1]_1_l" [label="a[1][1]", att1=var, att2=inte, att3=int];
+"b[0]_1_l" [label="b[0]", att1=var, att2=inte, att3=int];
+"b[1]_1_l" [label="b[1]", att1=var, att2=inte, att3=int];
+"const1" [label="0", att1=const];
+"sum_1" [label="sum", att1=var, att2=loc, att3=int];
+"const1" -> "sum_1" [label="1", ord="1"];
+"op1" [label="+", att1=op];
+"a[0][0]_1_l" -> "op1" [label="2", ord="2", pos="r"];
+"sum_1" -> "op1" [label="3", ord="3", pos="l"];
+"sum_2" [label="sum", att1=var, att2=loc, att3=int];
+"op1" -> "sum_2" [label="4", ord="4"];
+"op2" [label="+", att1=op];
+"a[0][1]_1_l" -> "op2" [label="5", ord="5", pos="r"];
+"sum_2" -> "op2" [label="6", ord="6", pos="l"];
+"sum_3" [label="sum", att1=var, att2=loc, att3=int];
+"op2" -> "sum_3" [label="7", ord="7"];
+"b[0]_2_l" [label="b[0]", att1=var, att2=inte, att3=int];
+"sum_3" -> "b[0]_2_l" [label="8", ord="8"];
+"const2" [label="0", att1=const];
+"sum_4" [label="sum", att1=var, att2=loc, att3=int];
+"const2" -> "sum_4" [label="9", ord="9"];
+"op3" [label="+", att1=op];
+"a[1][0]_1_l" -> "op3" [label="10", ord="10", pos="r"];
+"sum_4" -> "op3" [label="11", ord="11", pos="l"];
+"sum_5" [label="sum", att1=var, att2=loc, att3=int];
+"op3" -> "sum_5" [label="12", ord="12"];
+"op4" [label="+", att1=op];
+"a[1][1]_1_l" -> "op4" [label="13", ord="13", pos="r"];
+"sum_5" -> "op4" [label="14", ord="14", pos="l"];
+"sum_6" [label="sum", att1=var, att2=loc, att3=int];
+"op4" -> "sum_6" [label="15", ord="15"];
+"b[1]_2_l" [label="b[1]", att1=var, att2=inte, att3=int];
+"sum_6" -> "b[1]_2_l" [label="16", ord="16"];
+}

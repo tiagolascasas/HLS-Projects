@@ -1,0 +1,57 @@
+Digraph G {
+node [penwidth=2.5]
+subgraph cluster3{
+n18 [label="ac" color="goldenrod2"]
+n19 [label="i" color="red"]
+n20 [label=">>" color="darkorchid2"]
+n21 [label="sum" color="darkgreen"]
+n22 [label="15" color="gray36"]
+}
+subgraph cluster2{
+n5 [label="+" color="darkorchid2"]
+n6 [label="sum" color="goldenrod2"]
+n7 [label="*" color="darkorchid2"]
+n8 [label="sd" color="darkgreen"]
+n9 [label="+" color="darkorchid2"]
+n10 [label="k" color="red"]
+n11 [label="16" color="gray36"]
+n12 [label="sd" color="darkgreen"]
+n13 [label="-" color="darkorchid2"]
+n14 [label="+" color="darkorchid2"]
+n16 [label="16" color="gray36"]
+n17 [label="i" color="red"]
+}
+subgraph cluster1{
+n2 [label="sum" color="goldenrod2"]
+n3 [label="0" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n1 [label="loop i" color="blue1"]
+n4 [label="loop k" color="blue1"]
+n3 -> n2 [label="", color=black]
+n10 -> n9 [label="", color=black]
+n11 -> n9 [label="", color=black]
+n9 -> n8 [label="", color=red]
+n10 -> n14 [label="", color=black]
+n16 -> n14 [label="", color=black]
+n14 -> n13 [label="", color=black]
+n17 -> n13 [label="", color=black]
+n13 -> n12 [label="", color=red]
+n8 -> n7 [label="", color=black]
+n12 -> n7 [label="", color=black]
+n7 -> n5 [label="", color=black]
+n6 -> n5 [label="", color=black]
+n5 -> n6 [label="", color=black]
+n4 -> n6 [label="x32", color=blue]
+n19 -> n18 [label="", color=red]
+n21 -> n20 [label="", color=black]
+n22 -> n20 [label="", color=black]
+n20 -> n18 [label="", color=black]
+n1 -> n2 [label="x16", color=blue]
+n1 -> n4 [label="x16", color=blue]
+n1 -> n18 [label="x16", color=blue]
+labelloc="t"
+label="Data-flow Graph - DSP_autocor"
+}

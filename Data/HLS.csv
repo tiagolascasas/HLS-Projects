@@ -25,3 +25,50 @@ svm_predict,Pipeline 2 on inner loop + expf,xc7z020-clg484-1,10,7.684,388129,388
 svm_predict,Pipeline 2 on outer loop,xc7z020-clg484-1,10,8.442,11352,11352,11352,4197,4274,20,22
 svm_predict,Pipeline 2 on outer loop + expf,xc7z020-clg484-1,10,9.634,112355,112355,112355,1286,2127,68,13
 svm_predict,Pipeline 4 on outer loop,xc7z020-clg484-1,10,13.434,11357,11357,11357,6235,8056,20,55
+dct,none,xc7z020-clg484-1,10,8.51,4386,4386,4386,329,506,0,5
+dct,Full unroll on 1.1.1,xc7z020-clg484-1,10,8.51,2722,2722,2722,510,785,0,8
+dct,Full unroll on 2.1.1,xc7z020-clg484-1,10,8.51,2730,2730,2730,957,893,0,19
+dct,Full unroll on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1066,1066,1066,1138,1158,0,22
+dct,Pipeline 2 on 1.1.1,xc7z020-clg484-1,10,8.51,3221,3221,3221,372,675,0,5
+dct,Pipeline 2 on 2.1.1,xc7z020-clg484-1,10,8.51,3221,3221,3221,372,675,0,5
+dct,Pipeline 2 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,2056,2056,2056,415,844,0,5
+dct,Pipeline 2 and Unroll 2 on 1.1.1,xc7z020-clg484-1,10,8.51,3026,3026,3026,442,600,0,8
+dct,Pipeline 2 and Unroll 4 on 1.1.1,xc7z020-clg484-1,10,8.51,2770,2770,2770,477,720,0,8
+dct,Pipeline 2 and Unroll 2 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1666,1666,1666,525,709,0,10
+dct,Pipeline 2 and Unroll 4 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1154,1154,1154,673,1026,0,14
+dct,Full Unroll on loop 1.1,xc7z020-clg484-1,10,8.51,4314,4314,4314,646,1499,0,5
+dct,Full Unroll on loop 1.1 and 2.1,xc7z020-clg484-1,10,8.51,4242,4242,4242,1187,2640,0,19
+dct,Unroll 2 on loop 1.1,xc7z020-clg484-1,10,8.51,4354,4354,4354,376,686,0,5
+dct,Unroll 4 on loop 1.1,xc7z020-clg484-1,10,8.51,4338,4338,4338,479,964,0,5
+dct,Pipeline on loops 1 and 2,xc7z020-clg484-1,10,8.51,522,522,522,1644,2191,0,40
+fir2D,none,xc7z020-clg484-1,10,8.111,16703337,16703337,16703337,173,317,0,2
+fir2D,Pipeline 2 on 4th loop,xc7z020-clg484-1,10,8.111,11452897,11452897,11452897,186,415,0,3
+fir2D,Full unroll on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
+fir2D,Full unroll on 3rd loop,xc7z020-clg484-1,10,6.38,14794521,14794521,14794521,174,443,0,3
+fir2D,Pipeline 2 + full unroll on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
+fir2D,Full unroll + pipeline 2 on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
+fir2D,Unroll 2 on 2nd loop,xc7z020-clg484-1,10,8.111,16464735,16464735,16464735,240,567,0,4
+fir2D,Unroll 4 on 2nd loop,xc7z020-clg484-1,10,8.111,16387593,16387593,16387593,490,1215,0,8
+fir2D,Unroll 8 on 2nd loop,xc7z020-clg484-1,10,8.111,16330185,16330185,16330185,882,2251,0,16
+utdsp_iir_4_64,none,xc7z020-clg484-1,10,7.256,5569,5569,5569,981,1428,0,8
+utdsp_iir_4_64,Stream on input array,xc7z020-clg484-1,10,7.256,5505,5505,5505,980,1435,0,8
+triangles_hypotenuse,none,xc7z020-clg484-1,10,8.623,430001,430001,430001,2650,3847,0,6
+triangles_hypotenuse,Stream on two input arrays,xc7z020-clg484-1,10,8.623,420001,420001,420001,2635,3863,0,6
+triangles_hypotenuse,Unroll 2,xc7z020-clg484-1,10,8.623,215001,215001,215001,5225,7470,0,12
+triangles_hypotenuse,Unroll 2 + Stream,xc7z020-clg484-1,10,8.623,215001,215001,215001,2812,4648,0,6
+triangles_hypotenuse,Unroll 4,xc7z020-clg484-1,10,8.623,110001,110001,110001,5633,9092,0,12
+triangles_hypotenuse,Unroll 4 + Stream,xc7z020-clg484-1,10,8.623,112501,112501,112501,3196,6142,0,6
+utdsp_latnrm_32_64,none,xc7z020-clg484-1,10,7.256,46593,46593,46593,1443,2484,0,16
+utdsp_latnrm_32_64,Stream on data,xc7z020-clg484-1,10,7.256,46529,46529,46529,1442,2491,0,16
+utdsp_latnrm_32_64,Pipeline on loop 1.1,xc7z020-clg484-1,10,7.256,40897,40897,40897,954,1500,0,8
+utdsp_latnrm_32_64,Pipeline on loop 1.2,xc7z020-clg484-1,10,7.256,34689,34689,34689,1443,2484,0,16
+utdsp_latnrm_32_64,Pipeline on loop 1,xc7z020-clg484-1,10,9.531,9184,9184,9184,7433,5931,0,24
+utdsp_latnrm_32_64,Pipeline on loop 1.1 and 1.2,xc7z020-clg484-1,10,7.256,28993,28993,28993,954,1500,0,8
+utdsp_latnrm_32_64,"Pipeline on loop 1, 1.1 and 1.2",xc7z020-clg484-1,10,9.531,9184,9184,9184,7433,5931,0,24
+utdsp_latnrm_32_64,Pipeline on loop 1 + Stream on data,xc7z020-clg484-1,10,9.531,9184,9184,9184,7426,5944,0,24
+utdsp_latnrm_32_64,Unroll 2 on loops 1.1 and 1.2,xc7z020-clg484-1,10,7.256,37505,37505,37505,1504,2723,0,16
+utdsp_latnrm_32_64,Unroll 4 on loops 1.1 and 1.2,xc7z020-clg484-1,10,7.256,32897,32897,32897,1542,2971,0,16
+utdsp_latnrm_32_64,Unroll 4 on loops 1.1 and 1.2 + Pipeline on loop 1,xc7z020-clg484-1,10,9.531,9184,9184,9184,7433,5931,0,24
+utdsp_latnrm_32_64,Full unroll on loops 1.1 and 1.2 + Pipeline on loop 1,xc7z020-clg484-1,10,9.531,9184,9184,9184,7433,5931,0,24
+utdsp_mult_10_10,none,xc7z020-clg484-1,10,7.256,11221,11221,11221,532,936,0,5
+utdsp_mult_10_10,Stream on c_matrix,xc7z020-clg484-1,10,7.256,11221,11221,11221,525,932,0,5

@@ -1,0 +1,29 @@
+Digraph G {
+node [penwidth=2.5]
+subgraph cluster1{
+n2 [label="hypotenuse_array" color="goldenrod2"]
+n3 [label="x" color="red"]
+n4 [label="sqrt" color="darkorchid2"]
+n5 [label="+" color="darkorchid2"]
+n6 [label="square" color="darkorchid2"]
+n7 [label="first_array" color="darkgreen"]
+n9 [label="square" color="darkorchid2"]
+n10 [label="second_array" color="darkgreen"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n1 [label="loop x" color="blue1"]
+n3 -> n2 [label="", color=red]
+n3 -> n7 [label="", color=red]
+n7 -> n6 [label="", color=black]
+n3 -> n10 [label="", color=red]
+n10 -> n9 [label="", color=black]
+n6 -> n5 [label="", color=black]
+n9 -> n5 [label="", color=black]
+n5 -> n4 [label="", color=black]
+n4 -> n2 [label="", color=black]
+n1 -> n2 [label="x10000", color=blue]
+labelloc="t"
+label="Data-flow Graph - calc_hypotenuse"
+}

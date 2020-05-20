@@ -350,7 +350,7 @@ function createEdge(node, source, dest, pos, offset) {
 		.int(refCounter("ne"));
 	if (pos != undefined)
 		logger.text(CM + ", pos=" + CM + pos);
-	logger.text(CM + "];").log(node, true);
+	logger.text(CM + "];" + NL).log(node, true);
 }
 
 //--------------------

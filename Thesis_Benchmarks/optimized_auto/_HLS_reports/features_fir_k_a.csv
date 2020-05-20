@@ -1,0 +1,5 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,t[i] = 0,100,1,0,0,1,0,0,0,i->t
+2,t[i] = t[i] + (a[i - j + 2] >> 2),300,2,2,0,1,4,0,4,j->-->+->a->>>->+->t
+3,o[i] = 0,100,1,0,0,1,0,0,0,i->o
+4,o[i] = o[i] + m[i][j] * t[j],10000,2,3,0,1,2,0,2,j->m->*->+->o

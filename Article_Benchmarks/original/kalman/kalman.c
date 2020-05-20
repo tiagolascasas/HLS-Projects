@@ -30,7 +30,7 @@ void kalman(int Y[16], int A[16 * 16], int K[16 * 16], int G[16 * 16], int V[4])
     }
 
     /* Initializing state Vector Y */
-    for (i = 13; i < 16; i++)
+    for (i = 12; i < 16; i++)
     {
         Y[i] = 0;
     }
@@ -61,7 +61,7 @@ void kalman(int Y[16], int A[16 * 16], int K[16 * 16], int G[16 * 16], int V[4])
     }
 }
 
-main()
+int main()
 {
     int i, j, tmp, index;
 

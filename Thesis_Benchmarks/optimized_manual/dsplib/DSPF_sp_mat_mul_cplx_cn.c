@@ -19,6 +19,7 @@ void DSPF_sp_mat_mul_cplx_cn(float x1[2 * NR1 * NC1], float x2[2 * NC1 * NC2], f
 
             for (k = 0; k < NC1; k++)
             {
+#pragma HLS UNROLL
                 real += (x1[i * 2 * NC1 + 2 * k] * x2[k * 2 * NC2 + 2 * j] - x1[i * 2 * NC1 + 2 * k + 1] * x2[k * 2 * NC2 + 2 * j + 1]);
                 imag += (x1[i * 2 * NC1 + 2 * k] * x2[k * 2 * NC2 + 2 * j + 1] + x1[i * 2 * NC1 + 2 * k + 1] * x2[k * 2 * NC2 + 2 * j]);
             }
@@ -31,15 +32,16 @@ void DSPF_sp_mat_mul_cplx_cn(float x1[2 * NR1 * NC1], float x2[2 * NC1 * NC2], f
 int main()
 {
     float ptr_x1[2 * NR1 * NC1] = {0};
-    for (int i = 0; i < 2 * NR1 * NC1; i++)
+    int i;
+    for (i = 0; i < 2 * NR1 * NC1; i++)
         ptr_x1[i] = rand();
 
     float ptr_x2[2 * NC1 * NC2] = {0};
-    for (int i = 0; i < 2 * NC1 * NC2; i++)
+    for (i = 0; i < 2 * NC1 * NC2; i++)
         ptr_x2[i] = rand();
 
     float ptr_y_cn[2 * NR1 * NC2] = {0};
-    for (int i = 0; i < 2 * NR1 * NC2; i++)
+    for (i = 0; i < 2 * NR1 * NC2; i++)
         ptr_y_cn[i] = rand();
 
     DSPF_sp_mat_mul_cplx_cn(ptr_x1, ptr_x2, ptr_y_cn);

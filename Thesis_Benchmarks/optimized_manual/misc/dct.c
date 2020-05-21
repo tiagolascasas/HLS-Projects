@@ -28,7 +28,9 @@ void dct(
         {
             aux = 0;
             for (k = 0; k < N; k++)
-                aux += InIm[i][k] * CosTrans[k][j];
+#pragma HLS UNROLL factor=4
+#pragma HLS PIPELINE
+            	aux += InIm[i][k] * CosTrans[k][j];
             TempBlock[i][j] = aux;
         }
 
@@ -37,7 +39,9 @@ void dct(
         {
             aux = 0;
             for (k = 0; k < N; k++)
-                aux += TempBlock[k][j] * CosBlock[i][k];
+#pragma HLS UNROLL factor=4
+#pragma HLS PIPELINE
+            	aux += TempBlock[k][j] * CosBlock[i][k];
             OutIm[i][j] = aux;
         }
 }

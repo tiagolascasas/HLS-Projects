@@ -3,8 +3,10 @@
 #define M 16
 #define N 32
 
-int DSP_autocor(short ac[M], short sd[N + M])
+void DSP_autocor(short ac[M], short sd[N + M])
 {
+#pragma HLS ARRAY_PARTITION variable=sd complete dim=1
+#pragma HLS STREAM variable=ac dim=1
     int i;
     int k;
     int sum;
@@ -14,6 +16,7 @@ int DSP_autocor(short ac[M], short sd[N + M])
         sum = 0;
         for (k = 0; k < N; k++)
         {
+#pragma HLS UNROLL factor=16
             sum += sd[k + M] * sd[k + M - i];
         }
         ac[i] = (sum >> 15);

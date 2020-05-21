@@ -42,14 +42,9 @@
 			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/solution1/.tcls</location>
 		</link>
 		<link>
-			<name>source/array_streaming.c</name>
+			<name>source/DSP_dotprod.c</name>
 			<type>1</type>
-			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/array_streaming.c</location>
-		</link>
-		<link>
-			<name>source/test_bench.c</name>
-			<type>1</type>
-			<location>C:/Users/Tiago/Dev/HLS-Projects/VivadoHLS/test_bench.c</location>
+			<location>C:/Users/Tiago/Dev/HLS-Projects/Thesis_Benchmarks/optimized_manual/dsplib/DSP_dotprod.c</location>
 		</link>
 		<link>
 			<name>testbench/test_bench.c</name>

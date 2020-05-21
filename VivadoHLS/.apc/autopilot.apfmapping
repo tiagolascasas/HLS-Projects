@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="array_streaming.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\array_streaming.c"/>
-    <originFiles name="test_bench.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\test_bench.c"/>
+    <originFiles name="DSP_dotprod.c" path="C:\Users\Tiago\Dev\HLS-Projects\Thesis_Benchmarks\optimized_manual\dsplib\DSP_dotprod.c"/>
   </source>
   <testbench>
     <originFiles name="test_bench.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\test_bench.c"/>

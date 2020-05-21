@@ -15,6 +15,7 @@ int svm_predict(float test_vector[N_SUP_VECT], float sup_vectors[N_SUP_VECT][N_F
     {
         for (int j = 0; j < N_SUP_VECT; j++)
         {
+#pragma HLS PIPELINE
             diff = test_vector[j] - sup_vectors[j][i];
             diff = diff * diff;
             norma = norma + diff;

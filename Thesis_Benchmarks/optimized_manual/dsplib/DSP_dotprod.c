@@ -4,10 +4,16 @@
 
 int DSP_dotprod(short x[N], short y[N])
 {
+//#pragma HLS STREAM variable=y dim=1
+//#pragma HLS STREAM variable=x dim=1
+#pragma HLS INTERFACE axis port=x
+#pragma HLS INTERFACE axis port=y
     int sum = 0;
 
     for (int i = 0; i < N; i++)
-        sum += x[i] * y[i];
+
+#pragma HLS UNROLL
+sum += x[i] * y[i];
 
     return sum;
 }

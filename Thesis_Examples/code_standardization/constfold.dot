@@ -1,0 +1,37 @@
+digraph G {
+node [fontsize=11]
+    rankdir=RL;
+    subgraph cluster1 {
+        n1 [label="BinaryOperator [*]"];
+        n2 [label="IntegerLiteral [4]"];
+        n3 [label="BinaryOperator [+]"];
+        n4 [label="IntegerLiteral [1]"];
+        n5 [label="IntegerLiteral [2]"];
+        n3 -> n5 [label="rhs"];
+        n3 -> n4 [label="lhs"];
+        n1 -> n3 [label="lhs"]; 
+        n1 -> n2 [label="rhs"];
+        labelloc=t;
+        label="Before Constant Folding";
+    } 
+
+    subgraph cluster2 {
+        nc1 [label="BinaryOperator [*]"];
+        nc2 [label="IntegerLiteral [4]"];
+        nc3 [label="IntegerLiteral [3]"];
+        nc1 -> nc3 [label="lhs"]; 
+        nc1 -> nc2 [label="rhs"];
+        labelloc=t;
+        label="After First Pass";
+
+    }
+
+    subgraph cluster3 {
+        nd1 [label="IntegerLiteral [12]"];
+        labelloc=t;
+        label="After Second Pass";
+    }
+    edge [style = invis];
+    {nc1} -> nd1;
+    {n1} -> nc1;
+}

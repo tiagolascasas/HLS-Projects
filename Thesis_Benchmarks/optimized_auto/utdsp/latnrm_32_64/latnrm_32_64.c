@@ -20,6 +20,9 @@ int main() {
 
 void latnrm(float data[64], float outa[64], float coefficient[64], float internal_state[64]) {
    #pragma HLS stream variable=data
+   #pragma HLS array_partition variable=outa complete
+   #pragma HLS array_partition variable=coefficient complete
+   #pragma HLS array_partition variable=internal_state complete
    /*data:            input sample array*/
    /*outa:            output sample array*/
    /*coefficient:     coefficient array*/
@@ -33,11 +36,10 @@ void latnrm(float data[64], float outa[64], float coefficient[64], float interna
    float sum;
    /**/
    for(i = 0; i < 64; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS pipeline
       top = data[i];
       for(j = 1; j < 32; j++) {
-         #pragma HLS unroll factor=31
-         #pragma HLS  pipeline
+         #pragma HLS unroll
          left = top;
          right = internal_state[j];
          internal_state[j] = bottom;
@@ -48,8 +50,7 @@ void latnrm(float data[64], float outa[64], float coefficient[64], float interna
       internal_state[33] = top;
       sum = 0.0;
       for(j = 0; j < 32; j++) {
-         #pragma HLS unroll factor=32
-         #pragma HLS  pipeline
+         #pragma HLS unroll
          sum += internal_state[j] * coefficient[j + 32];
       }
       outa[i] = sum;

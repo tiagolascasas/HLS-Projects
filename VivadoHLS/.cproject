@@ -179,7 +179,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.c.compiler.option.misc.other.1285044977" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.c.compiler.option.misc.other.1285044977" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.194601216" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
                             						
@@ -357,7 +357,7 @@
                                 							
                             </option>
                             							
-                            <option id="gnu.c.compiler.option.misc.other.966281243" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            <option id="gnu.c.compiler.option.misc.other.966281243" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0" valueType="string"/>
                             							
                             <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.33688043" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
                             						

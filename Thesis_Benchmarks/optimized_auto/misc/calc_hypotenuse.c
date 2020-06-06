@@ -42,16 +42,15 @@ int main() {
 void calc_hypotenuse(unsigned int first_array[10000], unsigned int second_array[10000], unsigned int hypotenuse_array[10000]) {
    #pragma HLS stream variable=first_array
    #pragma HLS stream variable=second_array
+   #pragma HLS array_partition variable=hypotenuse_array cyclic factor=97
    for(int x = 0; x < 10000; x++) {
-      #pragma HLS inline
-      #pragma HLS inline
-      #pragma HLS unroll factor=10000
-      #pragma HLS  pipeline
+      #pragma HLS unroll
       hypotenuse_array[x] = sqrt(square(first_array[x]) + square(second_array[x]));
    }
 }
 
 unsigned int square(unsigned int value) {
+   #pragma HLS inline
    
    return value * value;
 }

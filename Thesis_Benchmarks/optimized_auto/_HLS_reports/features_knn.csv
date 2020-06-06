@@ -1,0 +1,5 @@
+ID,Statement,Iterations,LoadsVar,LoadsArr,StoresVar,StoresArr,Ops,Calls,Depth,Critical Path
+1,float distance = (float) 0,1000,0,0,1,0,0,0,0,0->distance
+2,distance += (((float) xFeatures[j] - (float) knownFeatures[i][j]) * ((float) xFeatures[j] - (float) knownFeatures[i][j])),32000,3,2,1,0,4,0,3,j->j->xFeatures->-->*->+->distance
+3,distance = sqrt(distance),1000,1,0,1,0,0,1,1,sqrt->distance
+4,classifyID = classify3NN(BestPointsClasses, BestPointsDistances),1,2,0,1,0,0,1,1,BestPointsClasses->classify3NN->classifyID

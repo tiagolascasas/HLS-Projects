@@ -29,8 +29,9 @@ void updateBest(dtype distance, ctype classifID, dtype BestPointsDistances[K], c
 			index = i;
 		}*/
         dtype dbest = BestPointsDistances[i];
-        max = (dbest > max) ? dbest : max;
-        index = (dbest > max) ? i : index;
+        dtype max_tmp = max;
+        max = (dbest > max_tmp) ? dbest : max;
+        index = (dbest > max_tmp) ? i : index;
     }
     // if the point is better (shorter distance) than the worst one (longer distance) in the BestPoints
     // update BestPoints substituting the wrost one
@@ -88,7 +89,7 @@ ctype knn(ftype xFeatures[NUM_FEATURES], ftype knownFeatures[NUM_KNOWN_POINTS][N
     classifyID = classifyKNN(BestPointsClasses, BestPointsDistances);
 #endif
 
-    showBestPoints(BestPointsClasses, BestPointsDistances);
+    //showBestPoints(BestPointsClasses, BestPointsDistances);
 
     return classifyID;
 }
@@ -128,7 +129,7 @@ ctype classify3NN(ctype BestPointsClasses[K], dtype BestPointsDistances[K])
 			classID = c1;
 		} else if(c2 == c3) {
 			classID = c2;
-		} else {
+		} else {  // ELSE
 			dtype mindist = d1;
 			classID = c1;
 			if(mindist > d2) {
@@ -141,19 +142,23 @@ ctype classify3NN(ctype BestPointsClasses[K], dtype BestPointsDistances[K])
 			}
 		}	
 		*/
+
+    // ELSE
     dtype mindist = d1;
-    classID = c1;
-
+    //classID = c1;
     classID = (mindist > d2) ? c2 : c1;
-    mindist = (mindist > d2) ? d2 : c1;
+    mindist = (mindist > d2) ? d2 : d1;
 
-    classID = (mindist > d3) ? c3 : c1;
-    //mindist = (mindist > d3) ? d3 : c1;
+    classID = (mindist > d3) ? c3 : classID;
+    mindist = (mindist > d3) ? d3 : mindist;
 
-    classID = (c1 == c2) ? c1 : classID;
+    // } else if(c2 == c3) {
+    classID = (c2 == c3) ? c2 : classID;
+    // } else if(c1 == c3) {
     classID = (c1 == c3) ? c1 : classID;
-    classID = (c1 == c3) ? c2 : classID;
-    classID = ((c1 != c2) && (c2 != c3)) ? c2 : classID;
+    // if(c1 == c2) {
+    classID = (c1 == c2) ? c1 : classID;
+    //classID = classID1;
 
     return classID;
 }
@@ -166,14 +171,15 @@ ctype classifyKNN(ctype BestPointsClasses[K], dtype BestPointsDistances[K])
 {
 
     unsigned char histogram[NUM_CLASSES + 1];
+    int i;
 
-    for (int i = 0; i < NUM_CLASSES + 1; i++) // last is not a class
+    for (i = 0; i < NUM_CLASSES + 1; i++) // last is not a class
         histogram[i] = 0;
 
     dtype min_distance = MAXDISTANCE;
     int index;
 
-    for (int i = 0; i < K; i++)
+    for (i = 0; i < K; i++)
     {
         dtype distance = BestPointsDistances[i];
         if (distance < min_distance)
@@ -185,7 +191,7 @@ ctype classifyKNN(ctype BestPointsClasses[K], dtype BestPointsDistances[K])
     }
     unsigned char max = 0;
     ctype classID = NUM_CLASSES; // the default is the unknwown
-    for (int i = 0; i < NUM_CLASSES + 1; i++)
+    for (i = 0; i < NUM_CLASSES + 1; i++)
     {
         if (histogram[i] > max)
         {

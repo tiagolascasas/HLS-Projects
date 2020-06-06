@@ -1,25 +1,8 @@
 input,optimizations,part,target_clock,estim_clock,lat_worst,lat_avg,lat_best,FF,LUT,BRAM,DSP
-dct,full unroll on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1066,1066,1066,1138,1158,0,22
-dct,none,xc7z020-clg484-1,10,8.51,4386,4386,4386,329,506,0,5
-dsp_dotprod_100,full unroll + axi interface on x and y,xc7z020-clg484-1,10,10.751,101,101,101,2862,1716,0,100
-dsplib_autocor,full unroll on 1.1,xc7z020-clg484-1,10,8.702,577,577,577,1220,1482,0,32
-dsplib_autocor,stream on ac + full unroll on 1.1,xc7z020-clg484-1,10,8.702,577,577,577,1220,1491,0,32
-dsplib_autocor,stream on ac + full unroll on 1,xc7z020-clg484-1,10,8.702,1040,1040,1040,737,1583,0,16
-dsplib_autocor,full unroll on 1,xc7z020-clg484-1,10,8.702,1040,1040,1040,737,1627,0,16
-dsplib_autocor,none,xc7z020-clg484-1,10,8.702,1057,1057,1057,63,151,0,1
-dsplib_autocor,stream on ac + unroll 2 on 1.1,xc7z020-clg484-1,10,8.702,1057,1057,1057,129,277,0,2
-dsplib_dotprod_100,full unroll,xc7z020-clg484-1,10,10.751,54,54,54,2839,2366,0,100
-dsplib_dotprod_100,stream on x + y and full unroll,xc7z020-clg484-1,10,10.751,102,102,102,2823,1648,0,100
-dsplib_dotprod_100,none,xc7z020-clg484-1,10,6.38,301,301,301,82,71,0,1
-dsplib_sp_mat_mul_cplx,Full unroll on 1.1.1,xc7z020-clg484-1,10,8.4,2065,2065,2065,1862,3321,0,20
-dsplib_sp_mat_mul_cplx,full unroll on 1.1,xc7z020-clg484-1,10,8.317,4169,4169,4169,2006,3804,0,16
-dsplib_sp_mat_mul_cplx,unroll 4 on 1.1,xc7z020-clg484-1,10,7.256,4193,4193,4193,1675,3042,0,16
-dsplib_sp_mat_mul_cplx,none,xc7z020-clg484-1,10,7.256,4241,4241,4241,1410,2369,0,16
-dsplib_sp_mat_mul_cplx,full unroll on 1,xc7z020-clg484-1,10,8.317,4264,4264,4264,2106,3956,0,16
-fir_k_a,unroll on 1.1 and 2.1,xc7z020-clg484-1,10,8.742,6002,6002,6002,1082,4469,0,6
-fir_k_a,unroll on 1.1 and 2.1 + stream,xc7z020-clg484-1,10,8.742,10902,10902,10902,1039,2229,0,6
-fir_k_a,none,xc7z020-clg484-1,10,8.51,41302,41302,41302,265,402,0,3
-svm_predict,full unroll on 1.1,xc7z020-clg484-1,10,9.461,172234,172234,172234,5620,8941,0,49
-svm_predict,unroll 2 on 1.1 + pipeline on 1.1,xc7z020-clg484-1,10,9.634,173473,173473,173473,4020,7067,0,47
-svm_predict,pipeline on 1.1,xc7z020-clg484-1,10,8.232,173473,173473,173473,3945,7083,0,45
-svm_predict,none,xc7z020-clg484-1,10,8.232,406849,406849,406849,3886,7062,0,45
+array_streaming 4,none,xc7z020-clg484-1,10,4.874,9,9,9,41,99,0,0
+array_streaming 4,stream,xc7z020-clg484-1,10,6.186,5,5,5,37,104,0,0
+array_streaming 4000,none,xc7z020-clg484-1,10,5.806,8001,8001,8001,59,103,0,0
+array_streaming 4000,stream,xc7z020-clg484-1,10,6.186,4001,4001,4001,46,108,0,0
+filter_subband,"Optimized, exceeds",xc7z020-clg484-1,10.00,8.232,498,498,498,111208,213564,68,896
+knn,"Optimized, II=9",xc7z020-clg484-1,10.00,8.442,9237,9237,9237,9342,8462,0,28
+knn,none,xc7z020-clg484-1,10.00,8.395,535010,535010,535010,1558,3137,0,5

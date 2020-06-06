@@ -3,14 +3,14 @@
 int svm_predict(float test_vector[18], float sup_vectors[18][1248], float sv_coeff[1248]) {
    #pragma HLS stream variable=sv_coeff
    #pragma HLS stream variable=test_vector
+   #pragma HLS array_partition variable=sup_vectors cyclic factor=219
    float diff;
    float norma;
    int sum = 0;
    for(int i = 0; i < 1248; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS pipeline
       for(int j = 0; j < 18; j++) {
-         #pragma HLS unroll factor=18
-         #pragma HLS  pipeline
+         #pragma HLS unroll
          diff = test_vector[j] - sup_vectors[j][i];
          diff = diff * diff;
          norma = norma + diff;

@@ -24,6 +24,10 @@ int main() {
 }
 
 void fft(float data_real[1024], float data_imag[1024], float coef_real[1024], float coef_imag[1024]) {
+   #pragma HLS array_partition variable=data_real cyclic factor=10
+   #pragma HLS array_partition variable=data_imag cyclic factor=10
+   #pragma HLS array_partition variable=coef_real cyclic factor=10
+   #pragma HLS array_partition variable=coef_imag cyclic factor=10
    /*data_real:         real data points*/
    /*data_imag:         imaginary data points*/
    /*coef_real:         real coefficient points*/
@@ -35,16 +39,15 @@ void fft(float data_real[1024], float data_imag[1024], float coef_real[1024], fl
    int groupsPerStage = 1;
    int buttersPerGroup = 512;
    for(int i = 0; i < 10; ++i) {
-      #pragma HLS  pipeline
       #pragma MAX_ITER 1
       for(int j = 0; j < groupsPerStage; ++j) {
-         #pragma HLS  pipeline
+         #pragma HLS unroll
+         #pragma HLS pipeline
          Wr = coef_real[(1 << i) - 1 + j];
          Wi = coef_imag[(1 << i) - 1 + j];
          #pragma MAX_ITER 512
          for(int k = 0; k < buttersPerGroup; ++k) {
-            #pragma HLS unroll factor=512
-            #pragma HLS  pipeline
+            #pragma HLS unroll
             temp_real = Wr * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] - Wi * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k];
             temp_imag = Wi * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] + Wr * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k];
             data_real[2 * j * buttersPerGroup + buttersPerGroup + k] = data_real[2 * j * buttersPerGroup + k] - temp_real;

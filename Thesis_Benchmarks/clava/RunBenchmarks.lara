@@ -1,0 +1,76 @@
+import clava.hls.HLSAnalysis;
+import clava.hls.TraceInstrumentation;
+import clava.hls.MathAnalysis;
+
+aspectdef RunBenchmarks
+	call MiscHLS();
+	call DsplibHLS();
+	call KnnHLS();
+	call UtdspHLS();
+//	call TestHLS();
+end
+
+aspectdef OptimizeDir
+	input fun end
+	HLSAnalysis.optimizeWithDirectives(fun);
+end
+
+aspectdef printCfg
+	input fun end
+	select file.function{fun}.body end
+	apply
+		$body.exec dfg();
+	end
+end
+
+aspectdef MiscHLS
+	var fun = [
+		"svm_predict", 
+		"kalman", 
+		"fir_k_a", 
+		"fir2D", 
+		"filter_subband",
+		"dct", 
+		"calc_hypotenuse",
+		"gouraud"
+		];
+	for (var i = 0; i < fun.length; i++)
+		call OptimizeDir(fun[i]);
+end
+
+aspectdef DsplibHLS
+	var fun = [
+		"DSP_autocor", 
+		"DSP_dotprod", 
+		"DSPF_sp_mat_mul_cplx_cn", 
+		];
+	for (var i = 0; i < fun.length; i++)
+		call OptimizeDir(fun[i]);
+end
+
+aspectdef KnnHLS
+	call OptimizeDir("knn");
+end
+
+aspectdef UtdspHLS
+	var fun = [
+		"fft",
+		"latnrm",
+		"mult",
+	];
+	for (var i = 0; i < fun.length; i++)
+		call OptimizeDir(fun[i]);
+end
+
+aspectdef TestHLS
+	var fun = [
+		//"constFolding",
+		"unwrapDecls",
+		//"if1",
+		//"if2",
+	];
+	for (var i = 0; i < fun.length; i++) {
+		//call printCfg(fun[i]);
+		call OptimizeDir(fun[i]);
+	}
+end

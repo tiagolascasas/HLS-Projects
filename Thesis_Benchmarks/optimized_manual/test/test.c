@@ -28,6 +28,16 @@ void unwrapDecls()
     int fi = 3, fa = 98;
 }
 
+void exprBalance(int a[100], int b[100]) {
+#pragma HLS EXPRESSION_BALANCE
+	int x1 = 1;
+	int x2 = 2;
+	int x3 = 3;
+	for (int i = 0; i < 100; i++) {
+		a[i] += b[i] * (x1 + a[i] * x2 + b[i]) / x1;
+	}
+}
+
 int main()
 {
     test();

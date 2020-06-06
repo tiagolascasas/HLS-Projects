@@ -19,18 +19,19 @@ int main() {
 }
 
 void mult(float a_matrix[10][10], float b_matrix[10][10], float c_matrix[10][10]) {
+   #pragma HLS array_partition variable=a_matrix complete
+   #pragma HLS array_partition variable=b_matrix complete
+   #pragma HLS array_partition variable=c_matrix complete
    /*a_matrix:            input matrix A (row-major)*/
    /*b_matrix:            input matrix B (row-major)*/
    /*c_matrix:            output matrix C (row-major)*/
    float sum;
    for(int i = 0; i < 10; i++) {
-      #pragma HLS  pipeline
       for(int j = 0; j < 10; j++) {
-         #pragma HLS  pipeline
+         #pragma HLS pipeline
          sum = 0.0;
          for(int k = 0; k < 10; ++k) {
-            #pragma HLS unroll factor=10
-            #pragma HLS  pipeline
+            #pragma HLS unroll
             sum += a_matrix[i][k] * b_matrix[k][j];
          }
          c_matrix[i][j] = sum;

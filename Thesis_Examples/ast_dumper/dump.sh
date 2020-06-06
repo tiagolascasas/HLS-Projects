@@ -1,0 +1,1 @@
+clang -cc1 -ast-dump code.c > ast.txt

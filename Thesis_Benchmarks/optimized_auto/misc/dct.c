@@ -1,35 +1,31 @@
 #include <stdio.h>
 int const CosBlock[8][8] = {88, 122, 115, 103, 88, 69, 47, 24, 88, 103, 47, -24, -88, -122, -115, -69, 88, 69, -47, -122, -88, 24, 115, 103, 88, 24, -115, -69, 88, 103, -47, -122, 88, -24, -115, 69, 88, -103, -47, 122, 88, -69, -47, 122, -88, -24, 115, -103, 88, -103, 47, 24, -88, 122, -115, 69, 88, -122, 115, -103, 88, -69, 47, -24};
 void dct(int InIm[8][8], int TempBlock[8][8], int CosTrans[8][8], int OutIm[8][8]) {
+   #pragma HLS array_partition variable=InIm complete
+   #pragma HLS array_partition variable=TempBlock complete
+   #pragma HLS array_partition variable=CosTrans complete
+   #pragma HLS array_partition variable=OutIm complete
    int i;
    int j;
    int k;
    int aux;
-   for(i = 0; i < 8; i++) {
-      #pragma HLS  pipeline
-      for(j = 0; j < 8; j++) {
-         #pragma HLS  pipeline
-         aux = 0;
-         for(k = 0; k < 8; k++) {
-            #pragma HLS unroll factor=8
-            #pragma HLS  pipeline
-            aux += InIm[i][k] * CosTrans[k][j];
-         }
-         TempBlock[i][j] = aux;
+   for(i = 0; i < 8; i++) for(j = 0; j < 8; j++) {
+      #pragma HLS pipeline
+      aux = 0;
+      for(k = 0; k < 8; k++) {
+         #pragma HLS unroll
+         aux += InIm[i][k] * CosTrans[k][j];
       }
+      TempBlock[i][j] = aux;
    }
-   for(i = 0; i < 8; i++) {
-      #pragma HLS  pipeline
-      for(j = 0; j < 8; j++) {
-         #pragma HLS  pipeline
-         aux = 0;
-         for(k = 0; k < 8; k++) {
-            #pragma HLS unroll factor=8
-            #pragma HLS  pipeline
-            aux += TempBlock[k][j] * CosBlock[i][k];
-         }
-         OutIm[i][j] = aux;
+   for(i = 0; i < 8; i++) for(j = 0; j < 8; j++) {
+      #pragma HLS pipeline
+      aux = 0;
+      for(k = 0; k < 8; k++) {
+         #pragma HLS unroll
+         aux += TempBlock[k][j] * CosBlock[i][k];
       }
+      OutIm[i][j] = aux;
    }
 }
 

@@ -42,9 +42,11 @@
 *
 */
 void gouraud(unsigned int rd, unsigned int r, unsigned int gd, unsigned int g, unsigned int bd, int b, int p[200]) {
+   #pragma HLS array_partition variable=p complete
    unsigned int mask = 0xF800F800;
    int i;
    for(i = 0; i < 200; i++) {
+      #pragma HLS unroll
       r += rd;
       g += gd;
       b += bd;

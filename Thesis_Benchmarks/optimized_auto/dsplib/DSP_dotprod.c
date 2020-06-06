@@ -4,8 +4,7 @@ int DSP_dotprod(short x[100], short y[100]) {
    #pragma HLS stream variable=y
    int sum = 0;
    for(int i = 0; i < 100; i++) {
-      #pragma HLS unroll factor=100
-      #pragma HLS  pipeline
+      #pragma HLS unroll
       sum += x[i] * y[i];
    }
    

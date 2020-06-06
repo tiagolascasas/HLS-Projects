@@ -38,9 +38,9 @@ float randFloat(float min, float max) {
 /**
 Return a random value for a feature.
 */
-double getRandFeatureValue() { // from 0 to MAX_VALUE_OF_FEATURE // from 0 to MAX_VALUE_OF_FEATURE // from 0 to MAX_VALUE_OF_FEATURE
-   double value;
-   value = (double) randDouble(0, 1); // from 0 to MAX_VALUE_OF_FEATURE
+float getRandFeatureValue() { // from 0 to MAX_VALUE_OF_FEATURE // from 0 to MAX_VALUE_OF_FEATURE // from 0 to MAX_VALUE_OF_FEATURE
+   float value;
+   value = (float) randDouble(0, 1); // from 0 to MAX_VALUE_OF_FEATURE
    
    return value;
 }
@@ -53,11 +53,11 @@ NFeatures: number of features in each point
 NClasses: desired number of classes
 *Known: the data structure with the points
 */
-void initializekNNModel(double instancesXfeatures[10000][12], char classifIDs[10000]) {
+void initializekNNModel(float instancesXfeatures[1000][32], char classifIDs[1000]) {
    // initialize the array of the data points to be preclassified: database of classified points
    // this can be moved to a function
-   for(int i = 0; i < 10000; i++) {
-      for(int j = 0; j < 12; j++) {
+   for(int i = 0; i < 1000; i++) {
+      for(int j = 0; j < 32; j++) {
          instancesXfeatures[i][j] = getRandFeatureValue(); // from 0 to MAX_VALUE_OF_FEATURE
          //printf("feature %e\n", x->features[j]);
       }
@@ -69,8 +69,8 @@ void initializekNNModel(double instancesXfeatures[10000][12], char classifIDs[10
 /**
 Show a point: includes the print of the values of its features and its class
 */
-void showPoint(double xFeatures[12], char classifID) {
-   for(int j = 0; j < 12; j++) {
+void showPoint(float xFeatures[32], char classifID) {
+   for(int j = 0; j < 32; j++) {
       printf("--> feature %d: %e \n", j, xFeatures[j]);
    }
    printf("--> class: %d\n", classifID);
@@ -79,7 +79,7 @@ void showPoint(double xFeatures[12], char classifID) {
 /**
 Show the K nearest points
 */
-void showBestPoints(char BestPointsClasses[3], double BestPointsDistances[3]) {
+void showBestPoints(char BestPointsClasses[3], float BestPointsDistances[3]) {
    for(int i = 0; i < 3; i++) {
       printf("Best point %d: \n", i);
       printf("--> class: %d\n", BestPointsClasses[i]);
@@ -90,8 +90,8 @@ void showBestPoints(char BestPointsClasses[3], double BestPointsDistances[3]) {
 /**
 Show all the points with classes determined
 */
-void showPoints(double instancesXfeatures[10000][12], char classifIDs[10000]) {
-   for(int i = 0; i < 10000; i++) {
+void showPoints(float instancesXfeatures[1000][32], char classifIDs[1000]) {
+   for(int i = 0; i < 1000; i++) {
       printf("Point %d: \n", i);
       showPoint(instancesXfeatures[i], classifIDs[i]);
    }
@@ -100,7 +100,8 @@ void showPoints(double instancesXfeatures[10000][12], char classifIDs[10000]) {
 /**
 Initializes the K BestPoints
 */
-void initializeBest(char BestPointsClasses[3], double BestPointsDistances[3]) {
+void initializeBest(char BestPointsClasses[3], float BestPointsDistances[3]) {
+   #pragma HLS inline
    for(int i = 0; i < 3; i++) {
       BestPointsDistances[i] = 1.7976931348623157e+308;
       /*point *x = &(bp->x);

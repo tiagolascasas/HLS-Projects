@@ -16,6 +16,11 @@ Jo�o M.P. Cardoso, May 2020
 Kalman filter
 */
 void kalman(int Y[16], int A[256], int K[256], int G[256], int V[4]) {
+   #pragma HLS array_partition variable=Y complete
+   #pragma HLS array_partition variable=A complete
+   #pragma HLS array_partition variable=K complete
+   #pragma HLS array_partition variable=G complete
+   #pragma HLS array_partition variable=V complete
    int i;
    int j;
    int index;
@@ -23,21 +28,20 @@ void kalman(int Y[16], int A[256], int K[256], int G[256], int V[4]) {
    int X[16];
    /*Initializing state Vector X*/
    for(i = 0; i < 16; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS unroll
       X[i] = 0;
    }
    /*Initializing state Vector Y*/
    for(i = 12; i < 16; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS unroll
       Y[i] = 0;
    }
    /*-- Computing state Vector X*/
    for(i = 0; i < 16; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS pipeline
       temp = 0;
       for(j = 0; j < 16; j++) {
-         #pragma HLS unroll factor=16
-         #pragma HLS  pipeline
+         #pragma HLS unroll
          index = i * 16 + j;
          temp += (A[index] * X[j] + K[index] * Y[j]);
       }
@@ -46,11 +50,10 @@ void kalman(int Y[16], int A[256], int K[256], int G[256], int V[4]) {
    /*-- Computing output Vector V*/
    // it only uses 4x16 elements of G
    for(i = 0; i < 4; i++) {
-      #pragma HLS  pipeline
+      #pragma HLS pipeline
       temp = 0;
       for(j = 0; j < 16; j++) {
-         #pragma HLS unroll factor=16
-         #pragma HLS  pipeline
+         #pragma HLS unroll
          index = i * 16 + j;
          temp += (G[index] * X[j]);
       }

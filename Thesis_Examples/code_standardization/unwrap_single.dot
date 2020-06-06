@@ -1,0 +1,37 @@
+digraph G {
+    subgraph cluster0 {
+
+    n0 [label="CompoundStmt"]
+    n1 [label="DeclStmt"];
+    n2 [label="VarDecl [x]"];
+    n3 [label="VarDecl [y]"];
+    n4 [label="VarDecl [z]"];
+    n5 [label="IntegerLiteral [1]"]
+    n0 -> n1;
+    n1 -> n2;
+    n1 -> n3;
+    n1 -> n4;
+    n4 -> n5;
+        labelloc="t";
+label="Original";
+    }
+    subgraph cluster1 {
+    nb0 [label="CompoundStmt"]
+    nb1 [label="DeclStmt"];
+    nb11 [label="DeclStmt"];
+    nb111 [label="DeclStmt"];
+    nb2 [label="VarDecl [x]"];
+    nb3 [label="VarDecl [y]"];
+    nb4 [label="VarDecl [z]"];
+    nb5 [label="IntegerLiteral [1]"]
+    nb0 -> nb1
+    nb0 -> nb11
+    nb0 -> nb111
+    nb1 -> nb2
+    nb11 -> nb3
+    nb111 -> nb4
+    nb4 -> nb5
+        labelloc="t"
+label="Unwrapped"
+    }
+}

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="DSP_dotprod.c" path="C:\Users\Tiago\Dev\HLS-Projects\Thesis_Benchmarks\optimized_manual\dsplib\DSP_dotprod.c"/>
+    <originFiles name="fir2D.c" path="C:\Users\Tiago\Dev\HLS-Projects\Thesis_Benchmarks\optimized_auto\misc\fir2D.c"/>
   </source>
-  <testbench>
-    <originFiles name="test_bench.c" path="C:\Users\Tiago\Dev\HLS-Projects\VivadoHLS\test_bench.c"/>
-  </testbench>
+  <testbench/>
 </autopilotfilemapping:AutoPilotFileMapping>

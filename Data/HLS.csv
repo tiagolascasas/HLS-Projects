@@ -1,7 +1,9 @@
+input,optimizations,part,target_clock,estim_clock,lat_worst,lat_avg,lat_best,FF,LUT,BRAM,DSP
 cosine_sum,cosf,xc7z020-clg484-1,10,8.665,35841,33793,31745,1942,3267,0,16
 cosine_sum,/,xc7z020-clg484-1,10,8.625,69633,65537,61441,5866,8147,8,102
 dct,Pipeline on loops 1 and 2,xc7z020-clg484-1,10,8.51,522,522,522,1644,2191,0,40
 dct,Full unroll on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1066,1066,1066,1138,1158,0,22
+dct,full unroll on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1066,1066,1066,1138,1158,0,22
 dct,Pipeline 2 and Unroll 4 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1154,1154,1154,673,1026,0,14
 dct,Pipeline 2 and Unroll 2 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,1666,1666,1666,525,709,0,10
 dct,Pipeline 2 on 1.1.1 and 2.1.1,xc7z020-clg484-1,10,8.51,2056,2056,2056,415,844,0,5
@@ -16,6 +18,22 @@ dct,Full Unroll on loop 1.1,xc7z020-clg484-1,10,8.51,4314,4314,4314,646,1499,0,5
 dct,Unroll 4 on loop 1.1,xc7z020-clg484-1,10,8.51,4338,4338,4338,479,964,0,5
 dct,Unroll 2 on loop 1.1,xc7z020-clg484-1,10,8.51,4354,4354,4354,376,686,0,5
 dct,none,xc7z020-clg484-1,10,8.51,4386,4386,4386,329,506,0,5
+dct,none,xc7z020-clg484-1,10,8.51,4386,4386,4386,329,506,0,5
+dsp_dotprod_100,full unroll + axi interface on x and y,xc7z020-clg484-1,10,10.751,101,101,101,2862,1716,0,100
+dsplib_autocor,full unroll on 1.1,xc7z020-clg484-1,10,8.702,577,577,577,1220,1482,0,32
+dsplib_autocor,stream on ac + full unroll on 1.1,xc7z020-clg484-1,10,8.702,577,577,577,1220,1491,0,32
+dsplib_autocor,stream on ac + full unroll on 1,xc7z020-clg484-1,10,8.702,1040,1040,1040,737,1583,0,16
+dsplib_autocor,full unroll on 1,xc7z020-clg484-1,10,8.702,1040,1040,1040,737,1627,0,16
+dsplib_autocor,none,xc7z020-clg484-1,10,8.702,1057,1057,1057,63,151,0,1
+dsplib_autocor,stream on ac + unroll 2 on 1.1,xc7z020-clg484-1,10,8.702,1057,1057,1057,129,277,0,2
+dsplib_dotprod_100,full unroll,xc7z020-clg484-1,10,10.751,54,54,54,2839,2366,0,100
+dsplib_dotprod_100,stream on x + y and full unroll,xc7z020-clg484-1,10,10.751,102,102,102,2823,1648,0,100
+dsplib_dotprod_100,none,xc7z020-clg484-1,10,6.38,301,301,301,82,71,0,1
+dsplib_sp_mat_mul_cplx,Full unroll on 1.1.1,xc7z020-clg484-1,10,8.4,2065,2065,2065,1862,3321,0,20
+dsplib_sp_mat_mul_cplx,full unroll on 1.1,xc7z020-clg484-1,10,8.317,4169,4169,4169,2006,3804,0,16
+dsplib_sp_mat_mul_cplx,unroll 4 on 1.1,xc7z020-clg484-1,10,7.256,4193,4193,4193,1675,3042,0,16
+dsplib_sp_mat_mul_cplx,none,xc7z020-clg484-1,10,7.256,4241,4241,4241,1410,2369,0,16
+dsplib_sp_mat_mul_cplx,full unroll on 1,xc7z020-clg484-1,10,8.317,4264,4264,4264,2106,3956,0,16
 euclidean_dist_32,d * d,xc7z020-clg484-1,10,8.129,16396,16396,16396,963,1548,0,5
 euclidean_dist_32,d * d + sqrtf,xc7z020-clg484-1,10,8.129,16396,16396,16396,963,1548,0,5
 euclidean_dist_32,d * d + rsqrt32,xc7z020-clg484-1,10,9.398,16405,16405,16405,599,1068,0,5
@@ -30,6 +48,9 @@ euclidean_dist_32,rsqrt32 (no inline),xc7z020-clg484-1,10,9.514,85013,85013,8501
 euclidean_dist_64,rsqrt64 (inline),xc7z020-clg484-1,10,9.514,80925,80925,80925,20755,10659,67,84
 euclidean_dist_64,rsqrt64 (no inline),xc7z020-clg484-1,10,9.514,80925,80925,80925,20755,10659,67,84
 euclidean_dist_64,/,xc7z020-clg484-1,10,9.514,80927,80927,80927,22080,12147,67,73
+fir_k_a,unroll on 1.1 and 2.1,xc7z020-clg484-1,10,8.742,6002,6002,6002,1082,4469,0,6
+fir_k_a,unroll on 1.1 and 2.1 + stream,xc7z020-clg484-1,10,8.742,10902,10902,10902,1039,2229,0,6
+fir_k_a,none,xc7z020-clg484-1,10,8.51,41302,41302,41302,265,402,0,3
 fir2D,Full unroll on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
 fir2D,Pipeline 2 + full unroll on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
 fir2D,Full unroll + pipeline 2 on 4th loop,xc7z020-clg484-1,10,11.212,8113665,8113665,8113665,180,400,0,3
@@ -39,7 +60,10 @@ fir2D,Unroll 8 on 2nd loop,xc7z020-clg484-1,10,8.111,16330185,16330185,16330185,
 fir2D,Unroll 4 on 2nd loop,xc7z020-clg484-1,10,8.111,16387593,16387593,16387593,490,1215,0,8
 fir2D,Unroll 2 on 2nd loop,xc7z020-clg484-1,10,8.111,16464735,16464735,16464735,240,567,0,4
 fir2D,none,xc7z020-clg484-1,10,8.111,16703337,16703337,16703337,173,317,0,2
-input,optimizations,part,target_clock,estim_clock,lat_worst,lat_avg,lat_best,FF,LUT,BRAM,DSP
+fir2D,none,xc7z020-clg484-1,10,8.111,16703337,16703337,16703337,173,317,0,2
+fir2D,expression balancing,xc7z020-clg484-1,10,8.111,16703337,16703337,16703337,173,317,0,2
+knn,inline,xc7z020-clg484-1,10,8.623,4041000010,4041000010,4041000010,4062,5881,0,14
+knn,none,xc7z020-clg484-1,10,8.623,4042000010,4042000010,4042000010,3981,6704,0,14
 sine_sum,sinf,xc7z020-clg484-1,10,8.665,35841,33793,31745,1943,3262,0,16
 sine_sum,/,xc7z020-clg484-1,10,8.625,69633,65537,61441,5867,8139,8,102
 svm_partitioned_predict,/,xc7z020-clg484-1,10,8.232,406857,406857,406857,3790,6467,68,47
@@ -48,14 +72,20 @@ svm_predict,Pipeline 4 on outer loop,xc7z020-clg484-1,10,13.434,11357,11357,1135
 svm_predict,expf,xc7z020-clg484-1,10,11.759,11363,11363,11363,6492,8112,20,55
 svm_predict,Pipeline 2 on outer loop + expf,xc7z020-clg484-1,10,9.634,112355,112355,112355,1286,2127,68,13
 svm_predict,Pipeline 2 on inner loop,xc7z020-clg484-1,10,13.434,157289,157289,157289,3485,5900,68,46
+svm_predict,full unroll on 1.1,xc7z020-clg484-1,10,9.461,172234,172234,172234,5620,8941,0,49
+svm_predict,unroll 2 on 1.1 + pipeline on 1.1,xc7z020-clg484-1,10,9.634,173473,173473,173473,4020,7067,0,47
+svm_predict,pipeline on 1.1,xc7z020-clg484-1,10,8.232,173473,173473,173473,3945,7083,0,45
 svm_predict,Pipeline 2 on inner loop + expf,xc7z020-clg484-1,10,7.684,388129,388129,388129,972,2044,68,12
 svm_predict,/,xc7z020-clg484-1,10,8.232,406849,406849,406849,3473,5924,68,45
+svm_predict,none,xc7z020-clg484-1,10,8.232,406849,406849,406849,3886,7062,0,45
 triangles_hypotenuse,Unroll 4,xc7z020-clg484-1,10,8.623,110001,110001,110001,5633,9092,0,12
 triangles_hypotenuse,Unroll 4 + Stream,xc7z020-clg484-1,10,8.623,112501,112501,112501,3196,6142,0,6
 triangles_hypotenuse,Unroll 2,xc7z020-clg484-1,10,8.623,215001,215001,215001,5225,7470,0,12
 triangles_hypotenuse,Unroll 2 + Stream,xc7z020-clg484-1,10,8.623,215001,215001,215001,2812,4648,0,6
 triangles_hypotenuse,Stream on two input arrays,xc7z020-clg484-1,10,8.623,420001,420001,420001,2635,3863,0,6
 triangles_hypotenuse,none,xc7z020-clg484-1,10,8.623,430001,430001,430001,2650,3847,0,6
+utdsp_fft_1024,none (modified to have constant trip count),xc7z020-clg484-1,10,7.256,128031,128031,128031,1523,2522,0,16
+utdsp_fft_1024,expression balancing,xc7z020-clg484-1,10,7.256,128031,128031,128031,1523,2522,0,16
 utdsp_iir_4_64,Stream on input array,xc7z020-clg484-1,10,7.256,5505,5505,5505,980,1435,0,8
 utdsp_iir_4_64,none,xc7z020-clg484-1,10,7.256,5569,5569,5569,981,1428,0,8
 utdsp_latnrm_32_64,Pipeline on loop 1,xc7z020-clg484-1,10,9.531,9184,9184,9184,7433,5931,0,24

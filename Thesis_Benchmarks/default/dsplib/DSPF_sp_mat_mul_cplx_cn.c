@@ -28,6 +28,7 @@ void DSPF_sp_mat_mul_cplx_cn(float x1[2 * NR1 * NC1], float x2[2 * NC1 * NC2], f
     }
 }
 
+/*
 int main()
 {
     float ptr_x1[2 * NR1 * NC1] = {0};
@@ -46,3 +47,4 @@ int main()
 
     return 0;
 }
+*/

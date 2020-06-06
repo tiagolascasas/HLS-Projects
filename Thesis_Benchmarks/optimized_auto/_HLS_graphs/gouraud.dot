@@ -1,0 +1,95 @@
+Digraph G {
+node [penwidth=2.5]
+n1 [label="gouraud
+rd: int (32-bit)
+r: int (32-bit)
+gd: int (32-bit)
+g: int (32-bit)
+bd: int (32-bit)
+b: int (32-bit)
+p[200]: int (32-bit)
+" color="#b54707"shape="box"]
+subgraph cluster5{
+n15 [label="p" color="goldenrod2"]
+n16 [label="i" color="red"]
+n17 [label="+" color="darkorchid2"]
+n18 [label="+" color="darkorchid2"]
+n19 [label="&" color="darkorchid2"]
+n20 [label="r" color="darkgreen"]
+n21 [label="mask" color="darkgreen"]
+n22 [label=">>" color="darkorchid2"]
+n23 [label="&" color="darkorchid2"]
+n24 [label="g" color="darkgreen"]
+n26 [label="5" color="gray36"]
+n27 [label=">>" color="darkorchid2"]
+n28 [label="&" color="darkorchid2"]
+n29 [label="b" color="darkgreen"]
+n31 [label="10" color="gray36"]
+}
+subgraph cluster4{
+n12 [label="+" color="darkorchid2"]
+n13 [label="b" color="goldenrod2"]
+n14 [label="bd" color="darkgreen"]
+}
+subgraph cluster3{
+n9 [label="+" color="darkorchid2"]
+n10 [label="g" color="goldenrod2"]
+n11 [label="gd" color="darkgreen"]
+}
+subgraph cluster2{
+n6 [label="+" color="darkorchid2"]
+n7 [label="r" color="goldenrod2"]
+n8 [label="rd" color="darkgreen"]
+}
+subgraph cluster1{
+n2 [label="mask" color="goldenrod2"]
+n4 [label="0xF800F800" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n1 [label="gouraud
+rd: int (32-bit)
+r: int (32-bit)
+gd: int (32-bit)
+g: int (32-bit)
+bd: int (32-bit)
+b: int (32-bit)
+p[200]: int (32-bit)
+" color="#b54707"shape="box"]
+n5 [label="loop i" color="blue1"]
+n4 -> n2 [label="", color=black]
+n8 -> n6 [label="", color=black]
+n7 -> n6 [label="", color=black]
+n6 -> n7 [label="", color=black]
+n11 -> n9 [label="", color=black]
+n10 -> n9 [label="", color=black]
+n9 -> n10 [label="", color=black]
+n14 -> n12 [label="", color=black]
+n13 -> n12 [label="", color=black]
+n12 -> n13 [label="", color=black]
+n16 -> n15 [label="", color=red]
+n20 -> n19 [label="", color=black]
+n21 -> n19 [label="", color=black]
+n24 -> n23 [label="", color=black]
+n21 -> n23 [label="", color=black]
+n23 -> n22 [label="", color=black]
+n26 -> n22 [label="", color=black]
+n19 -> n18 [label="", color=black]
+n22 -> n18 [label="", color=black]
+n29 -> n28 [label="", color=black]
+n21 -> n28 [label="", color=black]
+n28 -> n27 [label="", color=black]
+n31 -> n27 [label="", color=black]
+n18 -> n17 [label="", color=black]
+n27 -> n17 [label="", color=black]
+n17 -> n15 [label="", color=black]
+n5 -> n7 [label="x200", color=blue]
+n5 -> n10 [label="x200", color=blue]
+n5 -> n13 [label="x200", color=blue]
+n5 -> n15 [label="x200", color=blue]
+n1 -> n2 [label="", color=blue]
+n1 -> n5 [label="", color=blue]
+labelloc="t"
+label="Data-flow Graph - gouraud"
+}

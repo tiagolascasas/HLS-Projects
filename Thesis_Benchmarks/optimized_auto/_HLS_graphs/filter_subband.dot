@@ -1,0 +1,87 @@
+Digraph G {
+node [penwidth=2.5]
+n1 [label="filter_subband
+z[512]: double (64-bit)
+s[32]: double (64-bit)
+m[1024]: double (64-bit)
+" color="#b54707"shape="box"]
+subgraph cluster4{
+n21 [label="+" color="darkorchid2"]
+n22 [label="s" color="goldenrod2"]
+n23 [label="i" color="red"]
+n24 [label="*" color="darkorchid2"]
+n25 [label="m" color="darkgreen"]
+n26 [label="+" color="darkorchid2"]
+n27 [label="*" color="darkorchid2"]
+n28 [label="32" color="gray36"]
+n30 [label="j" color="red"]
+n31 [label="y" color="darkgreen"]
+}
+subgraph cluster3{
+n17 [label="s" color="goldenrod2"]
+n18 [label="i" color="red"]
+n19 [label="0.0" color="gray36"]
+}
+subgraph cluster2{
+n7 [label="+" color="darkorchid2"]
+n8 [label="y" color="goldenrod2"]
+n9 [label="i" color="red"]
+n10 [label="z" color="darkgreen"]
+n11 [label="+" color="darkorchid2"]
+n13 [label="*" color="darkorchid2"]
+n14 [label="64" color="gray36"]
+n15 [label="j" color="red"]
+}
+subgraph cluster1{
+n3 [label="y" color="goldenrod2"]
+n4 [label="i" color="red"]
+n5 [label="0.0" color="gray36"]
+}
+subgraph cluster0{
+}
+n0 [label="" color="white"]
+n1 [label="filter_subband
+z[512]: double (64-bit)
+s[32]: double (64-bit)
+m[1024]: double (64-bit)
+" color="#b54707"shape="box"]
+n2 [label="loop i" color="blue1"]
+n6 [label="loop j" color="blue1"]
+n16 [label="loop i" color="blue1"]
+n20 [label="loop j" color="blue1"]
+n4 -> n3 [label="", color=red]
+n5 -> n3 [label="", color=black]
+n9 -> n8 [label="", color=red]
+n14 -> n13 [label="", color=black]
+n15 -> n13 [label="", color=black]
+n9 -> n11 [label="", color=black]
+n13 -> n11 [label="", color=black]
+n11 -> n10 [label="", color=red]
+n10 -> n7 [label="", color=black]
+n8 -> n7 [label="", color=black]
+n7 -> n8 [label="", color=black]
+n6 -> n8 [label="x8", color=blue]
+n2 -> n3 [label="x64", color=blue]
+n2 -> n6 [label="x64", color=blue]
+n18 -> n17 [label="", color=red]
+n19 -> n17 [label="", color=black]
+n23 -> n22 [label="", color=red]
+n28 -> n27 [label="", color=black]
+n23 -> n27 [label="", color=black]
+n27 -> n26 [label="", color=black]
+n30 -> n26 [label="", color=black]
+n26 -> n25 [label="", color=red]
+n30 -> n31 [label="", color=red]
+n25 -> n24 [label="", color=black]
+n31 -> n24 [label="", color=black]
+n24 -> n21 [label="", color=black]
+n22 -> n21 [label="", color=black]
+n21 -> n22 [label="", color=black]
+n20 -> n22 [label="x64", color=blue]
+n16 -> n17 [label="x32", color=blue]
+n16 -> n20 [label="x32", color=blue]
+n1 -> n2 [label="", color=blue]
+n1 -> n16 [label="", color=blue]
+labelloc="t"
+label="Data-flow Graph - filter_subband"
+}

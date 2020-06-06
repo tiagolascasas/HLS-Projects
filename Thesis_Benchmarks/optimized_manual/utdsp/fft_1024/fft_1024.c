@@ -39,6 +39,7 @@ void fft(float data_real[NPOINTS], float data_imag[NPOINTS], float coef_real[NPO
 /* coef_real:         real coefficient points */
 /* coef_imag:         imaginary coefficient points */
 {
+#pragma HLS EXPRESSION_BALANCE
     float temp_real;
     float temp_imag;
     float Wr;
@@ -49,12 +50,12 @@ void fft(float data_real[NPOINTS], float data_imag[NPOINTS], float coef_real[NPO
     for (int i = 0; i < NSTAGES; ++i)
     {
 #pragma MAX_ITER 1
-        for (int j = 0; j < groupsPerStage; ++j)
+        for (int j = 0; j < 1; ++j)
         {
             Wr = coef_real[(1 << i) - 1 + j];
             Wi = coef_imag[(1 << i) - 1 + j];
 #pragma MAX_ITER 512
-            for (int k = 0; k < buttersPerGroup; ++k)
+            for (int k = 0; k < 512; ++k)
             {
                 temp_real = Wr * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] - Wi * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k];
                 temp_imag = Wi * data_real[2 * j * buttersPerGroup + buttersPerGroup + k] + Wr * data_imag[2 * j * buttersPerGroup + buttersPerGroup + k];

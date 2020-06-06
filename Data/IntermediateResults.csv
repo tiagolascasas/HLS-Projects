@@ -1,0 +1,28 @@
+input,optimizations,part,target_clock,estim_clock,lat_worst,lat_avg,lat_best,FF,LUT,BRAM,DSP
+dct,"Optimized, II=4, II=4",xc7z020-clg484-1,10,8.51,522,522,522,1245,1683,0,34
+dct,none,xc7z020-clg484-1,10,8.51,4386,4386,4386,329,506,0,5
+DSP_autocor,"Optimized, II=18",xc7z020-clg484-1,10,10.722,297,297,297,4401,5748,0,48
+DSP_autocor,none,xc7z020-clg484-1,10,8.702,1057,1057,1057,63,151,0,1
+DSP_dotprod,Optimized,xc7z020-clg484-1,10,10.751,102,102,102,2823,1648,0,100
+DSP_dotprod,none,xc7z020-clg484-1,10,6.38,301,301,301,82,71,0,1
+DSPF_sp_mat_mul_cplx_cn,"Optimized, II=2",xc7z020-clg484-1,10,8.722,160,160,160,4921,9792,0,40
+DSPF_sp_mat_mul_cplx_cn,none,xc7z020-clg484-1,10,7.256,4241,4241,4241,1410,2369,0,16
+fir_k_a,"Optimized, II=2, II=100",xc7z020-clg484-1,10,8.742,10210,10210,10210,8118,7811,0,297
+fir_k_a,none,xc7z020-clg484-1,10,8.51,41302,41302,41302,265,402,0,3
+gouraud,Optimized,xc7z020-clg484-1,10,7.656,66,66,66,10192,33205,0,0
+gouraud,none,xc7z020-clg484-1,10,5.806,201,201,201,133,228,0,0
+kalman,"Optimized, II=12, II=1",xc7z020-clg484-1,10,8.742,220,220,220,5276,4139,2,135
+kalman,none,xc7z020-clg484-1,10,8.51,1356,1356,1356,484,592,0,12
+knn,none,xc7z020-clg484-1,10,8.623,4042000010,4042000010,4042000010,3981,6704,0,14
+knn,Optimized – BRAM usage exceeded availability,,,,,,,,,,
+UTDSP_latnrm_32_64,"Optimized, II=141",xc7z020-clg484-1,10,10.284,9184,9184,9184,8391,7177,0,30
+UTDSP_latnrm_32_64,none,xc7z020-clg484-1,10,7.256,46593,46593,46593,1443,2484,0,16
+UTDSP_matmul_10_10,"Optimized, II=5",xc7z020-clg484-1,10,8.4,557,557,557,2791,2689,0,10
+UTDSP_matmul_10_10,none,xc7z020-clg484-1,10,7.256,11221,11221,11221,532,936,0,5
+,,,,,,,,,,,
+,,,,,,,,,,,
+Missing due to high Vivado execution times:,,,,,,,,,,,
+UTDSP_fft_1024,,,,,,,,,,,
+triangles_hypotenuse,,,,,,,,,,,
+svm_predict,,,,,,,,,,,
+fir2D,,,,,,,,,,,
